@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Protocol update (Louis's feedback, post-turn 024): bad/neutral verdicts may
+  be fixed **in the same turn** when the cause is understood and the fix is
+  small (iterate the treatment against the same baseline; stop the turn when
+  it stops converging), and the baseline is defined as the **last validated
+  experiment** — run once per turn, reused across in-turn iterations.
 - Turn 023 (G4 progress): forge placement now walks a double ring (16
   candidates at 72 m + 16 at 88 m, ≥ 28 m structure clearance); 9/10 seeds
   reach real City Phase at minute 18–19 (single ring: 5/10), 0 JS errors,

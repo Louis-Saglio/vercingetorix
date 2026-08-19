@@ -48,15 +48,21 @@ why — that is a legitimate outcome of evidence, not a failure.
    evidence collection for its own effect**: instrumentation that shows, during the
    experiment, whether the change did what it was supposed to (samples, logs, states
    of the affected subsystem). A change that cannot be observed is not implemented.
-3. **Experiment** — run the baseline (last commit) and the treatment (working tree)
-   on the same seed set; record every match result in `experiments/NNN/`.
+3. **Experiment** — run the baseline (the last validated code) and the treatment
+   (working tree) on the same seed set; record every match result in
+   `experiments/NNN/`. The baseline batch runs once per turn and is reused
+   across in-turn fix-and-rerun iterations.
 4. **Verdict** — apply the decision rules below to the primary metric.
    Possible verdicts: **good**, **bad**, **neutral**, **invalid**.
 5. **Action**:
    - **good** → validate: keep the change.
-   - **bad** → revert the change.
-   - **neutral** → collect more evidence: repeat the batch once (doubled N).
-     Still neutral after that → revert and record the negative knowledge.
+   - **bad** or **neutral** → first understand *why*, from the evidence. If the
+     cause is well understood and the fix is small, apply it **in the same
+     turn** and rerun the treatment against the same baseline and seeds. This
+     may iterate several times. If it is not converging — or the fix is too
+     big to do safely in-turn — stop the turn: revert and record the negative
+     knowledge plus the fix direction for the next turn (bad); record the
+     negative knowledge (neutral).
    - **invalid** (the experiment design or the implementation was wrong, not the
      idea) → fix the experiment, rerun it against the original code, and state
      plainly in the journal what went wrong.
@@ -92,7 +98,12 @@ why — that is a legitimate outcome of evidence, not a failure.
    regardless of metrics.
 5. **Minimal diffs.** No refactoring, no formatting, no unrelated fixes inside a turn
    (refactors are their own turn type).
-6. **Baseline = last commit.** Never compare against a stale baseline.
+6. **Baseline = last validated experiment.** The baseline is the last validated
+   (kept) code and its stored results. Run the baseline batch once per turn on
+   the turn's fresh seed set, then reuse it for every in-turn fix-and-rerun
+   iteration — never re-run a baseline whose stored results already cover that
+   code and seed set, and never compare against a stale or unvalidated
+   baseline. (After a reverted turn, HEAD *is* the last validated code.)
 7. **Only validated improvements persist.** Reverted turns leave no trace in the code,
    only in the journal.
 8. **Telemetry is mandatory.** The bot emits a `[HARNESS]` sample line every game
@@ -182,8 +193,13 @@ Batch verdict over N = 10 pairs (sum of pair deltas):
 | Verdict | Condition | Action |
 |---|---|---|
 | good | total ≥ +4, no error/determinism veto | validate: keep the change |
-| bad | total ≤ −4, or error/determinism veto | revert |
-| neutral | otherwise | repeat the batch once (N = 20 pairs total); still neutral → revert and record |
+| bad | total ≤ −4, or error/determinism veto | diagnose; fix small understood causes in-turn and rerun; otherwise revert |
+| neutral | otherwise | diagnose; fix small understood causes in-turn and rerun; otherwise revert and record |
+
+On a bad or neutral verdict, in-turn fix-and-rerun iterations are encouraged
+when the cause is understood and the fix is small (same baseline, same seeds,
+as many iterations as useful). If the iterations stop converging, close the
+turn and carry the negative knowledge to the next turn.
 
 For a single-metric hypothesis (e.g. "time to reach Town Phase"): **good** if the
 mean improves ≥ 10% relative to baseline, **bad** if it worsens ≥ 10%, **neutral**
