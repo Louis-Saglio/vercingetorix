@@ -7,8 +7,11 @@ system are defined in the closing commit.
 ## Current goal: G4 — Defeat sandbox Rome
 
 **Statement:** Vercingetorix destroys the enemy civic centre (the
-`conquest_civic_centers` victory condition) before the 20-minute match limit
-against sandbox Rome (Petra, difficulty 0), which does not expand or attack.
+`conquest_civic_centers` victory condition) against sandbox Rome (Petra,
+difficulty 0), which does not expand or attack, before the **25-game-minute**
+match limit (raised from 20 on turn 022's evidence: City Phase lands at
+minute 17–19 on the seeds where the forge prerequisites build, so the
+arsenal → ram → march → CC kill cannot fit inside 20 minutes).
 
 **Grading per match:**
 

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Turn 022 (G4 evidence): G4's match limit raised 20 → 25 game-minutes —
+  City Phase lands at minute 17–19 even on the seeds where the forges build,
+  leaving no time for the arsenal/ram/attack inside 20 minutes. (The forge
+  placement ring itself was neutral, 5/10, and reverted.)
 - Turn 019 (G4 progress): Town Phase is now researched **for real** — the bot
   commands all citizen soldiers (the javelineers/cavalry were idle since turn
   002), builds 5 Village-class houses, and posts Town only when the sim's
