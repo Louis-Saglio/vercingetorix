@@ -6,11 +6,8 @@ retroactively to match a verdict.
 
 - G3 (reconsider): five G3 turns with no win — 005 bad, 009 bad, 010 bad, 012
   bad, 013 neutral. Both the capture path and the siege path need capabilities
-  the current bot lacks. Next: define a smaller intermediate goal (e.g. capture
-  a single enemy building, or reach City Phase) before re-attempting a full
-  sandbox-Rome win.
-- G3: grow to 40 soldiers with 6 houses. (turn 013 — neutral: only 3/10 reach
-  40 by minute 16; six-house placement is unreliable.)
+  the current bot lacks. Next: define a smaller intermediate goal before
+  re-attempting a full sandbox-Rome win.
 - G3: after Town, assign a small fixed number of gatherers to stone/metal while
   the rest stay on wood/food; primary metric = 750 stone + 750 metal.
 - G3: research City Phase once stone ≥ 750 and metal ≥ 750.
@@ -27,10 +24,9 @@ retroactively to match a verdict.
   (turn 003 — done; also pinned biome/placement and restored the canary gate)
 - Evidence: report time-to-phase (town/city) and per-minute resource/army samples
   so the composite score has phase-timing metrics to use.
-- Perf (refactor/optimization): replace the skeleton's per-tick full-map resource
-  scan (`getEntities()` over all map entities in `play()`) with cached collections
-  or the shared `resourceMaps`; behavior-preserving, judged by turn rate.
+- Perf: cached resource collections (turn 014 — done).
 
 Turn 004 done (G1 achieved). Turn 005 bad. Turn 006 invalid. Turn 007 neutral.
 Turn 008 done (G2 achieved). Turn 009 bad. Turn 010 bad. Turn 011 done
-(save-for-town — good). Turn 012 bad. Turn 013 neutral; G3 still open.
+(save-for-town — good). Turn 012 bad. Turn 013 neutral. Turn 014 done
+(perf-cached-resources — good); G3 still open.

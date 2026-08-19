@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Turn 014 (perf): replaced the bot's full-map resource scan with auto-maintained
+  cached collections; behavior-preserving (canary PASS), 0 JS errors, no
+  turn-rate regression.
 - Turn 011 (G3 progress): the bot now saves food/wood and researches Town Phase
   before massing soldiers; 10/10 seeds reach Town (baseline 0/10), 0 JS errors,
   canary PASS.

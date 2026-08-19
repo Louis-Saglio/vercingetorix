@@ -110,16 +110,30 @@ VercingetorixBot.prototype.play = function(gameState)
 	const woodResources = [];
 	const foodResources = [];
 	const maxDistSq = 160 * 160;
-	for (const ent of gameState.getEntities().values())
+	// Auto-maintained caches replace the full-map getEntities() scan. The
+	// filters only select resource supplies; ownership, position and distance
+	// are still applied here so behavior is unchanged.
+	const woodCache = gameState.updatingGlobalCollection("resource-wood",
+		{ "func": ent => ent.getResourceType() == "wood", "dynamicProperties": [] },
+		gameState.getEntities());
+	const foodCache = gameState.updatingGlobalCollection("resource-food",
+		{ "func": ent => ent.getResourceType() == "food", "dynamicProperties": [] },
+		gameState.getEntities());
+	for (const ent of woodCache.values())
 	{
-		const type = ent.getResourceType();
-		if (ent.owner() !== 0 || (type != "wood" && type != "food"))
-			continue;
-		if (!ent.position())
+		if (ent.owner() !== 0 || !ent.position())
 			continue;
 		if (SquareVectorDistance(cc.position(), ent.position()) > maxDistSq)
 			continue;
-		(type == "wood" ? woodResources : foodResources).push(ent);
+		woodResources.push(ent);
+	}
+	for (const ent of foodCache.values())
+	{
+		if (ent.owner() !== 0 || !ent.position())
+			continue;
+		if (SquareVectorDistance(cc.position(), ent.position()) > maxDistSq)
+			continue;
+		foodResources.push(ent);
 	}
 
 	this.manageResearch(gameState, cc);
