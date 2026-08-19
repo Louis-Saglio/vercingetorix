@@ -13,5 +13,8 @@ retroactively to match a verdict.
   (turn 003)
 - Evidence: report time-to-phase (town/city) and per-minute resource/army samples
   so the composite score has phase-timing metrics to use.
+- Perf (refactor/optimization): replace the skeleton's per-tick full-map resource
+  scan (`getEntities()` over all map entities in `play()`) with cached collections
+  or the shared `resourceMaps`; behavior-preserving, judged by turn rate.
 
 Real hypotheses start at turn 004 and are derived from the baseline results of turn 002.

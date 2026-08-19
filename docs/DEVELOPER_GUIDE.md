@@ -162,6 +162,30 @@ Do not add features to the harness that a turn does not need.
 - Reference extraction of the public mod: already done at `/home/ubuntu/0ad-poc/public/`.
 - Determinism check: run the same seed twice, diff the stats JSON blocks — must be byte-identical.
 
+## Performance guidance
+
+The AI must not slow the simulation down (protocol hard rule 9). Known costs and
+the cheap alternatives, all verified in 0.28:
+
+- **Full-map scans are the main hazard.** `gameState.getEntities()` holds every
+  entity (thousands of trees on mainland). Iterating it every play tick to build
+  resource lists is expensive — the skeleton currently does exactly this and it is
+  the first optimization candidate. Alternatives: `updatingCollection(name,
+  filter, base)` (auto-maintained caches), the shared resource maps
+  (`sharedAI.resourceMaps`, density InfoMaps per type), or filtering once and
+  caching per tick.
+- **Collections are cheap, filters are eager.** `.filter()` walks the source
+  every call; `updatingCollection`/`updatingGlobalCollection` keep results
+  maintained across turns — prefer them for anything queried repeatedly.
+- **`Template.get(path)` caches lookups** per template — safe to call repeatedly.
+- **Distance math is O(n) over the filtered set** — keep sets small (radius caps)
+  and reuse results within a tick.
+- **The 8-turn play throttle already bounds decision cost**; keep heavy work
+  inside `play()` and keep per-turn work (reporting, event collection) trivial.
+- **Measuring:** the match result records `turns` and `wall_seconds`; the turn
+  rate must stay close to the baseline (~300-900 turns/s on this VPS). A material
+  drop means the bot is burning CPU.
+
 ## Conventions
 
 - One commit per turn, message `turn NNN: <slug> — <verdict>`, body = journal summary.

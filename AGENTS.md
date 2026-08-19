@@ -33,3 +33,7 @@ Agent instructions for this repository. Read before acting.
 - Louis's standing instructions override the protocol (e.g. "stop after turn N",
   "don't start turns automatically"). Record such instructions in
   `CURRENT_TURN.md`.
+- **AI performance is a hard constraint**: the bot must not slow down the
+  simulation. No full-map scans per tick; prefer cached collections and the
+  shared resource maps. See `docs/PROTOCOL.md` rule 9 and
+  `docs/DEVELOPER_GUIDE.md` → Performance guidance.

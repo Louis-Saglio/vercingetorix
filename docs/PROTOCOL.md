@@ -91,6 +91,14 @@ why — that is a legitimate outcome of evidence, not a failure.
    minute (unit counts, resources, states — whatever the current goal grades). These
    samples are how the agent checks mid-experiment whether a run is going well or
    should be aborted early to avoid wasting time. Kill clearly-failing runs.
+9. **Performance budget.** The AI must not slow down the simulation. No full-map
+   entity scans per play tick, no re-allocating large collections every tick, no
+   quadratic work over entities. Prefer cached collections, the shared resource
+   maps, and the existing turn throttle. If in doubt, measure: the turn rate
+   (turns per wall-second in the match result) must not drop materially versus the
+   baseline. Optimizations that preserve behavior get their own commit; a
+   performance regression in a turn counts against the verdict like a metric
+   regression.
 
 ## Experiment specification (defaults)
 
