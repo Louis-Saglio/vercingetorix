@@ -1,6 +1,6 @@
 # Current turn
 
-- Number: none active — turn 007 closed (verdict neutral, change reverted, pushed).
+- Number: none active — turn 007 closed (commit `b264ed7`, pushed; change reverted).
 - Next: turn 008 under goal G2 (defeat sandbox Rome); awaiting Louis's
   go-ahead before starting, following the one-turn-at-a-time pattern.
 
