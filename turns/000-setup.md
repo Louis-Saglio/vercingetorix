@@ -8,8 +8,8 @@ and the documentation scaffolding.
 ## Implementation
 
 - Created `/home/ubuntu/vercingetorix` with git repository (`main` branch).
-- Wrote `PROTOCOL.md` (the turn cycle, hard rules, experiment defaults, verdict rules).
-- Wrote `README.md`, `CHANGELOG.md`, `docs/USER_GUIDE.md`, `docs/DEVELOPER_GUIDE.md`.
+- Wrote `docs/PROTOCOL.md` (the turn cycle, hard rules, experiment defaults, verdict rules).
+- Wrote `README.md`, `docs/CHANGELOG.md`, `docs/USER_GUIDE.md`, `docs/DEVELOPER_GUIDE.md`.
 - Created `turns/` journal with this file and `turns/backlog.md`, plus `experiments/`.
 - Installed `0ad` / `0ad-data` 0.28.0 system-wide and verified the headless workflow
   (see the developer guide, Environment section, for the measured facts).

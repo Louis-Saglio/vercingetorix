@@ -29,3 +29,9 @@ goal G2 (e.g. defeat sandbox Rome consistently; then medium Petra).
 - G2: defeat sandbox Rome (win ≥ 8/10 seeds on the standard batch).
 - G3: defeat medium (difficulty 3) Rome.
 - G4: town phase timing: reach Town Phase by minute X and City by minute Y.
+
+## Reconsideration rule
+
+If G1 (or any goal) resists several turns of effort, stop and reconsider: is it too
+ambitious? Does it depend on another goal that should come first? Adjust the goal
+here, with a note explaining why.

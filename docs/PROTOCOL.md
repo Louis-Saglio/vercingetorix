@@ -15,6 +15,11 @@ serves and grades its experiment against the goal's scale — a turn can be
 goal-positive even when its verdict is neutral. When a goal is achieved, define the
 next goal and its grading system in the same commit that closes the goal.
 
+**If a goal resists several turns of effort, reconsider it before grinding further:**
+maybe it is too ambitious, or not achievable before some other goal. Adjust the
+goal (split it, reorder it, or replace it) in `GOALS.md` with a note explaining
+why — that is a legitimate outcome of evidence, not a failure.
+
 ## Turn types
 
 - **Improvement turn** (default): a hypothesis about making the bot better.

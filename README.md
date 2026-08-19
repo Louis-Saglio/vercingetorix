@@ -5,7 +5,7 @@ in-engine JavaScript mod, developed and trained entirely in headless matches on 
 
 It is developed by an autonomous agent following a strict, evidence-driven cycle:
 hypothesis → implementation → experiment → verdict → action, one change per turn.
-See [PROTOCOL.md](PROTOCOL.md).
+See [docs/PROTOCOL.md](docs/PROTOCOL.md).
 
 ## Quick start
 
@@ -16,6 +16,6 @@ See [PROTOCOL.md](PROTOCOL.md).
 
 ## Documentation
 
-- [Changelog](CHANGELOG.md)
+- [Changelog](docs/CHANGELOG.md)
 - [User Guide](docs/USER_GUIDE.md)
 - [Developer Guide](docs/DEVELOPER_GUIDE.md)

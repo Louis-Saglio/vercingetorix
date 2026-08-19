@@ -7,6 +7,8 @@ For the agents maintaining this project. Read this before touching anything.
 ```
 vercingetorix/
 ├── PROTOCOL.md          # the development loop (canonical rules) — read first
+├── GOALS.md             # current long-term goal + grading scale
+├── CHANGELOG.md         # curated change history
 ├── CURRENT_TURN.md      # active turn + phase — the recovery entry point
 ├── turns/               # journal: NNN-slug.md per turn, backlog.md
 ├── experiments/NNN/     # raw results per turn: baseline.json, treatment.json, report.md
@@ -86,7 +88,7 @@ implementation):
   ...). Training/building/research go through the entity's `ProductionQueue`,
   `Builder`, `Researcher` components.
 - Determinism is a hard requirement: same seed → identical behavior, always. See
-  [PROTOCOL.md](../PROTOCOL.md) → Hard rules.
+  [PROTOCOL.md](PROTOCOL.md) → Hard rules.
 
 ## Harness (Rust)
 

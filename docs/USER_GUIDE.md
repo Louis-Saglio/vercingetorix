@@ -8,7 +8,7 @@ changes that are proven to help. This guide is for Louis, the project owner.
 
 ## How the development loop works
 
-Everything happens in **turns** (see [PROTOCOL.md](../PROTOCOL.md)):
+Everything happens in **turns** (see [PROTOCOL.md](PROTOCOL.md)):
 
 1. The agent writes a hypothesis about what to improve.
 2. Implements it.
