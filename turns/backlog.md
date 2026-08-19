@@ -16,6 +16,12 @@ retroactively to match a verdict.
   750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
   minute 18–19** — training held until 3 forges, forges placed on a double
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
+- G4a: re-scoped after turn 028 (bad): 50 soldiers by minute 22 is beyond
+  the current economy (validated code peaks at 16 melee on seeds 261-270;
+  wood income ~4-5/s post-town caps training at ~1.5 soldiers/min). Options:
+  (a) wood-economy turn first — more gatherers earlier (train javelineers
+  too? the pre-town 8-house budget drains wood), or (b) adopt the
+  evidence-supported target: ≥ 32 soldiers AND ≥ 3 rams by minute 24.
 - G4: the **assault** problem (the economy chain works — turn 026 got City
   8/10, arsenal, rams and a full-army attack at minute 23–25, but the force
   was annihilated: 0 buildings destroyed, unitsLost 2500–3150). Candidate

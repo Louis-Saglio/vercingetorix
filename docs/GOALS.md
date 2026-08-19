@@ -4,7 +4,33 @@ Long-term goals that span multiple turns. Each turn grades its experiment agains
 the current goal's scale. When a goal is achieved, the next goal and its grading
 system are defined in the closing commit.
 
-## Current goal: G4 — Defeat sandbox Rome
+## Current goal: G4a — Sustain a 50+ melee army (achieved via G4 split, turn 028)
+
+**Statement:** Vercingetorix fields ≥ 50 melee citizen soldiers by
+game-minute 22. This is the scaling prerequisite for the win: turn 027's end
+stats showed the true wall — the bot trained 18 units while sandbox Rome
+trained 116 (90 infantry + 26 civilians), and gaul cannot train extra workers
+(no `units/gaul/support_civilian_house`), so the civ scales through citizen
+soldiers.
+
+**Grading per match** (against the per-minute `[HARNESS]` samples):
+
+- **Good** — ≥ 50 melee soldiers at the minute-22 sample.
+- **Fail** — otherwise, or JS errors.
+
+**Goal achieved when:** a 10-seed batch against sandbox Rome reaches Good on
+≥ 8/10 seeds with 0 JS errors and canary PASS. Record the batch in the
+closing commit and move on to G4b.
+
+**Reconsideration (turn 028):** the 50-by-minute-22 target is beyond the
+current economy — on seeds 261–270 even the validated turn-023 code peaks at
+16 melee; the treatment reached 18–19 (composite +9.31) but the wood income
+(~4–5/s post-town) cannot feed 50 soldiers, 8 houses and the structures in
+22 minutes (CC training ceiling ≈ 1.5 soldiers/min). Re-scope G4a to the
+evidence-supported stepping stone — e.g. ≥ 32 soldiers AND ≥ 3 rams by
+minute 24 — or fix the wood economy first (more gatherers earlier).
+
+## Next goal: G4b — Defeat sandbox Rome
 
 **Statement:** Vercingetorix destroys the enemy civic centre (the
 `conquest_civic_centers` victory condition) against sandbox Rome (Petra,
@@ -19,8 +45,7 @@ lands wins at minute 25.5–27, outside 25 minutes).
 - **Fail** — otherwise (draw at the limit, own CC lost), or JS errors.
 
 **Goal achieved when:** a 10-seed batch against sandbox Rome wins on ≥ 8/10
-seeds with 0 JS errors and canary PASS. Record the batch in the closing commit
-and move on to G5.
+seeds with 0 JS errors and canary PASS.
 
 ## Completed goals
 
@@ -54,6 +79,17 @@ until 750/750 are banked.
 If a goal resists several turns of effort, stop and reconsider: is it too
 ambitious? Does it depend on another goal that should come first? Adjust the goal
 here, with a note explaining why.
+
+## Reconsideration note (turn 028)
+
+G4 (defeat sandbox Rome) resisted eight turns (018, 020, 021, 022, 024, 025,
+026, 027). Turn 027's end stats isolated the root cause: the bot trained 18
+units while sandbox Rome trained 116 — the economy is ~1/6 of Rome's, and
+the assault force (18 units + 3 rams) dies within a minute of contact
+(exchange 1:3, CC undamaged). Gaul cannot train extra workers, so the civ
+scales through citizen soldiers. G4 is split: **G4a** (current) = sustain a
+50+ melee army by minute 22; **G4b** (next) = the win vs sandbox Rome with
+the scaled army + rams before the 30-minute limit.
 
 ## Reconsideration note (turn 015)
 
