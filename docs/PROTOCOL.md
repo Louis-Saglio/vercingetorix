@@ -60,9 +60,13 @@ why — that is a legitimate outcome of evidence, not a failure.
    - **invalid** (the experiment design or the implementation was wrong, not the
      idea) → fix the experiment, rerun it against the original code, and state
      plainly in the journal what went wrong.
-6. **Commit and push** — every turn ends with one commit, regardless of verdict:
-   `turn NNN: <slug> — <verdict>` with the journal summary as the body, followed by
-   `git push` to the GitHub remote (repo: https://github.com/Louis-Saglio/vercingetorix).
+6. **Commit and push** — every turn ends with exactly one commit, regardless of
+   verdict: `turn NNN: <slug> — <verdict>` with the journal summary as the body,
+   followed by `git push` to the GitHub remote (repo:
+   https://github.com/Louis-Saglio/vercingetorix). This single commit includes all
+   of the turn's bookkeeping — the turn record, `turns/backlog.md`, `CURRENT_TURN.md`,
+   and any `docs/CHANGELOG.md` / `docs/GOALS.md` updates and experiment results. Do
+   **not** make a separate backlog/closure commit after the turn commit.
 7. **Post-turn reflection** — before launching the next turn, ask: did anything in
    this turn reveal a problem or a missing capability in the harness or in this
    protocol itself? If yes, make those improvements **now**, in a separate commit

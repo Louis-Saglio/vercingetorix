@@ -198,6 +198,8 @@ the cheap alternatives, all verified in 0.28:
 ## Conventions
 
 - One commit per turn, message `turn NNN: <slug> — <verdict>`, body = journal summary.
+  The single commit includes the turn record, `turns/backlog.md`, `CURRENT_TURN.md`,
+  and any `docs/` updates and experiment results — no separate backlog/closure commit.
 - **Push after every commit** to https://github.com/Louis-Saglio/vercingetorix
   (remote `origin`, branch `main`).
 - The bot mod ships `bot/maps/scripts/NonVisualTrigger.js`, which overrides the
