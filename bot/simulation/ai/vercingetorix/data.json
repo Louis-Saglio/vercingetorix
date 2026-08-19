@@ -1,0 +1,7 @@
+{
+	"name": "Vercingetorix",
+	"description": "Rule-based AI bot under development.",
+	"constructor": "VercingetorixBot",
+	"filename": "vercingetorix.js",
+	"useShared": true
+}

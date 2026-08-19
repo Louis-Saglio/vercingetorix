@@ -1,8 +1,6 @@
 # Current turn
 
-- Number: 001
-- Slug: harness-runner
-- Phase: closed — verified good, commit follows.
+- Number: none active — STOPPED after turn 002, per Louis's instruction.
+- Awaiting Louis's review before turn 003 (report tool) starts.
 
-Last completed turn: 001 — harness runner (see `turns/001-harness-runner.md`).
-Next turn: 002 — bot skeleton baseline (from `turns/backlog.md`).
+Last completed turn: 002 — bot skeleton baseline (see `turns/002-bot-skeleton.md`).

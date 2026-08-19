@@ -1,0 +1,7 @@
+{
+	"name": "vercingetorix",
+	"version": "0.1.0",
+	"label": "Vercingetorix",
+	"description": "Rule-based AI bot for 0 A.D., developed autonomously on a headless VPS.",
+	"dependencies": ["0ad=0.28.0"]
+}
