@@ -10,7 +10,7 @@ retroactively to match a verdict.
   Rome with zero JS errors. Produces the baseline numbers. (turn 002 — in progress)
 - **Prereq** — report tool: paired baseline-vs-treatment diff applying the composite
   verdict rules (outcome + quality + survival, draws), plus the canary match check.
-  (turn 003)
+  (turn 003 — done; also pinned biome/placement and restored the canary gate)
 - Evidence: report time-to-phase (town/city) and per-minute resource/army samples
   so the composite score has phase-timing metrics to use.
 - Perf (refactor/optimization): replace the skeleton's per-tick full-map resource
