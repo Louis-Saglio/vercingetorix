@@ -31,6 +31,7 @@ export function VercingetorixBot(settings)
 	this.reportMinute = 0;
 	this.finalReported = false;
 	this.houseAttempts = 0;
+	this.townResearched = false;
 }
 
 VercingetorixBot.prototype = Object.create(BaseAI.prototype);
@@ -42,7 +43,8 @@ VercingetorixBot.prototype.Serialize = function()
 		"attackStarted": this.attackStarted,
 		"reportMinute": this.reportMinute,
 		"finalReported": this.finalReported,
-		"houseAttempts": this.houseAttempts
+		"houseAttempts": this.houseAttempts,
+		"townResearched": this.townResearched
 	};
 };
 
@@ -53,7 +55,25 @@ VercingetorixBot.prototype.Deserialize = function(data)
 	this.reportMinute = data.reportMinute;
 	this.finalReported = data.finalReported;
 	this.houseAttempts = data.houseAttempts;
+	this.townResearched = data.townResearched;
 	this.isDeserialized = true;
+};
+
+// Research Town Phase once the 500 food / 500 wood are available.
+VercingetorixBot.prototype.manageResearch = function(gameState, cc)
+{
+	if (this.townResearched)
+		return;
+	const techs = cc.researchableTechs(gameState, gameState.getPlayerCiv());
+	const townTech = techs && techs.find(t => t.startsWith("phase_town"));
+	if (!townTech)
+		return;
+	const res = gameState.getResources();
+	if (res.food >= 500 && res.wood >= 500)
+	{
+		cc.research(townTech);
+		this.townResearched = true;
+	}
 };
 
 VercingetorixBot.prototype.CustomInit = function(gameState)
@@ -102,6 +122,7 @@ VercingetorixBot.prototype.play = function(gameState)
 		(type == "wood" ? woodResources : foodResources).push(ent);
 	}
 
+	this.manageResearch(gameState, cc);
 	this.manageHouses(gameState, cc);
 	this.manageSoldiers(gameState, cc, woodResources, foodResources);
 };
@@ -215,8 +236,10 @@ VercingetorixBot.prototype.manageSoldiers = function(gameState, cc, woodResource
 	const spearTemplate = gameState.applyCiv("units/{civ}/infantry_spearman_b");
 	const soldiers = gameState.getOwnEntities().filter(filters.byClass("Melee"));
 
-	// Grow to the target, then keep replenishing losses up to it.
-	if (soldiers.length < SOLDIER_TARGET)
+	// Grow to the target, then keep replenishing losses up to it. Hold
+	// training until Town Phase is researched so the 500 food/wood for the
+	// research can accumulate instead of being spent on soldiers.
+	if (this.townResearched && soldiers.length < SOLDIER_TARGET)
 		cc.train(gameState.getPlayerCiv(), spearTemplate, 1);
 
 	// The same units gather while we are still growing. Wood is the
@@ -282,5 +305,6 @@ VercingetorixBot.prototype.report = function(gameState)
 		',"pop":"' + gameState.getPopulation() + '/' + gameState.getPopulationLimit() + '"' +
 		',"houses":' + gameState.getOwnEntities().filter(filters.byClass("House")).length +
 		',"foundations":' + gameState.getOwnEntities().filter(filters.byClass("Foundation")).length +
+		',"town":' + (this.townResearched ? "true" : "false") +
 		',"states":' + JSON.stringify(states) + '}');
 };

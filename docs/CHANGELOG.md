@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Turn 011 (G3 progress): the bot now saves food/wood and researches Town Phase
+  before massing soldiers; 10/10 seeds reach Town (baseline 0/10), 0 JS errors,
+  canary PASS.
 - Turn 008 (goal G2 achieved): the bot now grows to a 32-soldier army before
   attacking — `SOLDIER_TARGET` raised to 32 and `HOUSE_OFFSETS` expanded to 8
   candidates so it can actually build its 4 houses. 8/10 seeds reach ≥32 melee
