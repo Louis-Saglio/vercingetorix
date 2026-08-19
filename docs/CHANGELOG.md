@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Turn 004 (goal G1 achieved): the bot now attacks only at its 20-soldier
+  target instead of at 15, so it boots its economy instead of sacrificing the
+  army early. Baseline-vs-treatment (seeds 21–30, sandbox Rome): mean peak
+  melee in the first 8 game-minutes 15.7 → 20.7 (+31.8%), G1 grade distribution
+  9 Fail/1 Pass → 10/10 Good, canary PASS, composite +9.00 → good. Closes G1
+  and opens G2 (defeat sandbox Rome).
 - The determinism gate is the per-batch canary: same seed twice must be
   bit-identical. This only holds because experiments now pin the biome to
   `generic/temperate` and the player placement to `circle` — both gamesetup

@@ -12,7 +12,7 @@ import * as filters from "simulation/ai/common-api/filters.js";
 import { SquareVectorDistance } from "simulation/ai/common-api/utils.js";
 
 const SOLDIER_TARGET = 20;
-const ATTACK_THRESHOLD = 15;
+const ATTACK_THRESHOLD = SOLDIER_TARGET;
 const HOUSE_TARGET = 4;
 // House placement offsets around the civic centre, in meters
 // (4 m per tile, so these are 16 tiles out).

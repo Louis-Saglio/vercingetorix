@@ -1,9 +1,8 @@
 # Current turn
 
-- Number: none active — turn 003 closed (commit `ee3d994`, pushed).
-- **Standing instruction:** do not start the next turn yet (Louis,
-  2026-08-19). Await his go-ahead before turn 004.
-- Next: turn 004 candidate from `turns/backlog.md` (top item: evidence turn
-  for time-to-phase reporting, or the perf optimization).
+- Number: none active — turn 004 closed (verdict good, pushed).
+- Next: turn 005 under goal G2 (defeat sandbox Rome); awaiting Louis's
+  go-ahead before starting, following the one-turn-at-a-time pattern.
 
-Last completed turn: 003 — report tool (see `turns/003-report-tool.md`).
+Last completed turn: 004 — grow-to-20-before-attack (see
+`turns/004-grow-to-20-before-attack.md`).
