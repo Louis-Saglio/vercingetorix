@@ -52,8 +52,11 @@ harness report ──▶ experiments/NNN/{baseline,treatment}.json + report.md
   it for timelines; use bot-side reporting instead.
 - **User data isolation:** point `HOME` at a fresh dir per match. Never use `/tmp` for
   match homes or large extractions — it is a 3.8 GB tmpfs. Use disk-backed paths.
-- **Extracted game data:** `/home/ubuntu/0ad-poc/public/` holds the unpacked public mod
-  (0.28.0) for source reference; the PoC run logs are in `/home/ubuntu/0ad-poc/`.
+- **Reference data (version-pinned to the running engine):** `/home/ubuntu/0ad-reference/`
+  — `public/` and `mod/` are the installed game data unpacked (0.28.0), and
+  `source/` is a shallow clone of the engine source at tag `v0.28.0`
+  (gitea.wildfiregames.com, commit a2cae4d6). Consult these before trusting any
+  memory of how the game works — see also `docs/GAME.md` for the distilled rules.
 - **Hardware:** 4 vCPU (virtual Haswell), 7.6 GiB RAM. Keep match parallelism ≤ 4;
   2-3 is comfortable.
 
@@ -87,15 +90,18 @@ implementation):
 
 ## Harness (Rust)
 
-The harness is a small Rust CLI (Cargo toolchain is installed on this VPS). It implements
-the runner command from `PROTOCOL.md` → Experiment specification. Planned subcommands:
+The harness is a small Rust CLI (Cargo toolchain is installed on this VPS) implementing
+the runner command from `PROTOCOL.md` → Experiment specification:
 
-- `run-batch --code <commit|worktree> --seeds 1..10 --opponent petra --difficulty 3`
-  — spawns one `pyrogenesis` per match with an isolated `HOME`, enforces the 20-minute
-  wall-clock cap, extracts per-player stats JSON + `[HARNESS]` lines + JS error count
-  into one JSON per match.
-- `report <baseline.json> <treatment.json>` — paired diff on the primary metric,
-  applies the verdict rules, emits `report.md`.
+- `harness --tag NAME --seeds 1,2,3 --out DIR [--ai1 ID] [--ai2 ID] [--difficulty2 N]
+  [--civ1 C] [--civ2 C] [--map random/alpine_lakes] [--size 128] [--timeout 1200]
+  [--mod NAME] [--mod-dir PATH]`
+  — spawns one `pyrogenesis` per match with an isolated `HOME`, enforces the wall-clock
+  cap via `timeout`, extracts per-player stats JSON + `[HARNESS]` lines + JS error count
+  into one JSON per match plus a batch aggregate.
+- `--mod-dir PATH` copies the bot mod into `<home>/.local/share/0ad/mods/<name>` before
+  spawning (the mod name comes from the mod's `mod.json`), so `--mod NAME` resolves
+  inside each isolated home.
 
 Do not add features to the harness that a turn does not need.
 

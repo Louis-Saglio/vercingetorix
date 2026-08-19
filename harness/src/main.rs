@@ -55,6 +55,7 @@ struct Config {
     civ1: String,
     civ2: String,
     bot_mod: Option<String>,
+    mod_dir: Option<PathBuf>,
     map: String,
     map_size: u32,
     timeout_secs: u64,
@@ -89,10 +90,11 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
     let mut ai1 = String::from("vercingetorix");
     let mut ai2 = String::from("petra");
     let mut difficulty2 = Difficulty(3);
-    let mut civ1 = String::from("athen");
-    let mut civ2 = String::from("mace");
+    let mut civ1 = String::from("gaul");
+    let mut civ2 = String::from("rome");
     let mut bot_mod = None;
-    let mut map = String::from("random/alpine_lakes");
+    let mut mod_dir = None;
+    let mut map = String::from("random/mainland");
     let mut map_size = 128;
     let mut timeout_secs = 1200;
 
@@ -145,6 +147,10 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
                 bot_mod = Some(value("--mod")?);
                 i += 2;
             }
+            "--mod-dir" => {
+                mod_dir = Some(PathBuf::from(value("--mod-dir")?));
+                i += 2;
+            }
             "--map" => {
                 map = value("--map")?;
                 i += 2;
@@ -191,6 +197,7 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
         civ1,
         civ2,
         bot_mod,
+        mod_dir,
         map,
         map_size,
         timeout_secs,
@@ -333,6 +340,121 @@ fn count_js_errors(log_content: &str) -> usize {
         .count()
 }
 
+#[derive(Debug)]
+enum ReadModNameError {
+    Read {
+        path: PathBuf,
+        source: io::Error,
+    },
+    Parse {
+        path: PathBuf,
+        source: serde_json::Error,
+    },
+    MissingName,
+}
+
+impl std::fmt::Display for ReadModNameError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Read { path, source } => {
+                write!(f, "cannot read {}: {source}", path.display())
+            }
+            Self::Parse { path, source } => {
+                write!(f, "cannot parse {}: {source}", path.display())
+            }
+            Self::MissingName => write!(f, "mod.json has no \"name\" field"),
+        }
+    }
+}
+
+fn read_mod_name(mod_dir: &Path) -> Result<String, ReadModNameError> {
+    let manifest_path = mod_dir.join("mod.json");
+    let text = fs::read_to_string(&manifest_path).map_err(|source| ReadModNameError::Read {
+        path: manifest_path.clone(),
+        source,
+    })?;
+    let value: serde_json::Value =
+        serde_json::from_str(&text).map_err(|source| ReadModNameError::Parse {
+            path: manifest_path,
+            source,
+        })?;
+    value
+        .get("name")
+        .and_then(serde_json::Value::as_str)
+        .map(str::to_string)
+        .ok_or(ReadModNameError::MissingName)
+}
+
+#[derive(Debug)]
+enum CopyTreeError {
+    ReadDir {
+        path: PathBuf,
+        source: io::Error,
+    },
+    CreateDir {
+        path: PathBuf,
+        source: io::Error,
+    },
+    Copy {
+        from: PathBuf,
+        to: PathBuf,
+        source: io::Error,
+    },
+}
+
+impl std::fmt::Display for CopyTreeError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::ReadDir { path, source } => {
+                write!(f, "cannot read {}: {source}", path.display())
+            }
+            Self::CreateDir { path, source } => {
+                write!(f, "cannot create {}: {source}", path.display())
+            }
+            Self::Copy { from, to, source } => write!(
+                f,
+                "cannot copy {} to {}: {source}",
+                from.display(),
+                to.display()
+            ),
+        }
+    }
+}
+
+/// Recursive directory copy for installing the bot mod into a match home.
+/// `std::fs` has no recursive copy, so this small walk is the whole of it.
+fn copy_tree(from: &Path, to: &Path) -> Result<(), CopyTreeError> {
+    fs::create_dir_all(to).map_err(|source| CopyTreeError::CreateDir {
+        path: to.to_path_buf(),
+        source,
+    })?;
+    for entry in fs::read_dir(from).map_err(|source| CopyTreeError::ReadDir {
+        path: from.to_path_buf(),
+        source,
+    })? {
+        let entry = entry.map_err(|source| CopyTreeError::ReadDir {
+            path: from.to_path_buf(),
+            source,
+        })?;
+        let from_path = entry.path();
+        let to_path = to.join(entry.file_name());
+        let file_type = entry.file_type().map_err(|source| CopyTreeError::ReadDir {
+            path: from_path.clone(),
+            source,
+        })?;
+        if file_type.is_dir() {
+            copy_tree(&from_path, &to_path)?;
+        } else {
+            fs::copy(&from_path, &to_path).map_err(|source| CopyTreeError::Copy {
+                from: from_path,
+                to: to_path,
+                source,
+            })?;
+        }
+    }
+    Ok(())
+}
+
 #[derive(Serialize)]
 struct MatchResult {
     seed: u32,
@@ -359,6 +481,8 @@ struct BatchResult {
 #[derive(Debug)]
 enum RunMatchError {
     CreateHomeDir { path: PathBuf, source: io::Error },
+    ModName(ReadModNameError),
+    InstallMod(CopyTreeError),
     SpawnFailed { source: io::Error },
     NonUtf8Output,
     NoExitStatus { stderr: String },
@@ -372,6 +496,8 @@ impl std::fmt::Display for RunMatchError {
             Self::CreateHomeDir { path, source } => {
                 write!(f, "cannot create match home {}: {source}", path.display())
             }
+            Self::ModName(source) => write!(f, "cannot read mod name: {source}"),
+            Self::InstallMod(source) => write!(f, "cannot install bot mod: {source}"),
             Self::SpawnFailed { source } => write!(f, "cannot spawn engine: {source}"),
             Self::NonUtf8Output => write!(f, "engine output is not valid UTF-8"),
             Self::NoExitStatus { stderr } => {
@@ -392,6 +518,12 @@ fn run_match(seed: Seed, cfg: &Config) -> Result<MatchResult, RunMatchError> {
         path: home.clone(),
         source,
     })?;
+
+    if let Some(mod_dir) = &cfg.mod_dir {
+        let mod_name = read_mod_name(mod_dir).map_err(RunMatchError::ModName)?;
+        let dest = home.join(".local/share/0ad/mods").join(mod_name);
+        copy_tree(mod_dir, &dest).map_err(RunMatchError::InstallMod)?;
+    }
 
     let start = Instant::now();
     let Output {
