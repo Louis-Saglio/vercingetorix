@@ -98,6 +98,9 @@ why — that is a legitimate outcome of evidence, not a failure.
 - **Opponent:** Petra, player 2, civ `rome`, difficulty 3. Raise the difficulty when
   the bot's win rate is ≥ 80% over the last 10 turns at the current level.
 - **Map:** `random/mainland`, size 128.
+- **Victory condition:** `conquest_civic_centers` (destroy all enemy civic
+  centres). **Treasures are disabled** (forced by the bot mod's autostart
+  override) so random treasure windfalls cannot influence results.
 - **Seeds:** every turn draws its own seed set (default 10 seeds) and records it in
   the turn file. Baseline and treatment always share the turn's seed set (paired
   comparison). Seed sets are never reused across turns — this is the anti-overfitting
@@ -121,6 +124,7 @@ why — that is a legitimate outcome of evidence, not a failure.
   ```
   pyrogenesis -autostart="random/mainland" -autostart-seed=SEED \
     -autostart-nonvisual -autostart-players=2 -autostart-size=128 \
+    -autostart-victory=conquest_civic_centers \
     -autostart-ai=1:vercingetorix -autostart-ai=2:petra -autostart-aidiff=2:3 \
     -autostart-civ=1:gaul -autostart-civ=2:rome -autostart-player=-1 \
     -mod=public -mod=vercingetorix -unique-logs -nosound

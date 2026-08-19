@@ -57,6 +57,7 @@ struct Config {
     bot_mod: Option<String>,
     mod_dir: Option<PathBuf>,
     map: String,
+    victory: String,
     map_size: u32,
     timeout_secs: u64,
 }
@@ -95,6 +96,7 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
     let mut bot_mod = None;
     let mut mod_dir = None;
     let mut map = String::from("random/mainland");
+    let mut victory = String::from("conquest_civic_centers");
     let mut map_size = 128;
     let mut timeout_secs = 1200;
 
@@ -155,6 +157,10 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
                 map = value("--map")?;
                 i += 2;
             }
+            "--victory" => {
+                victory = value("--victory")?;
+                i += 2;
+            }
             "--size" => {
                 let raw = value("--size")?;
                 map_size = raw
@@ -199,6 +205,7 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
         bot_mod,
         mod_dir,
         map,
+        victory,
         map_size,
         timeout_secs,
     })
@@ -214,6 +221,7 @@ fn match_arguments(cfg: &Config, seed: Option<Seed>) -> Vec<String> {
         String::from("-autostart-nonvisual"),
         String::from("-autostart-players=2"),
         format!("-autostart-size={}", cfg.map_size),
+        format!("-autostart-victory={}", cfg.victory),
         format!("-autostart-ai=1:{}", cfg.ai1),
         format!("-autostart-ai=2:{}", cfg.ai2),
         format!("-autostart-aidiff=2:{}", cfg.difficulty2.0),

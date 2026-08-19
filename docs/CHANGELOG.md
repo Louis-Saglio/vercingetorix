@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Experiments now play `conquest_civic_centers` (destroy the enemy civic centres)
+  with treasures disabled (forced by the bot mod's autostart override); the
+  harness gained a `--victory` flag.
+- Documented the verified 0.28 AI API in the developer guide, corrected the game
+  reference (0.28 has dedicated worker citizens — the support civilians that
+  start the game, gather, and build), and enriched it with the construction
+  two-step, population bonuses, treasures, and the meter-based position scale.
+- Moved `PROTOCOL.md`, `GOALS.md`, `CHANGELOG.md` into `docs/` and added a root
+  `AGENTS.md` pointing at the canonical documents; added the goal-reconsideration
+  rule (adjust a goal rather than grind if it resists several turns).
 - Published the repository to GitHub (https://github.com/Louis-Saglio/vercingetorix);
   every commit is pushed after it lands.
 - Protocol v3 per Louis's review: long-term goals with per-goal grading scales
