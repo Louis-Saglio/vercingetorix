@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Turn 017 (goal G3 achieved): the four starting support workers now gather
+  stone/metal from minute 0 (two each) and the army keeps a post-town carve-out
+  for them; attack waits until 750 stone + 750 metal are banked. 10/10 seeds
+  reach ≥750/750 by game-minute 16 (turn 016: 2/10), 0 JS errors, canary PASS,
+  composite −2.34 (resourcesGathered up on every seed). Closes G3 and opens G4
+  (defeat sandbox Rome).
 - Turn 015 (goal reconsideration): split the blocked "defeat sandbox Rome" goal
   into a stone/metal resource prerequisite (new G3) and moved the win goal to
   G4.

@@ -14,6 +14,14 @@ import { SquareVectorDistance } from "simulation/ai/common-api/utils.js";
 const SOLDIER_TARGET = 32;
 const ATTACK_THRESHOLD = SOLDIER_TARGET;
 const HOUSE_TARGET = 4;
+// Post-town, a fixed share of the army gathers the City Phase resources:
+// id % 16 < 3 → stone, < 5 → metal (≈ 6 + 4 of the 32-soldier army). Stone
+// mines sit farther out, so stone gets more hands. The rest keep the 2:1
+// wood:food split. (Turn 016 evidence: this carve-out is economy-safe but
+// starts too late; the starting workers close the gap — see manageWorkers.)
+const SHARE_MOD = 16;
+const STONE_SHARE = 3;
+const METAL_SHARE = 2;
 // House placement offsets around the civic centre, in meters (4 m per tile).
 // Eight candidates at ~16 tiles, so the bot can usually find four valid spots
 // even when a few are blocked by trees or terrain (turn 006 stalled at 3
@@ -135,10 +143,29 @@ VercingetorixBot.prototype.play = function(gameState)
 			continue;
 		foodResources.push(ent);
 	}
+	// Stone/metal mines are placed ≥ 20 tiles from player territory (mainland
+	// map script), so the 160 m wood/food cap hides them. Scan the whole map:
+	// mines are a few dozen entities, cheap to filter. Gatherers walk to the
+	// nearest one, whatever the distance.
+	const stoneCache = gameState.updatingGlobalCollection("resource-stone",
+		{ "func": ent => ent.getResourceType() == "stone", "dynamicProperties": [] },
+		gameState.getEntities());
+	const metalCache = gameState.updatingGlobalCollection("resource-metal",
+		{ "func": ent => ent.getResourceType() == "metal", "dynamicProperties": [] },
+		gameState.getEntities());
+	const stoneResources = [];
+	const metalResources = [];
+	for (const ent of stoneCache.values())
+		if (ent.owner() === 0 && ent.position())
+			stoneResources.push(ent);
+	for (const ent of metalCache.values())
+		if (ent.owner() === 0 && ent.position())
+			metalResources.push(ent);
 
 	this.manageResearch(gameState, cc);
+	this.manageWorkers(gameState, stoneResources, metalResources);
 	this.manageHouses(gameState, cc);
-	this.manageSoldiers(gameState, cc, woodResources, foodResources);
+	this.manageSoldiers(gameState, cc, woodResources, foodResources, stoneResources, metalResources);
 };
 
 VercingetorixBot.prototype.ownCivCentre = function(gameState)
@@ -244,7 +271,23 @@ VercingetorixBot.prototype.manageHouses = function(gameState, cc)
 	this.houseAttempts++;
 };
 
-VercingetorixBot.prototype.manageSoldiers = function(gameState, cc, woodResources, foodResources)
+// The four starting support workers (Support class, not Melee — the soldier
+// loop never commands them) sit idle all game. Put them on the City Phase
+// resources from minute 0: two on stone, two on metal, stable by entity id.
+// They gather at 0.35/s and never fight, so they are pure economy all match.
+VercingetorixBot.prototype.manageWorkers = function(gameState, stoneResources, metalResources)
+{
+	for (const worker of gameState.getOwnEntities().filter(filters.byClass("Support")).values())
+		if (worker.unitAIState() == "INDIVIDUAL.IDLE")
+		{
+			const resources = worker.id() % 2 == 0 ? stoneResources : metalResources;
+			const target = this.nearestResource(worker, resources);
+			if (target)
+				worker.gather(target);
+		}
+};
+
+VercingetorixBot.prototype.manageSoldiers = function(gameState, cc, woodResources, foodResources, stoneResources, metalResources)
 {
 	// The Trainer list uses "units/{civ}/..." (slash), unlike older versions.
 	const spearTemplate = gameState.applyCiv("units/{civ}/infantry_spearman_b");
@@ -262,12 +305,22 @@ VercingetorixBot.prototype.manageSoldiers = function(gameState, cc, woodResource
 	for (const soldier of soldiers.values())
 		if (!this.attackStarted && soldier.unitAIState() == "INDIVIDUAL.IDLE")
 		{
-			const resources = soldier.id() % 3 == 0 ? foodResources : woodResources;
+			const share = soldier.id() % SHARE_MOD;
+			let resources;
+			if (this.townResearched && share < STONE_SHARE)
+				resources = stoneResources;
+			else if (this.townResearched && share < STONE_SHARE + METAL_SHARE)
+				resources = metalResources;
+			else
+				resources = soldier.id() % 3 == 0 ? foodResources : woodResources;
 			const target = this.nearestResource(soldier, resources);
 			if (target)
 				soldier.gather(target);
 		}
-	if (!this.attackStarted && soldiers.length >= ATTACK_THRESHOLD)
+	// The attack waits for the City Phase resources: marching off at 32
+	// soldiers would stop the stone/metal income this goal is about.
+	if (!this.attackStarted && soldiers.length >= ATTACK_THRESHOLD &&
+	    gameState.getResources().stone >= 750 && gameState.getResources().metal >= 750)
 	{
 		this.attackStarted = true;
 		this.chat("Vercingetorix attacks!");
@@ -316,6 +369,7 @@ VercingetorixBot.prototype.report = function(gameState)
 	hlog('{"event":"sample","t":' + minute + ',"melee":' + melee.length +
 		',"attack":' + this.attackStarted +
 		',"food":' + res.food + ',"wood":' + res.wood +
+		',"stone":' + res.stone + ',"metal":' + res.metal +
 		',"pop":"' + gameState.getPopulation() + '/' + gameState.getPopulationLimit() + '"' +
 		',"houses":' + gameState.getOwnEntities().filter(filters.byClass("House")).length +
 		',"foundations":' + gameState.getOwnEntities().filter(filters.byClass("Foundation")).length +
