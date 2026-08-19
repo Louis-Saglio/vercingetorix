@@ -1,0 +1,340 @@
+{
+  "seed": 256,
+  "exit": "finished",
+  "wall_seconds": 17,
+  "turns": 6000,
+  "players": [
+    {
+      "playerID": 1,
+      "playerState": "won",
+      "statistics": {
+        "buildingsCaptured": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsCapturedValue": 0,
+        "buildingsConstructed": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 5,
+          "Military": 3,
+          "Outpost": 0,
+          "Structure": 8,
+          "Wonder": 0,
+          "total": 8
+        },
+        "buildingsLost": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsLostValue": 0,
+        "enemyBuildingsDestroyed": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "enemyBuildingsDestroyedValue": 0,
+        "enemyUnitsKilled": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "enemyUnitsKilledValue": 0,
+        "failedBribes": 0,
+        "lootCollected": 0,
+        "peakPercentMapControlled": 42,
+        "percentMapControlled": 42,
+        "percentMapExplored": 27,
+        "populationCount": 24,
+        "resourcesBought": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesCount": {
+          "food": 20,
+          "metal": 160,
+          "stone": 290,
+          "wood": 75
+        },
+        "resourcesGathered": {
+          "food": 980,
+          "metal": 622,
+          "stone": 765,
+          "vegetarianFood": 580,
+          "wood": 2041
+        },
+        "resourcesSold": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesUsed": {
+          "food": 1250,
+          "metal": 750,
+          "stone": 750,
+          "wood": 2225
+        },
+        "successfulBribes": 0,
+        "teamPeakPercentMapControlled": 42,
+        "teamPercentMapControlled": 42,
+        "teamPercentMapExplored": 27,
+        "tradeIncome": 0,
+        "treasuresCollected": 0,
+        "tributesReceived": 0,
+        "tributesSent": 0,
+        "unitsCaptured": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "unitsCapturedValue": 0,
+        "unitsLost": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "unitsLostValue": 0,
+        "unitsTrained": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Domestic": 0,
+          "Hero": 0,
+          "Infantry": 14,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 14,
+          "Worker": 14,
+          "total": 14
+        }
+      }
+    },
+    {
+      "playerID": 2,
+      "playerState": "won",
+      "statistics": {
+        "buildingsCaptured": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsCapturedValue": 0,
+        "buildingsConstructed": {
+          "CivCentre": 0,
+          "Economic": 2,
+          "Fortress": 0,
+          "House": 8,
+          "Military": 4,
+          "Outpost": 0,
+          "Structure": 14,
+          "Wonder": 0,
+          "total": 14
+        },
+        "buildingsLost": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsLostValue": 0,
+        "enemyBuildingsDestroyed": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "enemyBuildingsDestroyedValue": 0,
+        "enemyUnitsKilled": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "enemyUnitsKilledValue": 0,
+        "failedBribes": 0,
+        "lootCollected": 0,
+        "peakPercentMapControlled": 23,
+        "percentMapControlled": 23,
+        "percentMapExplored": 51,
+        "populationCount": 74,
+        "resourcesBought": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesCount": {
+          "food": 37,
+          "metal": 1359,
+          "stone": 1059,
+          "wood": 1940
+        },
+        "resourcesGathered": {
+          "food": 3187,
+          "metal": 1698,
+          "stone": 1263,
+          "vegetarianFood": 2487,
+          "wood": 6371
+        },
+        "resourcesSold": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesUsed": {
+          "food": 3450,
+          "metal": 420,
+          "stone": 300,
+          "wood": 4630
+        },
+        "successfulBribes": 0,
+        "teamPeakPercentMapControlled": 23,
+        "teamPercentMapControlled": 23,
+        "teamPercentMapExplored": 51,
+        "tradeIncome": 0,
+        "treasuresCollected": 0,
+        "tributesReceived": 0,
+        "tributesSent": 0,
+        "unitsCaptured": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "unitsCapturedValue": 0,
+        "unitsLost": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "unitsLostValue": 0,
+        "unitsTrained": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 26,
+          "Domestic": 0,
+          "Hero": 0,
+          "Infantry": 39,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 65,
+          "Worker": 65,
+          "total": 65
+        }
+      }
+    }
+  ],
+  "harness_lines": [
+    "[HARNESS] {\"event\":\"sample\",\"t\":1,\"melee\":2,\"attack\":false,\"food\":500,\"wood\":230,\"stone\":320,\"metal\":310,\"pop\":\"9/25\",\"houses\":2,\"foundations\":1,\"town\":false,\"phase\":1,\"villageClass\":1,\"townClass\":0,\"forges\":0,\"townCan\":false,\"states\":{\"undefined\":3,\"INDIVIDUAL.REPAIR.REPAIRING\":1,\"INDIVIDUAL.GATHER.GATHERING\":7,\"INDIVIDUAL.GATHER.APPROACHING\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":2,\"melee\":2,\"attack\":false,\"food\":700,\"wood\":160,\"stone\":360,\"metal\":330,\"pop\":\"9/35\",\"houses\":4,\"foundations\":1,\"town\":false,\"phase\":1,\"villageClass\":3,\"townClass\":0,\"forges\":0,\"townCan\":false,\"states\":{\"undefined\":5,\"INDIVIDUAL.REPAIR.APPROACHING\":1,\"INDIVIDUAL.GATHER.GATHERING\":4,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":1,\"INDIVIDUAL.GATHER.APPROACHING\":2,\"INDIVIDUAL.WALKING\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":3,\"melee\":2,\"attack\":false,\"food\":720,\"wood\":175,\"stone\":400,\"metal\":350,\"pop\":\"9/40\",\"houses\":5,\"foundations\":1,\"town\":false,\"phase\":1,\"villageClass\":4,\"townClass\":0,\"forges\":0,\"townCan\":false,\"states\":{\"undefined\":6,\"INDIVIDUAL.REPAIR.REPAIRING\":1,\"INDIVIDUAL.GATHER.GATHERING\":7,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":4,\"melee\":2,\"attack\":false,\"food\":740,\"wood\":255,\"stone\":440,\"metal\":380,\"pop\":\"9/45\",\"houses\":5,\"foundations\":0,\"town\":false,\"phase\":1,\"villageClass\":5,\"townClass\":0,\"forges\":0,\"townCan\":true,\"states\":{\"undefined\":6,\"INDIVIDUAL.GATHER.GATHERING\":8,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":5,\"melee\":2,\"attack\":false,\"food\":770,\"wood\":345,\"stone\":480,\"metal\":420,\"pop\":\"9/45\",\"houses\":5,\"foundations\":0,\"town\":false,\"phase\":1,\"villageClass\":5,\"townClass\":0,\"forges\":0,\"townCan\":true,\"states\":{\"undefined\":6,\"INDIVIDUAL.GATHER.GATHERING\":5,\"INDIVIDUAL.GATHER.APPROACHING\":2,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":1,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":6,\"melee\":2,\"attack\":false,\"food\":790,\"wood\":435,\"stone\":520,\"metal\":460,\"pop\":\"9/45\",\"houses\":5,\"foundations\":0,\"town\":false,\"phase\":1,\"villageClass\":5,\"townClass\":0,\"forges\":0,\"townCan\":true,\"states\":{\"undefined\":6,\"INDIVIDUAL.GATHER.APPROACHING\":1,\"INDIVIDUAL.GATHER.GATHERING\":7,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":7,\"melee\":2,\"attack\":false,\"food\":310,\"wood\":15,\"stone\":560,\"metal\":480,\"pop\":\"9/45\",\"houses\":5,\"foundations\":0,\"town\":true,\"phase\":1,\"villageClass\":5,\"townClass\":0,\"forges\":0,\"townCan\":false,\"states\":{\"undefined\":6,\"INDIVIDUAL.GATHER.GATHERING\":5,\"INDIVIDUAL.GATHER.APPROACHING\":1,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":2,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":8,\"melee\":2,\"attack\":false,\"food\":340,\"wood\":105,\"stone\":590,\"metal\":520,\"pop\":\"9/45\",\"houses\":5,\"foundations\":0,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":0,\"forges\":0,\"townCan\":false,\"states\":{\"undefined\":6,\"INDIVIDUAL.GATHER.GATHERING\":7,\"INDIVIDUAL.GATHER.APPROACHING\":1,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":9,\"melee\":2,\"attack\":false,\"food\":360,\"wood\":195,\"stone\":620,\"metal\":560,\"pop\":\"9/45\",\"houses\":5,\"foundations\":0,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":0,\"forges\":0,\"townCan\":false,\"states\":{\"undefined\":6,\"INDIVIDUAL.GATHER.GATHERING\":6,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":1,\"INDIVIDUAL.GATHER.APPROACHING\":1,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":10,\"melee\":2,\"attack\":false,\"food\":380,\"wood\":75,\"stone\":660,\"metal\":580,\"pop\":\"9/45\",\"houses\":5,\"foundations\":1,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":0,\"forges\":1,\"townCan\":false,\"states\":{\"undefined\":7,\"INDIVIDUAL.REPAIR.REPAIRING\":1,\"INDIVIDUAL.GATHER.GATHERING\":6,\"INDIVIDUAL.GATHER.APPROACHING\":1,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":11,\"melee\":2,\"attack\":false,\"food\":410,\"wood\":145,\"stone\":700,\"metal\":600,\"pop\":\"9/45\",\"houses\":5,\"foundations\":0,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":1,\"forges\":1,\"townCan\":false,\"states\":{\"undefined\":7,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":3,\"INDIVIDUAL.GATHER.GATHERING\":4,\"INDIVIDUAL.GATHER.APPROACHING\":1,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":12,\"melee\":2,\"attack\":false,\"food\":430,\"wood\":25,\"stone\":740,\"metal\":630,\"pop\":\"9/45\",\"houses\":5,\"foundations\":1,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":1,\"forges\":2,\"townCan\":false,\"states\":{\"undefined\":8,\"INDIVIDUAL.REPAIR.REPAIRING\":1,\"INDIVIDUAL.GATHER.GATHERING\":7,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":13,\"melee\":2,\"attack\":false,\"food\":450,\"wood\":115,\"stone\":780,\"metal\":650,\"pop\":\"9/45\",\"houses\":5,\"foundations\":1,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":1,\"forges\":2,\"townCan\":false,\"states\":{\"undefined\":8,\"INDIVIDUAL.REPAIR.REPAIRING\":1,\"INDIVIDUAL.GATHER.GATHERING\":4,\"INDIVIDUAL.GATHER.APPROACHING\":2,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":1,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":14,\"melee\":2,\"attack\":false,\"food\":480,\"wood\":185,\"stone\":820,\"metal\":670,\"pop\":\"9/45\",\"houses\":5,\"foundations\":0,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":2,\"forges\":2,\"townCan\":false,\"states\":{\"undefined\":8,\"INDIVIDUAL.GATHER.GATHERING\":6,\"INDIVIDUAL.GATHER.APPROACHING\":1,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":1,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":15,\"melee\":2,\"attack\":false,\"food\":450,\"wood\":5,\"stone\":860,\"metal\":690,\"pop\":\"10/45\",\"houses\":5,\"foundations\":1,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":2,\"forges\":3,\"townCan\":false,\"states\":{\"undefined\":9,\"INDIVIDUAL.REPAIR.REPAIRING\":1,\"INDIVIDUAL.GATHER.APPROACHING\":1,\"INDIVIDUAL.GATHER.GATHERING\":5,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":1,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":16,\"melee\":4,\"attack\":false,\"food\":430,\"wood\":45,\"stone\":890,\"metal\":710,\"pop\":\"11/45\",\"houses\":5,\"foundations\":0,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":3,\"forges\":3,\"townCan\":false,\"states\":{\"undefined\":9,\"INDIVIDUAL.GATHER.APPROACHING\":2,\"INDIVIDUAL.GATHER.GATHERING\":6,\"INDIVIDUAL.IDLE\":1,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":2}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":17,\"melee\":6,\"attack\":false,\"food\":340,\"wood\":5,\"stone\":930,\"metal\":740,\"pop\":\"14/45\",\"houses\":5,\"foundations\":0,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":3,\"forges\":3,\"townCan\":false,\"states\":{\"undefined\":9,\"INDIVIDUAL.GATHER.GATHERING\":8,\"INDIVIDUAL.GATHER.APPROACHING\":2,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":2,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":18,\"melee\":7,\"attack\":false,\"food\":230,\"wood\":15,\"stone\":210,\"metal\":50,\"pop\":\"14/45\",\"houses\":5,\"foundations\":0,\"town\":true,\"phase\":2,\"villageClass\":5,\"townClass\":3,\"forges\":3,\"townCan\":false,\"states\":{\"undefined\":9,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":2,\"INDIVIDUAL.GATHER.GATHERING\":8,\"INDIVIDUAL.GATHER.APPROACHING\":3,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":19,\"melee\":12,\"attack\":false,\"food\":120,\"wood\":15,\"stone\":250,\"metal\":110,\"pop\":\"20/45\",\"houses\":5,\"foundations\":0,\"town\":true,\"phase\":3,\"villageClass\":5,\"townClass\":3,\"forges\":3,\"townCan\":false,\"states\":{\"undefined\":9,\"INDIVIDUAL.GATHER.APPROACHING\":3,\"INDIVIDUAL.GATHER.GATHERING\":12,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":3,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"end\",\"state\":\"won\",\"t\":1200000}"
+  ],
+  "js_errors": 0,
+  "stderr": ""
+}
