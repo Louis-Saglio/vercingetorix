@@ -484,6 +484,7 @@ struct BatchResult {
 
 #[derive(Debug)]
 enum RunMatchError {
+    ClearHomeDir { path: PathBuf, source: io::Error },
     CreateHomeDir { path: PathBuf, source: io::Error },
     ModName(ReadModNameError),
     InstallMod(CopyTreeError),
@@ -497,6 +498,9 @@ enum RunMatchError {
 impl std::fmt::Display for RunMatchError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
+            Self::ClearHomeDir { path, source } => {
+                write!(f, "cannot clear match home {}: {source}", path.display())
+            }
             Self::CreateHomeDir { path, source } => {
                 write!(f, "cannot create match home {}: {source}", path.display())
             }
@@ -518,6 +522,16 @@ fn run_match(seed: Seed, cfg: &Config) -> Result<MatchResult, RunMatchError> {
         .out_dir
         .join("homes")
         .join(format!("{}-{}", cfg.tag, seed.0));
+    fs::remove_dir_all(&home).or_else(|e| {
+        if e.kind() == io::ErrorKind::NotFound {
+            Ok(())
+        } else {
+            Err(RunMatchError::ClearHomeDir {
+                path: home.clone(),
+                source: e,
+            })
+        }
+    })?;
     fs::create_dir_all(&home).map_err(|source| RunMatchError::CreateHomeDir {
         path: home.clone(),
         source,
