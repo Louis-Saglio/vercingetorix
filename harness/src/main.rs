@@ -7,6 +7,8 @@
 
 #![deny(clippy::all, clippy::pedantic)]
 
+mod report;
+
 use serde::Serialize;
 use std::env;
 use std::fs;
@@ -60,6 +62,8 @@ struct Config {
     victory: String,
     map_size: u32,
     timeout_secs: u64,
+    /// `-autostart-speed`; None = flag absent (the engine default).
+    speed: Option<u8>,
 }
 
 #[derive(Debug)]
@@ -99,6 +103,7 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
     let mut victory = String::from("conquest_civic_centers");
     let mut map_size = 128;
     let mut timeout_secs = 1200;
+    let mut speed = None;
 
     let mut i = 0;
     while i < args.len() {
@@ -175,6 +180,16 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
                     .map_err(|_| CliError::InvalidValue(format!("--timeout={raw}")))?;
                 i += 2;
             }
+            "--speed" => {
+                let raw = value("--speed")?;
+                speed = Some(
+                    raw.parse::<u8>()
+                        .ok()
+                        .filter(|s| *s <= 20)
+                        .ok_or_else(|| CliError::InvalidValue(format!("--speed={raw}")))?,
+                );
+                i += 2;
+            }
             other => return Err(CliError::UnknownFlag(other.to_string())),
         }
     }
@@ -208,6 +223,7 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
         victory,
         map_size,
         timeout_secs,
+        speed,
     })
 }
 
@@ -218,6 +234,16 @@ fn match_arguments(cfg: &Config, seed: Option<Seed>) -> Vec<String> {
     let mut args = vec![
         format!("-autostart={}", cfg.map),
         format!("-autostart-seed={seed_text}"),
+        // A fixed biome is mandatory for determinism: "random" (the autostart
+        // default) picks the biome with the GUI realm's unseeded Math.random,
+        // so the map — and every downstream result — differs between runs
+        // even with the same seed (caught by the turn-003 canary).
+        String::from("-autostart-biome=generic/temperate"),
+        // Same story for the player placement pattern: the default "random"
+        // resolves to a concrete pattern per run in the GUI realm (verified
+        // in the replay manifests: circle vs randomGroup for the same seed),
+        // and the map script places the bases from it.
+        String::from("-autostart-placement=circle"),
         String::from("-autostart-nonvisual"),
         String::from("-autostart-players=2"),
         format!("-autostart-size={}", cfg.map_size),
@@ -237,6 +263,9 @@ fn match_arguments(cfg: &Config, seed: Option<Seed>) -> Vec<String> {
         // user mod on its own can never start. public first, mod over it.
         args.push(String::from("-mod=public"));
         args.push(format!("-mod={mod_name}"));
+    }
+    if let Some(speed) = cfg.speed {
+        args.push(format!("-autostart-speed={speed}"));
     }
     args
 }
@@ -525,7 +554,9 @@ impl std::fmt::Display for RunMatchError {
     }
 }
 
-fn run_match(seed: Seed, cfg: &Config) -> Result<MatchResult, RunMatchError> {
+/// Creates the isolated match home (wiped if present) and installs the bot
+/// mod into it.
+fn prepare_match_home(seed: Seed, cfg: &Config) -> Result<PathBuf, RunMatchError> {
     let home = cfg
         .out_dir
         .join("homes")
@@ -550,6 +581,11 @@ fn run_match(seed: Seed, cfg: &Config) -> Result<MatchResult, RunMatchError> {
         let dest = home.join(".local/share/0ad/mods").join(mod_name);
         copy_tree(mod_dir, &dest).map_err(RunMatchError::InstallMod)?;
     }
+    Ok(home)
+}
+
+fn run_match(seed: Seed, cfg: &Config) -> Result<MatchResult, RunMatchError> {
+    let home = prepare_match_home(seed, cfg)?;
 
     let start = Instant::now();
     let Output {
@@ -631,6 +667,7 @@ enum MainError {
     Cli(CliError),
     Match(RunMatchError),
     Write(WriteJsonError),
+    Report(report::RunReportError),
 }
 
 impl std::fmt::Display for MainError {
@@ -639,13 +676,13 @@ impl std::fmt::Display for MainError {
             Self::Cli(source) => write!(f, "{source}"),
             Self::Match(source) => write!(f, "{source}"),
             Self::Write(source) => write!(f, "{source}"),
+            Self::Report(source) => write!(f, "{source}"),
         }
     }
 }
 
-fn main() -> Result<(), MainError> {
-    let args: Vec<String> = env::args().skip(1).collect();
-    let cfg = parse_args(&args).map_err(MainError::Cli)?;
+fn run_batch(args: &[String]) -> Result<(), MainError> {
+    let cfg = parse_args(args).map_err(MainError::Cli)?;
 
     let mut matches = Vec::new();
     for seed in &cfg.seeds {
@@ -671,4 +708,12 @@ fn main() -> Result<(), MainError> {
         cfg.out_dir.display()
     );
     Ok(())
+}
+
+fn main() -> Result<(), MainError> {
+    let args: Vec<String> = env::args().skip(1).collect();
+    match args.first().map(String::as_str) {
+        Some("report") => report::run(&args[1..]).map_err(MainError::Report),
+        _ => run_batch(&args),
+    }
 }

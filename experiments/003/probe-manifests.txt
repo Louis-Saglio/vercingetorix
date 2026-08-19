@@ -1,0 +1,2 @@
+ph3a: Seed=5 AISeed=0 Biome=generic/temperate PlayerPlacement=circle
+ph3b: Seed=5 AISeed=0 Biome=generic/temperate PlayerPlacement=randomGroup

@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- The determinism gate is the per-batch canary: same seed twice must be
+  bit-identical. This only holds because experiments now pin the biome to
+  `generic/temperate` and the player placement to `circle` — both gamesetup
+  defaults are `"random"`, drawn from the unseeded GUI `Math.random` per run,
+  so unpinned no map ever reproduces (root cause in
+  `docs/ENGINE_BUG_0AD_0.28_NONDETERMINISM.md`).
+- Added `harness report`: paired baseline-vs-treatment scoring per the
+  protocol's verdict rules (outcome + quality + survival components, draw
+  semantics, JS-error veto, canary identity check), writing `report.md` plus
+  a compact summary.
 - Experiments now play `conquest_civic_centers` (destroy the enemy civic centres)
   with treasures disabled (forced by the bot mod's autostart override); the
   harness gained a `--victory` flag.

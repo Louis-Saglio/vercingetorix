@@ -27,7 +27,11 @@ Agent instructions for this repository. Read before acting.
   (0.28.0); the harness runs `/usr/games/pyrogenesis` headless.
 - Experiments: gaul (bot) vs rome (Petra), `random/mainland` 128, victory
   `conquest_civic_centers`, treasures disabled, 20 game-minutes limit (tunable),
-  per-turn seed rotation with paired baseline/treatment, canary match.
+  per-turn seed rotation with paired baseline/treatment and a canary match
+  (same seed twice must be identical — the determinism gate). Biome and
+  player placement are pinned (`generic/temperate`, `circle` — the gamesetup
+  defaults are unseeded `"random"` for both; see
+  `docs/ENGINE_BUG_0AD_0.28_NONDETERMINISM.md`).
 - Never run matches with HOMEs on `/tmp` (small tmpfs); the harness isolates
   HOMEs under `experiments/<turn>/homes/`.
 - Louis's standing instructions override the protocol (e.g. "stop after turn N",

@@ -78,8 +78,12 @@ why — that is a legitimate outcome of evidence, not a failure.
 2. **Hypothesis before code.** Never adjust the metric or the thresholds after seeing
    results — that would make the verdict meaningless. A badly designed experiment is
    marked invalid, not re-interpreted.
-3. **Determinism gate.** Every commit must reproduce identically (same seed twice →
-   identical results). A change that breaks determinism is **bad** regardless of metrics.
+3. **Determinism gate.** Every commit must reproduce identically: the per-batch
+   canary (same seed twice) must be identical. A change that breaks
+   determinism is **bad** regardless of metrics. The settings pins are part
+   of this: biome and player placement MUST stay fixed — their gamesetup
+   defaults are unseeded `"random"` (see
+   `docs/ENGINE_BUG_0AD_0.28_NONDETERMINISM.md`).
 4. **Error veto.** A change that increases the bot's JS error count is **bad**
    regardless of metrics.
 5. **Minimal diffs.** No refactoring, no formatting, no unrelated fixes inside a turn
@@ -116,7 +120,8 @@ why — that is a legitimate outcome of evidence, not a failure.
 - **Canary match:** every batch additionally runs one match that repeats the baseline
   exactly (same civ, same seed as an existing baseline match). Its result must be
   identical to the original baseline run; if not, the batch is invalid and the
-  harness has a bug to fix before any verdict.
+  harness has a bug to fix before any verdict. The canary only passes because
+  the harness pins the biome and the player placement (see rule 3).
 - **Match limit:** 20 minutes of **game time** (default, tunable per turn — see
   below). The bot mod ships a trigger (`bot/maps/scripts/NonVisualTrigger.js`) that
   ends the match at the limit, marking all active players won and printing the full
@@ -131,12 +136,17 @@ why — that is a legitimate outcome of evidence, not a failure.
 
   ```
   pyrogenesis -autostart="random/mainland" -autostart-seed=SEED \
+    -autostart-biome=generic/temperate -autostart-placement=circle \
     -autostart-nonvisual -autostart-players=2 -autostart-size=128 \
     -autostart-victory=conquest_civic_centers \
     -autostart-ai=1:vercingetorix -autostart-ai=2:petra -autostart-aidiff=2:3 \
     -autostart-civ=1:gaul -autostart-civ=2:rome -autostart-player=-1 \
     -mod=public -mod=vercingetorix -unique-logs -nosound
   ```
+
+  The biome and the player placement pattern are pinned: with the autostart
+  defaults (`"random"` each) the gamesetup draws both from the GUI realm's
+  unseeded `Math.random` per run, so no experiment reproduces at all.
 
 - **Standard battery** (recorded for every match): outcome (win/draw/loss), duration,
   resourcesGathered, resourcesUsed, unitsTrained, unitsLost, enemyUnitsKilled,

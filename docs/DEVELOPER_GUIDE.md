@@ -146,13 +146,20 @@ the runner command from `PROTOCOL.md` → Experiment specification:
 
 - `harness --tag NAME --seeds 1,2,3 --out DIR [--ai1 ID] [--ai2 ID] [--difficulty2 N]
   [--civ1 C] [--civ2 C] [--map random/alpine_lakes] [--size 128] [--timeout 1200]
-  [--mod NAME] [--mod-dir PATH]`
+  [--speed N] [--mod NAME] [--mod-dir PATH]`
   — spawns one `pyrogenesis` per match with an isolated `HOME`, enforces the wall-clock
   cap via `timeout`, extracts per-player stats JSON + `[HARNESS]` lines + JS error count
-  into one JSON per match plus a batch aggregate.
+  into one JSON per match plus a batch aggregate. Always passes
+  `-autostart-biome=generic/temperate` and `-autostart-placement=circle` (the
+  autostart defaults are `"random"` for both, drawn from the GUI realm's
+  unseeded `Math.random` per run — unpinned, no run reproduces at all).
 - `--mod-dir PATH` copies the bot mod into `<home>/.local/share/0ad/mods/<name>` before
   spawning (the mod name comes from the mod's `mod.json`), so `--mod NAME` resolves
   inside each isolated home.
+- `harness report --baseline B.json [--treatment T.json] [--canary C.json] [--out DIR]`
+  — the protocol's verdict machinery: paired composite score (outcome + quality +
+  survival, draw semantics), JS-error veto, canary identity check, writes `report.md`
+  and a compact summary. See `PROTOCOL.md` → Verdict rules.
 
 Do not add features to the harness that a turn does not need.
 
@@ -160,7 +167,9 @@ Do not add features to the harness that a turn does not need.
 
 - One match: see `docs/USER_GUIDE.md` → Running a match yourself.
 - Reference extraction of the public mod: already done at `/home/ubuntu/0ad-poc/public/`.
-- Determinism check: run the same seed twice, diff the stats JSON blocks — must be byte-identical.
+- Determinism check: the per-batch canary — same seed twice, stats JSON blocks
+  must be byte-identical. Holds because the harness pins biome and player
+  placement (`docs/ENGINE_BUG_0AD_0.28_NONDETERMINISM.md`).
 
 ## Performance guidance
 

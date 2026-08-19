@@ -12,7 +12,8 @@ Everything happens in **turns** (see [PROTOCOL.md](PROTOCOL.md)):
 
 1. The agent writes a hypothesis about what to improve.
 2. Implements it.
-3. Runs an experiment: a batch of Vercingetorix-vs-Petra matches.
+3. Runs an experiment: a batch of Vercingetorix-vs-Petra matches, plus a
+   canary re-run proving the bot reproduces itself identically.
 4. Decides good / bad / neutral.
 5. Keeps, reverts, or gathers more evidence.
 6. Commits and starts the next turn.
@@ -30,6 +31,7 @@ One headless match, Vercingetorix (player 1) vs Petra (player 2) on Alpine Lakes
 
 ```bash
 pyrogenesis -autostart="random/alpine_lakes" -autostart-seed=42 \
+  -autostart-biome=generic/temperate -autostart-placement=circle \
   -autostart-nonvisual -autostart-players=2 -autostart-size=128 \
   -autostart-ai=1:vercingetorix -autostart-ai=2:petra -autostart-aidiff=2:3 \
   -autostart-civ=1:athen -autostart-civ=2:mace -autostart-player=-1 \
