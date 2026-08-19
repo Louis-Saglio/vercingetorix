@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Published the repository to GitHub (https://github.com/Louis-Saglio/vercingetorix);
+  every commit is pushed after it lands.
+- Protocol v3 per Louis's review: long-term goals with per-goal grading scales
+  (`GOALS.md`, current goal G1 — economy boot), experiments limited to 20 minutes of
+  **game time** via a mod trigger (tunable per turn), mandatory per-game-minute
+  telemetry with early abort of failing runs, mandatory instrumentation with every
+  hypothesis implementation, reusable evidence-exploration tools, and the
+  evidence-turn deliverable definition (collection code + the understanding gained).
 - Reworked the development protocol per Louis's review: post-turn reflection step
   (harness/protocol improvements get their own commits), evidence-collection and
   refactor turn types, a composite verdict score (outcome + quality metrics +

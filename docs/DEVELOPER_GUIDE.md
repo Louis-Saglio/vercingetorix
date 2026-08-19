@@ -114,7 +114,15 @@ Do not add features to the harness that a turn does not need.
 ## Conventions
 
 - One commit per turn, message `turn NNN: <slug> — <verdict>`, body = journal summary.
+- **Push after every commit** to https://github.com/Louis-Saglio/vercingetorix
+  (remote `origin`, branch `main`).
+- The bot mod ships `bot/maps/scripts/NonVisualTrigger.js`, which overrides the
+  engine's script: it ends the match at the game-time limit (default 20 game-min)
+  by marking all active players won, which prints the statistics and quits cleanly.
+  The report tool reads "all players won at the limit" as a draw.
 - Turn files use the fixed section template in `PROTOCOL.md`.
 - Update `CHANGELOG.md` only for changes that survive validation (good verdicts) and
   for protocol/tooling changes.
 - Update `CURRENT_TURN.md` at every phase change of the active turn.
+- Maintain reusable evidence-exploration tools; never parse raw experiment JSON by
+  hand in agent context.

@@ -5,17 +5,26 @@ JavaScript mod — until it reliably beats Petra at increasing difficulty levels
 using evidence-driven development cycles.
 
 All work happens in **turns**. One turn = one hypothesis, tested by one experiment,
-closed by one verdict and exactly one commit.
+closed by one verdict and exactly one commit (pushed to GitHub).
+
+## Long-term goals and grading
+
+Development is organized around **goals** that span many turns. `GOALS.md` holds the
+current goal, its grading scale, and its status. Each turn states which goal it
+serves and grades its experiment against the goal's scale — a turn can be
+goal-positive even when its verdict is neutral. When a goal is achieved, define the
+next goal and its grading system in the same commit that closes the goal.
 
 ## Turn types
 
 - **Improvement turn** (default): a hypothesis about making the bot better.
 - **Evidence-collection turn**: the hypothesis is "if I collect data D, then I will
-  understand Y well enough to formulate a bot improvement". No bot behavior change
-  is claimed. The deliverable is the collected evidence plus what it teaches, written
-  in the turn record. Verdict = did the evidence answer the question (yes/no).
-  Evidence may be logs in the bot or anywhere in the simulation — any code that helps
-  see what is going on, including in the engine's own scripts if needed.
+  understand Y well enough to formulate a bot improvement". The deliverable is a
+  commit containing **both** (a) the code that improves evidence collection during
+  experiments, and (b) the understanding gained after re-running the experiment with
+  the new evidence system — written in the turn record so every future experiment
+  benefits from it. Verdict = did the evidence answer the question (yes/no).
+  Evidence may be logs in the bot or anywhere in the simulation.
 - **Refactor turn**: the hypothesis is "if I restructure R, the code becomes easier to
   change safely, with identical behavior". The verdict is a behavior-preservation
   check: same seed → identical outcomes and statistics as before the refactor, and no
@@ -30,8 +39,10 @@ closed by one verdict and exactly one commit.
 
    The hypothesis must name the change (X), the primary metric (M), the experiment
    that tests it, and the verdict thresholds.
-2. **Implement** — make the minimal code change for X. Bot logic changes only;
-   nothing else rides along.
+2. **Implement** — make the minimal code change for X. **Every implementation adds
+   evidence collection for its own effect**: instrumentation that shows, during the
+   experiment, whether the change did what it was supposed to (samples, logs, states
+   of the affected subsystem). A change that cannot be observed is not implemented.
 3. **Experiment** — run the baseline (last commit) and the treatment (working tree)
    on the same seed set; record every match result in `experiments/NNN/`.
 4. **Verdict** — apply the decision rules below to the primary metric.
@@ -44,14 +55,15 @@ closed by one verdict and exactly one commit.
    - **invalid** (the experiment design or the implementation was wrong, not the
      idea) → fix the experiment, rerun it against the original code, and state
      plainly in the journal what went wrong.
-6. **Commit** — every turn ends with one commit, regardless of verdict:
-   `turn NNN: <slug> — <verdict>` with the journal summary as the body.
+6. **Commit and push** — every turn ends with one commit, regardless of verdict:
+   `turn NNN: <slug> — <verdict>` with the journal summary as the body, followed by
+   `git push` to the GitHub remote (repo: https://github.com/Louis-Saglio/vercingetorix).
 7. **Post-turn reflection** — before launching the next turn, ask: did anything in
    this turn reveal a problem or a missing capability in the harness or in this
    protocol itself? If yes, make those improvements **now**, in a separate commit
-   (not inside a turn commit), then launch the next turn. Examples: a metric the
-   harness does not extract, a verdict rule that misjudged an obvious result, an
-   experiment default that got in the way.
+   (pushed), then launch the next turn. Examples: a metric the harness does not
+   extract, a verdict rule that misjudged an obvious result, an experiment default
+   that got in the way, a missing evidence-exploration tool.
 8. **Next turn** — take the top item from `turns/backlog.md`, or derive a new
    hypothesis from the last results (including from evidence-collection turns).
 
@@ -70,6 +82,10 @@ closed by one verdict and exactly one commit.
 6. **Baseline = last commit.** Never compare against a stale baseline.
 7. **Only validated improvements persist.** Reverted turns leave no trace in the code,
    only in the journal.
+8. **Telemetry is mandatory.** The bot emits a `[HARNESS]` sample line every game
+   minute (unit counts, resources, states — whatever the current goal grades). These
+   samples are how the agent checks mid-experiment whether a run is going well or
+   should be aborted early to avoid wasting time. Kill clearly-failing runs.
 
 ## Experiment specification (defaults)
 
@@ -85,9 +101,15 @@ closed by one verdict and exactly one commit.
   exactly (same civ, same seed as an existing baseline match). Its result must be
   identical to the original baseline run; if not, the batch is invalid and the
   harness has a bug to fix before any verdict.
-- **Match limit:** a match that has not ended after 20 minutes of wall clock is
-  stopped and recorded as a **draw** (not a loss). Draws are then judged by the
-  quality metrics, not by outcome alone.
+- **Match limit:** 20 minutes of **game time** (default, tunable per turn — see
+  below). The bot mod ships a trigger (`bot/maps/scripts/NonVisualTrigger.js`) that
+  ends the match at the limit, marking all active players won and printing the full
+  per-player statistics; the report tool reads that combination as a **draw**. The
+  harness's wall-clock timeout is only a safety net (set it generously, e.g. 3-4x the
+  expected wall time).
+- **Timeout flexibility:** a turn may set a shorter or longer game-time limit.
+  Shorter limits iterate faster but do not grade long-term value; longer limits cost
+  wall time. Choose per goal — the turn file records the choice and why.
 - **Runner command** (the harness implements exactly this, with an isolated HOME per
   match):
 
@@ -102,7 +124,8 @@ closed by one verdict and exactly one commit.
 - **Standard battery** (recorded for every match): outcome (win/draw/loss), duration,
   resourcesGathered, resourcesUsed, unitsTrained, unitsLost, enemyUnitsKilled,
   buildingsConstructed, enemyBuildingsDestroyed, population peak, % map explored,
-  time to each phase (from bot reporting), bot JS error count, determinism check.
+  time to each phase (from bot reporting), the per-minute `[HARNESS]` samples,
+  bot JS error count, determinism check.
 
 ## Verdict rules
 
@@ -138,10 +161,19 @@ otherwise, with the same escalation.
 If a verdict is ever genuinely unclear under these rules, the turn is **invalid**:
 stop, write down why in the journal, and ask Louis before proceeding.
 
+## Evidence tools
+
+Do not parse raw experiment JSON by hand in the agent's context — that burns tokens.
+Maintain reusable exploration tools (the harness `report` subcommand and friends)
+that produce compact summaries: per-match outcome and metric tables, sample curves
+reduced to min/mean/max, and baseline-vs-treatment diffs. When a new kind of evidence
+is collected, extend the tools in the same commit that introduces the collection.
+
 ## Turn records
 
 - Every turn gets `turns/NNN-slug.md` with fixed sections: Hypothesis, Implementation,
-  Experiment, Verdict, Action, Next.
+  Experiment, Verdict, Action, Next. The file states the goal it serves and the
+  grading result.
 - `turns/backlog.md` holds candidate hypotheses — one line each, with the metric and
   the rationale.
 - `CURRENT_TURN.md` always points at the active turn and its current phase. Update it
