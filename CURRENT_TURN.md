@@ -1,12 +1,15 @@
 # Current turn
 
-- Number: 023 — double-ring forge placement (G4).
-- Phase: experiment done → verdict good (9/10 City) → committing (then
-  straight on to turn 024: arsenal + ram + attack at 25 min).
-- Standing instruction (Louis, 2026-08-19): keep doing turns without stopping
-  for go-ahead until told otherwise (context-window instruction).
-- Standing instruction (Louis, 2026-08-19): each turn is exactly one commit —
-  fold backlog and `CURRENT_TURN.md` bookkeeping into the turn commit; no
-  separate backlog/closure commit.
+- Number: 024 — arsenal, ram, and the attack (G4).
+- Phase: experiment done → verdict bad (0/10 wins, JS-error veto) → reverted
+  → committing.
+- **STOPPED.** Louis asked to stop after turn 024 — he has protocol feedback
+  to give. Do not start turn 025 until the feedback is incorporated.
 
-Last completed turn: 022 — forge-placement (neutral, reverted).
+Standing instructions (Louis, 2026-08-19):
+
+- Each turn is exactly one commit — fold backlog and `CURRENT_TURN.md`
+  bookkeeping into the turn commit; no separate backlog/closure commit.
+- Stop after turn 024 (protocol feedback pending).
+
+Last completed turn: 023 — forge-double-ring (good; 9/10 City).

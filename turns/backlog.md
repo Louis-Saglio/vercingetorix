@@ -18,8 +18,13 @@ retroactively to match a verdict.
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
 - G4: build the arsenal in City (300 wood), train a siege ram (300 wood +
   150 metal), and attack the enemy CC with army + ram; primary metric = wins
-  before the 25-minute limit. Requires the NonVisualTrigger limit 20 → 25
-  minutes (part of the change).
+  before the 25-minute limit. Turn 024 (bad): two failure modes — (a)
+  `manageRams` trains on the arsenal *foundation* (foundations carry the
+  Arsenal class → JS errors, veto); filter foundations out. (b) metal
+  starvation: City research spends the banked 750 metal, and only ~0.4/s
+  regathers, so the ram's 150 metal arrives after the limit — **gate City on
+  metal ≥ 900 (750 + 150)** so the ram metal is pre-banked. Requires the
+  NonVisualTrigger limit 20 → 25 minutes (part of the change).
 - G4: more/better house placement: 5-house target stalls on ~1/10 seeds when
   all 8 offsets are invalid (turn 019 seed 173); primary metric = 5 houses on
   10/10 seeds.
