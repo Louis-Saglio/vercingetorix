@@ -4,8 +4,11 @@ One line per candidate: the change, the primary metric, and the rationale.
 Top of the list goes first. Fed by experiment results; never edit an entry
 retroactively to match a verdict.
 
-- G2: raise the soldier target (and the house cap it needs) so the army keeps
-  growing before it attacks; primary metric = win rate vs sandbox Rome (G2).
+- G2: grow the army and its housing together — raise `SOLDIER_TARGET` and
+  `HOUSE_TARGET` so the population cap can actually hold the target, then
+  attack; primary metric = win rate vs sandbox Rome (G2). (turn 006 was
+  invalid: raising only `SOLDIER_TARGET` to 32 stalls at 28 melee / pop 35 /
+  3 houses and never attacks.)
 - G2: advance to Town Phase and build siege (rams) for crush damage against the
   CC; primary metric = win rate vs sandbox Rome.
 - G2: target the enemy civic centre in the sweep; primary metric = time to
@@ -25,4 +28,5 @@ retroactively to match a verdict.
   or the shared `resourceMaps`; behavior-preserving, judged by turn rate.
 
 Turn 004 done (grow-to-20-before-attack — good); G1 achieved. Turn 005 done
-(target-enemy-civic-centre — bad); G2 still open.
+(target-enemy-civic-centre — bad). Turn 006 done (bigger-army — invalid);
+G2 still open.
