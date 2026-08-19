@@ -1,0 +1,319 @@
+{
+  "seed": 777,
+  "exit": "finished",
+  "wall_seconds": 24,
+  "turns": 9892,
+  "players": [
+    {
+      "playerID": 1,
+      "playerState": "won",
+      "statistics": {
+        "buildingsCaptured": {
+          "CivCentre": 1,
+          "Economic": 3,
+          "Fortress": 0,
+          "House": 3,
+          "Military": 2,
+          "Outpost": 0,
+          "Structure": 9,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsCapturedValue": 2150,
+        "buildingsConstructed": {
+          "CivCentre": 0,
+          "Economic": 7,
+          "Fortress": 0,
+          "House": 9,
+          "Military": 3,
+          "Outpost": 0,
+          "Structure": 29,
+          "Wonder": 0,
+          "total": 29
+        },
+        "buildingsLost": {
+          "CivCentre": 0,
+          "Economic": 1,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 1,
+          "Outpost": 0,
+          "Structure": 2,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsLostValue": 400,
+        "enemyBuildingsDestroyed": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "enemyBuildingsDestroyedValue": 0,
+        "enemyUnitsKilled": {
+          "Cavalry": 2,
+          "Champion": 0,
+          "Civilian": 22,
+          "Hero": 0,
+          "Infantry": 46,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 70,
+          "Worker": 68,
+          "total": 0
+        },
+        "enemyUnitsKilledValue": 6000,
+        "failedBribes": 0,
+        "lootCollected": 720,
+        "peakPercentMapControlled": 63,
+        "percentMapControlled": 63,
+        "percentMapExplored": 91,
+        "populationCount": 115,
+        "resourcesBought": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesCount": {
+          "food": 417,
+          "metal": 100,
+          "stone": 340,
+          "wood": 121
+        },
+        "resourcesGathered": {
+          "food": 10128,
+          "metal": 0,
+          "stone": 1652,
+          "vegetarianFood": 9078,
+          "wood": 9932
+        },
+        "resourcesSold": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesUsed": {
+          "food": 10150,
+          "metal": 200,
+          "stone": 1540,
+          "wood": 10210
+        },
+        "successfulBribes": 0,
+        "teamPeakPercentMapControlled": 63,
+        "teamPercentMapControlled": 63,
+        "teamPercentMapExplored": 91,
+        "tradeIncome": 0,
+        "treasuresCollected": 0,
+        "tributesReceived": 0,
+        "tributesSent": 0,
+        "unitsCaptured": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "unitsCapturedValue": 0,
+        "unitsLost": {
+          "Cavalry": 1,
+          "Champion": 0,
+          "Civilian": 20,
+          "Hero": 0,
+          "Infantry": 68,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 89,
+          "Worker": 88,
+          "total": 0
+        },
+        "unitsLostValue": 7950,
+        "unitsTrained": {
+          "Cavalry": 4,
+          "Champion": 0,
+          "Civilian": 56,
+          "Domestic": 0,
+          "Hero": 0,
+          "Infantry": 131,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 191,
+          "Worker": 187,
+          "total": 191
+        }
+      }
+    },
+    {
+      "playerID": 2,
+      "playerState": "defeated",
+      "statistics": {
+        "buildingsCaptured": {
+          "CivCentre": 0,
+          "Economic": 1,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 1,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsCapturedValue": 100,
+        "buildingsConstructed": {
+          "CivCentre": 0,
+          "Economic": 5,
+          "Fortress": 0,
+          "House": 3,
+          "Military": 2,
+          "Outpost": 0,
+          "Structure": 10,
+          "Wonder": 0,
+          "total": 10
+        },
+        "buildingsLost": {
+          "CivCentre": 1,
+          "Economic": 3,
+          "Fortress": 0,
+          "House": 3,
+          "Military": 2,
+          "Outpost": 0,
+          "Structure": 9,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsLostValue": 2150,
+        "enemyBuildingsDestroyed": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "enemyBuildingsDestroyedValue": 0,
+        "enemyUnitsKilled": {
+          "Cavalry": 1,
+          "Champion": 0,
+          "Civilian": 20,
+          "Hero": 0,
+          "Infantry": 68,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 89,
+          "Worker": 88,
+          "total": 0
+        },
+        "enemyUnitsKilledValue": 7950,
+        "failedBribes": 0,
+        "lootCollected": 945,
+        "peakPercentMapControlled": 32,
+        "percentMapControlled": 0,
+        "percentMapExplored": 77,
+        "populationCount": 0,
+        "resourcesBought": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesCount": {
+          "food": 29,
+          "metal": 200,
+          "stone": 231,
+          "wood": 55
+        },
+        "resourcesGathered": {
+          "food": 2372,
+          "metal": 0,
+          "stone": 0,
+          "vegetarianFood": 1642,
+          "wood": 3126
+        },
+        "resourcesSold": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesUsed": {
+          "food": 3100,
+          "metal": 100,
+          "stone": 150,
+          "wood": 3700
+        },
+        "successfulBribes": 0,
+        "teamPeakPercentMapControlled": 32,
+        "teamPercentMapControlled": 0,
+        "teamPercentMapExplored": 77,
+        "tradeIncome": 0,
+        "treasuresCollected": 0,
+        "tributesReceived": 0,
+        "tributesSent": 0,
+        "unitsCaptured": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "unitsCapturedValue": 0,
+        "unitsLost": {
+          "Cavalry": 2,
+          "Champion": 0,
+          "Civilian": 22,
+          "Hero": 0,
+          "Infantry": 46,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 70,
+          "Worker": 68,
+          "total": 0
+        },
+        "unitsLostValue": 6000,
+        "unitsTrained": {
+          "Cavalry": 1,
+          "Champion": 0,
+          "Civilian": 18,
+          "Domestic": 0,
+          "Hero": 0,
+          "Infantry": 42,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 61,
+          "Worker": 60,
+          "total": 61
+        }
+      }
+    }
+  ],
+  "harness_lines": [],
+  "js_errors": 0,
+  "stderr": ""
+}
