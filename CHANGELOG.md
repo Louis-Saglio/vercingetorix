@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Reworked the development protocol per Louis's review: post-turn reflection step
+  (harness/protocol improvements get their own commits), evidence-collection and
+  refactor turn types, a composite verdict score (outcome + quality metrics +
+  survival time, so a longer defeat can count as progress), timeouts recorded as
+  draws, gaul-vs-rome on mainland, per-turn seed rotation with a canary match for
+  deterministic comparison.
 - Added the experiment harness (`harness/`): spawns headless matches with isolated
   HOMEs, extracts per-player end-of-game statistics, and writes per-match and batch
   JSON results. Verified deterministic across repeated runs.

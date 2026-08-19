@@ -7,9 +7,22 @@ using evidence-driven development cycles.
 All work happens in **turns**. One turn = one hypothesis, tested by one experiment,
 closed by one verdict and exactly one commit.
 
-## The turn
+## Turn types
 
-A turn has five phases, always in this order:
+- **Improvement turn** (default): a hypothesis about making the bot better.
+- **Evidence-collection turn**: the hypothesis is "if I collect data D, then I will
+  understand Y well enough to formulate a bot improvement". No bot behavior change
+  is claimed. The deliverable is the collected evidence plus what it teaches, written
+  in the turn record. Verdict = did the evidence answer the question (yes/no).
+  Evidence may be logs in the bot or anywhere in the simulation — any code that helps
+  see what is going on, including in the engine's own scripts if needed.
+- **Refactor turn**: the hypothesis is "if I restructure R, the code becomes easier to
+  change safely, with identical behavior". The verdict is a behavior-preservation
+  check: same seed → identical outcomes and statistics as before the refactor, and no
+  new JS errors. Use refactor turns when the code is getting messy or when a
+  structural change is needed to enable real improvements — never let structure rot.
+
+## The turn
 
 1. **Hypothesis** — written in the turn file *before any code changes*:
 
@@ -20,7 +33,7 @@ A turn has five phases, always in this order:
 2. **Implement** — make the minimal code change for X. Bot logic changes only;
    nothing else rides along.
 3. **Experiment** — run the baseline (last commit) and the treatment (working tree)
-   on the same seeds; record every match result in `experiments/NNN/`.
+   on the same seed set; record every match result in `experiments/NNN/`.
 4. **Verdict** — apply the decision rules below to the primary metric.
    Possible verdicts: **good**, **bad**, **neutral**, **invalid**.
 5. **Action**:
@@ -32,13 +45,15 @@ A turn has five phases, always in this order:
      idea) → fix the experiment, rerun it against the original code, and state
      plainly in the journal what went wrong.
 6. **Commit** — every turn ends with one commit, regardless of verdict:
-
-   ```
-   turn NNN: <slug> — <verdict>
-   ```
-
-   The commit body is the journal summary. Then launch the next turn: take the top
-   item from `turns/backlog.md`, or derive a new hypothesis from the last results.
+   `turn NNN: <slug> — <verdict>` with the journal summary as the body.
+7. **Post-turn reflection** — before launching the next turn, ask: did anything in
+   this turn reveal a problem or a missing capability in the harness or in this
+   protocol itself? If yes, make those improvements **now**, in a separate commit
+   (not inside a turn commit), then launch the next turn. Examples: a metric the
+   harness does not extract, a verdict rule that misjudged an obvious result, an
+   experiment default that got in the way.
+8. **Next turn** — take the top item from `turns/backlog.md`, or derive a new
+   hypothesis from the last results (including from evidence-collection turns).
 
 ## Hard rules
 
@@ -50,51 +65,75 @@ A turn has five phases, always in this order:
    identical results). A change that breaks determinism is **bad** regardless of metrics.
 4. **Error veto.** A change that increases the bot's JS error count is **bad**
    regardless of metrics.
-5. **Minimal diffs.** No refactoring, no formatting, no unrelated fixes inside a turn.
+5. **Minimal diffs.** No refactoring, no formatting, no unrelated fixes inside a turn
+   (refactors are their own turn type).
 6. **Baseline = last commit.** Never compare against a stale baseline.
 7. **Only validated improvements persist.** Reverted turns leave no trace in the code,
    only in the journal.
 
 ## Experiment specification (defaults)
 
-- **Bot:** Vercingetorix, player 1, civ `athen`.
-- **Opponent:** Petra, player 2, civ `mace`, difficulty 3. Raise the difficulty when
+- **Bot:** Vercingetorix, player 1, civ `gaul`.
+- **Opponent:** Petra, player 2, civ `rome`, difficulty 3. Raise the difficulty when
   the bot's win rate is ≥ 80% over the last 10 turns at the current level.
-- **Map:** `random/alpine_lakes`, size 128. Extend the map pool only by explicit
-  decision recorded in a turn.
-- **Seeds:** 1..10, i.e. N = 10 pairs per batch. Baseline and treatment use the *same*
-  seeds (paired comparison — identical maps for both sides of the comparison).
-- **Match limit:** a match that has not ended after 20 minutes of wall clock counts
-  as a loss for the bot.
+- **Map:** `random/mainland`, size 128.
+- **Seeds:** every turn draws its own seed set (default 10 seeds) and records it in
+  the turn file. Baseline and treatment always share the turn's seed set (paired
+  comparison). Seed sets are never reused across turns — this is the anti-overfitting
+  measure.
+- **Canary match:** every batch additionally runs one match that repeats the baseline
+  exactly (same civ, same seed as an existing baseline match). Its result must be
+  identical to the original baseline run; if not, the batch is invalid and the
+  harness has a bug to fix before any verdict.
+- **Match limit:** a match that has not ended after 20 minutes of wall clock is
+  stopped and recorded as a **draw** (not a loss). Draws are then judged by the
+  quality metrics, not by outcome alone.
 - **Runner command** (the harness implements exactly this, with an isolated HOME per
   match):
 
   ```
-  pyrogenesis -autostart="random/alpine_lakes" -autostart-seed=SEED \
+  pyrogenesis -autostart="random/mainland" -autostart-seed=SEED \
     -autostart-nonvisual -autostart-players=2 -autostart-size=128 \
     -autostart-ai=1:vercingetorix -autostart-ai=2:petra -autostart-aidiff=2:3 \
-    -autostart-civ=1:athen -autostart-civ=2:mace -autostart-player=-1 \
+    -autostart-civ=1:gaul -autostart-civ=2:rome -autostart-player=-1 \
     -mod=vercingetorix -unique-logs -nosound
   ```
 
-- **Standard battery** (recorded for every match, used for context even when not the
-  primary metric): outcome, duration, resourcesGathered, resourcesUsed, unitsTrained,
-  unitsLost, enemyUnitsKilled, buildingsConstructed, enemyBuildingsDestroyed,
-  population peak, % map explored, bot JS error count, determinism check.
+- **Standard battery** (recorded for every match): outcome (win/draw/loss), duration,
+  resourcesGathered, resourcesUsed, unitsTrained, unitsLost, enemyUnitsKilled,
+  buildingsConstructed, enemyBuildingsDestroyed, population peak, % map explored,
+  time to each phase (from bot reporting), bot JS error count, determinism check.
 
 ## Verdict rules
 
-For a win-rate primary metric over N = 10 pairs:
+The goal is not to win every match but to **improve over the baseline**. The default
+primary metric is a composite score, computed per matched pair (same seed, baseline
+vs treatment) and summed over the batch:
+
+- **Outcome component** (per pair): win = +3, draw = +1, loss = 0, minus the
+  baseline's value. (A loss where the baseline won scores −3; a win where the
+  baseline lost scores +3.)
+- **Quality component** (per pair, always computed): for each battery metric that
+  exists on both sides — resourcesGathered, resourcesUsed, enemyUnitsKilled,
+  unitsTrained, population peak, and phase timings when reported — compute the
+  relative delta `(treatment − baseline) / max(1, baseline)`, clamp it to [−1, 1],
+  and weight it 0.4. Sum the weighted deltas.
+- **Survival component** (per pair, only for loss–loss and draw–draw pairs): relative
+  duration delta clamped to [−1, 1], weighted 0.4. If the baseline was a defeat and
+  the treatment is also a defeat, lasting longer **is** an improvement — this
+  component captures it. Same for draws.
+
+Batch verdict over N = 10 pairs (sum of pair deltas):
 
 | Verdict | Condition | Action |
 |---|---|---|
-| good | treatment wins ≥ baseline + 2, no error/determinism veto | validate: keep the change |
-| bad | treatment wins ≤ baseline − 2, or error/determinism veto | revert |
-| neutral | anything else | repeat the batch once (N = 20 pairs total); still neutral → revert and record |
+| good | total ≥ +4, no error/determinism veto | validate: keep the change |
+| bad | total ≤ −4, or error/determinism veto | revert |
+| neutral | otherwise | repeat the batch once (N = 20 pairs total); still neutral → revert and record |
 
-For a continuous primary metric (e.g. average time to reach Town Phase): **good** if the
+For a single-metric hypothesis (e.g. "time to reach Town Phase"): **good** if the
 mean improves ≥ 10% relative to baseline, **bad** if it worsens ≥ 10%, **neutral**
-otherwise, with the same escalation as above.
+otherwise, with the same escalation.
 
 If a verdict is ever genuinely unclear under these rules, the turn is **invalid**:
 stop, write down why in the journal, and ask Louis before proceeding.
@@ -120,4 +159,8 @@ stop, write down why in the journal, and ask Louis before proceeding.
 ## References
 
 - Engine facts verified on this VPS: `docs/DEVELOPER_GUIDE.md` → Environment.
+- Game rules and how to play 0 A.D. 0.28: `docs/GAME.md` — read it before writing bot
+  logic; it is grounded in the installed game data, not in memory.
+- Installed game data and engine source, pinned to the running version:
+  `/home/ubuntu/0ad-reference/`.
 - Bot architecture (JS AI mod): `docs/DEVELOPER_GUIDE.md` → Bot mod.
