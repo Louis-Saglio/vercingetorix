@@ -10,7 +10,9 @@ running engine version.
 The default victory condition is **Conquest**: "Defeat opponents by killing all
 their units and destroying all their structures" (`simulation/data/settings/victory_conditions/conquest.json`).
 Other conditions exist (wonder, capture the relic, regicide, conquest_structures,
-conquest_units, conquest_civic_centers) but the harness always plays Conquest.
+conquest_units, conquest_civic_centers). **The harness plays
+`conquest_civic_centers`**: "Defeat opponents by destroying all their fully built
+civic centers" — a game ends when the enemy CCs fall (foundations do not count).
 
 ## Civilisations
 
@@ -24,21 +26,36 @@ Each civ has its own building set, unit roster, and techs. Data per civ lives in
 Four resources: **food, wood, stone, metal**. Match start: 300 of each (from the
 autostart manifest), population cap 300.
 
-The defining fact of 0.28: **there are no dedicated worker units.** Citizen
-soldiers both gather and fight — every trainable infantry/cavalry unit has the
-`Worker` class (`template_unit_infantry.xml`: classes `Human CitizenSoldier`,
-visible classes `Citizen Worker Soldier Infantry`). The economy is the army and
-the army is the economy. A unit that is not fighting or training should be
-gathering or building. (A `support_civilian` template exists but no structure
-trains it; it is not part of normal play.)
+The economy runs on two kinds of workers:
+
+- **Dedicated worker citizens** — the support civilian (e.g. "Gallic Laborer" /
+  Ambactos). Every civ starts with 4. They gather (ResourceGatherer rates on
+  `template_unit_support_civilian.xml`) and they **build all structures** (the
+  full builder mixin list, `templates/mixins/builder.xml`). They cannot fight.
+  The base civic-centre template trains them (`units/{native}/support_civilian`),
+  but civ-specific CC trainer lists (gaul, athen) list only military units — so
+  for those civs the starting 4 are the only ones.
+- **Citizen soldiers** — every trainable military unit also has the `Worker`
+  class (`template_unit_infantry.xml`: classes `Human CitizenSoldier`, visible
+  classes `Citizen Worker Soldier Infantry`) and gathers when not fighting.
+
+So the army is also the workforce, but dedicated laborers exist and are the
+builders.
 
 - **Dropsites:** storehouse (wood/stone/metal), farmstead (food). Units carry
   resources back to the nearest dropsite.
 - **Food:** berry bushes and hunt early; **fields** (built near a farmstead, need
   food to seed) are the steady source; corrals raise animals.
 - **Trade:** market — barter resources, or set trade routes between markets/docks.
-- Buildings cost resources; units cost food/wood (spearman: 50 wood + food, see
-  `template_unit_infantry_melee_spearman.xml`).
+- Buildings cost resources; spearmen cost 50 wood only
+  (`template_unit_infantry_melee_spearman.xml`); houses cost 75 wood.
+- **Treasures:** treasure chests (gaia entities) are scattered on the map; units
+  can gather them for instant resources. Disabled in the experiments
+  (`DisableTreasures` gamesetting, forced by the bot mod's autostart override).
+- **Construction is two steps:** a `construct` command only *places* the
+  foundation (the API helper posts `autorepair:false`); the actual building is a
+  separate `repair` order on the foundation. Foundations carry the class of the
+  final building plus `Foundation`.
 
 ## Units
 
@@ -89,6 +106,11 @@ phase is a core quality metric (reported by the bot via research events).
 
 - **Turns:** fixed 200 ms of sim time each; AIs get `HandleMessage` every turn.
   Headless games run the turns as fast as the CPU allows (~60-300x real time here).
+- **Positions are in meters, 4 m per tile.** Every offset, radius, and range in
+  bot code must be scaled by 4 (e.g. 40 tiles = 160 m).
+- **Population:** the CC provides 20, each house 5 (`template_structure_civic_*`);
+  the cap is the sum of the player's Population bonuses, and training stalls when
+  it is reached.
 - **Determinism:** same seed, same commands → identical outcome. This is a hard
   requirement for every bot change (savegames and replays depend on it).
 - **AI events** (via `this.events` in the bot): attacks, construction finished,

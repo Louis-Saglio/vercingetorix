@@ -90,6 +90,55 @@ implementation):
 - Determinism is a hard requirement: same seed → identical behavior, always. See
   [PROTOCOL.md](PROTOCOL.md) → Hard rules.
 
+## AI API reference (verified against 0.28.0)
+
+The bot runs in the AI realm, a separate JS realm from the simulation. It has
+**no** direct `Engine.QueryInterface` on the sim; everything goes through the
+`common-api` wrappers (`gameState`, `Entity`, collections) and
+`Engine.PostCommand`.
+
+- **Registration:** `simulation/ai/<name>/data.json` with `"filename"` (the ES
+  module file) and `"constructor"` (the exported function). `"useShared": true`
+  loads `common-api`. The folder name is the AI id for `-autostart-ai=1:<name>`.
+- **Lifecycle:** `constructor(settings)` → `Init(state, playerID, sharedAI)` (base
+  class sets `this.gameState`, `this.territoryMap` — raw map data, not an InfoMap
+  — then calls `CustomInit(gameState)`) → `HandleMessage(state, playerID, sharedAI)`
+  every turn (base class fills `this.events`, calls `OnUpdate(sharedAI)`; it also
+  **reassigns `this.territoryMap` every turn** — never store wrappers in it).
+  `Serialize()`/`Deserialize(data)` for savegames.
+- **Events** (`this.events`, from `state.events` in `shared.js`): `Create`,
+  `EntityRenamed`, `TrainingFinished`, `ConstructionFinished`, `AIMetadata`,
+  `Destroy`, plus `PlayerDefeated`/`TributeExchanged` from `AIInterface.js`
+  handlers.
+- **Collections:** `EntityCollection.filter(f)` is eager; `.length` works;
+  **`.values()` returns an iterator** — no `.slice()`, no indexing; use `for..of`
+  or `.next().value`.
+- **Templates:** `gameState.getTemplate(name)` returns a `Template` wrapper —
+  read fields with `.get("Cost/Resources/wood")`, not `.Cost...`. Raw data is in
+  `._template`. `gameState.applyCiv("units/{civ}/...")` resolves `{civ}`;
+  **trainer tokens use a slash** (`units/{civ}/infantry_spearman_b`), the older
+  underscore form is wrong.
+- **Entities:** `ent.position()` (meters, may be `undefined` mid-destruction —
+  guard it), `ent.owner()`, `ent.id()`, `ent.hasClass(c)` (Classes +
+  VisibleClasses merged), `ent.getResourceType()` ("wood"/"food"/... from
+  ResourceSupply/Type — trees have **no Identity classes**), `ent.buildableEntities(civ)`,
+  `ent.trainingQueue()`, `ent.unitAIState()` (e.g. `"INDIVIDUAL.IDLE"`,
+  `"INDIVIDUAL.GATHER.GATHERING"`; `undefined` for structures).
+- **Actions:** `ent.train(civ, template, count)`, `ent.construct(template, x, z,
+  angle)` — **places the foundation only** (posts `autorepair:false`); follow with
+  `ent.repair(foundationEntity)` to actually build it. `ent.gather(target)`,
+  `ent.attack(targetId)`, `ent.attackMove(x, z, targetClasses)`.
+- **Reporting:** `print(...)` does **not** append newlines; the bot's `hlog`
+  helper appends `"\n"`. `[HARNESS]` lines go to stdout and are extracted by the
+  harness. `this.chat(msg)` posts to the game chat.
+- **AIs see everything** (full map knowledge, enemy stats); gaia entities have
+  owner 0. `gameState.getPopulation()` / `getPopulationLimit()`; CC gives 20 pop,
+  houses 5.
+- **Mod loading:** any `-mod=` flag disables the public mod — the harness always
+  passes `-mod=public -mod=<botmod>`. Mod files override public files at the same
+  path (the bot mod overrides `maps/scripts/NonVisualTrigger.js` and
+  `autostart/cmd_line_args.js` this way).
+
 ## Harness (Rust)
 
 The harness is a small Rust CLI (Cargo toolchain is installed on this VPS) implementing
