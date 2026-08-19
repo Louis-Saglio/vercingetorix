@@ -96,7 +96,7 @@ closed by one verdict and exactly one commit.
     -autostart-nonvisual -autostart-players=2 -autostart-size=128 \
     -autostart-ai=1:vercingetorix -autostart-ai=2:petra -autostart-aidiff=2:3 \
     -autostart-civ=1:gaul -autostart-civ=2:rome -autostart-player=-1 \
-    -mod=vercingetorix -unique-logs -nosound
+    -mod=public -mod=vercingetorix -unique-logs -nosound
   ```
 
 - **Standard battery** (recorded for every match): outcome (win/draw/loss), duration,

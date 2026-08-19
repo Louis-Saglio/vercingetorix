@@ -224,6 +224,10 @@ fn match_arguments(cfg: &Config, seed: Option<Seed>) -> Vec<String> {
         String::from("-nosound"),
     ];
     if let Some(mod_name) = &cfg.bot_mod {
+        // The engine only auto-enables the public mod when no -mod flag is
+        // given at all; without public there are no autostart scripts, so a
+        // user mod on its own can never start. public first, mod over it.
+        args.push(String::from("-mod=public"));
         args.push(format!("-mod={mod_name}"));
     }
     args
