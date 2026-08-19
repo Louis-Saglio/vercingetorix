@@ -1,8 +1,8 @@
 # Current turn
 
-- Number: none active — turn 004 closed (commit `69cb4cf`, pushed).
-- Next: turn 005 under goal G2 (defeat sandbox Rome); awaiting Louis's
+- Number: none active — turn 005 closed (verdict bad, change reverted, pushed).
+- Next: turn 006 under goal G2 (defeat sandbox Rome); awaiting Louis's
   go-ahead before starting, following the one-turn-at-a-time pattern.
 
-Last completed turn: 004 — grow-to-20-before-attack (see
-`turns/004-grow-to-20-before-attack.md`).
+Last completed turn: 005 — target-enemy-civic-centre (see
+`turns/005-target-enemy-civic-centre.md`).
