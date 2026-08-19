@@ -4,19 +4,14 @@ One line per candidate: the change, the primary metric, and the rationale.
 Top of the list goes first. Fed by experiment results; never edit an entry
 retroactively to match a verdict.
 
-- G2 (reconsider): three G2 turns produced no wins (005 bad, 006 invalid, 007
-  neutral). Consider decomposing G2 into a "sustain a 32+ soldier army"
-  prerequisite before re-attempting CC capture, or pivot to the siege path
-  (Town → City phase → arsenal → rams).
-- G2: grow the army and its housing together — raise `SOLDIER_TARGET` and
-  `HOUSE_TARGET` so the cap can hold the target, then attack. (turn 007 tested
-  `SOLDIER_TARGET=27` with the old sweep — neutral, 0 wins: a bigger army alone
-  never focuses the CC.)
-- G2: advance to Town Phase and build siege (rams) for crush damage against the
+- G3: with the 32-soldier army, issue a direct capture-allowed attack on the
+  enemy civic centre (re-test turn 005's idea now that the army is large
+  enough); primary metric = win rate vs sandbox Rome.
+- G3: advance to Town Phase and build siege (rams) for crush damage against the
   CC; primary metric = win rate vs sandbox Rome.
-- G2: target the enemy civic centre in the sweep; primary metric = time to
-  destroy the enemy CC. (turn 005 — bad: a lone spearman capture is out-paced
-  by the CC garrison, and it discards the baseline sweep's incidental kills.)
+- G3: target the enemy civic centre in the sweep; primary metric = time to
+  destroy the enemy CC. (turn 005 — bad with 20 soldiers: capture out-paced by
+  the CC garrison and it discards incidental kills; retry with 32.)
 - **Prereq** — harness runner: spawn matched-pair batches (isolated HOMEs, seeds,
   timeout, stats extraction). Required before any experiment. (turn 001 — done)
 - **Prereq** — bot skeleton: Vercingetorix mod that survives a full match vs sandbox
@@ -32,4 +27,5 @@ retroactively to match a verdict.
 
 Turn 004 done (grow-to-20-before-attack — good); G1 achieved. Turn 005 done
 (target-enemy-civic-centre — bad). Turn 006 done (bigger-army — invalid).
-Turn 007 done (reachable-bigger-army — neutral); G2 still open.
+Turn 007 done (reachable-bigger-army — neutral). Turn 008 done (grow-to-32 —
+good); G2 achieved, now on G3 (defeat sandbox Rome).
