@@ -4,10 +4,13 @@ One line per candidate: the change, the primary metric, and the rationale.
 Top of the list goes first. Fed by experiment results; never edit an entry
 retroactively to match a verdict.
 
-- G2: raise the soldier target past 20 so the army keeps growing before it
-  attacks; primary metric = win rate vs sandbox Rome (G2).
+- G2: raise the soldier target (and the house cap it needs) so the army keeps
+  growing before it attacks; primary metric = win rate vs sandbox Rome (G2).
+- G2: advance to Town Phase and build siege (rams) for crush damage against the
+  CC; primary metric = win rate vs sandbox Rome.
 - G2: target the enemy civic centre in the sweep; primary metric = time to
-  destroy the enemy CC.
+  destroy the enemy CC. (turn 005 — bad: a lone spearman capture is out-paced
+  by the CC garrison, and it discards the baseline sweep's incidental kills.)
 - **Prereq** — harness runner: spawn matched-pair batches (isolated HOMEs, seeds,
   timeout, stats extraction). Required before any experiment. (turn 001 — done)
 - **Prereq** — bot skeleton: Vercingetorix mod that survives a full match vs sandbox
@@ -21,4 +24,5 @@ retroactively to match a verdict.
   scan (`getEntities()` over all map entities in `play()`) with cached collections
   or the shared `resourceMaps`; behavior-preserving, judged by turn rate.
 
-Turn 004 done (grow-to-20-before-attack — good); G1 achieved, now on G2.
+Turn 004 done (grow-to-20-before-attack — good); G1 achieved. Turn 005 done
+(target-enemy-civic-centre — bad); G2 still open.
