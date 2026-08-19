@@ -8,10 +8,10 @@ system are defined in the closing commit.
 
 **Statement:** Vercingetorix destroys the enemy civic centre (the
 `conquest_civic_centers` victory condition) against sandbox Rome (Petra,
-difficulty 0), which does not expand or attack, before the **25-game-minute**
-match limit (raised from 20 on turn 022's evidence: City Phase lands at
-minute 17–19 on the seeds where the forge prerequisites build, so the
-arsenal → ram → march → CC kill cannot fit inside 20 minutes).
+difficulty 0), which does not expand or attack, before the **30-game-minute**
+match limit (raised from 25 on turn 025's evidence: the optimized siege
+timeline — City t18–20 → arsenal t19–21 → ram t21.5–22 → march → CC kill —
+lands wins at minute 25.5–27, outside 25 minutes).
 
 **Grading per match:**
 

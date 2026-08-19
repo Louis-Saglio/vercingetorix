@@ -16,17 +16,15 @@ retroactively to match a verdict.
   750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
   minute 18–19** — training held until 3 forges, forges placed on a double
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
-- G4: build the arsenal in City (300 wood), train a siege ram (300 wood +
-  150 metal), and attack the enemy CC with army + ram; primary metric = wins.
-  Turn 024 (bad): foundation-train JS errors (fixed: skip foundations) and
-  metal starvation. Turn 025 (bad, two in-turn iterations): iteration 1 —
-  city 10/10, arsenal 10/10, but 0 rams (training drains wood; hold training
-  until the first ram); iteration 2 — 3-metal/1-stone workers collapses
-  stone, City never reached (revert to 2+2). **Structural finding: the
-  optimized critical path lands wins at t25.5–27 — outside the 25-minute
-  limit.** Turn 026 plan: 2+2 workers, training held until first ram, attack
-  on first ram, and raise the G4 limit 25 → 30 minutes (goal-adjustment rule,
-  evidence in turn 025).
+- G4: the **assault** problem (the economy chain works — turn 026 got City
+  8/10, arsenal, rams and a full-army attack at minute 23–25, but the force
+  was annihilated: 0 buildings destroyed, unitsLost 2500–3150). Candidate
+  levers to research/test: 3–4 rams arriving together (each 300 wood + 150
+  metal, 150 crush per hit, 400 hp — they die to garrison arrows one at a
+  time), soldiers attack-moving at the CC itself, and a bigger army
+  (SOLDIER_TARGET 32 was never reached because training pauses for the ram).
+  Primary metric = wins before the 30-minute limit. Needs the trigger
+  re-raised to 30 minutes (turn 026 reverted it).
 - G4: more/better house placement: 5-house target stalls on ~1/10 seeds when
   all 8 offsets are invalid (turn 019 seed 173); primary metric = 5 houses on
   10/10 seeds.
