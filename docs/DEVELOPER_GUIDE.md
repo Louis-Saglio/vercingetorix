@@ -134,6 +134,15 @@ The bot runs in the AI realm, a separate JS realm from the simulation. It has
 - **AIs see everything** (full map knowledge, enemy stats); gaia entities have
   owner 0. `gameState.getPopulation()` / `getPopulationLimit()`; CC gives 20 pop,
   houses 5.
+- **Phase research is sim-gated, not bot-gated.** Posting `cc.research("phase_town*")`
+  does not advance the phase unless the sim's requirements are met: Town needs
+  **5 Village-class structures** (houses are Village; `playerData.classCounts["Village"]`
+  counts them), City needs **3 Town-class structures** (forge, market, tavern have
+  class Town) plus the resources. The sim silently rejects unmet research —
+  nothing is paid, nothing is logged. **Ground truth is
+  `gameState.currentPhase()` / `gameState.isResearched(tech)`, never a bot-side
+  flag.** (Turn 011–017 ran on a bot flag that the sim had rejected since turn
+  011; caught in turn 018 by logging `currentPhase()`.)
 - **Mod loading:** any `-mod=` flag disables the public mod — the harness always
   passes `-mod=public -mod=<botmod>`. Mod files override public files at the same
   path (the bot mod overrides `maps/scripts/NonVisualTrigger.js` and

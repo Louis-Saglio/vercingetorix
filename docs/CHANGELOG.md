@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Turn 018 (evidence correction, protocol/tooling): the sim silently rejects
+  phase research whose requirements are unmet — Town needs 5 Village-class
+  structures, City needs 3 Town-class structures. Turn 011's "Town reached
+  10/10" measured the bot's own flag, not the sim: `currentPhase()` stayed 1
+  all match. DEVELOPER_GUIDE now mandates sim-truth phase evidence.
 - Turn 017 (goal G3 achieved): the four starting support workers now gather
   stone/metal from minute 0 (two each) and the army keeps a post-town carve-out
   for them; attack waits until 750 stone + 750 metal are banked. 10/10 seeds

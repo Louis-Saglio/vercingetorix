@@ -57,3 +57,14 @@ here, with a note explaining why.
 "Defeat sandbox Rome" (formerly G3) resisted five turns (005, 009, 010, 012,
 013). It was split: the resource prerequisite became G3 (achieved turn 017) and
 the win goal is now G4.
+
+## Evidence correction (turn 018)
+
+Turn 011's "Town Phase reached 10/10" measured the bot's own `townResearched`
+flag, which the bot sets when it *posts* the research — not sim truth. The sim
+rejects the Town research because it requires 5 Village-class structures and
+the bot has 0–4 houses at post time (`classCounts["Village"]` tracks the
+houses exactly). `gameState.currentPhase()` stays 1 all match. G3's
+stone/metal gathering is unaffected (real resources, gated on the bot flag),
+but all phase-gated claims must use `currentPhase()`/`isResearched` from now
+on.

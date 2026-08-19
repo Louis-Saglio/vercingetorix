@@ -4,9 +4,16 @@ One line per candidate: the change, the primary metric, and the rationale.
 Top of the list goes first. Fed by experiment results; never edit an entry
 retroactively to match a verdict.
 
-- G4: research City Phase once stone ≥ 750 and metal ≥ 750 (City also needs 3
-  Town structures — verify which buildings count); primary metric = City Phase
-  reached.
+- G4: reach Town Phase **for real** (sim truth): build 5 Village-class houses
+  and rebalance the pre-town gatherer split so 500 food + 875 wood accumulate
+  in time; primary metric = `currentPhase() >= 2` before minute 12. Turn 018
+  discovery: since turn 011 the bot's `townResearched` flag was fiction — the
+  sim never accepted the research (requires 5 Village structures, the bot had
+  0–4 houses at post time). All phase evidence must use
+  `gameState.currentPhase()`/`isResearched`.
+- G4: research City Phase once stone ≥ 750 and metal ≥ 750 AND 3 Town-class
+  structures exist (forge/market/tavern have class Town); primary metric =
+  City Phase reached.
 - G4: build an arsenal in City Phase, then train a siege ram for crush damage
   against the CC; primary metric = win rate vs sandbox Rome.
 - G4: direct capture-allowed attack on the enemy CC. (turns 005/009 — bad.)
