@@ -1,12 +1,12 @@
 # Current turn
 
-- Number: none active — turn 015 closed (batch 010–015 complete, pushed).
-- Standing instruction (Louis, 2026-08-19): run turns 010 through 015 without
-  stopping for go-ahead between them.
+- Number: 016 — targeted stone/metal gathering after Town (G3).
+- Phase: experiment done → verdict bad → committing (then straight on to
+  turn 017).
+- Standing instruction (Louis, 2026-08-19): keep doing turns without stopping
+  for go-ahead until told otherwise (context-window instruction).
 - Standing instruction (Louis, 2026-08-19): each turn is exactly one commit —
   fold backlog and `CURRENT_TURN.md` bookkeeping into the turn commit; no
   separate backlog/closure commit.
-- Next: turn 016 under goal G3 (gather 750 stone + 750 metal); awaiting Louis's
-  go-ahead.
 
 Last completed turn: 015 — reconsider-g3 (see `turns/015-reconsider-g3.md`).
