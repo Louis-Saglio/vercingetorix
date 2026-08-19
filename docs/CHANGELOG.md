@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Turn 023 (G4 progress): forge placement now walks a double ring (16
+  candidates at 72 m + 16 at 88 m, ≥ 28 m structure clearance); 9/10 seeds
+  reach real City Phase at minute 18–19 (single ring: 5/10), 0 JS errors,
+  canary PASS.
 - Turn 022 (G4 evidence): G4's match limit raised 20 → 25 game-minutes —
   City Phase lands at minute 17–19 even on the seeds where the forges build,
   leaving no time for the arsenal/ram/attack inside 20 minutes. (The forge

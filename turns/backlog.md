@@ -13,16 +13,13 @@ retroactively to match a verdict.
   `gameState.currentPhase()`/`isResearched`. **Done turn 019 (good): 9/10
   real Town at minute 7–8.**
 - G4: research City Phase once `currentPhase() >= 2`, stone ≥ 750, metal ≥
-  750 AND 3 Town-class structures exist. Turn 020 (bad): forges lose the wood
-  race — hold training until the forges are built. Turn 021 (bad): the gate
-  works but the shared 8-offset ring is exhausted — dedicated placement ring.
-  Turn 022 (neutral, reverted): 16-candidate ring at 72 m + 28 m clearance
-  delivers 3 forges on 5/10 seeds (City at t17–19 on those); the other five
-  still stall on terrain — **double the ring (72 m + 88 m, 32 candidates)**.
-  Primary metric = `currentPhase() >= 3` before the 25-minute limit.
+  750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
+  minute 18–19** — training held until 3 forges, forges placed on a double
+  ring (72 m + 88 m, 32 candidates, 28 m clearance).
 - G4: build the arsenal in City (300 wood), train a siege ram (300 wood +
   150 metal), and attack the enemy CC with army + ram; primary metric = wins
-  before the 25-minute limit.
+  before the 25-minute limit. Requires the NonVisualTrigger limit 20 → 25
+  minutes (part of the change).
 - G4: more/better house placement: 5-house target stalls on ~1/10 seeds when
   all 8 offsets are invalid (turn 019 seed 173); primary metric = 5 houses on
   10/10 seeds.

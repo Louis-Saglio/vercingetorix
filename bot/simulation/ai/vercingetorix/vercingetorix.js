@@ -17,6 +17,31 @@ const ATTACK_THRESHOLD = SOLDIER_TARGET;
 // requirement counts 5 Village-class structures (houses are the Village
 // class — turn 018: classCounts["Village"] tracked the house count exactly).
 const HOUSE_TARGET = 5;
+// City Phase requires 3 Town-class structures; forges carry the Town class
+// (VisibleClasses "Town Forge"), cost 200 wood, and have no entity limits.
+const FORGE_TARGET = 3;
+// Forge placement rings: 16 candidates at 72 m plus 16 at 88 m around the
+// CC. The single 72 m ring exhausted itself on terrain on half the seeds
+// (turn 022); forges require clearance from existing structures (22x22
+// footprint), which the structureClear walk applies.
+const FORGE_OFFSETS = [];
+for (let i = 0; i < 16; ++i)
+{
+	const angle = i * Math.PI / 8;
+	FORGE_OFFSETS.push([
+		Math.round(72 * Math.cos(angle)),
+		Math.round(72 * Math.sin(angle))
+	]);
+}
+for (let i = 0; i < 16; ++i)
+{
+	const angle = i * Math.PI / 8 + Math.PI / 16;
+	FORGE_OFFSETS.push([
+		Math.round(88 * Math.cos(angle)),
+		Math.round(88 * Math.sin(angle))
+	]);
+}
+const FORGE_CLEARANCE_SQ = 28 * 28;
 // Post-town, a fixed share of the army gathers the City Phase resources:
 // id % 16 < 3 → stone, < 5 → metal (≈ 6 + 4 of the 32-soldier army). Stone
 // mines sit farther out, so stone gets more hands. The rest keep the 2:1
@@ -43,6 +68,8 @@ export function VercingetorixBot(settings)
 	this.finalReported = false;
 	this.houseAttempts = 0;
 	this.townResearched = false;
+	this.forgeAttempts = 0;
+	this.cityAttempted = false;
 }
 
 VercingetorixBot.prototype = Object.create(BaseAI.prototype);
@@ -55,7 +82,9 @@ VercingetorixBot.prototype.Serialize = function()
 		"reportMinute": this.reportMinute,
 		"finalReported": this.finalReported,
 		"houseAttempts": this.houseAttempts,
-		"townResearched": this.townResearched
+		"townResearched": this.townResearched,
+		"forgeAttempts": this.forgeAttempts,
+		"cityAttempted": this.cityAttempted
 	};
 };
 
@@ -67,26 +96,45 @@ VercingetorixBot.prototype.Deserialize = function(data)
 	this.finalReported = data.finalReported;
 	this.houseAttempts = data.houseAttempts;
 	this.townResearched = data.townResearched;
+	this.forgeAttempts = data.forgeAttempts || 0;
+	this.cityAttempted = data.cityAttempted || false;
 	this.isDeserialized = true;
 };
 
 // Research Town Phase once the 500 food / 500 wood are available AND the
-// sim says the requirements are met. canResearch is the sim's own gate: it
-// is false until the 5 Village structures exist (turn 018 — the sim silently
-// rejected every post since turn 011).
+// sim says the requirements are met; then City once 750/750 are banked and
+// the sim's requirements (3 Town structures) pass. canResearch is the sim's
+// own gate — it was false for every Town post since turn 011 (turn 018).
 VercingetorixBot.prototype.manageResearch = function(gameState, cc)
 {
-	if (this.townResearched)
-		return;
 	const techs = cc.researchableTechs(gameState, gameState.getPlayerCiv());
-	const townTech = techs && techs.find(t => t.startsWith("phase_town"));
-	if (!townTech)
+	if (!techs)
 		return;
-	const res = gameState.getResources();
-	if (res.food >= 500 && res.wood >= 500 && gameState.canResearch(townTech))
+	if (!this.townResearched)
 	{
-		cc.research(townTech);
-		this.townResearched = true;
+		const townTech = techs.find(t => t.startsWith("phase_town"));
+		if (!townTech)
+			return;
+		const res = gameState.getResources();
+		if (res.food >= 500 && res.wood >= 500 && gameState.canResearch(townTech))
+		{
+			cc.research(townTech);
+			this.townResearched = true;
+			return;
+		}
+	}
+	if (this.cityAttempted || gameState.currentPhase() < 2)
+		return;
+	const cityTech = techs.find(t => t.startsWith("phase_city"));
+	if (!cityTech)
+		return;
+	// City needs 3 Town-class structures (the forges) — canResearch is the
+	// sim's gate for that, the resources are the bot's.
+	const res = gameState.getResources();
+	if (res.stone >= 750 && res.metal >= 750 && gameState.canResearch(cityTech))
+	{
+		cc.research(cityTech);
+		this.cityAttempted = true;
 	}
 };
 
@@ -171,6 +219,7 @@ VercingetorixBot.prototype.play = function(gameState)
 	this.manageResearch(gameState, cc);
 	this.manageWorkers(gameState, stoneResources, metalResources);
 	this.manageHouses(gameState, cc);
+	this.manageForges(gameState, cc);
 	this.manageSoldiers(gameState, cc, woodResources, foodResources, stoneResources, metalResources);
 };
 
@@ -281,6 +330,87 @@ VercingetorixBot.prototype.manageHouses = function(gameState, cc)
 	this.houseAttempts++;
 };
 
+// True when (x, z) is at least the clearance distance from every own
+// structure (the sim silently rejects placements that overlap anything).
+VercingetorixBot.prototype.structureClear = function(gameState, x, z, minDistSq)
+{
+	for (const ent of gameState.getOwnEntities().values())
+	{
+		if (!ent.hasClass("Structure") || !ent.position())
+			continue;
+		if (SquareVectorDistance([x, z], ent.position()) < minDistSq)
+			return false;
+	}
+	return true;
+};
+
+// Three forges for the City Phase requirement (each carries the sim's Town
+// class). Same foundation/repair pattern as houses, after real Town only.
+// Placement walks the dedicated double ring with structure clearance — the
+// house offsets are exhausted by the 5 houses (turn 021), and the single
+// 72 m ring lost to terrain on half the seeds (turn 022).
+VercingetorixBot.prototype.manageForges = function(gameState, cc)
+{
+	if (gameState.currentPhase() < 2)
+		return;
+
+	const forgeTemplate = gameState.applyCiv("structures/{civ}/forge");
+
+	const foundations = gameState.getOwnEntities().filter(filters.byClass("Foundation"));
+	if (foundations.length)
+	{
+		const foundation = foundations.values().next().value;
+		for (const ent of gameState.getOwnEntities().values())
+		{
+			const buildable = ent.buildableEntities(gameState.getPlayerCiv());
+			if (buildable && buildable.indexOf(forgeTemplate) !== -1)
+			{
+				ent.repair(foundation);
+				break;
+			}
+		}
+		return;
+	}
+
+	const forges = gameState.getOwnEntities().filter(filters.byClass("Forge"));
+	if (forges.length >= FORGE_TARGET)
+		return;
+
+	const template = gameState.getTemplate(forgeTemplate);
+	const woodRaw = template ? template.get("Cost/Resources/wood") : undefined;
+	if (woodRaw === undefined)
+		return;
+	if (gameState.getResources().wood < +woodRaw)
+		return;
+
+	let builder;
+	for (const ent of gameState.getOwnEntities().values())
+	{
+		const buildable = ent.buildableEntities(gameState.getPlayerCiv());
+		if (buildable && buildable.indexOf(forgeTemplate) !== -1)
+		{
+			builder = ent;
+			break;
+		}
+	}
+	if (!builder)
+		return;
+
+	const pos = cc.position();
+	for (let i = 0; i < FORGE_OFFSETS.length; ++i)
+	{
+		const candidate = FORGE_OFFSETS[(this.forgeAttempts + i) % FORGE_OFFSETS.length];
+		const x = pos[0] + candidate[0];
+		const z = pos[1] + candidate[1];
+		if (this.structureClear(gameState, x, z, FORGE_CLEARANCE_SQ))
+		{
+			builder.construct(forgeTemplate, x, z, 0, undefined);
+			break;
+		}
+	}
+	this.forgeAttempts++;
+};
+
 // The four starting support workers (Support class, not Melee — the soldier
 // loop never commands them) sit idle all game. Put them on the City Phase
 // resources from minute 0: two on stone, two on metal, stable by entity id.
@@ -310,8 +440,11 @@ VercingetorixBot.prototype.manageSoldiers = function(gameState, cc, woodResource
 
 	// Grow to the target, then keep replenishing losses up to it. Hold
 	// training until Town Phase is researched so the 500 food/wood for the
-	// research can accumulate instead of being spent on soldiers.
-	if (this.townResearched && soldiers.length < SOLDIER_TARGET)
+	// research can accumulate instead of being spent on soldiers; after Town,
+	// hold it again until the 3 forges are built, so wood pools for the City
+	// Phase structures instead of being spent soldier by soldier (turn 020).
+	const forges = gameState.getOwnEntities().filter(filters.byClass("Forge"));
+	if (this.townResearched && forges.length >= FORGE_TARGET && soldiers.length < SOLDIER_TARGET)
 		cc.train(gameState.getPlayerCiv(), spearTemplate, 1);
 
 	// Wood is the binding resource (spearmen and houses cost wood), so two
@@ -391,6 +524,8 @@ VercingetorixBot.prototype.report = function(gameState)
 		',"town":' + (this.townResearched ? "true" : "false") +
 		',"phase":' + gameState.currentPhase() +
 		',"villageClass":' + (gameState.playerData.classCounts["Village"] || 0) +
+		',"townClass":' + (gameState.playerData.classCounts["Town"] || 0) +
+		',"forges":' + gameState.getOwnEntities().filter(filters.byClass("Forge")).length +
 		',"townCan":' + (() => {
 			const cc = this.ownCivCentre(gameState);
 			const t = cc && cc.researchableTechs(gameState, gameState.getPlayerCiv());
