@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Turn 015 (goal reconsideration): split the blocked "defeat sandbox Rome" goal
+  into a stone/metal resource prerequisite (new G3) and moved the win goal to
+  G4.
 - Turn 014 (perf): replaced the bot's full-map resource scan with auto-maintained
   cached collections; behavior-preserving (canary PASS), 0 JS errors, no
   turn-rate regression.
