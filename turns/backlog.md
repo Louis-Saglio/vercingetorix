@@ -14,9 +14,11 @@ retroactively to match a verdict.
   real Town at minute 7–8.**
 - G4: research City Phase once `currentPhase() >= 2`, stone ≥ 750, metal ≥
   750 AND 3 Town-class structures exist. Turn 020 (bad): forges lose the wood
-  race to continuous training (first forge at minute 12–18) — hold soldier
-  training until the 3 forges are built, then research City at 750/750.
-  Primary metric = `currentPhase() >= 3`.
+  race — hold training until the forges are built. Turn 021 (bad): the gate
+  works (wood pools) but **forge placement fails** — the 8 house offsets are
+  exhausted and the forge's 22×22 footprint needs clearance; place forges on a
+  dedicated 16-candidate ring at ~72 m with ≥ 26 m clearance from own
+  structures. Primary metric = `currentPhase() >= 3`.
 - G4: more/better house placement: 5-house target stalls on ~1/10 seeds when
   all 8 offsets are invalid (turn 019 seed 173); primary metric = 5 houses on
   10/10 seeds.
