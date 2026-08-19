@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Turn 019 (G4 progress): Town Phase is now researched **for real** — the bot
+  commands all citizen soldiers (the javelineers/cavalry were idle since turn
+  002), builds 5 Village-class houses, and posts Town only when the sim's
+  `canResearch` passes. 9/10 seeds reach `currentPhase()==2` at minute 7–8
+  (first run invalid: the foundation-repair loop could pick the non-building
+  cavalry and stall; fixed to pick a real builder). Stone/metal 750/750 by
+  minute 16 unaffected.
 - Turn 018 (evidence correction, protocol/tooling): the sim silently rejects
   phase research whose requirements are unmet — Town needs 5 Village-class
   structures, City needs 3 Town-class structures. Turn 011's "Town reached

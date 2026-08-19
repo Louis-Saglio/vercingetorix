@@ -13,7 +13,10 @@ import { SquareVectorDistance } from "simulation/ai/common-api/utils.js";
 
 const SOLDIER_TARGET = 32;
 const ATTACK_THRESHOLD = SOLDIER_TARGET;
-const HOUSE_TARGET = 4;
+// Five houses: four for population, and because the sim's Town Phase
+// requirement counts 5 Village-class structures (houses are the Village
+// class — turn 018: classCounts["Village"] tracked the house count exactly).
+const HOUSE_TARGET = 5;
 // Post-town, a fixed share of the army gathers the City Phase resources:
 // id % 16 < 3 → stone, < 5 → metal (≈ 6 + 4 of the 32-soldier army). Stone
 // mines sit farther out, so stone gets more hands. The rest keep the 2:1
@@ -67,7 +70,10 @@ VercingetorixBot.prototype.Deserialize = function(data)
 	this.isDeserialized = true;
 };
 
-// Research Town Phase once the 500 food / 500 wood are available.
+// Research Town Phase once the 500 food / 500 wood are available AND the
+// sim says the requirements are met. canResearch is the sim's own gate: it
+// is false until the 5 Village structures exist (turn 018 — the sim silently
+// rejected every post since turn 011).
 VercingetorixBot.prototype.manageResearch = function(gameState, cc)
 {
 	if (this.townResearched)
@@ -77,7 +83,7 @@ VercingetorixBot.prototype.manageResearch = function(gameState, cc)
 	if (!townTech)
 		return;
 	const res = gameState.getResources();
-	if (res.food >= 500 && res.wood >= 500)
+	if (res.food >= 500 && res.wood >= 500 && gameState.canResearch(townTech))
 	{
 		cc.research(townTech);
 		this.townResearched = true;
@@ -220,30 +226,34 @@ VercingetorixBot.prototype.nearestResource = function(worker, resources)
 // foundation), never by a burnt counter — a failed placement just retries.
 VercingetorixBot.prototype.manageHouses = function(gameState, cc)
 {
+	const houseTemplate = gameState.applyCiv("structures/{civ}/house");
+
 	// A foundation is placed but not built by the construct command (the
 	// API helper posts autorepair:false); the actual construction is a
-	// separate repair order. Send an idle unit to build the pending
-	// foundation.
+	// separate repair order. Send a unit that *can build houses* to do it:
+	// the old "any idle unit" pick could grab the cavalry javelineer, which
+	// has no Builder mixin — the order silently does nothing and the
+	// foundation stalls forever (turn 019 invalid run).
 	const foundations = gameState.getOwnEntities().filter(filters.byClass("Foundation"));
 	if (foundations.length)
 	{
 		const foundation = foundations.values().next().value;
 		for (const ent of gameState.getOwnEntities().values())
-			if (ent.unitAIState() == "INDIVIDUAL.IDLE")
+		{
+			const buildable = ent.buildableEntities(gameState.getPlayerCiv());
+			if (buildable && buildable.indexOf(houseTemplate) !== -1)
 			{
 				ent.repair(foundation);
 				break;
 			}
+		}
 		return;
 	}
 
 	const houses = gameState.getOwnEntities().filter(filters.byClass("House"));
 	if (houses.length >= HOUSE_TARGET)
 		return;
-	if (gameState.getPopulation() + 2 < gameState.getPopulationLimit())
-		return;
 
-	const houseTemplate = gameState.applyCiv("structures/{civ}/house");
 	const template = gameState.getTemplate(houseTemplate);
 	const woodRaw = template ? template.get("Cost/Resources/wood") : undefined;
 	if (woodRaw === undefined)
@@ -292,6 +302,11 @@ VercingetorixBot.prototype.manageSoldiers = function(gameState, cc, woodResource
 	// The Trainer list uses "units/{civ}/..." (slash), unlike older versions.
 	const spearTemplate = gameState.applyCiv("units/{civ}/infantry_spearman_b");
 	const soldiers = gameState.getOwnEntities().filter(filters.byClass("Melee"));
+	// All citizen soldiers gather — including the two starting javelineers
+	// and the cavalry javelineer, which the old Melee-only filter left idle
+	// all game (turn 019: the pre-town economy needs their hands to afford
+	// the 5 Village houses + the Town research).
+	const gatherers = gameState.getOwnEntities().filter(filters.byClass("CitizenSoldier"));
 
 	// Grow to the target, then keep replenishing losses up to it. Hold
 	// training until Town Phase is researched so the 500 food/wood for the
@@ -299,23 +314,23 @@ VercingetorixBot.prototype.manageSoldiers = function(gameState, cc, woodResource
 	if (this.townResearched && soldiers.length < SOLDIER_TARGET)
 		cc.train(gameState.getPlayerCiv(), spearTemplate, 1);
 
-	// The same units gather while we are still growing. Wood is the
-	// binding resource (spearmen and houses cost wood), so two thirds of
-	// the gatherers take wood and one third food (stable split by entity id).
-	for (const soldier of soldiers.values())
-		if (!this.attackStarted && soldier.unitAIState() == "INDIVIDUAL.IDLE")
+	// Wood is the binding resource (spearmen and houses cost wood), so two
+	// thirds of the gatherers take wood and one third food (stable split by
+	// entity id).
+	for (const gatherer of gatherers.values())
+		if (!this.attackStarted && gatherer.unitAIState() == "INDIVIDUAL.IDLE")
 		{
-			const share = soldier.id() % SHARE_MOD;
+			const share = gatherer.id() % SHARE_MOD;
 			let resources;
 			if (this.townResearched && share < STONE_SHARE)
 				resources = stoneResources;
 			else if (this.townResearched && share < STONE_SHARE + METAL_SHARE)
 				resources = metalResources;
 			else
-				resources = soldier.id() % 3 == 0 ? foodResources : woodResources;
-			const target = this.nearestResource(soldier, resources);
+				resources = gatherer.id() % 3 == 0 ? foodResources : woodResources;
+			const target = this.nearestResource(gatherer, resources);
 			if (target)
-				soldier.gather(target);
+				gatherer.gather(target);
 		}
 	// The attack waits for the City Phase resources: marching off at 32
 	// soldiers would stop the stone/metal income this goal is about.
@@ -374,5 +389,13 @@ VercingetorixBot.prototype.report = function(gameState)
 		',"houses":' + gameState.getOwnEntities().filter(filters.byClass("House")).length +
 		',"foundations":' + gameState.getOwnEntities().filter(filters.byClass("Foundation")).length +
 		',"town":' + (this.townResearched ? "true" : "false") +
+		',"phase":' + gameState.currentPhase() +
+		',"villageClass":' + (gameState.playerData.classCounts["Village"] || 0) +
+		',"townCan":' + (() => {
+			const cc = this.ownCivCentre(gameState);
+			const t = cc && cc.researchableTechs(gameState, gameState.getPlayerCiv());
+			const townTech = t && t.find(x => x.startsWith("phase_town"));
+			return townTech ? gameState.canResearch(townTech) : "noTech";
+		})() +
 		',"states":' + JSON.stringify(states) + '}');
 };

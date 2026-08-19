@@ -95,6 +95,16 @@ the CC (`simulation/data/technologies/phase_town.json`, `phase_city.json`). Town
 and City unlock better units, buildings, and techs. The time a bot reaches each
 phase is a core quality metric (reported by the bot via research events).
 
+**Phase requirements (verified 0.28, turn 018/019):** Town requires **5
+Village-class structures** (`classCounts["Village"] ≥ 5` — houses carry the
+Village class); City requires **3 Town-class structures** (forge and market
+carry the Town class; the gaul tavern swaps Village→Town) plus the 750 stone /
+750 metal cost. Town costs 500 food + 500 wood. **The sim silently rejects
+phase research whose requirements are unmet** — no resources are paid, nothing
+is logged, and the bot's own flags keep lying. Ground truth is
+`gameState.currentPhase()` / `isResearched()` (turn 011–017 ran on a bot flag
+the sim had rejected all along; caught in turn 018).
+
 ## Territory and map
 
 - Territory comes from the CC (and some other buildings); buildings must be built

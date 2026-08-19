@@ -10,10 +10,15 @@ retroactively to match a verdict.
   discovery: since turn 011 the bot's `townResearched` flag was fiction — the
   sim never accepted the research (requires 5 Village structures, the bot had
   0–4 houses at post time). All phase evidence must use
-  `gameState.currentPhase()`/`isResearched`.
-- G4: research City Phase once stone ≥ 750 and metal ≥ 750 AND 3 Town-class
-  structures exist (forge/market/tavern have class Town); primary metric =
-  City Phase reached.
+  `gameState.currentPhase()`/`isResearched`. **Done turn 019 (good): 9/10
+  real Town at minute 7–8.**
+- G4: research City Phase once `currentPhase() >= 2`, stone ≥ 750, metal ≥
+  750 AND 3 Town-class structures exist (forge/market/tavern — costs and
+  buildability to verify against the gaul templates); primary metric =
+  `currentPhase() >= 3`.
+- G4: more/better house placement: 5-house target stalls on ~1/10 seeds when
+  all 8 offsets are invalid (turn 019 seed 173); primary metric = 5 houses on
+  10/10 seeds.
 - G4: build an arsenal in City Phase, then train a siege ram for crush damage
   against the CC; primary metric = win rate vs sandbox Rome.
 - G4: direct capture-allowed attack on the enemy CC. (turns 005/009 — bad.)
