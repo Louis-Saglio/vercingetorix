@@ -11,12 +11,14 @@ import { BaseAI } from "simulation/ai/common-api/baseAI.js";
 import * as filters from "simulation/ai/common-api/filters.js";
 import { SquareVectorDistance } from "simulation/ai/common-api/utils.js";
 
-const SOLDIER_TARGET = 20;
+const SOLDIER_TARGET = 32;
 const ATTACK_THRESHOLD = SOLDIER_TARGET;
 const HOUSE_TARGET = 4;
-// House placement offsets around the civic centre, in meters
-// (4 m per tile, so these are 16 tiles out).
-const HOUSE_OFFSETS = [[64, 0], [-64, 0], [0, 64], [0, -64]];
+// House placement offsets around the civic centre, in meters (4 m per tile).
+// Eight candidates at ~16 tiles, so the bot can usually find four valid spots
+// even when a few are blocked by trees or terrain (turn 006 stalled at 3
+// houses / pop 35 with only four cardinal candidates).
+const HOUSE_OFFSETS = [[64, 0], [-64, 0], [0, 64], [0, -64], [45, 45], [-45, 45], [45, -45], [-45, -45]];
 
 // print() in the AI realm does not append newlines.
 const hlog = msg => print("[HARNESS] " + msg + "\n");

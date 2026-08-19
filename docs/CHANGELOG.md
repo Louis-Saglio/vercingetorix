@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Turn 008 (goal G2 achieved): the bot now grows to a 32-soldier army before
+  attacking — `SOLDIER_TARGET` raised to 32 and `HOUSE_OFFSETS` expanded to 8
+  candidates so it can actually build its 4 houses. 8/10 seeds reach ≥32 melee
+  by game-minute 12 (baseline 0/10), 0 JS errors, canary PASS. Closes G2 and
+  opens G3 (defeat sandbox Rome).
 - Turn 004 (goal G1 achieved): the bot now attacks only at its 20-soldier
   target instead of at 15, so it boots its economy instead of sacrificing the
   army early. Baseline-vs-treatment (seeds 21–30, sandbox Rome): mean peak

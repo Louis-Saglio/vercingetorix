@@ -1,8 +1,7 @@
 # Current turn
 
-- Number: none active — turn 007 closed (commit `b264ed7`, pushed; change reverted).
-- Next: turn 008 under goal G2 (defeat sandbox Rome); awaiting Louis's
+- Number: none active — turn 008 closed (verdict good, pushed).
+- Next: turn 009 under goal G3 (defeat sandbox Rome); awaiting Louis's
   go-ahead before starting, following the one-turn-at-a-time pattern.
 
-Last completed turn: 007 — reachable-bigger-army (neutral; see
-`turns/007-reachable-bigger-army.md`).
+Last completed turn: 008 — grow-to-32 (see `turns/008-grow-to-32.md`).
