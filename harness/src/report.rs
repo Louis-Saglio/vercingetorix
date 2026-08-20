@@ -595,11 +595,15 @@ fn decide_verdict(score: Option<&BatchScore>, canary: Option<&CanaryReport>) -> 
         }
     }
     let score = score?;
+    // Boundary tolerance: weighted deltas accumulate binary float error
+    // (10 × 0.4 = 3.999…), so a total that lands exactly on ±4 must still
+    // classify as good/bad (turn 001 hit this: +4.00 printed, "neutral").
+    const EPSILON: f64 = 1e-9;
     Some(if score.error_veto {
         Verdict::Bad
-    } else if score.total >= GOOD_THRESHOLD {
+    } else if score.total >= GOOD_THRESHOLD - EPSILON {
         Verdict::Good
-    } else if score.total <= -GOOD_THRESHOLD {
+    } else if score.total <= EPSILON - GOOD_THRESHOLD {
         Verdict::Bad
     } else {
         Verdict::Neutral

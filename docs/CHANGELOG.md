@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Tooling (post-turn-001 reflection): fixed the harness verdict boundary —
+  weighted deltas accumulate binary float error, so a composite total landing
+  exactly on ±4.00 classified as "neutral"; a 1e-9 tolerance fixes it.
+  Aligned the match time limit with the protocol default: the trigger shipped
+  `TIME_LIMIT_MS = 30 min` while the protocol and the trigger's own comment
+  say 20 — now 20 game-minutes.
+
 - **Turn 001 — gather-starting-workers (good):** the bot now orders every idle
   unit able to gather onto the nearest suitable resource supply around the
   civil centre (one init scan, cached supply ids, decisions every 8th sim

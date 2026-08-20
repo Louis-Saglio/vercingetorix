@@ -5,10 +5,12 @@
   verdict **good** (2026-08-20): the 9 starting units gather from game-minute
   1; batch mean resourcesGathered 6709 vs 0 baseline; canary PASS; no JS
   errors. Validated and published.
-- Post-turn reflection items pending (separate commit before turn 002):
-  harness verdict float-boundary bug (0.4×10 < 4.0 → "neutral" at exactly
-  +4.00); trigger `TIME_LIMIT_MS` is 30 min while comment/protocol say 20.
+- Post-turn reflection (done, separate commit): fixed the harness verdict
+  float-boundary bug (0.4×10 < 4.0 → "neutral" at exactly +4.00) and aligned
+  the trigger `TIME_LIMIT_MS` with the protocol default (was 30 game-min,
+  now 20). Turn 001's report re-rendered as verdict=good.
 - Next: turn 002 = backlog top — train civilians at the civil centre.
+  Note: future experiments run to the 20-game-minute limit.
 - Baseline for the next turn: turn 001's validated code and
   `experiments/001/baseline.json` is stale for it — the next turn runs a
   fresh baseline of the validated code on its own seeds.
