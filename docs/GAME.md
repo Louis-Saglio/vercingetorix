@@ -47,8 +47,9 @@ builders.
 - **Food:** berry bushes and hunt early; **fields** (built near a farmstead, need
   food to seed) are the steady source; corrals raise animals.
 - **Trade:** market — barter resources, or set trade routes between markets/docks.
-- Buildings cost resources; spearmen cost 50 wood only
-  (`template_unit_infantry_melee_spearman.xml`); houses cost 75 wood.
+- Buildings cost resources; **spearmen cost 50 food + 50 wood** (the base
+  infantry template's 50 food is inherited and merged with the spearman's own
+  50 wood — turn 029's diagnosis); houses cost 75 wood.
 - **Treasures:** treasure chests (gaia entities) are scattered on the map; units
   can gather them for instant resources. Disabled in the experiments
   (`DisableTreasures` gamesetting, forced by the bot mod's autostart override).

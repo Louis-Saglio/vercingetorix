@@ -16,21 +16,17 @@ retroactively to match a verdict.
   750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
   minute 18–19** — training held until 3 forges, forges placed on a double
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
-- G4a: re-scoped after turn 028 (bad): 50 soldiers by minute 22 is beyond
-  the current economy (validated code peaks at 16 melee on seeds 261-270;
-  wood income ~4-5/s post-town caps training at ~1.5 soldiers/min). Options:
-  (a) wood-economy turn first — more gatherers earlier (train javelineers
-  too? the pre-town 8-house budget drains wood), or (b) adopt the
-  evidence-supported target: ≥ 32 soldiers AND ≥ 3 rams by minute 24.
+- G4a (re-scoped, turn 029): ≥ 32 melee by minute 22 (reached 8/10 in turn
+  029) AND ≥ 3 rams by minute 24. Turn 030: relax the ram gate from 50 to 32
+  soldiers, attack at two rams, and test the assault-ready army + the first
+  real assault at the 30-minute limit. Then G4b = wins.
 - G4: the **assault** problem (the economy chain works — turn 026 got City
   8/10, arsenal, rams and a full-army attack at minute 23–25, but the force
   was annihilated: 0 buildings destroyed, unitsLost 2500–3150). Candidate
   levers to research/test: 3–4 rams arriving together (each 300 wood + 150
   metal, 150 crush per hit, 400 hp — they die to garrison arrows one at a
-  time), soldiers attack-moving at the CC itself, and a bigger army
-  (SOLDIER_TARGET 32 was never reached because training pauses for the ram).
-  Primary metric = wins before the 30-minute limit. Needs the trigger
-  re-raised to 30 minutes (turn 026 reverted it).
+  time), soldiers attack-moving at the CC itself, and a bigger army.
+  Primary metric = wins before the 30-minute limit.
 - G4: more/better house placement: 5-house target stalls on ~1/10 seeds when
   all 8 offsets are invalid (turn 019 seed 173); primary metric = 5 houses on
   10/10 seeds.

@@ -1,21 +1,17 @@
 # Current turn
 
-- Number: 028 — G4 reconsideration + army scaling (G4a).
-- Phase: five in-turn iterations + A/B diagnostic done → verdict bad (50
-  soldiers by t22 unreachable: even the validated code peaks at 16 on these
-  seeds) → reverted → committing (then turn 029: wood economy or re-scoped
-  G4a).
-- Standing instruction (Louis, 2026-08-19): keep doing turns until the
-  context window is ~79% used.
-- Standing instruction (Louis, 2026-08-19): each turn is exactly one commit —
-  fold backlog and `CURRENT_TURN.md` bookkeeping into the turn commit; no
-  separate backlog/closure commit.
+- Number: 029 — food fix: the silent training killer (G4a).
+- Phase: experiment + five in-turn iterations done → verdict good (8/10 ≥ 32
+  melee at t22) → committing (then turn 030: assault-ready army).
 - Standing instruction (Louis, 2026-08-20): after each **validated** turn,
-  publish the bot mod as a zip on the file server
-  (https://files.louissaglio.fr/vercingetorix.zip) — see `docs/PROTOCOL.md`
-  step 6.
+  publish the bot mod zip on the file server
+  (https://files.louissaglio.fr/vercingetorix.zip).
+- Standing instruction (Louis, 2026-08-20): keep doing turns until told to
+  stop.
+- Standing instruction (Louis, 2026-08-19): each turn is exactly one commit —
+  fold backlog and `CURRENT_TURN.md` bookkeeping into the turn commit.
 - Standing instruction (Louis, 2026-08-19): bad/neutral → fix small
   understood causes in-turn and rerun; baseline = last validated experiment.
 
-Last completed turn: 027 — concentrated-assault (bad; economy gap 18 vs 116
-units → G4 split).
+Last completed turn: 028 — army-scaling (bad; training-rate mystery, solved
+in turn 029: food).

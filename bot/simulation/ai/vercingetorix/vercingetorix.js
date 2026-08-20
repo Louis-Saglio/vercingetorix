@@ -11,12 +11,10 @@ import { BaseAI } from "simulation/ai/common-api/baseAI.js";
 import * as filters from "simulation/ai/common-api/filters.js";
 import { SquareVectorDistance } from "simulation/ai/common-api/utils.js";
 
-const SOLDIER_TARGET = 32;
+const SOLDIER_TARGET = 50;
 const ATTACK_THRESHOLD = SOLDIER_TARGET;
-// Five houses: four for population, and because the sim's Town Phase
-// requirement counts 5 Village-class structures (houses are the Village
-// class — turn 018: classCounts["Village"] tracked the house count exactly).
-const HOUSE_TARGET = 5;
+// Army scaling (G4a): 50 citizen soldiers; pop support: 8 houses.
+const HOUSE_TARGET = 8;
 // City Phase requires 3 Town-class structures; forges carry the Town class
 // (VisibleClasses "Town Forge"), cost 200 wood, and have no entity limits.
 const FORGE_TARGET = 3;
@@ -42,6 +40,31 @@ for (let i = 0; i < 16; ++i)
 	]);
 }
 const FORGE_CLEARANCE_SQ = 28 * 28;
+// Siege endgame: one arsenal (300 wood, needs City) trains the rams. Three
+// rams total; the attack starts when two exist.
+const ARSENAL_TARGET = 1;
+const RAM_TARGET = 3;
+// House placement: houses 1-5 use the proven fixed offsets (fast pre-town);
+// houses 6-8 and the fallback use the clearance ring.
+const FIXED_HOUSE_OFFSETS = [[64, 0], [-64, 0], [0, 64], [0, -64], [45, 45], [-45, 45], [45, -45], [-45, -45]];
+const HOUSE_OFFSETS = [];
+for (let i = 0; i < 16; ++i)
+{
+	const angle = i * Math.PI / 8;
+	HOUSE_OFFSETS.push([
+		Math.round(56 * Math.cos(angle)),
+		Math.round(56 * Math.sin(angle))
+	]);
+}
+for (let i = 0; i < 16; ++i)
+{
+	const angle = i * Math.PI / 8 + Math.PI / 16;
+	HOUSE_OFFSETS.push([
+		Math.round(64 * Math.cos(angle)),
+		Math.round(64 * Math.sin(angle))
+	]);
+}
+const HOUSE_CLEARANCE_SQ = 26 * 26;
 // Post-town, a fixed share of the army gathers the City Phase resources:
 // id % 16 < 3 → stone, < 5 → metal (≈ 6 + 4 of the 32-soldier army). Stone
 // mines sit farther out, so stone gets more hands. The rest keep the 2:1
@@ -50,12 +73,6 @@ const FORGE_CLEARANCE_SQ = 28 * 28;
 const SHARE_MOD = 16;
 const STONE_SHARE = 3;
 const METAL_SHARE = 2;
-// House placement offsets around the civic centre, in meters (4 m per tile).
-// Eight candidates at ~16 tiles, so the bot can usually find four valid spots
-// even when a few are blocked by trees or terrain (turn 006 stalled at 3
-// houses / pop 35 with only four cardinal candidates).
-const HOUSE_OFFSETS = [[64, 0], [-64, 0], [0, 64], [0, -64], [45, 45], [-45, 45], [45, -45], [-45, -45]];
-
 // print() in the AI realm does not append newlines.
 const hlog = msg => print("[HARNESS] " + msg + "\n");
 
@@ -70,6 +87,7 @@ export function VercingetorixBot(settings)
 	this.townResearched = false;
 	this.forgeAttempts = 0;
 	this.cityAttempted = false;
+	this.arsenalAttempts = 0;
 }
 
 VercingetorixBot.prototype = Object.create(BaseAI.prototype);
@@ -84,7 +102,8 @@ VercingetorixBot.prototype.Serialize = function()
 		"houseAttempts": this.houseAttempts,
 		"townResearched": this.townResearched,
 		"forgeAttempts": this.forgeAttempts,
-		"cityAttempted": this.cityAttempted
+		"cityAttempted": this.cityAttempted,
+		"arsenalAttempts": this.arsenalAttempts
 	};
 };
 
@@ -98,6 +117,7 @@ VercingetorixBot.prototype.Deserialize = function(data)
 	this.townResearched = data.townResearched;
 	this.forgeAttempts = data.forgeAttempts || 0;
 	this.cityAttempted = data.cityAttempted || false;
+	this.arsenalAttempts = data.arsenalAttempts || 0;
 	this.isDeserialized = true;
 };
 
@@ -217,9 +237,11 @@ VercingetorixBot.prototype.play = function(gameState)
 			metalResources.push(ent);
 
 	this.manageResearch(gameState, cc);
-	this.manageWorkers(gameState, stoneResources, metalResources);
+	this.manageWorkers(gameState, stoneResources, metalResources, foodResources);
 	this.manageHouses(gameState, cc);
 	this.manageForges(gameState, cc);
+	this.manageArsenal(gameState, cc);
+	this.manageRams(gameState);
 	this.manageSoldiers(gameState, cc, woodResources, foodResources, stoneResources, metalResources);
 };
 
@@ -302,6 +324,12 @@ VercingetorixBot.prototype.manageHouses = function(gameState, cc)
 	const houses = gameState.getOwnEntities().filter(filters.byClass("House"));
 	if (houses.length >= HOUSE_TARGET)
 		return;
+	// Only the 5 Village-requirement houses pre-town — the extra pop houses
+	// come after Town (the pre-town budget is 1100 wood + 500 food with 5
+	// gatherer hands, and 8 houses delayed Town by 1-2 minutes on the
+	// marginal seeds, turn 029 iteration 3).
+	if (!this.townResearched && houses.length >= 5)
+		return;
 
 	const template = gameState.getTemplate(houseTemplate);
 	const woodRaw = template ? template.get("Cost/Resources/wood") : undefined;
@@ -324,9 +352,22 @@ VercingetorixBot.prototype.manageHouses = function(gameState, cc)
 	if (!builder)
 		return;
 
-	const offset = HOUSE_OFFSETS[this.houseAttempts % HOUSE_OFFSETS.length];
 	const pos = cc.position();
-	builder.construct(houseTemplate, pos[0] + offset[0], pos[1] + offset[1], 0, undefined);
+	const candidates =
+		houses.length < 5 && this.houseAttempts < FIXED_HOUSE_OFFSETS.length ?
+			FIXED_HOUSE_OFFSETS : HOUSE_OFFSETS;
+	for (let i = 0; i < candidates.length; ++i)
+	{
+		const candidate = candidates[(this.houseAttempts + i) % candidates.length];
+		const x = pos[0] + candidate[0];
+		const z = pos[1] + candidate[1];
+		if (candidates === FIXED_HOUSE_OFFSETS ||
+		    this.structureClear(gameState, x, z, HOUSE_CLEARANCE_SQ))
+		{
+			builder.construct(houseTemplate, x, z, 0, undefined);
+			break;
+		}
+	}
 	this.houseAttempts++;
 };
 
@@ -411,16 +452,143 @@ VercingetorixBot.prototype.manageForges = function(gameState, cc)
 	this.forgeAttempts++;
 };
 
+// One arsenal in City Phase: it trains the siege rams. Same
+// foundation/repair pattern, placed on the forge double ring with clearance.
+VercingetorixBot.prototype.manageArsenal = function(gameState, cc)
+{
+	if (gameState.currentPhase() < 3)
+		return;
+
+	const arsenalTemplate = gameState.applyCiv("structures/{civ}/arsenal");
+
+	const foundations = gameState.getOwnEntities().filter(filters.byClass("Foundation"));
+	if (foundations.length)
+	{
+		const foundation = foundations.values().next().value;
+		for (const ent of gameState.getOwnEntities().values())
+		{
+			const buildable = ent.buildableEntities(gameState.getPlayerCiv());
+			if (buildable && buildable.indexOf(arsenalTemplate) !== -1)
+			{
+				ent.repair(foundation);
+				break;
+			}
+		}
+		return;
+	}
+
+	let arsenalCount = 0;
+	for (const ent of gameState.getOwnEntities().filter(filters.byClass("Arsenal")).values())
+		if (!ent.hasClass("Foundation"))
+			arsenalCount++;
+	if (arsenalCount >= ARSENAL_TARGET)
+		return;
+
+	const template = gameState.getTemplate(arsenalTemplate);
+	const woodRaw = template ? template.get("Cost/Resources/wood") : undefined;
+	if (woodRaw === undefined)
+		return;
+	if (gameState.getResources().wood < +woodRaw)
+		return;
+
+	let builder;
+	for (const ent of gameState.getOwnEntities().values())
+	{
+		const buildable = ent.buildableEntities(gameState.getPlayerCiv());
+		if (buildable && buildable.indexOf(arsenalTemplate) !== -1)
+		{
+			builder = ent;
+			break;
+		}
+	}
+	if (!builder)
+		return;
+
+	const pos = cc.position();
+	for (let i = 0; i < FORGE_OFFSETS.length; ++i)
+	{
+		const candidate = FORGE_OFFSETS[(this.arsenalAttempts + i) % FORGE_OFFSETS.length];
+		const x = pos[0] + candidate[0];
+		const z = pos[1] + candidate[1];
+		if (this.structureClear(gameState, x, z, FORGE_CLEARANCE_SQ))
+		{
+			builder.construct(arsenalTemplate, x, z, 0, undefined);
+			break;
+		}
+	}
+	this.arsenalAttempts++;
+};
+
+// Train siege rams at the arsenal once City is up and the army is complete
+// (G4a: the rams steal the soldiers' wood otherwise — turn 028 iteration 4).
+VercingetorixBot.prototype.manageRams = function(gameState)
+{
+	if (gameState.currentPhase() < 3)
+		return;
+	if (gameState.getOwnEntities().filter(filters.byClass("Melee")).length < SOLDIER_TARGET)
+		return;
+	let arsenal;
+	for (const ent of gameState.getOwnEntities().filter(filters.byClass("Arsenal")).values())
+		if (!ent.hasClass("Foundation"))
+		{
+			arsenal = ent;
+			break;
+		}
+	if (!arsenal)
+		return;
+
+	const rams = gameState.getOwnEntities().filter(filters.byClass("Siege"));
+	if (rams.length >= RAM_TARGET)
+		return;
+
+	const res = gameState.getResources();
+	if (res.wood < 300 || res.metal < 150)
+		return;
+
+	arsenal.train(gameState.getPlayerCiv(), gameState.applyCiv("units/{civ}/siege_ram"), 1);
+};
+
+// The nearest enemy civic centre — the assault's target.
+VercingetorixBot.prototype.nearestEnemyCivCentre = function(gameState, reference)
+{
+	let best;
+	let bestDist = Infinity;
+	for (const ent of gameState.getEntities().values())
+	{
+		const owner = ent.owner();
+		if (owner === this.player || owner === 0 || !ent.hasClass("CivCentre"))
+			continue;
+		if (!ent.position())
+			continue;
+		const dist = SquareVectorDistance(reference.position(), ent.position());
+		if (dist < bestDist)
+		{
+			bestDist = dist;
+			best = ent;
+		}
+	}
+	return best;
+};
+
 // The four starting support workers (Support class, not Melee — the soldier
 // loop never commands them) sit idle all game. Put them on the City Phase
 // resources from minute 0: two on stone, two on metal, stable by entity id.
 // They gather at 0.35/s and never fight, so they are pure economy all match.
-VercingetorixBot.prototype.manageWorkers = function(gameState, stoneResources, metalResources)
+// The four starting support workers (Support class, not Melee) never fight.
+// Pre-town: two on stone, two on metal (the City Phase resources). Post-town:
+// two switch to food — every soldier costs 50 food, and the early food
+// sources deplete on some seeds (turn 029 iteration 4); workers gather food
+// at 1.0/s, twice the soldier rate.
+VercingetorixBot.prototype.manageWorkers = function(gameState, stoneResources, metalResources, foodResources)
 {
 	for (const worker of gameState.getOwnEntities().filter(filters.byClass("Support")).values())
 		if (worker.unitAIState() == "INDIVIDUAL.IDLE")
 		{
-			const resources = worker.id() % 2 == 0 ? stoneResources : metalResources;
+			let resources;
+			if (this.townResearched && worker.id() % 4 >= 2)
+				resources = foodResources;
+			else
+				resources = worker.id() % 4 == 0 ? stoneResources : metalResources;
 			const target = this.nearestResource(worker, resources);
 			if (target)
 				worker.gather(target);
@@ -440,16 +608,17 @@ VercingetorixBot.prototype.manageSoldiers = function(gameState, cc, woodResource
 
 	// Grow to the target, then keep replenishing losses up to it. Hold
 	// training until Town Phase is researched so the 500 food/wood for the
-	// research can accumulate instead of being spent on soldiers; after Town,
-	// hold it again until the 3 forges are built, so wood pools for the City
-	// Phase structures instead of being spent soldier by soldier (turn 020).
-	const forges = gameState.getOwnEntities().filter(filters.byClass("Forge"));
-	if (this.townResearched && forges.length >= FORGE_TARGET && soldiers.length < SOLDIER_TARGET)
+	// research can accumulate instead of being spent on soldiers. After
+	// Town, train freely — every soldier is a gatherer, so the army
+	// compounds (G4a).
+	if (this.townResearched && soldiers.length < SOLDIER_TARGET)
 		cc.train(gameState.getPlayerCiv(), spearTemplate, 1);
 
-	// Wood is the binding resource (spearmen and houses cost wood), so two
-	// thirds of the gatherers take wood and one third food (stable split by
-	// entity id).
+	// Pre-town: two thirds wood, one third food — the Village phase needs
+	// 1100 wood (8 houses + the Town research) but only 500 food. Post-town:
+	// half wood, half food — every soldier costs 50 food AND 50 wood (the
+	// base infantry template's 50 food is inherited by the spearman, turn
+	// 029 diagnosis), so 1:1 balances the two 50-costs.
 	for (const gatherer of gatherers.values())
 		if (!this.attackStarted && gatherer.unitAIState() == "INDIVIDUAL.IDLE")
 		{
@@ -459,31 +628,44 @@ VercingetorixBot.prototype.manageSoldiers = function(gameState, cc, woodResource
 				resources = stoneResources;
 			else if (this.townResearched && share < STONE_SHARE + METAL_SHARE)
 				resources = metalResources;
+			else if (this.townResearched)
+				resources = gatherer.id() % 2 == 0 ? foodResources : woodResources;
 			else
 				resources = gatherer.id() % 3 == 0 ? foodResources : woodResources;
 			const target = this.nearestResource(gatherer, resources);
 			if (target)
 				gatherer.gather(target);
 		}
-	// The attack waits for the City Phase resources: marching off at 32
-	// soldiers would stop the stone/metal income this goal is about.
-	if (!this.attackStarted && soldiers.length >= ATTACK_THRESHOLD &&
-	    gameState.getResources().stone >= 750 && gameState.getResources().metal >= 750)
+	// Attack when two rams exist — one ram alone dies to the garrison
+	// arrows; two split them. The army escorts from here.
+	const rams = gameState.getOwnEntities().filter(filters.byClass("Siege"));
+	if (!this.attackStarted && rams.length >= 2)
 	{
 		this.attackStarted = true;
 		this.chat("Vercingetorix attacks!");
 	}
 
-	// Sweep: idle soldiers attack-move at the nearest enemy entity. The
-	// target is recomputed every tick, so the army works through the whole
-	// enemy base — Conquest needs every unit and structure destroyed.
+	// Sweep: after the attack starts, every soldier not already fighting
+	// attack-moves at the enemy civic centre — the objective. Gathering
+	// soldiers are interrupted too (turn 026 iteration 5).
 	if (this.attackStarted)
 		for (const soldier of soldiers.values())
-			if (soldier.unitAIState() == "INDIVIDUAL.IDLE")
+		{
+			const state = soldier.unitAIState();
+			if (state && state.startsWith("INDIVIDUAL.COMBAT"))
+				continue;
+			const target = this.nearestEnemyCivCentre(gameState, soldier);
+			if (target)
+				soldier.attackMove(target.position()[0], target.position()[1], ["Unit", "Structure"]);
+		}
+	// Rams go straight for the civic centre — that is the victory condition.
+	if (this.attackStarted)
+		for (const ram of gameState.getOwnEntities().filter(filters.byClass("Siege")).values())
+			if (ram.unitAIState() == "INDIVIDUAL.IDLE")
 			{
-				const target = this.nearestEnemyEntity(gameState, soldier);
+				const target = this.nearestEnemyCivCentre(gameState, ram);
 				if (target)
-					soldier.attackMove(target.position()[0], target.position()[1], ["Unit", "Structure"]);
+					ram.attack(target.id());
 			}
 };
 
@@ -526,6 +708,9 @@ VercingetorixBot.prototype.report = function(gameState)
 		',"villageClass":' + (gameState.playerData.classCounts["Village"] || 0) +
 		',"townClass":' + (gameState.playerData.classCounts["Town"] || 0) +
 		',"forges":' + gameState.getOwnEntities().filter(filters.byClass("Forge")).length +
+		',"arsenal":' + gameState.getOwnEntities().filter(filters.byClass("Arsenal")).length +
+		',"rams":' + gameState.getOwnEntities().filter(filters.byClass("Siege")).length +
+
 		',"townCan":' + (() => {
 			const cc = this.ownCivCentre(gameState);
 			const t = cc && cc.researchableTechs(gameState, gameState.getPlayerCiv());

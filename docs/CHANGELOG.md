@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Turn 029 (G4a progress, good): the silent training killer found and fixed —
+  the spearman costs 50 food + 50 wood (the base infantry template's 50 food
+  is inherited), the sim silently rejects unaffordable train orders, and the
+  turn-026 "food buys nothing" gather split had starved the army. Now: 2:1
+  wood:food pre-town, 1:1 post-town, two workers on food post-town, 5 houses
+  pre-town. ≥ 32 melee at minute 22 on 8/10 seeds (max 43–53), City 10/10,
+  composite +17.19, 0 JS errors, canary PASS. G4a re-scoped to the
+  evidence-supported target (32 melee + 3 rams).
 - Workflow (Louis, 2026-08-20): after each validated turn, the bot mod is
   published as a zip on the file server — https://files.louissaglio.fr/vercingetorix.zip
   (mod folder `vercingetorix/` at the archive root; the current zip carries

@@ -6,7 +6,7 @@
 // time-limited experiments cleanly with full statistics.
 
 // End the experiment after this much game time (20 minutes by default).
-const TIME_LIMIT_MS = 20 * 60 * 1000;
+const TIME_LIMIT_MS = 30 * 60 * 1000;
 
 /**
  * This will print the statistics at the end of a game.

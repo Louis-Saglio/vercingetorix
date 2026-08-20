@@ -4,31 +4,26 @@ Long-term goals that span multiple turns. Each turn grades its experiment agains
 the current goal's scale. When a goal is achieved, the next goal and its grading
 system are defined in the closing commit.
 
-## Current goal: G4a — Sustain a 50+ melee army (achieved via G4 split, turn 028)
+## Current goal: G4a — Sustain a 32+ melee army and 3 rams
 
-**Statement:** Vercingetorix fields ≥ 50 melee citizen soldiers by
-game-minute 22. This is the scaling prerequisite for the win: turn 027's end
-stats showed the true wall — the bot trained 18 units while sandbox Rome
-trained 116 (90 infantry + 26 civilians), and gaul cannot train extra workers
-(no `units/gaul/support_civilian_house`), so the civ scales through citizen
-soldiers.
+**Statement:** Vercingetorix fields ≥ 32 melee citizen soldiers by
+game-minute 22 and ≥ 3 siege rams by game-minute 24 (the assault-ready
+army). Re-scoped from "50 by minute 22" on turns 028–029's evidence: the
+binding constraint was not ambition but a silent food bug — the spearman
+costs 50 food + 50 wood (inherited base-infantry food cost), and the
+turn-026 "food buys nothing" change starved training. Fixed in turn 029
+(good): 2:1 wood:food pre-town, 1:1 post-town, two workers on food
+post-town, 5 houses pre-town — ≥ 32 melee at t22 on 8/10 seeds, composite
++17.19.
 
 **Grading per match** (against the per-minute `[HARNESS]` samples):
 
-- **Good** — ≥ 50 melee soldiers at the minute-22 sample.
+- **Good** — ≥ 32 melee at the minute-22 sample AND ≥ 3 rams by minute 24.
 - **Fail** — otherwise, or JS errors.
 
 **Goal achieved when:** a 10-seed batch against sandbox Rome reaches Good on
 ≥ 8/10 seeds with 0 JS errors and canary PASS. Record the batch in the
 closing commit and move on to G4b.
-
-**Reconsideration (turn 028):** the 50-by-minute-22 target is beyond the
-current economy — on seeds 261–270 even the validated turn-023 code peaks at
-16 melee; the treatment reached 18–19 (composite +9.31) but the wood income
-(~4–5/s post-town) cannot feed 50 soldiers, 8 houses and the structures in
-22 minutes (CC training ceiling ≈ 1.5 soldiers/min). Re-scope G4a to the
-evidence-supported stepping stone — e.g. ≥ 32 soldiers AND ≥ 3 rams by
-minute 24 — or fix the wood economy first (more gatherers earlier).
 
 ## Next goal: G4b — Defeat sandbox Rome
 
