@@ -5,6 +5,10 @@ Ground truth for bot development, distilled from the installed game data
 memory. Verify anything suspicious against those paths; they are pinned to the
 running engine version.
 
+Per-mechanic deep dives (combat formula, construction, territory, turns, etc.)
+live in `docs/game_description/mechaniques/` — all verified against the source
+with inline citations.
+
 ## Objective of a match
 
 The default victory condition is **Conquest**: "Defeat opponents by killing all

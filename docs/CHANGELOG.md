@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Documentation: added `docs/game_description/mechaniques/` — one file per game
+  mechanic (17 files + index), all verified against the 0.28.0 sources with
+  inline `path:line` citations: resources/gathering, construction, training
+  queues, population/entity limits, combat/damage formula, capture,
+  promotion/XP, territory, technologies/modifiers, auras, vision/fog of war,
+  garrisoning, healing/repair, trade/barter, loot/treasures,
+  victory/diplomacy, orders/simulation time. Aimed at an agent implementing a
+  bot. `docs/GAME.md` points to it.
 - Documentation: the two analysis scripts that generated the
   `docs/game_description/` references are now versioned in `tools/`
   (`analyze.py` for generic units, `buildings.py` for generic buildings, with
