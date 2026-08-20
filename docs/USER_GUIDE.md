@@ -32,7 +32,7 @@ One headless match, Vercingetorix (player 1) vs Petra (player 2) on Alpine Lakes
 ```bash
 pyrogenesis -autostart="random/alpine_lakes" -autostart-seed=42 \
   -autostart-biome=generic/temperate -autostart-placement=circle \
-  -autostart-nonvisual -autostart-players=2 -autostart-size=128 \
+  -autostart-nonvisual -autostart-players=2 -autostart-size=192 \
   -autostart-ai=1:vercingetorix -autostart-ai=2:petra -autostart-aidiff=2:3 \
   -autostart-civ=1:athen -autostart-civ=2:mace -autostart-player=-1 \
   -mod=vercingetorix -unique-logs -nosound

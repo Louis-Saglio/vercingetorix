@@ -101,7 +101,10 @@ fn parse_args(args: &[String]) -> Result<Config, CliError> {
     let mut mod_dir = None;
     let mut map = String::from("random/mainland");
     let mut victory = String::from("conquest_civic_centers");
-    let mut map_size = 128;
+    // Experiments play on a "Small" map (192 tiles, gamesettings
+    // map_sizes.json) with a 300 per-player population cap (enforced by the
+    // bot mod's autostart override).
+    let mut map_size = 192;
     let mut timeout_secs = 1200;
     let mut speed = None;
 

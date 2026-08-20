@@ -30,8 +30,10 @@ Agent instructions for this repository. Read before acting.
   **Push after every commit** (`git push`).
 - Engine, game data and source are version-pinned in `/home/ubuntu/0ad-reference/`
   (0.28.0); the harness runs `/usr/games/pyrogenesis` headless.
-- Experiments: gaul (bot) vs rome (Petra), `random/mainland` 128, victory
-  `conquest_civic_centers`, treasures disabled, 20 game-minutes limit (tunable),
+- Experiments: gaul (bot) vs rome (Petra), `random/mainland` 192 ("Small"),
+  victory `conquest_civic_centers`, treasures disabled, population cap 300
+  per player (both pinned by the bot mod's autostart override), 20
+  game-minutes limit (tunable),
   per-turn seed rotation with paired baseline/treatment and a canary match
   (same seed twice must be identical — the determinism gate). Biome and
   player placement are pinned (`generic/temperate`, `circle` — the gamesetup

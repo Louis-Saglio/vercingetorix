@@ -194,5 +194,11 @@ function parseCmdLineArgs(settings, cmdLineArgs)
 	// Vercingetorix: experiments always play without treasures.
 	settings.disableTreasures.setEnabled(true);
 
+	// Vercingetorix: experiments always play with a 300 per-player
+	// population cap (the gamesettings default, pinned here so results do
+	// not depend on a default changing).
+	settings.population.setPopCapType("player");
+	settings.population.setPopCap(300);
+
 	return settings;
 }

@@ -28,7 +28,9 @@ Each civ has its own building set, unit roster, and techs. Data per civ lives in
 ## Resources and economy
 
 Four resources: **food, wood, stone, metal**. Match start: 300 of each (from the
-autostart manifest), population cap 300.
+autostart manifest), population cap **300 per player** (gamesettings default,
+pinned by the bot mod's autostart override). Experiments play on a **Small**
+map (`random/mainland`, 192 tiles).
 
 The economy runs on two kinds of workers:
 
@@ -117,7 +119,7 @@ is logged, and the bot's own flags keep lying. Ground truth is
 
 - Territory comes from the CC (and some other buildings); buildings must be built
   inside it. Territory control % is a tracked statistic.
-- The harness map is `random/mainland` (a balanced land map), size 128 tiles,
+- The harness map is `random/mainland` (a balanced land map), size 192 tiles ("Small"),
   circular. Seed determines the layout; same seed = same map.
 
 ## Simulation facts (for bot code)

@@ -159,7 +159,7 @@ The harness is a small Rust CLI (Cargo toolchain is installed on this VPS) imple
 the runner command from `PROTOCOL.md` → Experiment specification:
 
 - `harness --tag NAME --seeds 1,2,3 --out DIR [--ai1 ID] [--ai2 ID] [--difficulty2 N]
-  [--civ1 C] [--civ2 C] [--map random/alpine_lakes] [--size 128] [--timeout 1200]
+  [--civ1 C] [--civ2 C] [--map random/alpine_lakes] [--size 192] [--timeout 1200]
   [--speed N] [--mod NAME] [--mod-dir PATH]`
   — spawns one `pyrogenesis` per match with an isolated `HOME`, enforces the wall-clock
   cap via `timeout`, extracts per-player stats JSON + `[HARNESS]` lines + JS error count

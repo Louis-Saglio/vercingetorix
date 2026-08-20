@@ -4,108 +4,53 @@ Long-term goals that span multiple turns. Each turn grades its experiment agains
 the current goal's scale. When a goal is achieved, the next goal and its grading
 system are defined in the closing commit.
 
-## Current goal: G4a2 — Robust renewable economy
+## Current goal: G1 — Reach 100 population as fast as possible
 
-**Statement:** Vercingetorix sustains its siege economy on **any** seed
-batch: a farmstead plus fields worked continuously (the renewable food
-engine), so the finite early food stops being the batch-dependence. This is
-the prerequisite for G4b (turn 036's reconsideration).
+**Statement:** Vercingetorix grows its population to **100** as fast as
+possible. Purely economic goal: no combat, no phases beyond what the growth
+requires. Population costs 1 per unit for the units the bot can mass (see
+`docs/game_description/mechaniques/population_and_entity_limits.md`), so 100
+population means ~100 units — and, since the civil centre provides only 20
+population and each house 5, at least **16 houses**. The opponent is sandbox
+Rome (Petra, difficulty 0), which does not interfere.
 
-**Grading per match** (against the per-minute `[HARNESS]` samples) — to be
-defined in turn 037's hypothesis once the farmstead/field mechanics are
-verified against the game data.
+**Primary metric:** time to 100 population, in game-minutes, read from the
+per-minute `[HARNESS]` samples (`pop` field). Lower is better; the batch
+metric is the median over seeds.
 
-**Goal achieved when:** a 10-seed batch against sandbox Rome reaches Good on
-≥ 8/10 seeds with 0 JS errors and canary PASS.
+**Grading per match:** no time band. A match yields its time-to-100; it is
+**Fail** only if 100 is never reached before the match limit, the bot is
+defeated, or there are JS errors.
 
-## Backlog goal: G4b — Defeat sandbox Rome
+**Goal achieved when:** the time cannot be pushed lower — operationally,
+when **5 consecutive turns** fail to beat the best batch median achieved so
+far. The backlog is then free to move to the next goal.
 
-**Statement:** Vercingetorix destroys the enemy civic centre (the
-`conquest_civic_centers` victory condition) against sandbox Rome (Petra,
-difficulty 0), which does not expand or attack, before the **30-game-minute**
-match limit (raised from 25 on turn 025's evidence).
+## Backlog goal: G2 — Reach City phase and 300 population as fast as possible
 
-**Grading per match:**
+**Statement:** Vercingetorix researches the **City phase** (`currentPhase()
+>= 3` — the sim's truth, not a bot flag) **and** grows its population to
+**300** (the per-player population cap used in experiments), as fast as possible. This is the
+economic ceiling of the game: City requires Town first, the 750 stone / 750
+metal research cost and 3 Town-class structures; 300 population requires
+the houses to support it (civil centre 20 + 5 per house) on top of the
+units themselves. See
+`docs/game_description/mechaniques/technologies_and_modifiers.md` (phases)
+and `population_and_entity_limits.md`. Same opponent: sandbox Rome.
 
-- **Good** — win: the enemy CC is destroyed before the limit.
-- **Fail** — otherwise (draw at the limit, own CC lost), or JS errors.
+**Primary metric:** time until both conditions hold, in game-minutes, from
+the `[HARNESS]` samples (`pop` field) and `currentPhase()` (add it to the
+samples when this goal becomes active). Batch metric: median over seeds.
 
-**Goal achieved when:** a 10-seed batch against sandbox Rome wins on ≥ 8/10
-seeds with 0 JS errors and canary PASS.
+**Grading per match:** no time band. **Fail** only if the match limit is
+reached first, the bot is defeated, or there are JS errors.
 
-**Reconsideration (turn 036):** G4b has resisted turns 024–036. The siege
-chain itself works — it wins when the economy lands it (5/10 on seeds
-291–300, wins at minute 25–27) — but the result is batch-dependent: on the
-301–310 batch the finite early food and the small-army hand count push the
-forges/city/rams past the 30-minute window no matter the gate or radius
-tuning. The prerequisite for a robust win rate is a **bigger, renewable
-economy**: a farmstead + fields (the finite early food is the
-batch-dependence) and more gatherer hands. G4b waits behind G4a2.
+**Goal achieved when:** **5 consecutive turns** fail to beat the best batch
+median achieved so far.
 
-## Completed goals
-
-### G4a — Assault-ready army (army half achieved turn 029; siege half folded into G4b)
-
-≥ 32 melee by minute 22: reached 8/10 in turn 029 (the food fix — the
-spearman costs 50 food + 50 wood, and the turn-026 "food buys nothing"
-split had starved training). The rams/attack half lives in G4b's chain,
-which wins batch-dependently (turn 036's reconsideration).
-
-### G1 — Economy boot (achieved turn 004)
-
-20 citizen soldiers by game-minute 8/12/16 and growth (see turn 004). Closing
-batch: seeds 21–30, 10/10 Good, 0 JS errors.
-
-### G2 — Sustain a 32+ citizen-soldier army (achieved turn 008)
-
-32 melee soldiers by game-minute 12. Closing batch: seeds 71–80, 8/10 Good,
-0 JS errors.
-
-### G3 — Gather 750 stone and 750 metal (achieved turn 017)
-
-≥ 750 stone AND ≥ 750 metal in stock by game-minute 16 (the City Phase cost;
-the bot starts at 300/300, so this is ≥ 450 net gathered of each), without
-collapsing the wood/food economy. Closing batch: turn 017's treatment, seeds
-151–160 vs sandbox Rome, 10/10 Good, 0 JS errors, canary PASS. Mechanism: the
-four starting support workers gather stone/metal from minute 0, plus a
-post-town army carve-out (id % 16: 3/16 stone, 2/16 metal), attack deferred
-until 750/750 are banked.
-
-## Backlog of candidate goals (unrefined, for later)
-
-- G5: defeat medium (difficulty 3) Rome.
-- G6: town phase timing: reach Town Phase by minute X and City by minute Y.
 
 ## Reconsideration rule
 
 If a goal resists several turns of effort, stop and reconsider: is it too
 ambitious? Does it depend on another goal that should come first? Adjust the goal
 here, with a note explaining why.
-
-## Reconsideration note (turn 028)
-
-G4 (defeat sandbox Rome) resisted eight turns (018, 020, 021, 022, 024, 025,
-026, 027). Turn 027's end stats isolated the root cause: the bot trained 18
-units while sandbox Rome trained 116 — the economy is ~1/6 of Rome's, and
-the assault force (18 units + 3 rams) dies within a minute of contact
-(exchange 1:3, CC undamaged). Gaul cannot train extra workers, so the civ
-scales through citizen soldiers. G4 is split: **G4a** (current) = sustain a
-50+ melee army by minute 22; **G4b** (next) = the win vs sandbox Rome with
-the scaled army + rams before the 30-minute limit.
-
-## Reconsideration note (turn 015)
-
-"Defeat sandbox Rome" (formerly G3) resisted five turns (005, 009, 010, 012,
-013). It was split: the resource prerequisite became G3 (achieved turn 017) and
-the win goal is now G4.
-
-## Evidence correction (turn 018)
-
-Turn 011's "Town Phase reached 10/10" measured the bot's own `townResearched`
-flag, which the bot sets when it *posts* the research — not sim truth. The sim
-rejects the Town research because it requires 5 Village-class structures and
-the bot has 0–4 houses at post time (`classCounts["Village"]` tracks the
-houses exactly). `gameState.currentPhase()` stays 1 all match. G3's
-stone/metal gathering is unaffected (real resources, gated on the bot flag),
-but all phase-gated claims must use `currentPhase()`/`isResearched` from now
-on.

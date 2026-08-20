@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+- Experiments: map size changed from Tiny (128) to **Small (192)** (harness
+  default `--size`, `random/mainland`), and the **300 per-player population
+  cap** is now pinned by the bot mod's autostart override
+  (`settings.population.setPopCapType("player") + setPopCap(300)`, next to
+  the existing DisableTreasures pin). Verified in a smoke match: replay
+  metadata shows `"PopulationCapType":"player","PopulationCap":300`, map 192,
+  0 JS errors. Docs updated (PROTOCOL, GAME, GOALS, USER_GUIDE,
+  DEVELOPER_GUIDE, AGENTS.md).
+
+- Goals: `docs/GOALS.md` reset — all pre-`game_description` goals (G1–G4,
+  their history and reconsideration notes) deleted. New first goal: **G1 —
+  reach 100 population as fast as possible** (purely economic; primary
+  metric = time to 100 pop from the `[HARNESS]` samples, batch median; no
+  time band — the goal is achieved when 5 consecutive turns fail to beat
+  the best time achieved so far). Backlog goal **G2 — reach City phase and
+  300 population as fast as possible** (same convergence rule).
+
 - Reset: all pre-`game_description` turns and experiments deleted (they
   predated the game reference and did not progress correctly). `turns/` keeps
   only an emptied `backlog.md`; `CURRENT_TURN.md` marks a fresh start (next
