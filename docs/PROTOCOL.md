@@ -48,13 +48,16 @@ why — that is a legitimate outcome of evidence, not a failure.
    evidence collection for its own effect**: instrumentation that shows, during the
    experiment, whether the change did what it was supposed to (samples, logs, states
    of the affected subsystem). A change that cannot be observed is not implemented.
-3. **Experiment** — run the baseline (the last validated code) and the treatment
+   Running experiment is very time consuming. Before running them, run lighter smoke
+   tests before launching the full experiment. Run the experiment only when you are
+   confident that it will pass, or if you can't know simply with a smoke test.
+4. **Experiment** — run the baseline (the last validated code) and the treatment
    (working tree) on the same seed set; record every match result in
    `experiments/NNN/`. The baseline batch runs once per turn and is reused
    across in-turn fix-and-rerun iterations.
-4. **Verdict** — apply the decision rules below to the primary metric.
+5. **Verdict** — apply the decision rules below to the primary metric.
    Possible verdicts: **good**, **bad**, **neutral**, **invalid**.
-5. **Action**:
+6. **Action**:
    - **good** → validate: keep the change.
    - **bad** or **neutral** → first understand *why*, from the evidence. If the
      cause is well understood and the fix is small, apply it **in the same
@@ -66,7 +69,7 @@ why — that is a legitimate outcome of evidence, not a failure.
    - **invalid** (the experiment design or the implementation was wrong, not the
      idea) → fix the experiment, rerun it against the original code, and state
      plainly in the journal what went wrong.
-6. **Commit and push** — every turn ends with exactly one commit, regardless of
+7. **Commit and push** — every turn ends with exactly one commit, regardless of
    verdict: `turn NNN: <slug> — <verdict>` with the journal summary as the body,
    followed by `git push` to the GitHub remote (repo:
    https://github.com/Louis-Saglio/vercingetorix). This single commit includes all
@@ -78,13 +81,13 @@ why — that is a legitimate outcome of evidence, not a failure.
    archive root (python3 `zipfile` — no zip binary on the VPS), install it as
    `/home/fileserver/files/vercingetorix.zip` (owner `fileserver:fileserver`,
    mode 644), served as https://files.louissaglio.fr/vercingetorix.zip.
-7. **Post-turn reflection** — before launching the next turn, ask: did anything in
+8. **Post-turn reflection** — before launching the next turn, ask: did anything in
    this turn reveal a problem or a missing capability in the harness or in this
    protocol itself? If yes, make those improvements **now**, in a separate commit
    (pushed), then launch the next turn. Examples: a metric the harness does not
    extract, a verdict rule that misjudged an obvious result, an experiment default
    that got in the way, a missing evidence-exploration tool.
-8. **Next turn** — take the top item from `turns/backlog.md`, or derive a new
+9. **Next turn** — take the top item from `turns/backlog.md`, or derive a new
    hypothesis from the last results (including from evidence-collection turns).
 
 ## Hard rules
@@ -198,13 +201,16 @@ Batch verdict over N = 10 pairs (sum of pair deltas):
 | Verdict | Condition | Action |
 |---|---|---|
 | good | total ≥ +4, no error/determinism veto | validate: keep the change |
-| bad | total ≤ −4, or error/determinism veto | diagnose; fix small understood causes in-turn and rerun; otherwise revert |
-| neutral | otherwise | diagnose; fix small understood causes in-turn and rerun; otherwise revert and record |
+| bad | total ≤ −4, or error/determinism veto | diagnose; fix understood causes in-turn and rerun; otherwise revert |
+| neutral | otherwise | diagnose; fix understood causes in-turn and rerun; otherwise revert and record |
 
 On a bad or neutral verdict, in-turn fix-and-rerun iterations are encouraged
-when the cause is understood and the fix is small (same baseline, same seeds,
+when the cause is understood (same baseline, same seeds,
 as many iterations as useful). If the iterations stop converging, close the
 turn and carry the negative knowledge to the next turn.
+
+Reverting is time and token consuming. Do it only when you don't understand why
+the result was not good or when the hypothesis is proven wrong.
 
 For a single-metric hypothesis (e.g. "time to reach Town Phase"): **good** if the
 mean improves ≥ 10% relative to baseline, **bad** if it worsens ≥ 10%, **neutral**
