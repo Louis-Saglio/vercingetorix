@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Turn 007 — parallel-house-construction (neutral, reverted):** up to two
+  houses in flight (wood-gated) was tested against the turn-006 code on
+  seeds 61–70. The cap lift did parallelize (minutes at the population cap
+  dropped), but the median time-to-100 stayed 12.5 on both sides: training
+  stalls on food (< 50) far more minutes than on the cap. Negative
+  knowledge recorded; the next lever is the food:wood allocation.
+
 - **Turn 006 — parallel-training (good):** the bot researches
   `unlock_civilians_house_generic` (Fertility Festival) at its first
   completed house (~game-minute 2, metal covered by the starting stock) and
