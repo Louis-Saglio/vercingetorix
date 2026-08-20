@@ -10,11 +10,6 @@ per-mechanic deep dives in `mechaniques/` and per-entity data in `generic/`,
 `gauls/`, `romans/` — all verified against the source with inline citations.
 
 ## Objective of a match
-
-The default victory condition is **Conquest**: "Defeat opponents by killing all
-their units and destroying all their structures" (`simulation/data/settings/victory_conditions/conquest.json`).
-Other conditions exist (wonder, capture the relic, regicide, conquest_structures,
-conquest_units, conquest_civic_centers). **The harness plays
 `conquest_civic_centers`**: "Defeat opponents by destroying all their fully built
 civic centers" — a game ends when the enemy CCs fall (foundations do not count).
 
@@ -28,9 +23,7 @@ Each civ has its own building set, unit roster, and techs. Data per civ lives in
 ## Resources and economy
 
 Four resources: **food, wood, stone, metal**. Match start: 300 of each (from the
-autostart manifest), population cap **300 per player** (gamesettings default,
-pinned by the bot mod's autostart override). Experiments play on a **Small**
-map (`random/mainland`, 192 tiles).
+autostart manifest), population cap **300 per player**
 
 The economy runs on two kinds of workers:
 
@@ -38,28 +31,15 @@ The economy runs on two kinds of workers:
   Ambactos). Every civ starts with 4. They gather (ResourceGatherer rates on
   `template_unit_support_civilian.xml`) and they **build all structures** (the
   full builder mixin list, `templates/mixins/builder.xml`). They cannot fight.
-  The base civic-centre template trains them (`units/{native}/support_civilian`),
-  but civ-specific CC trainer lists (gaul, athen) list only military units — so
-  for those civs the starting 4 are the only ones.
 - **Citizen soldiers** — every trainable military unit also has the `Worker`
   class (`template_unit_infantry.xml`: classes `Human CitizenSoldier`, visible
   classes `Citizen Worker Soldier Infantry`) and gathers when not fighting.
 
-So the army is also the workforce, but dedicated laborers exist and are the
-builders.
-
 - **Dropsites:** storehouse (wood/stone/metal), farmstead (food). Units carry
   resources back to the nearest dropsite.
-- **Food:** berry bushes and hunt early; **fields** (built near a farmstead, need
-  food to seed) are the steady source; corrals raise animals.
+- **Food:** berry bushes and hunt early; **fields** are the steady source; corrals raise animals.
 - **Trade:** market — barter resources, or set trade routes between markets/docks.
-- Buildings cost resources; **spearmen cost 50 food + 50 wood** (the base
-  infantry template's 50 food is inherited and merged with the spearman's own
-  50 wood — see `docs/game_description/generic/units/infantry_spearman_b.md`);
-  houses cost 75 wood.
-- **Treasures:** treasure chests (gaia entities) are scattered on the map; units
-  can gather them for instant resources. Disabled in the experiments
-  (`DisableTreasures` gamesetting, forced by the bot mod's autostart override).
+- Buildings cost resources; **spearmen cost 50 food + 50 wood** ; houses cost 75 wood.
 - **Construction is two steps:** a `construct` command only *places* the
   foundation (the API helper posts `autorepair:false`); the actual building is a
   separate `repair` order on the foundation. Foundations carry the class of the
