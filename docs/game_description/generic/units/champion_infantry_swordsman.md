@@ -4,6 +4,10 @@ Trained by **7** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_champion_infantry_swordsman` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+A champion-tier melee unit trained at the barracks: for a bot, this is a late-game damage dealer, not a citizen-soldier. At 80 food / 60 wood / 80 metal for 1 population slot, it is expensive in metal but packs 16 hack damage every 0.75 s against Units (not Ships) with 200 HP and solid 6/6/20 armor. Its capture attack is restricted to fields, palisades and walls, so rely on other units to take down buildings. No attack bonuses against specific classes, so it wins fights by raw stats rather than by countering a particular enemy type.
+
 ## Basic stats
 
 - **Generic name:** Champion Swordsman

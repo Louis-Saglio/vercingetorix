@@ -4,6 +4,10 @@ Roman-specific unit of 0 A.D. 0.28.0 — only the romans can train it. See `docs
 
 Stats resolved from `simulation/templates/units/rome/hero_scipio` (full roman template chain).
 
+## Guide
+
+Scipio is a hero cavalry swordsman trained at the fortress, meant to fight alongside the army rather than alone: his Triumph aura gives nearby Soldiers and Siege Engines +2 capture strength and +20% melee and ranged damage, so his value scales with the size of the force he accompanies. He is himself a durable, fast fighter (1200 HP, 25.2 m/s run, 26 hack damage against units, plus a capture attack) and costs 0 population, but the 300 food / 150 wood / 300 metal price and 50 s train time make him an investment for a developed economy. As a ConquestCritical unit he must be protected — losing him can end the game.
+
 ## Basic stats
 
 - **Generic name:** Hero Cavalry Swordsman

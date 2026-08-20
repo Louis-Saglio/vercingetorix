@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_military_stable` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Stable is the cavalry production building: it trains all basic cavalry types (axeman, swordsman, spearman, javelineer, archer) and, per its tooltip, researches cavalry technologies. Build it when a strategy calls for cavalry — for most civilisations it is the only source of mounted units, and some variants (e.g. cart, germ) are restricted to a subset of cavalry types (see overrides below). It is available from the Village phase, costs 200 wood / 50 stone (250 wood for brit, gaul, maur) and takes 120 s to build, so it is an early-to-mid game investment. As a `ConquestCritical` structure with only 500 capture points, protect it or garrison up to 10 units inside.
+
 ## Basic stats
 
 - **Generic name:** Stable

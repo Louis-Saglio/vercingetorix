@@ -4,6 +4,10 @@ Trained by **5** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_infantry_melee_pikeman` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Pikeman is the specialised anti-cavalry infantry of the five civilisations that field it: its 2.5× attack bonus vs Cavalry makes it the cost-effective answer to mounted units at only 50 food + 50 wood and 1 population. Beyond that niche its raw melee damage (4 hack + 7.5 pierce) and capture strength (2.5) are modest, so it works best as a defensive escort rather than a main assault force. As a Citizen Soldier it can also gather resources and build when not fighting. It is trained at the barracks (also at the civil centre for mace and ptol).
+
 ## Basic stats
 
 - **Generic name:** Pikeman

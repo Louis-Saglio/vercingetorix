@@ -4,6 +4,10 @@ Trained by **8** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_infantry_ranged_archer` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The archer is the basic ranged infantry unit, trained at the barracks (and at the civil centre for cart, kush, maur and pers) for 50 food and 50 wood. Its role is to deal damage from a safe distance: the bow reaches 60 m — far beyond any melee unit — with 7.2 pierce damage and a preference for Human targets, making it the cheap early-game counter to infantry, but it is fragile (50 HP, 1 hack / 1 pierce armor) and must be kept behind melee units. As a CitizenSoldier it can also gather resources (wood at 0.75/s, food from meat at 1/s) when not fighting, so idle archers can contribute to the economy. Its crush armor of 10 gives it some resilience against ranged attacks, but it has no answer to cavalry reaching it.
+
 ## Basic stats
 
 - **Generic name:** Archer

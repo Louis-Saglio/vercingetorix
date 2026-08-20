@@ -4,6 +4,10 @@ Trained by **2** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_infantry_melee_swordsman` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+A mercenary melee swordsman trained at the **military_colony** (Ptolemies and Seleucids only). Both variants pay **60 metal** (plus 50 food, 40 wood) but build in only **7 s**, making it a fast-to-field frontline fighter when metal is available — the metal cost makes spamming it expensive, so it suits emergency or supplementary recruitment rather than a main-line army. Its melee attack (8.8 hack, preferred Unit+!Ship) is a general-purpose anti-unit weapon with no class bonus, and it keeps modest worker abilities (can gather and has the Builder class). Mercenaries auto-promote at 0 XP via `upgrade_rank_advanced_mercenary`, so survivors reach Advanced/Elite rank (up to ~156 HP) without needing to earn experience in combat.
+
 ## Basic stats
 
 - **Generic name:** Swordsman

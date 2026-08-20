@@ -4,6 +4,10 @@ Trained by **15** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_support_healer` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Healer is a non-combat support unit that restores health to nearby Human units (5 HP every 2 s at 12 m range), letting an army recover after fights without retreating wounded units home. It has no attack and only 85 HP with 1/1/1 armor, so it must be kept behind the fighting line. Train a few from the temple once Town phase is reached (it requires `phase_town`) for 100 food / 30 metal and 1 population each; they promote with XP to gain heal strength and range.
+
 ## Basic stats
 
 - **Generic name:** Healer

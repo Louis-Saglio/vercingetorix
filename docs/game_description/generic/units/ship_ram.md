@@ -4,6 +4,10 @@ Trained by **8** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_ship_warship_ram` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+A dedicated anti-ship melee warship: its "Naval Ram" attack (320 hack + 50 crush, preferred vs Warship) is restricted against Organic classes, so it is only useful against ships and siege, never against land units. Trained at docks (town phase required per the template) for a modest 50 food / 100 wood / 25 metal and 18 s, it is the cheap counter to enemy warships once you contest the water. It can also garrison up to 30 siege-class units for transport across water, per its tooltip. Requires the town phase, so plan it as a mid-game naval option rather than an opener.
+
 ## Basic stats
 
 - **Generic name:** Ramming Ship

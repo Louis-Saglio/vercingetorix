@@ -4,6 +4,10 @@ Trained by **2** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_cavalry_ranged_javelineer` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+A fast ranged skirmisher-mercenary for kush and ptol, trained from their mercenary structures (camp_blemmye, military_colony). Its very high speed (run 22.68 m/s) and 30 m javelin range with "preferred Human" make it suited to mobile harassment and hit-and-run against infantry, and its CitizenSoldier class plus meat-gathering (5 /s) let it hunt when not fighting. Both civilisation variants cost metal instead of wood/food (20 food, 90 metal) and promote at 0 XP, so it pays off as a standing raiding force that improves on its own, but its low armor (2 hack / 1 pierce) means it should avoid sustained melee.
+
 ## Basic stats
 
 - **Generic name:** Cavalry Javelineer

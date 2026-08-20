@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_economic_farmstead` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Farmstead is the food-economy building: its `DropsiteFood` class lets gatherers deposit food closer to fields and bushes, and its tooltip states it is where food-gathering technologies are researched (the `gather_farming_*` tech line). At 100 wood and 45 s build time in `phase_village`, it is the cheap early investment a bot should place near farms as soon as food gathering starts. Its 20 m territory influence also helps expand buildable territory into farming areas.
+
 ## Basic stats
 
 - **Generic name:** Farmstead

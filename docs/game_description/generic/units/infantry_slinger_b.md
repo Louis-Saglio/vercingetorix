@@ -4,6 +4,10 @@ Trained by **7** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_infantry_ranged_slinger` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Slinger is the cheap basic-rank ranged citizen-soldier: at 50 food / 20 wood / 30 stone, 10 s build time and 1 population it is one of the cheapest military units available, trainable at the barracks and, for several civilisations, the civil centre. Its role is early-game harass and fire support, dealing 11.5 pierce damage at 45 m range with a preference for Human targets, but with only 50 HP and 1/1 armor it must stay behind melee units. As a CitizenSoldier it doubles as an economy unit between fights, with useful gather rates (notably meat 1/s and wood 0.75/s) and Builder class for constructing structures.
+
 ## Basic stats
 
 - **Generic name:** Slinger

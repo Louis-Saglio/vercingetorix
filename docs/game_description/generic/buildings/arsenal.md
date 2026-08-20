@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_military_arsenal` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Arsenal is the City-phase production building for siege engines: rams, towers and packed artillery (ballista, onager, lithobolos, scorpio, oxybeles, polybolos), plus the Champion Infantry Crossbowman for civilisations that have one. Build it when the strategy calls for anti-building firepower, since rams and stone throwers are what break enemy fortifications; at 300 wood and 180 s build time it is a deliberate investment gated behind `phase_city`. It is `ConquestCritical`, so it must be protected (or targeted when attacking) under conquest victory conditions. Civilisation overrides matter: germ gets a covered ram, han gets the mangonel instead of most bolt shooters.
+
 ## Basic stats
 
 - **Generic name:** Arsenal

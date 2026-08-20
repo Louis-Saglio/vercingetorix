@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_civic_temple` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The temple is the healing hub: it trains healers (`units/{civ}/support_healer_b`) and heals garrisoned units at +3 HP/s, so build it to keep an army fighting without sending units home. It costs 300 stone and 200 s and requires `phase_town`, making it a mid-game investment rather than an opener. For several civilisations (e.g. cart, gaul, germ, kush) it also trains champion units, doubling as an elite military production building. Note that it carries the `ConquestCritical` class: under conquest civic-centre victory conditions it must be defended, since losing it counts toward defeat.
+
 ## Basic stats
 
 - **Generic name:** Temple

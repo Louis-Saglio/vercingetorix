@@ -4,6 +4,10 @@ Gaul-specific unit of 0 A.D. 0.28.0 — only the gauls can train it. See `docs/g
 
 Stats resolved from `simulation/templates/units/gaul/hero_viridomarus` (full gaul template chain).
 
+## Guide
+
+Viridomarus is the gaul hero: a tanky (1000 HP, high armor) infantry spearman trained once at the assembly for 200 food, 200 wood, 150 metal and no population cost. His 2.5× attack bonus vs Cavalry makes him a strong anti-cavalry fighter, and his global "Preparation for War" aura gives all Workers +15% gather speed, so training him early pays off economically even without fighting. Note that he is ConquestCritical — losing him loses the match under conquest victory conditions, so keep him out of suicidal engagements.
+
 ## Basic stats
 
 - **Generic name:** Viridomarus

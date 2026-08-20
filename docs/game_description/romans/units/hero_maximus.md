@@ -4,6 +4,10 @@ Roman-specific unit of 0 A.D. 0.28.0 — only the romans can train it. See `docs
 
 Stats resolved from `simulation/templates/units/rome/hero_maximus` (full roman template chain).
 
+## Guide
+
+Hero cavalry swordsman trained at the fortress for 300 food, 150 wood, 300 metal and 0 population. Its global aura "Shield of Rome" gives all your Humans and Structures +1 hack, pierce and crush resistance, so it pays off most when fielding a large army. With 1200 HP, high armor, a fast 26-hack sword attack and top-tier speed (25.2 m/s run), it also works as a durable raider and response unit.
+
 ## Basic stats
 
 - **Generic name:** Hero Cavalry Swordsman

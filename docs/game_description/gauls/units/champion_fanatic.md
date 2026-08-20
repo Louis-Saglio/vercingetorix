@@ -4,6 +4,10 @@ Gaul-specific unit of 0 A.D. 0.28.0 — only the gauls can train it. See `docs/g
 
 Stats resolved from `simulation/templates/units/gaul/champion_fanatic` (full gaul template chain).
 
+## Guide
+
+The Naked Fanatic is the Gaul champion spearman, trained at the temple from the Town phase. Its 2.5× attack bonus vs Cavalry makes it a dedicated anti-cavalry fighter, and its 1-population, metal-free cost (120 food, 100 wood) makes it cheap for a champion. With very high speed (walk 13.3 m/s, run 22.21 m/s) it can chase down mounted units, but its low hack/pierce armor (3/2) means it trades poorly in straight melee against other infantry. Train it when the enemy fields cavalry; prefer cheaper citizen-soldiers for general fighting.
+
 ## Basic stats
 
 - **Generic name:** Naked Fanatic

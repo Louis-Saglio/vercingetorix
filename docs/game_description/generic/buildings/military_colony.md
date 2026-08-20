@@ -4,6 +4,10 @@ Buildable by **2** civilisations. Generic (non-civ-specific) building of 0 A.D. 
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_civic_civil_centre_military_colony` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Military Colony is a compact expansion structure for the Ptolemaic and Seleucid civilisations: a small Civic Centre (`Colony` class, `ConquestCritical`) that can be built in own **or neutral** territory, at least 120 m from an existing Civil Centre. Its territory root (radius 75 m, weight 10000) plants a new border far from your main base, and it adds +20 population, trains civilians (and mercenary infantry/cavalry for ptol/sele), and defends itself with a ranged attack. Available from the town phase for 200 wood, 200 stone and 150 metal, it is the tool to claim distant territory and forward training capacity without building a full Civic Centre.
+
 ## Basic stats
 
 - **Generic name:** Military Colony

@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_economic_market` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The market is the economy's resource-conversion and trade hub: its `Barter` class lets the bot exchange surplus resources, and it is the only building that trains `support_trader` units for establishing trade routes. Available from the Town phase (`phase_town`) for 300 wood, it is a mid-game investment rather than an early priority. Build one when resources are unbalanced or when trade income is wanted; its 1500 HP and 20 pierce armor make it reasonably durable but not a defensive structure.
+
 ## Basic stats
 
 - **Generic name:** Market

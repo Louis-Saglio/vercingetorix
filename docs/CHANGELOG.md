@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Documentation: every unit and building file in `docs/game_description/`
+  (generic + gauls + romans, 82 files) now opens with a "Guide" section: what
+  the entity is for and its role in the game, from a bot's perspective,
+  grounded in the file's documented stats and the source templates.
+
 - Documentation: added `docs/game_description/mechaniques/` — one file per game
   mechanic (17 files + index), all verified against the 0.28.0 sources with
   inline `path:line` citations: resources/gathering, construction, training

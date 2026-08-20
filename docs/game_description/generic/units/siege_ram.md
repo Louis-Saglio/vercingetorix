@@ -4,6 +4,10 @@ Trained by **15** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_siege_ram` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The ram is a dedicated anti-building unit: its 150 crush melee attack is restricted against Field and Organic targets, so it can only damage structures, which it prefers. Train it at the arsenal when the goal is to destroy enemy buildings (civic centres included) faster than citizen-soldiers can, noting its high 35 pierce armor against fort and tower fire. It is slow, costs 300 wood / 150 metal and 3 population, and its `ConquestCritical` class means losing all rams contributes to defeat — it cannot defend itself against units, so escort it.
+
 ## Basic stats
 
 - **Generic name:** Battering Ram

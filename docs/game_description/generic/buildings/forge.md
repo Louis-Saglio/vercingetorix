@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_military_forge` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Forge is the research building for military upgrade technologies: its production queue researches the soldier attack (melee and ranged), soldier resistance (hack and pierce) and archer accuracy technologies, strengthening your existing army. Build it once you reach the town phase — its only requirement — and you field enough soldiers for the upgrades to pay off; at 200 wood and 120 s build time it is a mid-game investment, not an opener. It must be placed in your own territory and its 38 m territory influence expands your borders; it can garrison 1 infantry or healer.
+
 ## Basic stats
 
 - **Generic name:** Forge

@@ -4,6 +4,10 @@ Trained by **5** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_siege_tower` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+Mobile siege platform for the late-game assault: it garrisons up to 20 units (Infantry add arrows, up to 10) to transport them safely and boost its own firepower, and its very high 50 pierce armor lets it soak arrow fire while approaching defenses. Its own bow attack (10 pierce + 2.5 crush, range 55 m) is secondary — it is not a building killer, so pair it with rams or catapults. Expensive (500 wood, 300 metal, 3 population) and slow (6.3 m/s), so build it at the arsenal only when attacking fortified positions, and note it is ConquestCritical: losing all of them can lose the game.
+
 ## Basic stats
 
 - **Generic name:** Siege Tower

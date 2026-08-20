@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_defensive_outpost` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Outpost is a pure vision structure: at 60 wood and 30 s build time it is the cheapest way to extend sight range, giving 90 m of vision in own or neutral territory. It provides no attack, so its role for a bot is early-warning map coverage — watching approaches to the base or expansion routes — rather than defence. Its high pierce armor (20) lets it survive stray arrows, but 1 crush armor and 500 capture points mean it folds quickly to siege or capture, so place it where the enemy is unlikely to commit forces. Note the placement constraint of min 50 m from other Outposts when chaining vision coverage.
+
 ## Basic stats
 
 - **Generic name:** Outpost

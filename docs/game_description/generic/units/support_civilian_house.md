@@ -4,6 +4,10 @@ Trained by **15** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_support_civilian` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+A cheap economic worker (50 food, 1 population) trained at houses, letting a bot produce gatherers in parallel with the civic centre — but only after researching the house technology "Fertility Festival" (`unlock_civilians_house_generic`, 250 food / 100 wood / 100 metal, Village Phase). Its gather rates favour food (fruit and meat 1/s) over stone and metal (0.35/s), so assign it to food or wood. With 25 HP and only a 2-hack "Dagger" attack it is not a fighter: keep it away from combat, and note its `ConquestCritical` class means losing civilians can lose the game. Note that all civilisation variants raise the build time from 8 s to 30 s.
+
 ## Basic stats
 
 - **Generic name:** Civilian

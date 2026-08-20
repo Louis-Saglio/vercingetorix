@@ -4,6 +4,10 @@ Gaul-specific unit of 0 A.D. 0.28.0 — only the gauls can train it. See `docs/g
 
 Stats resolved from `simulation/templates/units/gaul/hero_vercingetorix` (full gaul template chain).
 
+## Guide
+
+Vercingetorix is the gaul hero: a fast (run 25.2 m/s), very durable (1200 HP, 25 crush armor) cavalry swordsman that costs no population, making it a strong addition to any army once the 300 food / 150 wood / 300 metal cost is affordable. Its "Celtic Warlord" aura (from the source template) gives Soldiers and Siege Engines within 60 m +1 capture attack strength and +20% melee and ranged damage, so it is most valuable fighting at the head of an army rather than alone. Its own Capture attack (strength 10, 1 s repeat) supports assaults on buildings. Note the ConquestCritical class: under conquest-type victory conditions, losing this unit can lose the game, so a bot should protect it.
+
 ## Basic stats
 
 - **Generic name:** Vercingetorix

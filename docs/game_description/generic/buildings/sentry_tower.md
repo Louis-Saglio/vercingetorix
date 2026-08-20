@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_defensive_tower_sentry` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Sentry Tower is a cheap early-game defensive structure, available from the Village Phase for only 100 wood. Its pierce attack (8 damage, 60 m range, preferred target Human) makes it a deterrent against small infantry raids rather than a real siege-stopper, and its 16 m territory influence also helps claim ground. Its 80 m vision makes it useful as a forward observation post, and it can garrison 3 units. Note the 60 m minimum build distance from other towers, so it cannot be stacked into a dense wall of towers.
+
 ## Basic stats
 
 - **Generic name:** Sentry Tower

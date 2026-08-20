@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_wonder` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Wonder is a late-game prestige structure: it produces nothing and trains nothing, so a bot should only build it when the 1000 wood / 1500 stone / 1000 metal cost and 1000 s build time are spare after a city-phase economy and army are secured. Its payoff is territorial and defensive — it is a territory root with the maximum influence weight (radius 100 m, weight 65535), letting you plant a new stronghold far from your Civic Centre. It requires phase_city, and its `ConquestCritical` class means it must be destroyed or captured for an opponent to win by conquest; its 5000 HP, high armor and 50-slot garrison with +5/s healing make it a durable last-stand anchor rather than an expansion tool.
+
 ## Basic stats
 
 - **Generic name:** Wonder

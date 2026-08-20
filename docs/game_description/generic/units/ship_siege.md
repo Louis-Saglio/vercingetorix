@@ -4,6 +4,10 @@ Trained by **5** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_ship_warship_siege` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Siege Ship is the navy's artillery piece: its 220 crush ranged attack at 80 m range (with 100 crush splash) prefers Ships and Structures, making it the right choice for destroying coastal buildings and enemy fleets from a distance. It can also garrison up to 50 Siege-class units, doubling as the transport that carries land siege engines across water. It requires the City phase and is trained at the dock for 200 wood, 200 metal and 3 population, so it is a late-game investment rather than an early raider.
+
 ## Basic stats
 
 - **Generic name:** Siege Ship

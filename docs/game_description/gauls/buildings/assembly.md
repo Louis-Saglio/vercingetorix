@@ -4,6 +4,10 @@ Gaul-specific building of 0 A.D. 0.28.0 — only the gauls can build it. See `do
 
 Stats resolved from `simulation/templates/structures/gaul/assembly` (full gaul template chain).
 
+## Guide
+
+The Assembly of Princes is the gauls' city-phase elite structure: once phase_city is reached, it is the only place to train the champion infantry trumpeter and the three gaul heroes (Brennus, Viridomarus, Vercingetorix). At 400 wood and a 200 s build time it is a modest investment for unlocking the roster's top-tier units, and its 40 m territory influence with weight 40000 also helps expand or hold territory. Its 20 garrison slots let it shelter units, and because it is ConquestCritical, losing it matters in conquest-type victories — build it when pushing for champions/heroes, and defend it.
+
 ## Basic stats
 
 - **Generic name:** Assembly of Princes

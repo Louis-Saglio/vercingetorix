@@ -4,6 +4,10 @@ Trained by **5** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_cavalry_melee_swordsman` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+Fast melee cavalry trained at the stable (also at the civil centre for han) for 100 food, 40 wood, 10 metal and 1 population. Its high speed (run 25.2 m/s) makes it suited to raiding, hunting (meat 5 /s) and quickly reaching fights, while the capture attack (strength 1.75, restricted to Field Palisade Wall) lets it capture that field fortification class. Like other cavalry it relies on speed rather than armor (3 hack / 2 pierce) to survive; ranks multiply its health and damage at the cost of gather speed and build time.
+
 ## Basic stats
 
 - **Generic name:** Cavalry Swordsman

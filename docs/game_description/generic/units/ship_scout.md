@@ -4,6 +4,10 @@ Trained by **15** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_ship_warship_scout` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Scout Ship is the cheap early naval unit trained at the dock (50 food, 50 wood, 12 s, 1 population). Its role is coastal scouting — 80 m vision and fast movement (28.39 m/s run) — and light naval combat: its arrow attack carries a documented 3× bonus vs Ships, making it the counter to enemy warships rather than land units. It can also garrison up to 10 units, so it doubles as basic water transport. Build it when naval map control or water crossing matters; it is not a fighter against anything but ships.
+
 ## Basic stats
 
 - **Generic name:** Scout Ship

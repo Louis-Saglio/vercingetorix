@@ -4,6 +4,10 @@ Roman-specific unit of 0 A.D. 0.28.0 — only the romans can train it. See `docs
 
 Stats resolved from `simulation/templates/units/rome/infantry_spearman_a` (full roman template chain).
 
+## Guide
+
+Advanced-rank roman spearman trained at the army_camp for 50 food + 50 wood in 10 s, making it a cheap anti-cavalry unit: its Spear attack carries a 2.5× bonus vs Cavalry. As a CitizenSoldier it doubles as a worker (it gathers all four resources and builds), so it can support the economy between fights. Its crush armor (15) is far higher than its hack/pierce armor (3/3), so it is poorly suited to tanking melee or ranged damage despite the cavalry counter role.
+
 ## Basic stats
 
 - **Generic name:** Veteran Spearman

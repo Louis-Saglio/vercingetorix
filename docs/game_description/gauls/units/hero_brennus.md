@@ -4,6 +4,10 @@ Gaul-specific unit of 0 A.D. 0.28.0 — only the gauls can train it. See `docs/g
 
 Stats resolved from `simulation/templates/units/gaul/hero_brennus` (full gaul template chain).
 
+## Guide
+
+Brennus is the gaul hero, a heavy infantry swordsman trained at the assembly for 200 food, 150 wood, 200 metal and 0 population. His "Sacker of Rome" aura gives nearby Humans, Siege Engines, and Ships +15 metal loot within 60 m, so he pays off most when kept with the army while raiding and capturing. With 1000 HP, high armor, a fast 26-hack sword attack (0.75 s repeat) and a 1 s Capture attack, he is a durable front-line fighter and capture threat. Being `ConquestCritical`, losing him loses the game under conquest conditions, so he should not be risked alone.
+
 ## Basic stats
 
 - **Generic name:** Brennus

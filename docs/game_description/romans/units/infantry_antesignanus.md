@@ -4,6 +4,10 @@ Roman-specific unit of 0 A.D. 0.28.0 — only the romans can train it. See `docs
 
 Stats resolved from `simulation/templates/units/rome/infantry_antesignanus` (full roman template chain).
 
+## Guide
+
+The Legionary Skirmisher is the romans' elite ranged citizen-soldier, trained at the army camp. It fights at 30 m with a fast 16-pierce javelin attack (preferred target Human) while still gathering resources at CitizenSoldier rates, making it a flexible pick for an army camp producing both economy and combat units. Already Elite rank, it costs only 50 food, 50 wood, 15 metal and 1 population, so it is a cheap way to add ranged firepower, though its 50 HP and 1 hack/pierce armor make it fragile in melee.
+
 ## Basic stats
 
 - **Generic name:** Legionary Skirmisher

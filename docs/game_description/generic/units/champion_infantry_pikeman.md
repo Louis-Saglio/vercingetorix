@@ -4,6 +4,10 @@ Trained by **2** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_champion_infantry_pikeman` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Champion Pikeman is a late-game anti-cavalry specialist: its 2.5× attack bonus vs Cavalry and 8 m reach make it the go-to answer to enemy mounted units. Its 20 crush armor also lets it absorb siege damage while approaching, and its 8 hack + 15 pierce melee damage is respectable against Humans in general. At 80 food, 60 wood, 80 metal from the barracks (ptol and sele only), it costs more metal than basic infantry, so train it as a cavalry counter rather than a general-purpose line unit.
+
 ## Basic stats
 
 - **Generic name:** Champion Pikeman

@@ -4,6 +4,10 @@ Trained by **13** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_infantry_melee_spearman` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The basic Spearman is the cheap anti-cavalry infantry of the civilisations that field it: its spear carries a 2.5× attack bonus vs Cavalry at a cost of only 50 food and 50 wood, 10 s build time, and 1 population. As a CitizenSoldier it doubles as an economic unit, gathering food, wood, stone and metal between fights, and it is available early since most civilisations train it at both the civil_centre and the barracks. Its low hack/pierce damage and 100 HP make it a poor general-purpose fighter, so train it as a cavalry counter and mobile worker rather than as a frontline against other infantry. It also carries a small Capture attack (strength 2.5) and ranks up to Advanced and Elite with XP.
+
 ## Basic stats
 
 - **Generic name:** Spearman

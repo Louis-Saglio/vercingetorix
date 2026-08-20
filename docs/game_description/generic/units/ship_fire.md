@@ -4,6 +4,10 @@ Trained by **4** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_ship_fire` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Fire Ship is a cheap naval counter unit: train it at the dock once the Town phase is reached when the enemy fields ships (especially Ram Ships) or coastal buildings, since its flames deal a 3× bonus against both. At 100 wood / 50 metal and only 1 population it is expendable, and its low pierce armor (1) means it relies on its high speed (16 m/s walk) to close the 15 m gap before being shot down. It can be ignited mid-battle to cause area damage, after which it cannot be repaired — treat it as a one-way weapon rather than a fleet unit to preserve.
+
 ## Basic stats
 
 - **Generic name:** Fire Ship

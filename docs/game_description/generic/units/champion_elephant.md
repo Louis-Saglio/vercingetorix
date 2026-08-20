@@ -4,6 +4,10 @@ Trained by **6** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_champion_elephant_melee` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The War Elephant is a heavy champion melee unit trained at the elephant stable by six civilisations (cart, kush, maur, pers, ptol, sele). Its role is to soak and deal damage: 1000 HP with high armor (especially 20 crush) plus a 30 hack + 45 crush attack every 1.5 s that prefers Unit targets, making it effective against both soldiers and structures. It is expensive to field — 300 food, 200 metal, 3 population, 36 s build time — so train it as a late-game assault core rather than in numbers. Because it is ConquestCritical, keeping elephants alive also matters for defeat conditions.
+
 ## Basic stats
 
 - **Generic name:** War Elephant

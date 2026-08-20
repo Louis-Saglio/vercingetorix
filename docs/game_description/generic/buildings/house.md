@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_civic_house` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The house is the basic population-support building: its +5 population bonus (75 wood, 30 s build time, available from phase_village) is what raises the population cap, so build houses whenever growth is blocked. It also trains `support_civilian_house` units (female citizens) and offers 3 garrison slots to shelter nearby workers, while its radius-16 territory influence expands owned land. It is `ConquestCritical`, so under `conquest_civic_centers`-style victory conditions losing houses matters — do not leave them exposed.
+
 ## Basic stats
 
 - **Generic name:** House

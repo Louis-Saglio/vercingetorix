@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_military_dock` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Dock is the entry point to everything naval: for 200 wood it must be placed on a shoreline and trains the full ship roster — `ship_fishing` (food economy), `ship_merchant` (trade), and warships (`ship_scout`, `ship_arrow`, `ship_ram`, `ship_fire`, `ship_siege`). Per its template, it also serves as a trade destination (Market component), a dropsite for all four resources, and the researcher for ship and fishing technologies. Build it only on maps with usable water: its economy and military value depend entirely on ships, and as a `ConquestCritical` structure it must be defended once built.
+
 ## Basic stats
 
 - **Generic name:** Dock

@@ -4,6 +4,10 @@ Trained by **15** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_support_civilian` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Civilian is the basic all-purpose worker: at 50 food, 8 s build time and 1 population it is the cheapest way to expand an economy, and it is trained at the civil_centre (plus a few civ-specific extra buildings such as the brit crannog, germ encampment and sele military_colony). It gathers every resource type (best at fruit/meat at 1/s, weakest at stone/metal at 0.35/s) and, as a `Builder`, constructs and repairs buildings. Its Dagger (2 hack) and 25 HP make it useless in combat — keep it away from fights — but it can capture (strength 1, excluding Field/Palisade/Wall targets), and its `ConquestCritical` class means losing all of them can lose the game under conquest victory.
+
 ## Basic stats
 
 - **Generic name:** Civilian

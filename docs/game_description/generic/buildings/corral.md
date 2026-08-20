@@ -4,6 +4,10 @@ Buildable by **15** civilisations. Generic (non-civ-specific) building of 0 A.D.
 
 Generic stats resolved from the shared template `simulation/templates/template_structure_resource_corral` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Corral is a food-production building, available from the Village Phase for 100 wood: it trains domestic animals (sheep, goats, pigs, cattle) that can then be harvested for food — a sheep costs 50 food and yields 100 food. Garrisoning animals inside (up to 8 slots) makes each animal add a food trickle to the Corral (e.g. +1 food per garrisoned sheep), so a corral stocked with animals is a steady, villager-free food income. It also researches `gather_animals_stockbreeding`. Build one when food gathering from farms or hunt is under pressure; it has no attack and only 500 HP, so keep it inside your territory.
+
 ## Basic stats
 
 - **Generic name:** Corral

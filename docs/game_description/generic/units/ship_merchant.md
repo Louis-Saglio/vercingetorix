@@ -4,6 +4,10 @@ Trained by **15** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.
 
 Generic stats resolved from the shared template `simulation/templates/template_unit_ship_merchant` (deepest template common to all civilisation variants; variants may override, see below).
 
+## Guide
+
+The Merchantman is the economic ship of the game: it trades between docks to generate resources, with a base gain multiplier of 0.75 increased by +20% for each Trader garrisoned aboard (it can hold up to 15 Support/Cavalry/Relic units). It also gathers profitable aquatic treasures and improves sea trading at the Market. Trained at the dock for 100 metal and available from the Town phase, it is a pure economy unit — it has no attack and its default stance is passive — so build it only when the map has usable water routes, and expect it to need protection rather than to fight. Its Bribable class means it can share vision if bribed by an enemy.
+
 ## Basic stats
 
 - **Generic name:** Merchantman
