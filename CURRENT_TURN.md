@@ -1,9 +1,8 @@
 # Current turn
 
-- Number: 034 — wood radius 320 m (G4b).
-- Phase: two in-turn iterations done → verdict bad (1/10; the 301–310 batch
-  resists the understood levers) → reverted → committing (then turn 035:
-  A/B diagnosis 293 vs 306).
+- Number: 035 — A/B diagnosis: seed 293 vs 306 (G4b).
+- Phase: diagnosis done (forge timing is the batch difference) → committing
+  (then turn 036: the forges gate + assault configuration).
 - Standing instruction (Louis, 2026-08-20): after each **validated** turn,
   publish the bot mod zip on the file server
   (https://files.louissaglio.fr/vercingetorix.zip).
@@ -14,4 +13,4 @@
 - Standing instruction (Louis, 2026-08-19): bad/neutral → fix small
   understood causes in-turn and rerun; baseline = last validated experiment.
 
-Last completed turn: 033 — parallel-builders (bad; wood depletion found).
+Last completed turn: 034 — wood-radius (bad; the 301–310 batch mystery).
