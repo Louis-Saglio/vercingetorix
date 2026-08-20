@@ -83,8 +83,10 @@ Civil centre (CC): the heart of the base — trains the core citizen soldiers,
 researches phase techs, projects territory. Houses raise population cap. Barracks /
 stable / range train the military units. Farmstead + fields produce food; corral
 animals; storehouse drops wood/stone/metal; market trades. Towers/fortress defend.
-Gaul specifics include `assembly`, `tavern`, `rotarymill`
-(`simulation/templates/structures/gaul/`).
+Gaul's buildable set is the standard one plus the city-phase `assembly`
+(`simulation/templates/structures/gaul/`); that folder also contains vestigial
+templates no Builder list references (`tavern.xml`, `rotarymill.xml`,
+`range.xml`).
 
 All construction requires being inside your territory, and buildings can only be
 placed where builders can reach.
@@ -98,8 +100,8 @@ phase is a core quality metric (reported by the bot via research events).
 
 **Phase requirements (verified 0.28, turn 018/019):** Town requires **5
 Village-class structures** (`classCounts["Village"] ≥ 5` — houses carry the
-Village class); City requires **3 Town-class structures** (forge and market
-carry the Town class; the gaul tavern swaps Village→Town) plus the 750 stone /
+Village class); City requires **3 Town-class structures** (forge, market and
+temple carry the Town class) plus the 750 stone /
 750 metal cost. Town costs 500 food + 500 wood. **The sim silently rejects
 phase research whose requirements are unmet** — no resources are paid, nothing
 is logged, and the bot's own flags keep lying. Ground truth is
@@ -237,7 +239,7 @@ was verified against those files.
 
 Across the 15 civs there are **133 trainable unit types**: **36 are trained by
 2+ civs** (the generic units, one file each in
-`docs/game_description/generic_units/`, with stats resolved from the deepest
+`docs/game_description/generic/units/`, with stats resolved from the deepest
 shared template and the per-civ trainer lists), and **97 are trained by a
 single civ** (46 heroes, civ-specific champions/mercenaries/conscripts…).
 Stats in those files come from re-implementing the loader+merge semantics
@@ -247,7 +249,7 @@ above on the actual templates, not from memory.
 
 Across the 15 civs there are **56 buildable structure types**: **23 are
 buildable by 2+ civs** (the generic buildings, one file each in
-`docs/game_description/generic_buildings/`, with stats resolved the same way
+`docs/game_description/generic/buildings/`, with stats resolved the same way
 plus per-civ trainer lists), and **33 are buildable by a single civ**
 (civ-unique temples, halls, embassies, monuments…). Wall sets
 (`wallset_palisade`, `wallset_stone`) are documented as wall sets, not single
@@ -258,7 +260,7 @@ buildings — they define the segments placed with the wall tool.
 Of the 198 tech JSON files (`data/technologies/` + `civbonuses/`), **160 are
 available to at least one civ** (researchable from a building or
 auto-researched): **95 are available to 2+ civs** (the generic technologies,
-one file each in `docs/game_description/generic_technologies/`), and **65 to a
+one file each in `docs/game_description/generic/technologies/`), and **65 to a
 single civ** (civ-specific phase techs, pair choices, unique bonuses). 17 are
 not reachable by anyone (logical phase names `phase_town`/`phase_city`,
 pair-choice techs of single-civ pairs, and leftovers such as
@@ -268,11 +270,13 @@ pair-choice techs of single-civ pairs, and leftovers such as
 
 - Units/buildings: `/home/ubuntu/0ad-reference/public/simulation/templates/`
 - Generic units reference (stats + per-civ trainer lists):
-  `docs/game_description/generic_units/`
+  `docs/game_description/generic/units/`
 - Generic buildings reference (stats + per-civ builder lists):
-  `docs/game_description/generic_buildings/`
+  `docs/game_description/generic/buildings/`
 - Generic technologies reference (stats + per-civ researcher lists):
-  `docs/game_description/generic_technologies/`
+  `docs/game_description/generic/technologies/`
+- Gaul-specific reference (units/buildings/technologies exclusive to gaul):
+  `docs/game_description/gauls/`
 - Civ definitions: `.../simulation/data/civs/*.json`
 - Technologies: `.../simulation/data/technologies/`
 - Victory conditions: `.../simulation/data/settings/victory_conditions/`

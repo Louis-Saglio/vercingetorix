@@ -262,7 +262,7 @@ def generate(data, outdir):
         lines.append(f"# {typ}\n")
         lines.append(f"Buildable by **{len(civs)}** civilisations. Generic (non-civ-specific)"
                      f" building of 0 A.D. 0.28.0 — see"
-                     f" `docs/game_description/generic_buildings/README.md` for the method.")
+                     f" `docs/game_description/generic/buildings/README.md` for the method.")
         lines.append(f"\nGeneric stats resolved from the shared template"
                      f" `simulation/templates/{d['lca']}` (deepest template common to all"
                      f" civilisation variants; variants may override, see below).")
@@ -314,7 +314,7 @@ def generate_readme(data):
                  " training `Trainer` lists). An entry is only buildable if the referenced"
                  " template exists; entries pointing to a missing file are silently dropped.")
     lines.append("- **Which civs:** for each of the 15 civs, the analysis resolves every unit"
-                 " the civ can train (see `generic_units/`), collects the resolved `Builder`"
+                 " the civ can train (see `generic/units/`), collects the resolved `Builder`"
                  " lists, and keeps entries whose file exists. The union over civs gives 56"
                  " buildable structure types: **23 buildable by 2+ civs** (documented here)"
                  " and 33 buildable by a single civ (excluded).")

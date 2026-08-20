@@ -706,7 +706,7 @@ def generate_markdown(data, outdir):
         lines = []
         lines.append(f"# {tok}\n")
         lines.append(f"Trained by **{len(civs)}** civilisations. Generic (non-civ-specific) unit"
-                     f" of 0 A.D. 0.28.0 — see `docs/game_description/generic_units/README.md`"
+                     f" of 0 A.D. 0.28.0 — see `docs/game_description/generic/units/README.md`"
                      f" for the method.")
         lines.append(f"\nGeneric stats resolved from the shared template"
                      f" `simulation/templates/{d['lca']}` (deepest template common to all"

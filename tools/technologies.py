@@ -282,7 +282,7 @@ def generate_markdown(data, outdir):
         lines.append(f"# {name}\n")
         lines.append(f"Available to **{len(civs)}** civilisations. Generic (non-civ-specific)"
                      f" technology of 0 A.D. 0.28.0 — see"
-                     f" `docs/game_description/generic_technologies/README.md` for the method.")
+                     f" `docs/game_description/generic/technologies/README.md` for the method.")
         lines.append(f"\nData file: `simulation/data/technologies/{name}.json`.\n")
         lines.append("## Basic stats\n")
         lines.extend(fmt_stats_lines(tpl))
@@ -341,7 +341,7 @@ def generate_readme(data):
                  " is excluded when those forbid it (e.g. `unlock_civilians_house_generic` has"
                  " `notciv: kush`, the `civbonuses/` techs are gated to their civs).")
     lines.append("- **Buildings:** the set of buildings a civ owns is the buildable-structure"
-                 " closure of `generic_buildings/` (builder lists with `{civ}` substitution and"
+                 " closure of `generic/buildings/` (builder lists with `{civ}` substitution and"
                  " template existence).")
     lines.append("- **Auto-research:** techs with `autoResearch: true` are researched"
                  " automatically by every civ whose requirements allow it"
