@@ -1,16 +1,14 @@
 # Current turn
 
 - Number: — (no active turn)
-- Phase: **between turns**. Turn 001 (`gather-starting-workers`) closed with
-  verdict **good** (2026-08-20): the 9 starting units gather from game-minute
-  1; batch mean resourcesGathered 6709 vs 0 baseline; canary PASS; no JS
-  errors. Validated and published.
-- Post-turn reflection (done, separate commit): fixed the harness verdict
-  float-boundary bug (0.4×10 < 4.0 → "neutral" at exactly +4.00) and aligned
-  the trigger `TIME_LIMIT_MS` with the protocol default (was 30 game-min,
-  now 20). Turn 001's report re-rendered as verdict=good.
-- Next: turn 002 = backlog top — train civilians at the civil centre.
-  Note: future experiments run to the 20-game-minute limit.
+- Phase: **between turns**. Turn 002 (`train-civilians`) closed with verdict
+  **good** (2026-08-20): the civil centre trains workers continuously;
+  20/20 population in 10/10 matches (median ≤ 2 game-min) vs never on the
+  turn-001 baseline; composite +15.12; canary PASS; 0 JS errors. Validated
+  and published.
+- Next: turn 003 = backlog top — build houses when population headroom runs
+  low (the binding constraint: economy idles at 20/20 from minute ~2).
+- Reminder: experiments now run to the 20-game-minute limit.
 - Baseline for the next turn: turn 001's validated code and
   `experiments/001/baseline.json` is stale for it — the next turn runs a
   fresh baseline of the validated code on its own seeds.

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **Turn 002 — train-civilians (good):** the civil centre now trains
+  `support_civilian` workers continuously (gated on food ≥ 50, population
+  room, and at most one queued item). Population reaches the 20-cap in 10/10
+  matches (median ≤ 2 game-minutes) vs static 9 on the baseline; composite
+  +15.12, canary PASS, no JS errors, no turn-rate regression. The AI API
+  reference now documents that `ent.train` needs the resolved template name
+  (`applyCiv`), not the raw `{civ}` token.
+
 - Tooling (post-turn-001 reflection): fixed the harness verdict boundary —
   weighted deltas accumulate binary float error, so a composite total landing
   exactly on ±4.00 classified as "neutral"; a 1e-9 tolerance fixes it.

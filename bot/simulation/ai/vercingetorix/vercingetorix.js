@@ -74,12 +74,29 @@ VercingetorixBot.prototype.play = function(gameState)
 
 	for (const ent of gameState.getOwnEntities().values())
 	{
+		if (ent.hasClass("CivCentre"))
+			this.trainWorker(gameState, ent);
 		if (!ent.isGatherer() || !ent.isIdle() || !ent.position())
 			continue;
 		const target = this.nearestSupply(gameState, ent);
 		if (target)
 			ent.gather(target);
 	}
+};
+
+// Turn 002: keep the civil centre training workers while food and
+// population room allow; at most one item queued (reservations lock
+// population and food, and training blocked at the cap fails silently).
+VercingetorixBot.prototype.trainWorker = function(gameState, cc)
+{
+	if (gameState.getResources().food < 50 ||
+		gameState.getPopulation() >= gameState.getPopulationLimit())
+		return;
+	const queue = cc.trainingQueue();
+	if (queue && queue.length)
+		return;
+	cc.train(gameState.playerData.civ,
+		gameState.applyCiv("units/{civ}/support_civilian"), 1);
 };
 
 // One scan for resource supplies around the civil centre; rerun with a

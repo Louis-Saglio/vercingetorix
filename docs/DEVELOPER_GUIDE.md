@@ -122,7 +122,10 @@ The bot runs in the AI realm, a separate JS realm from the simulation. It has
   read fields with `.get("Cost/Resources/wood")`, not `.Cost...`. Raw data is in
   `._template`. `gameState.applyCiv("units/{civ}/...")` resolves `{civ}`;
   **trainer tokens use a slash** (`units/{civ}/infantry_spearman_b`), the older
-  underscore form is wrong.
+  underscore form is wrong — and `ent.train(civ, type, count)` expects the
+  **resolved** name (`applyCiv(...)`), because `trainableEntities` replaces
+  `{native}`/`{civ}` in the template token list and does an exact `indexOf`
+  (an unresolved token just logs an error and trains nothing).
 - **Entities:** `ent.position()` — **`[x, z]` 2-element array** in meters (from
   `AIProxy.js`: `position = [msg.x, msg.z]`; there is no y/height element), may
   be `undefined` mid-destruction — guard it), `ent.owner()`, `ent.id()`, `ent.hasClass(c)` (Classes +
