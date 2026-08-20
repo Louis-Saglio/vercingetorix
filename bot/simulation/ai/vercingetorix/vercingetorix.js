@@ -1,6 +1,7 @@
-// Vercingetorix — turns 001–005: gather supplies by need (001, 004), train
+// Vercingetorix — turns 001–006: gather supplies by need (001, 004), train
 // civilians at the civil centre (002), build houses when population headroom
-// runs low (003/005). See turns/NNN-*.md for hypotheses and verdicts.
+// runs low (003/005), parallel training from houses after the Fertility
+// Festival tech (006). See turns/NNN-*.md for hypotheses and verdicts.
 //
 // Observability harness consumers rely on:
 //  - a per-minute [HARNESS] {"event":"sample",...} JSON line with neutral
@@ -87,6 +88,11 @@ VercingetorixBot.prototype.play = function(gameState)
 
 	// Turn 004: steer idle gatherers by need — food while food gatherers are
 	// below 75 % of all gatherers, wood otherwise (G1 needs ~4:1 food:wood).
+	// Turn 006: the wood slot goes to metal while saving 100 metal for the
+	// Fertility Festival tech.
+	const tech = "unlock_civilians_house_generic";
+	const needMetal = !gameState.isResearched(tech) && !gameState.isResearching(tech) &&
+		gameState.getResources().metal < 100;
 	let foodWorkers = 0;
 	let gatherers = 0;
 	for (const ent of gameState.getOwnEntities().values())
@@ -103,10 +109,15 @@ VercingetorixBot.prototype.play = function(gameState)
 		}
 	}
 
+	const civilian = gameState.applyCiv("units/{civ}/support_civilian");
+	const houseCivilian = gameState.applyCiv("units/{civ}/support_civilian_house");
+	const houseTrains = gameState.isResearched(tech);
 	for (const ent of gameState.getOwnEntities().values())
 	{
 		if (ent.hasClass("CivCentre"))
-			this.trainWorker(gameState, ent);
+			this.trainWorker(gameState, ent, civilian);
+		else if (houseTrains && ent.hasClass("House") && !ent.hasClass("Foundation"))
+			this.trainWorker(gameState, ent, houseCivilian);
 		if (!ent.isGatherer() || !ent.isIdle() || !ent.position())
 			continue;
 		const rates = ent.resourceGatherRates();
@@ -115,6 +126,8 @@ VercingetorixBot.prototype.play = function(gameState)
 		let wanted;
 		if (this.canGather(rates, "food") && foodWorkers * 4 < gatherers * 3)
 			wanted = "food";
+		else if (needMetal && this.canGather(rates, "metal"))
+			wanted = "metal";
 		else if (this.canGather(rates, "wood"))
 			wanted = "wood";
 		let target = this.nearestSupply(gameState, ent, wanted);
@@ -128,7 +141,25 @@ VercingetorixBot.prototype.play = function(gameState)
 		}
 	}
 
+	this.researchFertility(gameState, tech);
 	this.buildHouses(gameState);
+};
+
+// Turn 006: research Fertility Festival at the first completed house as
+// soon as its cost is covered, unlocking parallel civilian training there.
+VercingetorixBot.prototype.researchFertility = function(gameState, tech)
+{
+	if (gameState.isResearched(tech) || gameState.isResearching(tech))
+		return;
+	const res = gameState.getResources();
+	if (res.food < 250 || res.wood < 100 || res.metal < 100)
+		return;
+	for (const ent of gameState.getOwnEntities().values())
+		if (ent.hasClass("House") && !ent.hasClass("Foundation"))
+		{
+			ent.research(tech);
+			return;
+		}
 };
 
 VercingetorixBot.prototype.canGather = function(rates, generic)
@@ -268,19 +299,18 @@ VercingetorixBot.prototype.nearestCivilians = function(gameState, spot, count)
 	return units.slice(0, count).map(u => u.ent);
 };
 
-// Turn 002: keep the civil centre training workers while food and
-// population room allow; at most one item queued (reservations lock
-// population and food, and training blocked at the cap fails silently).
-VercingetorixBot.prototype.trainWorker = function(gameState, cc)
+// Turn 002: keep trainers producing workers while food and population room
+// allow; at most one item queued per trainer (reservations lock population
+// and food, and training blocked at the cap fails silently).
+VercingetorixBot.prototype.trainWorker = function(gameState, ent, template)
 {
 	if (gameState.getResources().food < 50 ||
 		gameState.getPopulation() >= gameState.getPopulationLimit())
 		return;
-	const queue = cc.trainingQueue();
+	const queue = ent.trainingQueue();
 	if (queue && queue.length)
 		return;
-	cc.train(gameState.playerData.civ,
-		gameState.applyCiv("units/{civ}/support_civilian"), 1);
+	ent.train(gameState.playerData.civ, template, 1);
 };
 
 // One scan for resource supplies around the civil centre; rerun with a

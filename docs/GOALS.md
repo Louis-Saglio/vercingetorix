@@ -27,8 +27,8 @@ when **5 consecutive turns** fail to beat the best batch median achieved so
 far. The backlog is then free to move to the next goal.
 
 **Status:** turn 005 (2026-08-20) delivered the first batch reaching 100 pop
-(10/10 matches). Best batch median so far: **13 game-minutes**. Consecutive
-turns without beating it: 0.
+(10/10 matches); turn 006 (2026-08-20) improved it. Best batch median so
+far: **11 game-minutes**. Consecutive turns without beating it: 0.
 
 ## Backlog goal: G2 — Reach City phase and 300 population as fast as possible
 

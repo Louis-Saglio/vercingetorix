@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Turn 006 — parallel-training (good):** the bot researches
+  `unlock_civilians_house_generic` (Fertility Festival) at its first
+  completed house (~game-minute 2, metal covered by the starting stock) and
+  then trains civilians from every completed house in parallel with the
+  civil centre. Median time-to-100: **11 game-minutes** vs 13 (G1 best
+  median now 11).
+
 - **Turn 005 — build-houses-redux (good):** house building (turn 003's
   mechanism, re-applied) on top of food-first allocation completes G1's
   economic loop — **100 population reached in 10/10 matches, median 13
