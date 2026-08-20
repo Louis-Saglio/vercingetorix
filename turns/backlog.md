@@ -16,15 +16,16 @@ retroactively to match a verdict.
   750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
   minute 18–19** — training held until 3 forges, forges placed on a double
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
-- G4b (turn 034, pre-registered): **wins before the 30-minute limit ≥ 8/10**
-  vs sandbox Rome. Turn 033's findings: (a) the repair re-post per tick
-  resets the builder's approach and stalls far-away foundations (fix: skip
-  re-posts while someone is REPAIRING); (b) three builders per foundation
-  work; (c) **the wood scan radius (160 m) empties by minute 24–26 on some
-  batches** — the wood income collapses and the rams starve; widen the
-  radius (160 → 320 m or grow-on-empty). Turn 032's best configuration
-  (5/10 wins, composite +11.81): ram gate at 32, 2:1 soldier split,
-  post-town workers 1 stone / 2 metal / 1 food, attack at 2 rams.
+- G4b (turn 035, pre-registered): **wins before the 30-minute limit ≥ 8/10**
+  vs sandbox Rome. Turn 034: the 320 m wood radius + three builders +
+  re-post fix still leave 1/10 on the 301–310 batch — every precondition
+  (city, arsenal, wood 1300+, metal 2700, melee 50) is met yet the rams
+  don't train there. Turn 035 = direct A/B diagnosis: seed 293 (wins on
+  291–300) vs seed 306 (fails on 301–310), full per-minute dumps + the
+  sim-side train-command logging, diff where the ram chain diverges.
+- Turn 033's findings (kept): the repair re-post resets the builder's
+  approach (skip re-posts while REPAIRING); three builders work; the
+  forges are the long pole on some batches.
 - G4a (re-scoped, turn 030's evidence): ≥ 32 melee by minute 22 (8/10 in
   turn 029); the ram-deadline part was structurally unreachable (turn 031).
 - G4: the **assault** problem (the economy chain works — turn 026 got City

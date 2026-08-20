@@ -1,8 +1,9 @@
 # Current turn
 
-- Number: 033 — parallel builders on the critical path (G4b).
-- Phase: four in-turn iterations done → verdict bad (1/10 best; wood
-  depletion found) → reverted → committing (then turn 034: wood radius).
+- Number: 034 — wood radius 320 m (G4b).
+- Phase: two in-turn iterations done → verdict bad (1/10; the 301–310 batch
+  resists the understood levers) → reverted → committing (then turn 035:
+  A/B diagnosis 293 vs 306).
 - Standing instruction (Louis, 2026-08-20): after each **validated** turn,
   publish the bot mod zip on the file server
   (https://files.louissaglio.fr/vercingetorix.zip).
@@ -13,4 +14,4 @@
 - Standing instruction (Louis, 2026-08-19): bad/neutral → fix small
   understood causes in-turn and rerun; baseline = last validated experiment.
 
-Last completed turn: 032 — g4b-win-metric (neutral, reverted; 5/10 best).
+Last completed turn: 033 — parallel-builders (bad; wood depletion found).
