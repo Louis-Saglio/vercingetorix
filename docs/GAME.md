@@ -10,7 +10,7 @@ per-mechanic deep dives in `mechaniques/` and per-entity data in `generic/`,
 `gauls/`, `romans/` — all verified against the source with inline citations.
 
 ## Objective of a match
-`conquest_civic_centers`**: "Defeat opponents by destroying all their fully built
+`conquest_civic_centers`: "Defeat opponents by destroying all their fully built
 civic centers" — a game ends when the enemy CCs fall (foundations do not count).
 
 ## Civilisations
