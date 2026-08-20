@@ -4,16 +4,20 @@ One line per candidate: the change, the primary metric, and the rationale.
 Top of the list goes first. Fed by experiment results; never edit an entry
 retroactively to match a verdict.
 
-1. **Restore house building** (turn 003's reverted code, from its commit) —
-   primary metric: time to 100 population; same experiment design and the
-   same ≥ 6/10 threshold as turn 003. Rationale: the mechanism is proven
-   (limit rose in 10/10, composite +14.90); it was reverted only because the
-   food prerequisite was missing. Turn 004 fixed that (+112 % food income);
-   100 pop in 20 min should now be reachable.
-2. **Parallel training: research Fertility Festival, then train from
-   houses** — primary metric: time to 100 population. Rationale: G1's 90+
-   workers through the civil centre's single 8 s queue cost ≥ 12 min serial;
-   houses train `support_civilian_house` but only after
-   `unlock_civilians_house_generic` (250 food / 100 wood / 100 metal / 60 s —
-   verified in `units/gaul/support_civilian_house.xml` requirements), so this
-   also reintroduces a small metal need.
+1. **Parallel training: research Fertility Festival, then train from
+   houses** — primary metric: time to 100 population (G1 batch median, to
+   beat: **13 game-min**). Rationale: the civil centre's single 8 s queue is
+   now the rate limiter (≥ 10.7 min for 80+ workers; turn 005 evidence).
+   Houses train `support_civilian_house` after `unlock_civilians_house_generic`
+   (250 food / 100 wood / 100 metal / 60 s — requirements verified in
+   `units/gaul/support_civilian_house.xml`); this reintroduces a small metal
+   need. Target: median ≤ 11 min.
+2. **Parallel house construction** (place the next house while one is
+   building, when wood allows) — primary metric: time to 100 population.
+   Rationale: one-house-in-flight paces the cap lift at ~20–30 s per house;
+   the cap trailed usage by design in turn 005 (headroom gate) but earlier
+   headroom means earlier training room.
+3. **Build a storehouse/farmstead near dense woodlines** — primary metric:
+   wood income per game-minute. Rationale: travel time dominates late-game
+   gathering as near-CC supplies deplete (`resources_and_gathering.md` —
+   dropsite distance drives effective rates).

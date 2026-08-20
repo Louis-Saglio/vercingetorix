@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Turn 005 — build-houses-redux (good):** house building (turn 003's
+  mechanism, re-applied) on top of food-first allocation completes G1's
+  economic loop — **100 population reached in 10/10 matches, median 13
+  game-minutes** (G1's first non-Fail batch). The bot now gathers by need,
+  trains continuously, and builds houses ahead of the population cap.
+
 - **Turn 004 — food-first-allocation (good):** idle gatherers are now
   assigned by need — nearest food supply while food gatherers are below
   75 % of all gatherers, nearest wood otherwise (stone/metal ignored until

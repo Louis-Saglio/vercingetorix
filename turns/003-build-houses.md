@@ -1,8 +1,10 @@
 # Turn 003 — build-houses
 
 - **Goal served:** G1 — reach 100 population as fast as possible.
-- **Phase:** closed — verdict **neutral**, change reverted (code preserved
-  in this turn's commit; restore after food allocation lands).
+- **Phase:** closed — verdict **neutral**, change reverted. **Erratum
+  (turn 005):** the Action section below claimed the reverted code was
+  recoverable from this turn's commit — it was reverted before committing
+  and is not in git history; turn 005 re-wrote it from the record above.
 
 ## Hypothesis
 

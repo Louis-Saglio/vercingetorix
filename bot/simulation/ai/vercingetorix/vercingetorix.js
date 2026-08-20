@@ -1,5 +1,6 @@
-// Vercingetorix — turn 001: idle starting units gather the nearest suitable
-// resource supply around the civil centre (see turns/001-gather-starting-workers.md).
+// Vercingetorix — turns 001–005: gather supplies by need (001, 004), train
+// civilians at the civil centre (002), build houses when population headroom
+// runs low (003/005). See turns/NNN-*.md for hypotheses and verdicts.
 //
 // Observability harness consumers rely on:
 //  - a per-minute [HARNESS] {"event":"sample",...} JSON line with neutral
@@ -24,6 +25,12 @@ export function VercingetorixBot(settings)
 	this.turn = 0;
 	this.supplyIds = null;
 	this.supplyRadius = 140;
+
+	// House building (turns 003/005): deterministic candidate-spot sequence
+	// and the one house in flight (pending placement, then foundation id).
+	this.houseSpotIndex = 0;
+	this.housePending = null;
+	this.houseFoundationId = null;
 }
 
 VercingetorixBot.prototype = Object.create(BaseAI.prototype);
@@ -35,7 +42,10 @@ VercingetorixBot.prototype.Serialize = function()
 		"finalReported": this.finalReported,
 		"turn": this.turn,
 		"supplyIds": this.supplyIds,
-		"supplyRadius": this.supplyRadius
+		"supplyRadius": this.supplyRadius,
+		"houseSpotIndex": this.houseSpotIndex,
+		"housePending": this.housePending,
+		"houseFoundationId": this.houseFoundationId
 	};
 };
 
@@ -46,12 +56,15 @@ VercingetorixBot.prototype.Deserialize = function(data)
 	this.turn = data.turn;
 	this.supplyIds = data.supplyIds;
 	this.supplyRadius = data.supplyRadius;
+	this.houseSpotIndex = data.houseSpotIndex;
+	this.housePending = data.housePending;
+	this.houseFoundationId = data.houseFoundationId;
 	this.isDeserialized = true;
 };
 
 VercingetorixBot.prototype.CustomInit = function(gameState)
 {
-	this.chat("Vercingetorix do-nothing baseline online.");
+	this.chat("Vercingetorix online.");
 };
 
 VercingetorixBot.prototype.OnUpdate = function(sharedAI)
@@ -114,6 +127,8 @@ VercingetorixBot.prototype.play = function(gameState)
 				++foodWorkers;
 		}
 	}
+
+	this.buildHouses(gameState);
 };
 
 VercingetorixBot.prototype.canGather = function(rates, generic)
@@ -122,6 +137,135 @@ VercingetorixBot.prototype.canGather = function(rates, generic)
 		if (type.split(".")[0] == generic && rates[type] > 0)
 			return true;
 	return false;
+};
+
+// Turns 003/005: keep one house in flight while population headroom is low
+// and the limit is below the 100-pop goal (CC 20 + 17 houses × 5 = 105).
+VercingetorixBot.prototype.buildHouses = function(gameState)
+{
+	if (this.houseFoundationId)
+	{
+		// Construction finished when the entity no longer is a Foundation
+		// (ChangeEntityTemplate keeps the id).
+		const f = gameState.getEntityById(this.houseFoundationId);
+		if (!f || !f.hasClass("Foundation"))
+			this.houseFoundationId = null;
+	}
+
+	if (this.housePending)
+	{
+		// The construct order from the previous play tick either produced a
+		// foundation near the spot or failed (placement failures destroy the
+		// foundation before resources are charged — the spot is skipped).
+		let foundation;
+		for (const ent of gameState.getOwnEntities().values())
+		{
+			if (!ent.hasClass("Foundation") || !ent.position())
+				continue;
+			const dx = ent.position()[0] - this.housePending.x;
+			const dz = ent.position()[1] - this.housePending.z;
+			if (dx * dx + dz * dz <= 4)
+			{
+				foundation = ent;
+				break;
+			}
+		}
+		if (foundation)
+		{
+			this.houseFoundationId = foundation.id();
+			for (const builder of this.nearestCivilians(gameState, this.housePending, 2))
+				builder.repair(foundation, true);
+		}
+		this.housePending = null;
+		return;
+	}
+
+	if (this.houseFoundationId ||
+		gameState.getPopulationLimit() >= 105 ||
+		gameState.getPopulationLimit() - gameState.getPopulation() >= 3 ||
+		gameState.getResources().wood < 75)
+		return;
+
+	const spot = this.nextHouseSpot(gameState);
+	if (!spot)
+		return;
+	const builders = this.nearestCivilians(gameState, spot, 1);
+	if (!builders.length)
+		return;
+	builders[0].construct(gameState.applyCiv("structures/{civ}/house"),
+		spot.x, spot.z, 0.75 * Math.PI);
+	this.housePending = spot;
+};
+
+// Deterministic ring sequence around the civil centre; skips spots blocked
+// by own structures or cached resource supplies. Advances houseSpotIndex.
+VercingetorixBot.prototype.nextHouseSpot = function(gameState)
+{
+	let cc;
+	for (const ent of gameState.getOwnEntities().values())
+		if (ent.hasClass("CivCentre") && ent.position())
+		{
+			cc = ent;
+			break;
+		}
+	if (!cc)
+		return undefined;
+	const ccPos = cc.position();
+
+	for (let tries = 0; tries < 60; ++tries)
+	{
+		const i = this.houseSpotIndex++;
+		const radius = 26 + 10 * Math.floor(i / 10);
+		const angle = i % 10 * Math.PI / 5;
+		const x = ccPos[0] + radius * Math.cos(angle);
+		const z = ccPos[1] + radius * Math.sin(angle);
+		if (!this.spotBlocked(gameState, x, z))
+			return { "x": x, "z": z };
+	}
+	return undefined;
+};
+
+VercingetorixBot.prototype.spotBlocked = function(gameState, x, z)
+{
+	for (const ent of gameState.getOwnEntities().values())
+	{
+		const pos = ent.position();
+		if (!pos || !ent.hasClass("Structure"))
+			continue;
+		const dx = pos[0] - x;
+		const dz = pos[1] - z;
+		if (dx * dx + dz * dz <= 144)
+			return true;
+	}
+	if (!this.supplyIds)
+		return false; // cache widened this play tick — rescanned next tick
+	for (const id of this.supplyIds)
+	{
+		const supply = gameState.getEntityById(id);
+		if (!supply || !supply.position())
+			continue;
+		const dx = supply.position()[0] - x;
+		const dz = supply.position()[1] - z;
+		if (dx * dx + dz * dz <= 81)
+			return true;
+	}
+	return false;
+};
+
+VercingetorixBot.prototype.nearestCivilians = function(gameState, spot, count)
+{
+	const units = [];
+	for (const ent of gameState.getOwnEntities().values())
+	{
+		const pos = ent.position();
+		if (!pos || !ent.hasClass("Support"))
+			continue;
+		const dx = pos[0] - spot.x;
+		const dz = pos[1] - spot.z;
+		units.push({ "ent": ent, "distSq": dx * dx + dz * dz });
+	}
+	units.sort((a, b) => a.distSq - b.distSq);
+	return units.slice(0, count).map(u => u.ent);
 };
 
 // Turn 002: keep the civil centre training workers while food and
