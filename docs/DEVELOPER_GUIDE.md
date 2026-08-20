@@ -6,15 +6,12 @@ For the agents maintaining this project. Read this before touching anything.
 
 ```
 vercingetorix/
-├── PROTOCOL.md          # the development loop (canonical rules) — read first
 ├── GOALS.md             # current long-term goal + grading scale
+├── GAME.md              # put here everything you learn about the game
 ├── CHANGELOG.md         # curated change history
-├── CURRENT_TURN.md      # active turn + phase — the recovery entry point
-├── turns/               # journal: NNN-slug.md per turn, backlog.md
-├── experiments/NNN/     # raw results per turn: baseline.json, treatment.json, report.md
 ├── bot/                 # the 0 A.D. mod containing the Vercingetorix AI (JS)
 ├── harness/             # Rust match runner + report tool
-└── docs/                # this guide + user guide
+└── docs/
 ```
 
 Data flow of an experiment:
@@ -87,8 +84,7 @@ implementation):
   GUI uses; `common-api/entity.js` wraps the common ones (`moveTo`, `gather`, `attack`,
   ...). Training/building/research go through the entity's `ProductionQueue`,
   `Builder`, `Researcher` components.
-- Determinism is a hard requirement: same seed → identical behavior, always. See
-  [PROTOCOL.md](PROTOCOL.md) → Hard rules.
+- Determinism is a hard requirement: same seed → identical behavior, always.
 
 Before writing bot logic against a game rule or an entity's stats, consult
 [game_description](game_description/README.md): `mechaniques/` explains how the
@@ -159,8 +155,8 @@ The bot runs in the AI realm, a separate JS realm from the simulation. It has
 
 ## Harness (Rust)
 
-The harness is a small Rust CLI (Cargo toolchain is installed on this VPS) implementing
-the runner command from `PROTOCOL.md` → Experiment specification:
+The harness is a small Rust CLI (Cargo toolchain is installed on this VPS) to validate
+changes made to the bot by actually running it the game in headless mode with the bot:
 
 - `harness --tag NAME --seeds 1,2,3 --out DIR [--ai1 ID] [--ai2 ID] [--difficulty2 N]
   [--civ1 C] [--civ2 C] [--map random/alpine_lakes] [--size 192] [--timeout 1200]
@@ -175,15 +171,12 @@ the runner command from `PROTOCOL.md` → Experiment specification:
   spawning (the mod name comes from the mod's `mod.json`), so `--mod NAME` resolves
   inside each isolated home.
 - `harness report --baseline B.json [--treatment T.json] [--canary C.json] [--out DIR]`
-  — the protocol's verdict machinery: paired composite score (outcome + quality +
+  — Verdict machinery: paired composite score (outcome + quality +
   survival, draw semantics), JS-error veto, canary identity check, writes `report.md`
-  and a compact summary. See `PROTOCOL.md` → Verdict rules.
-
-Do not add features to the harness that a turn does not need.
+  and a compact summary.
 
 ## Commands
 
-- One match: see `docs/USER_GUIDE.md` → Running a match yourself.
 - Reference extraction of the public mod: already done at `/home/ubuntu/0ad-poc/public/`.
 - Determinism check: the per-batch canary — same seed twice, stats JSON blocks
   must be byte-identical. Holds because the harness pins biome and player
@@ -215,18 +208,12 @@ the cheap alternatives, all verified in 0.28:
 
 ## Conventions
 
-- One commit per turn, message `turn NNN: <slug> — <verdict>`, body = journal summary.
-  The single commit includes the turn record, `turns/backlog.md`, `CURRENT_TURN.md`,
-  and any `docs/` updates and experiment results — no separate backlog/closure commit.
+- Commit every time you make significant progress.
 - **Push after every commit** to https://github.com/Louis-Saglio/vercingetorix
   (remote `origin`, branch `main`).
 - The bot mod ships `bot/maps/scripts/NonVisualTrigger.js`, which overrides the
   engine's script: it ends the match at the game-time limit (default 20 game-min)
   by marking all active players won, which prints the statistics and quits cleanly.
   The report tool reads "all players won at the limit" as a draw.
-- Turn files use the fixed section template in `PROTOCOL.md`.
-- Update `CHANGELOG.md` only for changes that survive validation (good verdicts) and
-  for protocol/tooling changes.
-- Update `CURRENT_TURN.md` at every phase change of the active turn.
 - Maintain reusable evidence-exploration tools; never parse raw experiment JSON by
   hand in agent context.
