@@ -7,6 +7,9 @@ using evidence-driven development cycles.
 All work happens in **turns**. One turn = one hypothesis, tested by one experiment,
 closed by one verdict and exactly one commit (pushed to GitHub).
 
+One rule to keep in mind while following the protocol: **engineering common sense is
+more important than strictly following the protocol**.
+
 ## Long-term goals and grading
 
 Development is organized around **goals** that span many turns. `GOALS.md` holds the
