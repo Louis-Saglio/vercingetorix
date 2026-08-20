@@ -20,8 +20,13 @@ engine's template loading — nothing from memory:
   (`globalscripts/Technologies.js`) and the `autoResearch` civ bonuses;
   computes the generic technologies (available to 2+ civs) with cost,
   requirements and modifications.
-- `civ.py` — reuses the three analyses and keeps only what is exclusive to one
-  civilisation (single-civ units/buildings/techs); generates the per-civ
+- `auras.py` — same machinery for auras, driven by the `Auras` component token
+  lists (`simulation/components/Auras.js`) collected from the units/structures
+  a civ can own plus its `special/players/<civ>.xml` player template; computes
+  the generic auras (available to 2+ civs) with type, radius, affected
+  classes/players and modifications.
+- `civ.py` — reuses the analyses and keeps only what is exclusive to one
+  civilisation (single-civ units/buildings/techs/auras); generates the per-civ
   reference (`gauls/`, `romans/`, …) with stats from the fully resolved civ
   templates. Usage: `python3 civ.py <civ-code>` (known: `gaul`, `rome`).
 
@@ -31,8 +36,9 @@ engine's template loading — nothing from memory:
 python3 analyze.py        # units        -> out/docs_out/*.md + out/units.json
 python3 buildings.py      # buildings    -> out/buildings_out/*.md + out/buildings.json
 python3 technologies.py   # technologies -> out/technologies_out/*.md + out/technologies.json
-python3 civ.py gaul         # gaul-specific -> out/gauls_out/{units,buildings,technologies}/*.md
-python3 civ.py rome         # rome-specific -> out/romans_out/{units,buildings,technologies}/*.md
+python3 auras.py          # auras        -> out/auras_out/*.md + out/auras.json
+python3 civ.py gaul       # gaul-specific -> out/gauls_out/{units,buildings,technologies,auras}/*.md
+python3 civ.py rome       # rome-specific -> out/romans_out/{units,buildings,technologies,auras}/*.md
 ```
 
 Outputs land in `tools/out/` (gitignored). To refresh the repo docs, review the
@@ -42,6 +48,7 @@ output and copy it over:
 cp out/docs_out/*.md ../docs/game_description/generic/units/
 cp out/buildings_out/*.md ../docs/game_description/generic/buildings/
 cp out/technologies_out/*.md ../docs/game_description/generic/technologies/
+cp out/auras_out/*.md ../docs/game_description/generic/auras/
 cp -r out/gauls_out/* ../docs/game_description/gauls/
 cp -r out/romans_out/* ../docs/game_description/romans/
 ```

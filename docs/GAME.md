@@ -185,6 +185,23 @@ was verified against those files.
   (`top`/`bottom` fields) present a two-way choice; the phase techs use
   `supersedes`/`replaces` to chain Village→Town→City under the logical names
   `phase_village`/`phase_town`/`phase_city`.
+- `data/auras/` — auras (JSON): `type` (`range`, `garrison`, `garrisonedUnits`,
+  `formation`, `global`), `radius`, `affects` (classes), `affectedPlayers`,
+  `stackable`, `requiredTechnology` and `modifications` (same format as tech
+  modifications). Auras are attached to entities by the `Auras` component (a
+  token list in the entity template, `simulation/components/Auras.js`):
+  the root unit/structure templates carry the shared ones (e.g.
+  `template_unit_infantry` → `units/ram_garrison`; the temple →
+  `structures/temple_heal`), hero/champion/catafalque units carry their own,
+  and the **player template** `special/players/<civ>.xml` carries the civ's
+  teambonus (`teambonuses/<civ>_player_teambonus`, a `global` aura with
+  `affectedPlayers: MutualAlly`). The corral food-trickle auras are attached
+  to **gaia domestic animals** (`gaia/fauna_*` → `structures/corral_garrison_*`),
+  so they work for everyone when the animals are garrisoned in the corral.
+  Unreachable in skirmish: the catafalque auras (catafalques are in no
+  builder/trainer list), `structures/farmstead_60`/`structures/loyalty_regen`
+  (decorative mills / Ishtar gate) and a few orphan auras (`units/centurion`,
+  the Craterus/Pyrrhus hero auras).
 - `data/settings/` — victory conditions and other settings.
 - `components/` — JS implementations of the simulation components; each file
   declares its own XML schema (`Trainer.js`, `Resistance.js`, `Attack.js`, …).
@@ -280,6 +297,15 @@ not reachable by anyone (logical phase names `phase_town`/`phase_city`,
 pair-choice techs of single-civ pairs, and leftovers such as
 `unlock_females_house` or `ship_capture_resistance`).
 
+### Generic auras inventory (0.28.0)
+
+Of the 151 aura JSON files, **9 auras are available to 2+ civs** (the generic
+auras, one file each in `docs/game_description/generic/auras/`), **105 are
+single-civ** (the 15 teambonuses, hero auras, civ-unique auras — documented
+per civ in `gauls/auras/`, `romans/auras/`, …), **3 are gaia-carried** (the
+corral food trickles) and the rest are unreachable in skirmish (catafalques,
+decorative buildings, orphans).
+
 ## Where to look
 
 - Units/buildings: `/home/ubuntu/0ad-reference/public/simulation/templates/`
@@ -289,8 +315,10 @@ pair-choice techs of single-civ pairs, and leftovers such as
   `docs/game_description/generic/buildings/`
 - Generic technologies reference (stats + per-civ researcher lists):
   `docs/game_description/generic/technologies/`
-- Civ-specific references (units/buildings/technologies exclusive to one civ):
-  `docs/game_description/gauls/`, `docs/game_description/romans/`
+- Generic auras reference (stats + per-civ carriers):
+  `docs/game_description/generic/auras/`
+- Civ-specific references (units/buildings/technologies/auras exclusive to one
+  civ): `docs/game_description/gauls/`, `docs/game_description/romans/`
 - Civ definitions: `.../simulation/data/civs/*.json`
 - Technologies: `.../simulation/data/technologies/`
 - Victory conditions: `.../simulation/data/settings/victory_conditions/`

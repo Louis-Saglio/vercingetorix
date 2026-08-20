@@ -17,6 +17,8 @@ import analyze as A
 from buildings import buildable_structures, extract_building_stats, fmt_stats_lines as fmt_building_stats
 from technologies import (collect_per_civ as collect_techs, get_tech, has_tech,
                           fmt_stats_lines as fmt_tech_stats)
+from auras import (collect_per_civ as collect_auras, get_aura, has_aura,
+                   fmt_aura_lines, short_carrier)
 
 CIVS = A.CIVS
 
@@ -62,6 +64,14 @@ def civ_techs(civ):
     sources, gated = collect_techs()
     out = {}
     for name, civs in sources.items():
+        if list(civs.keys()) == [civ]:
+            out[name] = civs[civ]
+    return out
+
+def civ_auras(civ):
+    carriers, gaia = collect_auras()
+    out = {}
+    for name, civs in carriers.items():
         if list(civs.keys()) == [civ]:
             out[name] = civs[civ]
     return out
@@ -180,6 +190,25 @@ def write_readme(outdir, title, intro, index_rows, extra=""):
         f.write("\n".join(lines) + "\n")
     return path
 
+def aura_doc(name, carriers_list, outdir, folder, adjective, people, civ):
+    a = get_aura(name)
+    lines = []
+    lines.append(f"# {name}\n")
+    lines.append(f"{adjective}-specific aura of 0 A.D. 0.28.0 — only {people} can have"
+                 f" it. See `docs/game_description/{folder}/auras/README.md` for the"
+                 f" method; shared auras are documented in"
+                 f" `docs/game_description/generic/auras/`.")
+    lines.append(f"\nData file: `simulation/data/auras/{name}.json`.\n")
+    lines.append("## Basic stats\n")
+    lines.extend(fmt_aura_lines(a))
+    lines.append(f"\n## {adjective}\n")
+    for c in sorted(set(carriers_list)):
+        lines.append(f"- attached by {short_carrier(c)}")
+    path = os.path.join(outdir, name.replace("/", "__") + ".md")
+    with open(path, "w") as f:
+        f.write("\n".join(lines) + "\n")
+    return path
+
 def main():
     if len(sys.argv) != 2 or sys.argv[1] not in CIV_INFO:
         print("usage: python3 civ.py <civ-code>  (known: " + ", ".join(sorted(CIV_INFO)) + ")")
@@ -191,7 +220,8 @@ def main():
     units_dir = os.path.join(out_root, "units")
     buildings_dir = os.path.join(out_root, "buildings")
     techs_dir = os.path.join(out_root, "technologies")
-    for d in (units_dir, buildings_dir, techs_dir):
+    auras_dir = os.path.join(out_root, "auras")
+    for d in (units_dir, buildings_dir, techs_dir, auras_dir):
         os.makedirs(d, exist_ok=True)
 
     units = civ_units(civ)
@@ -236,9 +266,23 @@ def main():
         [(n, "auto-researched" if get_tech(n).get("autoResearch") else "researchable")
          for n in sorted(techs)])
 
+    auras = civ_auras(civ)
+    for name, carriers_list in sorted(auras.items()):
+        aura_doc(name, carriers_list, auras_dir, folder, adjective, people, civ)
+    write_readme(
+        auras_dir,
+        f"{adjective}-specific auras of 0 A.D. 0.28.0",
+        f"One file per aura that **only {people}** can have (single-civ auras of"
+        f" the `generic/auras/` analysis): the {adjective.lower()} teambonus (the"
+        f" `special/players/{civ}.xml` player aura), hero auras and auras attached"
+        f" to {adjective.lower()}-unique entities. Shared auras are documented in"
+        f" `docs/game_description/generic/auras/`.",
+        [(n, get_aura(n).get("type", "?")) for n in sorted(auras)])
+
     print(f"{civ} units:", sorted(units))
     print(f"{civ} buildings:", sorted(buildings))
     print(f"{civ} techs:", sorted(techs))
+    print(f"{civ} auras:", sorted(auras))
 
 if __name__ == "__main__":
     main()
