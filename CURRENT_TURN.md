@@ -1,8 +1,9 @@
 # Current turn
 
-- Number: 029 — food fix: the silent training killer (G4a).
-- Phase: experiment + five in-turn iterations done → verdict good (8/10 ≥ 32
-  melee at t22) → committing (then turn 030: assault-ready army).
+- Number: 030 — assault-ready army (G4a).
+- Phase: experiment done → verdict bad (metric structurally unreachable) →
+  reverted → committing (then turn 031: corrected metric + first real
+  assault).
 - Standing instruction (Louis, 2026-08-20): after each **validated** turn,
   publish the bot mod zip on the file server
   (https://files.louissaglio.fr/vercingetorix.zip).
@@ -13,5 +14,4 @@
 - Standing instruction (Louis, 2026-08-19): bad/neutral → fix small
   understood causes in-turn and rerun; baseline = last validated experiment.
 
-Last completed turn: 028 — army-scaling (bad; training-rate mystery, solved
-in turn 029: food).
+Last completed turn: 029 — food-fix (good; the silent training killer).

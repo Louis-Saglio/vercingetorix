@@ -18,8 +18,13 @@ post-town, 5 houses pre-town — ≥ 32 melee at t22 on 8/10 seeds, composite
 
 **Grading per match** (against the per-minute `[HARNESS]` samples):
 
-- **Good** — ≥ 32 melee at the minute-22 sample AND ≥ 3 rams by minute 24.
+- **Good** — ≥ 32 melee at the minute-22 sample AND ≥ 2 rams by minute 26
+  AND the attack has fired by minute 28.
 - **Fail** — otherwise, or JS errors.
+
+(Target corrected on turn 030's evidence: 3 rams by minute 24 is
+structurally unreachable — City lands at minute 20–29, the arsenal builds
+180 s after that, and three rams need ~5 more minutes of metal regather.)
 
 **Goal achieved when:** a 10-seed batch against sandbox Rome reaches Good on
 ≥ 8/10 seeds with 0 JS errors and canary PASS. Record the batch in the

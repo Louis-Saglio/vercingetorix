@@ -16,10 +16,11 @@ retroactively to match a verdict.
   750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
   minute 18–19** — training held until 3 forges, forges placed on a double
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
-- G4a (re-scoped, turn 029): ≥ 32 melee by minute 22 (reached 8/10 in turn
-  029) AND ≥ 3 rams by minute 24. Turn 030: relax the ram gate from 50 to 32
-  soldiers, attack at two rams, and test the assault-ready army + the first
-  real assault at the 30-minute limit. Then G4b = wins.
+- G4a (re-scoped, turn 030's evidence): ≥ 32 melee by minute 22 (8/10 in
+  turn 029) AND ≥ 2 rams by minute 26 AND the attack fired by minute 28 —
+  3 rams by t24 is structurally unreachable (City t20–29, arsenal +180 s,
+  metal regather ~1.4/s). Turn 031: ram gate at 32, corrected metric, and
+  watch the first real assault with a 32–53-soldier army. Then G4b = wins.
 - G4: the **assault** problem (the economy chain works — turn 026 got City
   8/10, arsenal, rams and a full-army attack at minute 23–25, but the force
   was annihilated: 0 buildings destroyed, unitsLost 2500–3150). Candidate
