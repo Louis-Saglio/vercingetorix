@@ -29,22 +29,10 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 These civilisations override the generic stats above (only differing values are listed):
 
 - **ptol** — `units/ptol/cavalry_spearman_merc_b`
-  - health 160 HP
-  - armor 3 hack / 3 pierce / 15 crush
   - Melee "Spear" — damage 6.6 hack + 6.05 pierce — range 4 m — prepare 0.625 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
-  - walk 18 m/s
-  - run 25.2 m/s
-  - vision 80 m
   - cost 20 food, 90 metal
   - build time 10.5 s
-  - population 1
 - **sele** — `units/sele/cavalry_spearman_merc_b`
-  - health 160 HP
-  - armor 3 hack / 3 pierce / 15 crush
   - Melee "Spear" — damage 6.6 hack + 6.05 pierce — range 4 m — prepare 0.625 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
-  - walk 18 m/s
-  - run 25.2 m/s
-  - vision 80 m
   - cost 20 food, 90 metal
   - build time 10.5 s
-  - population 1

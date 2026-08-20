@@ -215,7 +215,11 @@ was verified against those files.
   lists.
 - Buildability is symmetric: units carry `Builder/Entities` with
   `structures/{civ}/...` (`mixins/builder.xml`) — a civ can only build
-  structures it has a file for.
+  structures it has a file for. Vestigial templates exist: the archery range
+  (`structures/{civ}/range.xml` for athen/mace/pers/sele/han) is **not in any
+  Builder list** in 0.28, so it cannot be built at all (archers train from the
+  barracks); `structures/pers/apartment_block.xml` and the sele academy are
+  likewise unreferenced.
 
 ### Generic units inventory (0.28.0)
 
@@ -227,11 +231,23 @@ single civ** (46 heroes, civ-specific champions/mercenaries/conscripts…).
 Stats in those files come from re-implementing the loader+merge semantics
 above on the actual templates, not from memory.
 
+### Generic buildings inventory (0.28.0)
+
+Across the 15 civs there are **56 buildable structure types**: **23 are
+buildable by 2+ civs** (the generic buildings, one file each in
+`docs/game_description/generic_buildings/`, with stats resolved the same way
+plus per-civ trainer lists), and **33 are buildable by a single civ**
+(civ-unique temples, halls, embassies, monuments…). Wall sets
+(`wallset_palisade`, `wallset_stone`) are documented as wall sets, not single
+buildings — they define the segments placed with the wall tool.
+
 ## Where to look
 
 - Units/buildings: `/home/ubuntu/0ad-reference/public/simulation/templates/`
 - Generic units reference (stats + per-civ trainer lists):
   `docs/game_description/generic_units/`
+- Generic buildings reference (stats + per-civ builder lists):
+  `docs/game_description/generic_buildings/`
 - Civ definitions: `.../simulation/data/civs/*.json`
 - Technologies: `.../simulation/data/technologies/`
 - Victory conditions: `.../simulation/data/settings/victory_conditions/`

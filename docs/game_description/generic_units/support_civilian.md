@@ -42,11 +42,4 @@ These civilisations override the generic stats above (only differing values are 
 
 - **spart** — `units/spart/support_civilian`
   - health 35 HP
-  - armor 1 hack / 1 pierce / 1 crush
   - Melee "Dagger" — damage 3 hack — range 3 m — prepare 0.5 s — repeat 1 s
-  - walk 9 m/s
-  - run 15.03 m/s
-  - vision 32 m
-  - cost 50 food
-  - build time 8 s
-  - population 1

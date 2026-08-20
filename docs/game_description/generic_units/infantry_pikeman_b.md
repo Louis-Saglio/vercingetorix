@@ -32,12 +32,5 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 These civilisations override the generic stats above (only differing values are listed):
 
 - **han** — `units/han/infantry_pikeman_b`
-  - health 100 HP
   - armor 3 hack / 3 pierce / 15 crush
   - Melee "Ji" — damage 10 hack + 3.5 pierce — range 8 m — prepare 1 s — repeat 2 s — bonus 2.5× vs Cavalry — preferred Human
-  - walk 8.55 m/s
-  - run 14.28 m/s
-  - vision 80 m
-  - cost 50 food, 50 wood
-  - build time 10 s
-  - population 1

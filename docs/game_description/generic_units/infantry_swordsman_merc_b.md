@@ -29,22 +29,10 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 These civilisations override the generic stats above (only differing values are listed):
 
 - **ptol** — `units/ptol/infantry_swordsman_merc_b`
-  - health 100 HP
-  - armor 3 hack / 3 pierce / 15 crush
   - Melee "Sword" — damage 8.8 hack — range 3 m — prepare 0.375 s — repeat 0.75 s — preferred Unit+!Ship
-  - walk 9.5 m/s
-  - run 15.86 m/s
-  - vision 80 m
   - cost 60 metal
   - build time 7 s
-  - population 1
 - **sele** — `units/sele/infantry_swordsman_merc_b`
-  - health 100 HP
-  - armor 3 hack / 3 pierce / 15 crush
   - Melee "Rhomphaia" — damage 8.8 hack — range 3 m — prepare 0.375 s — repeat 0.75 s — preferred Unit+!Ship
-  - walk 9.5 m/s
-  - run 15.86 m/s
-  - vision 80 m
   - cost 60 metal
   - build time 7 s
-  - population 1

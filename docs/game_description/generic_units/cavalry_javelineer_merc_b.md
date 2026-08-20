@@ -29,22 +29,10 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 These civilisations override the generic stats above (only differing values are listed):
 
 - **kush** — `units/kush/cavalry_javelineer_merc_b`
-  - health 100 HP
-  - armor 2 hack / 1 pierce / 15 crush
   - Ranged "Javelin" — damage 19.8 pierce — range 30 m — prepare 0.4 s — repeat 1.5 s — preferred Human
-  - walk 16.2 m/s
-  - run 22.68 m/s
-  - vision 80 m
   - cost 20 food, 90 metal
   - build time 10.5 s
-  - population 1
 - **ptol** — `units/ptol/cavalry_javelineer_merc_b`
-  - health 100 HP
-  - armor 2 hack / 1 pierce / 15 crush
   - Ranged "Javelin" — damage 19.8 pierce — range 30 m — prepare 0.4 s — repeat 1.5 s — preferred Human
-  - walk 16.2 m/s
-  - run 22.68 m/s
-  - vision 80 m
   - cost 20 food, 90 metal
   - build time 10.5 s
-  - population 1

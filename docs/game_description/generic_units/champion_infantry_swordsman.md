@@ -33,22 +33,10 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 These civilisations override the generic stats above (only differing values are listed):
 
 - **mace** — `units/mace/champion_infantry_swordsman`
-  - health 200 HP
-  - armor 6 hack / 6 pierce / 20 crush
   - Melee "Rhomphaia" — damage 10 hack — range 5 m — prepare 0.5 s — repeat 1 s — preferred Unit+!Ship
-  - walk 9.5 m/s
-  - run 15.86 m/s
-  - vision 80 m
-  - cost 80 food, 60 wood, 80 metal
-  - build time 20 s
-  - population 1
 - **spart** — `units/spart/champion_infantry_swordsman`
   - health 100 HP
   - armor 5 hack / 5 pierce / 15 crush
   - Melee "Sword" — damage 9.5 hack — range 3 m — prepare 0.375 s — repeat 0.75 s — preferred Unit+!Ship
-  - walk 9.5 m/s
-  - run 15.86 m/s
-  - vision 80 m
   - cost 50 food, 40 wood, 35 metal
   - build time 10 s
-  - population 1

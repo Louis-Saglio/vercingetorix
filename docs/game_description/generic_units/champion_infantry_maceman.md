@@ -27,7 +27,6 @@ Note: the civilisation variants of this unit share no concrete common template �
 These civilisations override the generic stats above (only differing values are listed):
 
 - **germ** — `units/germ/champion_infantry_maceman`
-  - health 100 HP
   - armor 1 hack / 2 pierce / 15 crush
   - Melee "Mace" — damage 5 hack + 7 crush — range 3 m — prepare 0.5 s — repeat 1 s — preferred !Ship
   - walk 11.4 m/s
@@ -35,7 +34,6 @@ These civilisations override the generic stats above (only differing values are 
   - vision 80 m
   - cost 50 food, 30 wood, 20 stone
   - build time 10 s
-  - population 1
 - **maur** — `units/maur/champion_infantry_maceman`
   - health 200 HP
   - armor 5 hack / 6 pierce / 20 crush
@@ -45,4 +43,3 @@ These civilisations override the generic stats above (only differing values are 
   - vision 80 m
   - cost 80 food, 60 wood, 80 metal
   - build time 20 s
-  - population 1

@@ -34,12 +34,6 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 These civilisations override the generic stats above (only differing values are listed):
 
 - **mace** — `units/mace/infantry_slinger_b`
-  - health 50 HP
-  - armor 1 hack / 1 pierce / 10 crush
   - Ranged "Sling" — damage 12.65 pierce + 1.21 crush — range 45 m — prepare 0.4 s — repeat 1.5 s — preferred Human
-  - walk 10.8 m/s
-  - run 18.04 m/s
-  - vision 80 m
   - cost 60 metal
   - build time 7 s
-  - population 1
