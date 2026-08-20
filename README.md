@@ -8,7 +8,6 @@ in-engine JavaScript mod, developed and trained entirely in headless matches on 
 - **Run one headless match** (bot vs Petra): see [User Guide](docs/USER_GUIDE.md).
 - **Play against it**: copy the mod into `~/.local/share/0ad/mods/vercingetorix` and
   select it in the game setup.
-- **Follow development**: read `turns/` (journal) and `experiments/` (raw results).
 
 ## Documentation
 
