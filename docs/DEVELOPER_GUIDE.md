@@ -179,8 +179,7 @@ changes made to the bot by actually running it the game in headless mode with th
 
 - Reference extraction of the public mod: already done at `/home/ubuntu/0ad-poc/public/`.
 - Determinism check: the per-batch canary — same seed twice, stats JSON blocks
-  must be byte-identical. Holds because the harness pins biome and player
-  placement (`docs/ENGINE_BUG_0AD_0.28_NONDETERMINISM.md`).
+  must be byte-identical.
 
 ## Performance guidance
 
