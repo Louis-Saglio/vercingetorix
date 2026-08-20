@@ -123,8 +123,9 @@ The bot runs in the AI realm, a separate JS realm from the simulation. It has
   `._template`. `gameState.applyCiv("units/{civ}/...")` resolves `{civ}`;
   **trainer tokens use a slash** (`units/{civ}/infantry_spearman_b`), the older
   underscore form is wrong.
-- **Entities:** `ent.position()` (meters, may be `undefined` mid-destruction —
-  guard it), `ent.owner()`, `ent.id()`, `ent.hasClass(c)` (Classes +
+- **Entities:** `ent.position()` — **`[x, z]` 2-element array** in meters (from
+  `AIProxy.js`: `position = [msg.x, msg.z]`; there is no y/height element), may
+  be `undefined` mid-destruction — guard it), `ent.owner()`, `ent.id()`, `ent.hasClass(c)` (Classes +
   VisibleClasses merged), `ent.getResourceType()` ("wood"/"food"/... from
   ResourceSupply/Type — trees have **no Identity classes**), `ent.buildableEntities(civ)`,
   `ent.trainingQueue()`, `ent.unitAIState()` (e.g. `"INDIVIDUAL.IDLE"`,

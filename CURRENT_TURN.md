@@ -1,11 +1,17 @@
 # Current turn
 
 - Number: — (no active turn)
-- Phase: **fresh start**. All pre-`game_description` turns and experiments
-  were deleted (2026-08-20, Louis's decision: they predated the game
-  reference and did not progress correctly). The bot is the do-nothing
-  baseline with observability kept. The next turn is a new turn 001,
-  designed from `docs/game_description/`.
+- Phase: **between turns**. Turn 001 (`gather-starting-workers`) closed with
+  verdict **good** (2026-08-20): the 9 starting units gather from game-minute
+  1; batch mean resourcesGathered 6709 vs 0 baseline; canary PASS; no JS
+  errors. Validated and published.
+- Post-turn reflection items pending (separate commit before turn 002):
+  harness verdict float-boundary bug (0.4×10 < 4.0 → "neutral" at exactly
+  +4.00); trigger `TIME_LIMIT_MS` is 30 min while comment/protocol say 20.
+- Next: turn 002 = backlog top — train civilians at the civil centre.
+- Baseline for the next turn: turn 001's validated code and
+  `experiments/001/baseline.json` is stale for it — the next turn runs a
+  fresh baseline of the validated code on its own seeds.
 
 Standing instructions (Louis, 2026-08-20):
 

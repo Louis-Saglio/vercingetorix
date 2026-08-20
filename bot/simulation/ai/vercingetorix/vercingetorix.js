@@ -1,11 +1,7 @@
-// Vercingetorix — do-nothing baseline.
+// Vercingetorix — turn 001: idle starting units gather the nearest suitable
+// resource supply around the civil centre (see turns/001-gather-starting-workers.md).
 //
-// The bot issues no orders: units keep their default UnitAI behavior
-// (starting units stand idle, buildings do nothing). The strategy that
-// used to live here was reset — future turns rebuild it from the game
-// reference in docs/game_description/.
-//
-// What remains is the observability harness consumers rely on:
+// Observability harness consumers rely on:
 //  - a per-minute [HARNESS] {"event":"sample",...} JSON line with neutral
 //    state (time, resources, population, unit-state histogram) — the
 //    harness report tool reads "pop" from these samples;
@@ -22,6 +18,12 @@ export function VercingetorixBot(settings)
 	BaseAI.call(this, settings);
 	this.reportMinute = 0;
 	this.finalReported = false;
+
+	// Gathering (turn 001): cached resource-supply ids around the civil
+	// centre; refreshed with a larger radius when exhausted.
+	this.turn = 0;
+	this.supplyIds = null;
+	this.supplyRadius = 140;
 }
 
 VercingetorixBot.prototype = Object.create(BaseAI.prototype);
@@ -30,7 +32,10 @@ VercingetorixBot.prototype.Serialize = function()
 {
 	return {
 		"reportMinute": this.reportMinute,
-		"finalReported": this.finalReported
+		"finalReported": this.finalReported,
+		"turn": this.turn,
+		"supplyIds": this.supplyIds,
+		"supplyRadius": this.supplyRadius
 	};
 };
 
@@ -38,6 +43,9 @@ VercingetorixBot.prototype.Deserialize = function(data)
 {
 	this.reportMinute = data.reportMinute;
 	this.finalReported = data.finalReported;
+	this.turn = data.turn;
+	this.supplyIds = data.supplyIds;
+	this.supplyRadius = data.supplyRadius;
 	this.isDeserialized = true;
 };
 
@@ -48,9 +56,97 @@ VercingetorixBot.prototype.CustomInit = function(gameState)
 
 VercingetorixBot.prototype.OnUpdate = function(sharedAI)
 {
-	// The bot issues no orders, so there is nothing to guard against after
-	// defeat — and report() must keep running to emit the end event.
+	if (this.gameState.playerData.state == "active")
+	{
+		// Play decisions run every 8th sim turn (throttle).
+		if (++this.turn % 8 === 0)
+			this.play(this.gameState);
+	}
 	this.report(this.gameState);
+};
+
+VercingetorixBot.prototype.play = function(gameState)
+{
+	if (!this.supplyIds)
+		this.cacheSupplies(gameState);
+	if (!this.supplyIds)
+		return; // no civil centre yet — retry next play tick
+
+	for (const ent of gameState.getOwnEntities().values())
+	{
+		if (!ent.isGatherer() || !ent.isIdle() || !ent.position())
+			continue;
+		const target = this.nearestSupply(gameState, ent);
+		if (target)
+			ent.gather(target);
+	}
+};
+
+// One scan for resource supplies around the civil centre; rerun with a
+// grown radius when everything cached is exhausted.
+VercingetorixBot.prototype.cacheSupplies = function(gameState)
+{
+	let cc;
+	for (const ent of gameState.getOwnEntities().values())
+		if (ent.hasClass("CivCentre") && ent.position())
+		{
+			cc = ent;
+			break;
+		}
+	if (!cc)
+		return;
+
+	const ccPos = cc.position();
+	const maxDistSq = this.supplyRadius * this.supplyRadius;
+	const ids = [];
+	for (const ent of gameState.getEntities().values())
+	{
+		const pos = ent.position();
+		if (!pos || !ent.get("ResourceSupply"))
+			continue;
+		const dx = pos[0] - ccPos[0];
+		const dz = pos[1] - ccPos[1];
+		if (dx * dx + dz * dz <= maxDistSq)
+			ids.push(ent.id());
+	}
+	this.supplyIds = ids;
+};
+
+VercingetorixBot.prototype.nearestSupply = function(gameState, ent)
+{
+	if (!this.supplyIds)
+		return undefined; // widened this play tick — rescan happens next tick
+	const rates = ent.resourceGatherRates();
+	if (!rates)
+		return undefined;
+	const pos = ent.position();
+	let best;
+	let bestDistSq = Infinity;
+	for (const id of this.supplyIds)
+	{
+		const supply = gameState.getEntityById(id);
+		if (!supply || !supply.position() || supply.resourceSupplyAmount() <= 0)
+			continue;
+		const type = supply.resourceSupplyType();
+		if (!type || !(rates[type.generic + "." + type.specific] || rates[type.generic]))
+			continue;
+		const sPos = supply.position();
+		const dx = sPos[0] - pos[0];
+		const dz = sPos[1] - pos[1];
+		const distSq = dx * dx + dz * dz;
+		if (distSq < bestDistSq)
+		{
+			bestDistSq = distSq;
+			best = supply;
+		}
+	}
+	if (!best && this.supplyRadius < 500)
+	{
+		// Everything cached is exhausted or unsuitable — widen the search.
+		this.supplyRadius += 80;
+		this.supplyIds = null;
+	}
+	return best;
 };
 
 VercingetorixBot.prototype.report = function(gameState)

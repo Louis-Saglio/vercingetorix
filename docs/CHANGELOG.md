@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Turn 001 — gather-starting-workers (good):** the bot now orders every idle
+  unit able to gather onto the nearest suitable resource supply around the
+  civil centre (one init scan, cached supply ids, decisions every 8th sim
+  turn). Batch mean `resourcesGathered` 6709 vs 0 for the do-nothing baseline
+  (10 seeds, canary PASS, 0 JS errors, no turn-rate regression). The AI API
+  reference now documents that `ent.position()` is a `[x, z]` pair.
+
 - Experiments: map size changed from Tiny (128) to **Small (192)** (harness
   default `--size`, `random/mainland`), and the **300 per-player population
   cap** is now pinned by the bot mod's autostart override
