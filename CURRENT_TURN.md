@@ -10,6 +10,10 @@
 - Standing instruction (Louis, 2026-08-19): each turn is exactly one commit —
   fold backlog and `CURRENT_TURN.md` bookkeeping into the turn commit; no
   separate backlog/closure commit.
+- Standing instruction (Louis, 2026-08-20): after each **validated** turn,
+  publish the bot mod as a zip on the file server
+  (https://files.louissaglio.fr/vercingetorix.zip) — see `docs/PROTOCOL.md`
+  step 6.
 - Standing instruction (Louis, 2026-08-19): bad/neutral → fix small
   understood causes in-turn and rerun; baseline = last validated experiment.
 

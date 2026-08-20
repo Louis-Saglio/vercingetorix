@@ -73,6 +73,11 @@ why — that is a legitimate outcome of evidence, not a failure.
    of the turn's bookkeeping — the turn record, `turns/backlog.md`, `CURRENT_TURN.md`,
    and any `docs/CHANGELOG.md` / `docs/GOALS.md` updates and experiment results. Do
    **not** make a separate backlog/closure commit after the turn commit.
+   After a **validated (good)** turn, also publish the bot mod on Louis's file
+   server: zip the `bot/` directory with the mod folder `vercingetorix/` at the
+   archive root (python3 `zipfile` — no zip binary on the VPS), install it as
+   `/home/fileserver/files/vercingetorix.zip` (owner `fileserver:fileserver`,
+   mode 644), served as https://files.louissaglio.fr/vercingetorix.zip.
 7. **Post-turn reflection** — before launching the next turn, ask: did anything in
    this turn reveal a problem or a missing capability in the harness or in this
    protocol itself? If yes, make those improvements **now**, in a separate commit

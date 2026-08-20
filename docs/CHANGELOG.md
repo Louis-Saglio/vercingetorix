@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Workflow (Louis, 2026-08-20): after each validated turn, the bot mod is
+  published as a zip on the file server — https://files.louissaglio.fr/vercingetorix.zip
+  (mod folder `vercingetorix/` at the archive root; the current zip carries
+  the turn-023 validated state). Codified in `docs/PROTOCOL.md` step 6.
 - Protocol update (Louis's feedback, post-turn 024): bad/neutral verdicts may
   be fixed **in the same turn** when the cause is understood and the fix is
   small (iterate the treatment against the same baseline; stop the turn when
