@@ -72,16 +72,56 @@ VercingetorixBot.prototype.play = function(gameState)
 	if (!this.supplyIds)
 		return; // no civil centre yet — retry next play tick
 
+	// Turn 004: steer idle gatherers by need — food while food gatherers are
+	// below 75 % of all gatherers, wood otherwise (G1 needs ~4:1 food:wood).
+	let foodWorkers = 0;
+	let gatherers = 0;
+	for (const ent of gameState.getOwnEntities().values())
+	{
+		if (!ent.isGatherer())
+			continue;
+		++gatherers;
+		const orders = ent.unitAIOrderData();
+		if (orders && orders.length && orders[0].target !== undefined)
+		{
+			const target = gameState.getEntityById(orders[0].target);
+			if (target && target.getResourceType() == "food")
+				++foodWorkers;
+		}
+	}
+
 	for (const ent of gameState.getOwnEntities().values())
 	{
 		if (ent.hasClass("CivCentre"))
 			this.trainWorker(gameState, ent);
 		if (!ent.isGatherer() || !ent.isIdle() || !ent.position())
 			continue;
-		const target = this.nearestSupply(gameState, ent);
+		const rates = ent.resourceGatherRates();
+		if (!rates)
+			continue;
+		let wanted;
+		if (this.canGather(rates, "food") && foodWorkers * 4 < gatherers * 3)
+			wanted = "food";
+		else if (this.canGather(rates, "wood"))
+			wanted = "wood";
+		let target = this.nearestSupply(gameState, ent, wanted);
+		if (!target && wanted)
+			target = this.nearestSupply(gameState, ent, undefined);
 		if (target)
+		{
 			ent.gather(target);
+			if (target.getResourceType() == "food")
+				++foodWorkers;
+		}
 	}
+};
+
+VercingetorixBot.prototype.canGather = function(rates, generic)
+{
+	for (const type in rates)
+		if (type.split(".")[0] == generic && rates[type] > 0)
+			return true;
+	return false;
 };
 
 // Turn 002: keep the civil centre training workers while food and
@@ -129,7 +169,7 @@ VercingetorixBot.prototype.cacheSupplies = function(gameState)
 	this.supplyIds = ids;
 };
 
-VercingetorixBot.prototype.nearestSupply = function(gameState, ent)
+VercingetorixBot.prototype.nearestSupply = function(gameState, ent, wanted)
 {
 	if (!this.supplyIds)
 		return undefined; // widened this play tick — rescan happens next tick
@@ -146,6 +186,8 @@ VercingetorixBot.prototype.nearestSupply = function(gameState, ent)
 			continue;
 		const type = supply.resourceSupplyType();
 		if (!type || !(rates[type.generic + "." + type.specific] || rates[type.generic]))
+			continue;
+		if (wanted && type.generic != wanted)
 			continue;
 		const sPos = supply.position();
 		const dx = sPos[0] - pos[0];

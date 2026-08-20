@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Turn 004 — food-first-allocation (good):** idle gatherers are now
+  assigned by need — nearest food supply while food gatherers are below
+  75 % of all gatherers, nearest wood otherwise (stone/metal ignored until
+  Town phase needs them). Mean food gathered 4718 vs 2224 (+112 %), stable
+  on all 10 seeds; canary PASS; no JS errors; no turn-rate regression.
+
 - **Turn 002 — train-civilians (good):** the civil centre now trains
   `support_civilian` workers continuously (gated on food ≥ 50, population
   room, and at most one queued item). Population reaches the 20-cap in 10/10
