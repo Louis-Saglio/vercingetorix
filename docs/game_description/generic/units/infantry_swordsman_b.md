@@ -29,3 +29,26 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **kush** — `units/kush/infantry_swordsman_b` (barracks)
 - **maur** — `units/maur/infantry_swordsman_b` (barracks)
 - **rome** — `units/rome/infantry_swordsman_b` (barracks, civil_centre)
+
+## Ranks
+
+### Advanced — `units/{civ}/infantry_swordsman_a`
+Requires 100 XP.
+- Health: ×1.25 → 125 HP
+- Melee attack damage: ×1.1 → hack 8.8
+- Capture strength: +0.7 → 3.2
+- Build time: ×1.2 → 12 s
+- Gather base speed: ×0.7 → 0.7
+- Loot: ×1.2
+
+### Elite — `units/{civ}/infantry_swordsman_e`
+Requires 100 XP.
+- Health: ×1.25 (total ×1.56) → 156.25 HP
+- Melee attack damage: ×1.1 (total ×1.21) → hack 9.68
+- Capture strength: +0.8 (total +1.5) → 4
+- Build time: ×1.2 (total ×1.44) → 14.4 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+
+- Note: **rome** (Elite rank promotes further to `units/{civ}/infantry_legionary` at 2000 XP).
+

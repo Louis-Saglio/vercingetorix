@@ -22,6 +22,29 @@ Stats resolved from `simulation/templates/units/rome/infantry_swordsman_a` (full
 - **Visible classes:** Builder Citizen Worker Soldier Infantry Melee Swordsman
 - **Rank:** Advanced
 
+## Ranks
+
+### Elite — `units/rome/infantry_swordsman_e`
+Requires 100 XP.
+- Health: ×1.25 (total ×1.56) → 156.25 HP
+- Melee attack damage: ×1.1 (total ×1.21) → hack 9.68
+- Capture strength: +0.8 (total +1.5) → 4
+- Build time: ×1.2 (total ×1.44) → 14.4 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+
+### Elite — `units/rome/infantry_legionary`
+Requires 2000 XP.
+- cost 50 food, 50 wood, 15 metal
+- Health: ×1.25 (total ×1.95) → 195.31 HP
+- Melee attack damage: ×1.1 (total ×1.33) → hack 10.65
+- Capture strength: +0.8 (total +2.3) → 4.8
+- Build time: ×1.2 (total ×1.73) → 17.28 s
+- Gather base speed: ×0.7 (total ×0.34) → 0.34
+- Loot: ×1.2 (total ×1.73)
+
+Note: this unit is already **Advanced** rank — in game it also receives the auto-researched `unit_advanced` tech modifications (see the Ranks sections in `docs/game_description/generic/units/`).
+
 ## Trained by
 
 - **rome** — `units/rome/infantry_swordsman_a` (army_camp)

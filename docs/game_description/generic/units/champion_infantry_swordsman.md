@@ -29,6 +29,15 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **sele** — `units/sele/champion_infantry_swordsman` (barracks)
 - **spart** — `units/spart/champion_infantry_swordsman` (barracks)
 
+## Ranks
+
+### Basic — `units/{civ}/champion_infantry_swordsman_first`
+Requires 3000 XP.
+- No stat changes (identity/visuals only).
+
+- Note: **spart**'s variant is trained at **Elite** rank (already receives the rank techs in game).
+
+
 ## Civilisation-specific overrides
 
 These civilisations override the generic stats above (only differing values are listed):

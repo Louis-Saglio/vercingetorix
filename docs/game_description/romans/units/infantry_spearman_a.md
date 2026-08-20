@@ -22,6 +22,23 @@ Stats resolved from `simulation/templates/units/rome/infantry_spearman_a` (full 
 - **Visible classes:** Builder Citizen Worker Soldier Infantry Melee Spearman
 - **Rank:** Advanced
 
+## Ranks
+
+### Elite — `units/rome/infantry_spearman_e`
+Requires 100 XP.
+- Health: ×1.25 (total ×1.56) → 156.25 HP
+- Melee attack damage: ×1.1 (total ×1.21) → hack 5.45 + pierce 4.84
+- Capture strength: +0.8 (total +1.5) → 4
+- Build time: ×1.2 (total ×1.44) → 14.4 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+
+### Basic — `units/rome/infantry_spearman_conscript`
+Requires 2000 XP.
+- No stat changes (identity/visuals only).
+
+Note: this unit is already **Advanced** rank — in game it also receives the auto-researched `unit_advanced` tech modifications (see the Ranks sections in `docs/game_description/generic/units/`).
+
 ## Trained by
 
 - **rome** — `units/rome/infantry_spearman_a` (army_camp)

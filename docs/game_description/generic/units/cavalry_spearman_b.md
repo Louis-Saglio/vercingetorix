@@ -32,3 +32,26 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **pers** — `units/pers/cavalry_spearman_b` (civil_centre, stable)
 - **rome** — `units/rome/cavalry_spearman_b` (civil_centre, stable)
 - **spart** — `units/spart/cavalry_spearman_b` (stable)
+
+## Ranks
+
+### Advanced — `units/{civ}/cavalry_spearman_a`
+Requires 150 XP.
+- Health: ×1.25 → 200 HP
+- Melee attack damage: ×1.1 → hack 6.6 + pierce 6.05
+- Capture strength: +0.7 → 2.45
+- Build time: ×1.2 → 18 s
+- Gather base speed: ×0.7 → 0.7
+- Loot: ×1.2
+
+### Elite — `units/{civ}/cavalry_spearman_e`
+Requires 150 XP.
+- Health: ×1.25 (total ×1.56) → 250 HP
+- Melee attack damage: ×1.1 (total ×1.21) → hack 7.26 + pierce 6.66
+- Capture strength: +0.8 (total +1.5) → 3.25
+- Build time: ×1.2 (total ×1.44) → 21.6 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+
+- Note: **rome** (Elite rank promotes further to `units/{civ}/cavalry_spearman_auxiliary_b` at 2000 XP).
+

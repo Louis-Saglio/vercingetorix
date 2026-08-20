@@ -38,6 +38,32 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **sele** — `units/sele/cavalry_javelineer_b` (civil_centre, stable)
 - **spart** — `units/spart/cavalry_javelineer_b` (civil_centre, stable)
 
+## Ranks
+
+### Advanced — `units/{civ}/cavalry_javelineer_a`
+Requires 150 XP.
+- Health: ×1.25 → 125 HP
+- Capture strength: +0.7 → 2.45
+- Build time: ×1.2 → 18 s
+- Gather base speed: ×0.7 → 0.7
+- Loot: ×1.2
+- Ranged spread: ×0.8
+
+### Elite — `units/{civ}/cavalry_javelineer_e`
+Requires 150 XP.
+- Health: ×1.25 (total ×1.56) → 156.25 HP
+- Capture strength: +0.8 (total +1.5) → 3.25
+- Build time: ×1.2 (total ×1.44) → 21.6 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+- Ranged spread: ×0.8 (total ×0.64)
+
+- Note: **mace** (300 XP) for the Advanced promotion.
+- Note: **mace** (300 XP) for the Elite promotion.
+- Note: **rome** (Elite rank promotes further to `units/{civ}/cavalry_javelineer_auxiliary_b` at 2000 XP).
+- Note: mercenary variants promote at 0 XP (the auto-researched `upgrade_rank_advanced_mercenary` tech replaces RequiredXp with 0).
+
+
 ## Civilisation-specific overrides
 
 These civilisations override the generic stats above (only differing values are listed):

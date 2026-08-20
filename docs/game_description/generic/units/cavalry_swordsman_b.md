@@ -29,3 +29,25 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **gaul** — `units/gaul/cavalry_swordsman_b` (stable)
 - **han** — `units/han/cavalry_swordsman_b` (civil_centre, stable)
 - **maur** — `units/maur/cavalry_swordsman_b` (stable)
+
+## Ranks
+
+### Advanced — `units/{civ}/cavalry_swordsman_a`
+Requires 150 XP.
+- Health: ×1.25 → 200 HP
+- Melee attack damage: ×1.1 → hack 9.9
+- Capture strength: +0.7 → 2.45
+- Build time: ×1.2 → 18 s
+- Gather base speed: ×0.7 → 0.7
+- Loot: ×1.2
+
+### Elite — `units/{civ}/cavalry_swordsman_e`
+Requires 150 XP.
+- Health: ×1.25 (total ×1.56) → 250 HP
+- Melee attack damage: ×1.1 (total ×1.21) → hack 10.89
+- Capture strength: +0.8 (total +1.5) → 3.25
+- Build time: ×1.2 (total ×1.44) → 21.6 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+
+

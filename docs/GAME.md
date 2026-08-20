@@ -226,7 +226,21 @@ was verified against those files.
   → `champion_elephant`.
 - Promotions (`Promotion/Entity`, `units/{civ}/..._a`) and `RequiredXp` (100
   base) produce the `_a`/`_e` ranks — promoted units are **not** in trainer
-  lists.
+  lists. The rank ladder is `Basic → Advanced → Elite`; the `_a`/`_e` template
+  files themselves only change `Identity/Rank`, `Promotion` and the actor.
+  **All rank stat changes come from two auto-researched techs**: `unit_advanced`
+  (affects classes `Advanced Unit` and `Elite Unit`: +25% health, +20% build
+  time, +0.7 capture strength, +20% loot, −30% gather speed, +10% melee
+  damage, −20% ranged spread, healer +5 strength/+3 range) and `unit_elite`
+  (the same again for `Elite Unit`). `GetIdentityClasses`
+  (`globalscripts/Templates.js`) appends the `Rank` to the unit's classes,
+  which is how the techs target the ranks. Mercenaries promote at 0 XP
+  (`upgrade_rank_advanced_mercenary` replaces `RequiredXp`). Special
+  promotions exist beyond the ladder: rome's champion swordsman →
+  `champion_infantry_swordsman_first` (3000 XP, stats unchanged), athen's
+  elite spearman → `champion_infantry` (250 XP), rome's elite spearman →
+  `infantry_spearman_conscript` (2000 XP); spart's champion swordsman is
+  trained directly at Elite rank.
 - Buildability is symmetric: units carry `Builder/Entities` with
   `structures/{civ}/...` (`mixins/builder.xml`) — a civ can only build
   structures it has a file for. Vestigial templates exist: the archery range

@@ -30,6 +30,28 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **ptol** — `units/ptol/infantry_pikeman_b` (barracks, civil_centre)
 - **sele** — `units/sele/infantry_pikeman_b` (barracks)
 
+## Ranks
+
+### Advanced — `units/{civ}/infantry_pikeman_a`
+Requires 100 XP.
+- Health: ×1.25 → 125 HP
+- Melee attack damage: ×1.1 → hack 4.4 + pierce 8.25
+- Capture strength: +0.7 → 3.2
+- Build time: ×1.2 → 12 s
+- Gather base speed: ×0.7 → 0.7
+- Loot: ×1.2
+
+### Elite — `units/{civ}/infantry_pikeman_e`
+Requires 100 XP.
+- Health: ×1.25 (total ×1.56) → 156.25 HP
+- Melee attack damage: ×1.1 (total ×1.21) → hack 4.84 + pierce 9.08
+- Capture strength: +0.8 (total +1.5) → 4
+- Build time: ×1.2 (total ×1.44) → 14.4 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+
+
+
 ## Civilisation-specific overrides
 
 These civilisations override the generic stats above (only differing values are listed):

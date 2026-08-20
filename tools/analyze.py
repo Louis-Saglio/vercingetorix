@@ -14,7 +14,7 @@ import json
 import os
 import re
 from collections import defaultdict
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from xml.etree import ElementTree as ET
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -404,6 +404,9 @@ def extract_stats(tree):
     promo = value(child(child(e, "Promotion"), "Entity"))
     if promo:
         st["promotes_to"] = promo
+    xp = fmt_num(get_path(tree, "Entity/Promotion/RequiredXp"))
+    if xp is not None:
+        st["xp"] = xp
     rg = child(e, "ResourceGatherer")
     if rg is not None:
         gather = {}
@@ -609,6 +612,218 @@ def fmt_gather(g):
         out.append("capacity: " + ", ".join(ordered))
     return out
 
+# ---------------------------------------------------------------- ranks (promotion)
+
+RANK_TECHS = {"Advanced": "unit_advanced", "Elite": "unit_elite"}
+RANK_TECH_ROOT = "/home/ubuntu/0ad-reference/public/simulation/data/technologies"
+
+_rank_techs = {}
+
+def rank_tech(rank):
+    if rank not in _rank_techs:
+        with open(os.path.join(RANK_TECH_ROOT, RANK_TECHS[rank] + ".json")) as f:
+            _rank_techs[rank] = json.load(f)
+    return _rank_techs[rank]
+
+def matches_class_list(classes, match):
+    """Faithful port of globalscripts/Templates.js MatchesClassList."""
+    if not match or not classes:
+        return False
+    if isinstance(match, str):
+        match = [match]
+    for sub in match:
+        words = re.split(r"[+\s]+", sub)
+        if all((w.startswith("!") and w[1:] not in classes) or
+               (not w.startswith("!") and w in classes) for w in words):
+            return True
+    return False
+
+def promotion_chain(full_path):
+    """[(rank, template, xp_to_promote), ...] starting at the given template;
+    ends when the unit cannot promote further (Promotion/Entity missing or
+    nonexistent)."""
+    chain = []
+    cur = full_path
+    for _ in range(3):
+        tree = resolve(cur)
+        rank = get_path(tree, "Entity/Identity/Rank") or "Basic"
+        xp = fmt_num(get_path(tree, "Entity/Promotion/RequiredXp"))
+        chain.append((rank, cur, xp))
+        nxt = get_path(tree, "Entity/Promotion/Entity")
+        if not nxt or not template_exists(nxt):
+            break
+        cur = nxt
+    return chain
+
+def _rank_deltas(stats, rank):
+    """Applicable (stat_key -> (mult, add)) changes for this rank, computed
+    from the rank's auto-research tech filtered by the unit's classes
+    (unit_advanced / unit_elite)."""
+    tech = rank_tech(rank)
+    classes = set((stats.get("classes") or "").split()) \
+        | set((stats.get("visible_classes") or "").split()) | {rank}
+    default_affects = tech.get("affects")
+    deltas = {}
+    for m in tech.get("modifications", []):
+        aff = m.get("affects", default_affects)
+        if not matches_class_list(classes, aff):
+            continue
+        v = m.get("value", "")
+        key = None
+        if v == "Health/Max":
+            key = "health"
+        elif v.startswith("Attack/Melee/Damage/"):
+            key = "melee"
+        elif v == "Attack/Capture/Capture":
+            key = "capture"
+        elif v == "Cost/BuildTime":
+            key = "buildtime"
+        elif v == "ResourceGatherer/BaseSpeed":
+            key = "gather"
+        elif v.startswith("Loot/"):
+            key = "loot"
+        elif v == "Attack/Ranged/Projectile/Spread":
+            key = "spread"
+        elif v == "Heal/Range":
+            key = "heal_range"
+        elif v == "Heal/Health":
+            key = "heal_health"
+        if key is None:
+            continue
+        mult, add = deltas.get(key, (Decimal(1), Decimal(0)))
+        if "multiply" in m:
+            # overwrite: the melee (Hack/Pierce/Crush) and loot mods repeat the
+            # same multiplier for each sub-stat, it must not be compounded
+            deltas[key] = (Decimal(str(m["multiply"])), add)
+        elif "add" in m:
+            deltas[key] = (mult, add + Decimal(str(m["add"])))
+    return deltas, classes
+
+def _fmt2(d):
+    d = d.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    return str(int(d)) if d == d.to_integral_value() else str(d.normalize())
+
+def rank_section_lines(stats, chain, pre_ranks=()):
+    """Markdown lines for a '## Ranks' section; empty when the unit cannot
+    promote. Stat changes come from the auto-researched unit_advanced /
+    unit_elite techs (verified: the _a/_e templates themselves only change
+    Identity/Rank, Promotion and the actor) plus any template-level stat
+    differences between the two rank files. `pre_ranks` pre-seeds the
+    cumulative state for units already trained at a non-basic rank."""
+    if len(chain) < 2:
+        return []
+    lines = ["## Ranks", ""]
+    cum = {}  # stat key -> (multiplier, add) accumulated over previous ranks
+    first = True
+    for pre in pre_ranks:
+        pd, _cls = _rank_deltas(stats, pre)
+        for k, (m, a) in pd.items():
+            cm, ca = cum.get(k, (Decimal(1), Decimal(0)))
+            cum[k] = (cm * m, ca * m + a)
+        first = False
+    for i, (rank, path, _xp) in enumerate(chain[1:], start=1):
+        prev_path = chain[i - 1][1]
+        xp = chain[i - 1][2]  # XP required to promote from the previous rank
+        lines.append(f"### {rank} — `{path}`")
+        lines.append(f"Requires {xp or '?'} XP.")
+        emitted = False
+        if rank in RANK_TECHS:
+            deltas, classes = _rank_deltas(stats, rank)
+            if "Mercenary" in classes:
+                lines.append("- Note: mercenaries promote at 0 XP (the auto-researched"
+                             " `upgrade_rank_advanced_mercenary` tech replaces RequiredXp).")
+        else:
+            deltas, classes = {}, set()
+        # template-level stat differences between the two rank files
+        template_diffs = fmt_diff_lines(
+            extract_stats(resolve(path)), extract_stats(resolve(prev_path)))
+        for dl in template_diffs:
+            if dl.startswith("promotes_to"):
+                continue
+            lines.append(f"- {dl}")
+            emitted = True
+
+        def total(key, mult, add):
+            cm, ca = cum.get(key, (Decimal(1), Decimal(0)))
+            cm, ca = cm * mult, ca * mult + add
+            cum[key] = (cm, ca)
+            return cm, ca
+
+        def total_txt(cm, ca=None):
+            if first:
+                return ""
+            if ca is not None and cm == 1:
+                return f" (total +{_fmt2(ca)})"
+            return f" (total ×{_fmt2(cm)})"
+
+        n0 = len(lines)
+
+        # health
+        if "health" in deltas and "health" in stats:
+            m, a = deltas["health"]
+            cm, ca = total("health", m, a)
+            lines.append(f"- Health: ×{_fmt2(m)}{total_txt(cm)}"
+                         f" → {_fmt2(Decimal(stats['health']) * cm + ca)} HP")
+        # melee damage
+        if "melee" in deltas:
+            melee = next((x for x in stats.get("attacks", []) if x["type"] == "Melee"), None)
+            if melee and "damage" in melee:
+                m, a = deltas["melee"]
+                cm, ca = total("melee", m, a)
+                parts = []
+                for dk in ("Hack", "Pierce", "Crush"):
+                    if dk in melee["damage"]:
+                        parts.append(f"{dk.lower()} {_fmt2(Decimal(melee['damage'][dk]) * cm)}")
+                lines.append(f"- Melee attack damage: ×{_fmt2(m)}{total_txt(cm)}"
+                             f" → {' + '.join(parts)}")
+        # capture
+        if "capture" in deltas:
+            cap = next((x for x in stats.get("attacks", []) if x["type"] == "Capture"), None)
+            if cap and "capture_strength" in cap:
+                m, a = deltas["capture"]
+                cm, ca = total("capture", m, a)
+                lines.append(f"- Capture strength: +{_fmt2(a)}{total_txt(cm, ca)}"
+                             f" → {_fmt2(Decimal(cap['capture_strength']) * cm + ca)}")
+        # build time
+        if "buildtime" in deltas and "build_time" in stats:
+            m, a = deltas["buildtime"]
+            cm, ca = total("buildtime", m, a)
+            lines.append(f"- Build time: ×{_fmt2(m)}{total_txt(cm)}"
+                         f" → {_fmt2(Decimal(stats['build_time']) * cm + ca)} s")
+        # gather base speed
+        if "gather" in deltas and "gather" in stats:
+            m, a = deltas["gather"]
+            cm, ca = total("gather", m, a)
+            base = Decimal(stats["gather"].get("base_speed", "1"))
+            lines.append(f"- Gather base speed: ×{_fmt2(m)}{total_txt(cm)}"
+                         f" → {_fmt2(base * cm + ca)}")
+        # loot
+        if "loot" in deltas:
+            m, a = deltas["loot"]
+            cm, ca = total("loot", m, a)
+            lines.append(f"- Loot: ×{_fmt2(m)}{total_txt(cm)}")
+        # ranged spread
+        if "spread" in deltas:
+            m, a = deltas["spread"]
+            cm, ca = total("spread", m, a)
+            lines.append(f"- Ranged spread: ×{_fmt2(m)}{total_txt(cm)}")
+        # healer
+        if "heal_range" in deltas:
+            m, a = deltas["heal_range"]
+            cm, ca = total("heal_range", m, a)
+            lines.append(f"- Heal range: +{_fmt2(a)} m"
+                         + ("" if first else f" (total +{_fmt2(ca)} m)"))
+        if "heal_health" in deltas:
+            m, a = deltas["heal_health"]
+            cm, ca = total("heal_health", m, a)
+            lines.append(f"- Heal strength: +{_fmt2(a)}"
+                         + ("" if first else f" (total +{_fmt2(ca)})"))
+        if len(lines) == n0 and not emitted:
+            lines.append("- No stat changes (identity/visuals only).")
+        lines.append("")
+        first = False
+    return lines
+
 def fmt_stats_lines(st):
     lines = []
     if "generic_name" in st:
@@ -722,6 +937,62 @@ def generate_markdown(data, outdir):
             srcs = [s for s in (clean_source(x) for x in d["sources"][c]) if s]
             src_txt = ", ".join(srcs) if srcs else "?"
             lines.append(f"- **{c}** — `{d['variant_files'][c]}` ({src_txt})")
+        # ranks (promotion)
+        chains = {c: promotion_chain(d["variant_files"][c]) for c in civs}
+        if any(len(ch) > 1 for ch in chains.values()):
+            longest_civ = max(chains, key=lambda c: len(chains[c]))
+            longest = chains[longest_civ]
+            pattern = [(r, p.replace(f"units/{longest_civ}/", "units/{civ}/"), xp)
+                       for r, p, xp in longest]
+            lines.append("")
+            lines.extend(rank_section_lines(d["stats"], pattern))
+            notes = []
+            max_ranks = defaultdict(list)
+            for c, ch in chains.items():
+                max_ranks[ch[-1][0]].append(c)
+            for rank_label, cs in sorted(max_ranks.items()):
+                if rank_label == longest[-1][0]:
+                    continue
+                promoted = [c for c in cs if len(chains[c]) > 1]
+                trained = [c for c in cs if len(chains[c]) == 1]
+                if trained:
+                    for c in trained:
+                        notes.append(f"**{c}**'s variant is trained at **{rank_label}** rank"
+                                     f" (already receives the rank techs in game).")
+                if promoted:
+                    verb = "promotes" if len(promoted) == 1 else "promote"
+                    notes.append(f"{', '.join('**' + c + '**' for c in promoted)} {verb}"
+                                 f" only to {rank_label}.")
+            # per-civ XP deviations per promotion step
+            for i in range(1, len(longest)):
+                devs = []
+                for c, ch in chains.items():
+                    if i < len(ch) and ch[i - 1][2] != longest[i - 1][2]:
+                        devs.append(f"**{c}** ({ch[i - 1][2] or '?'} XP)")
+                if devs:
+                    notes.append(f"{', '.join(devs)} for the {longest[i][0]} promotion.")
+            # promotions beyond the documented rank ladder
+            further = []
+            for c, ch in chains.items():
+                tree = resolve(ch[-1][1])
+                nxt = get_path(tree, "Entity/Promotion/Entity")
+                if nxt and template_exists(nxt):
+                    pat = nxt.replace(f"units/{c}/", "units/{civ}/")
+                    further.append(f"**{c}** ({ch[-1][0]} rank promotes further to"
+                                   f" `{pat}` at {ch[-1][2] or '?'} XP)")
+            if further:
+                notes.append("; ".join(further) + ".")
+            merc_civs = [
+                c for c in civs
+                if "Mercenary" in (extract_stats(resolve(d["variant_files"][c])).get("visible_classes") or "").split()
+            ]
+            if merc_civs:
+                notes.append("mercenary variants promote at 0 XP (the auto-researched"
+                             " `upgrade_rank_advanced_mercenary` tech replaces RequiredXp"
+                             " with 0).")
+            for n in notes:
+                lines.append(f"- Note: {n}")
+            lines.append("")
         if d["diffs"]:
             lines.append("\n## Civilisation-specific overrides\n")
             lines.append("These civilisations override the generic stats above (only"
@@ -781,6 +1052,15 @@ def generate_readme(data):
                  " specific subtype first, then the generic resource type —"
                  " `ResourceGatherer.js` `GetTargetGatherRate`), and the carrying"
                  " capacities.")
+    lines.append("- **Ranks:** upgradable units get a \"Ranks\" section per non-basic rank"
+                 " (Advanced, Elite) with the promotion target, the required XP and every"
+                 " stat that changes. The changes come from the auto-researched"
+                 " `unit_advanced` / `unit_elite` techs (verified: the `_a`/`_e` template"
+                 " files themselves only change `Identity/Rank`, `Promotion` and the"
+                 " actor) plus any template-level stat differences for special promotions"
+                 " (e.g. rome's champion → \"First Cohort\", athen's elite spearman →"
+                 " champion). Per-civ deviations (XP values, civs that skip or extend the"
+                 " ladder) are noted.")
     lines.append("- **Excluded from these files:** the `Slaughter` attack (used to kill"
                  " corralled animals) and promotion targets (units trained directly"
                  " only).\n")

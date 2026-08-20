@@ -88,7 +88,21 @@ def unit_doc(typ, info, outdir, folder, adjective, people, civ):
                  f" (full {adjective.lower()} template chain).\n")
     lines.append("## Basic stats\n")
     lines.extend(A.fmt_stats_lines(stats))
-    lines.append("\n## Trained by\n")
+    chain = A.promotion_chain(tpl)
+    lines.append("")
+    pre_ranks = []
+    if chain and chain[0][0] == "Elite":
+        pre_ranks = ["Advanced", "Elite"]
+    elif chain and chain[0][0] == "Advanced":
+        pre_ranks = ["Advanced"]
+    lines.extend(A.rank_section_lines(stats, chain, pre_ranks))
+    if chain and chain[0][0] != "Basic":
+        lines.append(f"Note: this unit is already **{chain[0][0]}** rank — in game it also"
+                     f" receives the auto-researched"
+                     f" `unit_{chain[0][0].lower()}` tech modifications (see the Ranks"
+                     f" sections in `docs/game_description/generic/units/`).")
+        lines.append("")
+    lines.append("## Trained by\n")
     srcs = [s for s in (clean_source(x) for x in info["sources"]) if s]
     src_txt = ", ".join(sorted(srcs)) if srcs else "?"
     lines.append(f"- **{civ}** — `{tpl}` ({src_txt})")

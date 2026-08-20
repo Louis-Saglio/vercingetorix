@@ -27,6 +27,29 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **ptol** — `units/ptol/cavalry_spearman_merc_b` (military_colony)
 - **sele** — `units/sele/cavalry_spearman_merc_b` (military_colony)
 
+## Ranks
+
+### Advanced — `units/{civ}/cavalry_spearman_merc_a`
+Requires 300 XP.
+- Health: ×1.25 → 200 HP
+- Melee attack damage: ×1.1 → hack 6.6 + pierce 6.05
+- Capture strength: +0.7 → 2.45
+- Build time: ×1.2 → 18 s
+- Gather base speed: ×0.7 → 0.7
+- Loot: ×1.2
+
+### Elite — `units/{civ}/cavalry_spearman_merc_e`
+Requires 300 XP.
+- Health: ×1.25 (total ×1.56) → 250 HP
+- Melee attack damage: ×1.1 (total ×1.21) → hack 7.26 + pierce 6.66
+- Capture strength: +0.8 (total +1.5) → 3.25
+- Build time: ×1.2 (total ×1.44) → 21.6 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+
+- Note: mercenary variants promote at 0 XP (the auto-researched `upgrade_rank_advanced_mercenary` tech replaces RequiredXp with 0).
+
+
 ## Civilisation-specific overrides
 
 These civilisations override the generic stats above (only differing values are listed):

@@ -35,3 +35,23 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **rome** — `units/rome/support_healer_b` (temple, temple_vesta)
 - **sele** — `units/sele/support_healer_b` (temple)
 - **spart** — `units/spart/support_healer_b` (temple)
+
+## Ranks
+
+### Advanced — `units/{civ}/support_healer_a`
+Requires 150 XP.
+- Health: ×1.25 → 106.25 HP
+- Build time: ×1.2 → 18 s
+- Loot: ×1.2
+- Heal range: +3 m
+- Heal strength: +5
+
+### Elite — `units/{civ}/support_healer_e`
+Requires 150 XP.
+- Health: ×1.25 (total ×1.56) → 132.81 HP
+- Build time: ×1.2 (total ×1.44) → 21.6 s
+- Loot: ×1.2 (total ×1.44)
+- Heal range: +3 m (total +6 m)
+- Heal strength: +5 (total +10)
+
+

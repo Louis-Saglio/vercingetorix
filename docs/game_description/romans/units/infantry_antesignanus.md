@@ -22,6 +22,8 @@ Stats resolved from `simulation/templates/units/rome/infantry_antesignanus` (ful
 - **Visible classes:** Builder Citizen Worker Soldier Infantry Ranged Javelineer Legionary
 - **Rank:** Elite
 
+Note: this unit is already **Elite** rank — in game it also receives the auto-researched `unit_elite` tech modifications (see the Ranks sections in `docs/game_description/generic/units/`).
+
 ## Trained by
 
 - **rome** — `units/rome/infantry_antesignanus` (army_camp)

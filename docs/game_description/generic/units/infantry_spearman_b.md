@@ -37,3 +37,26 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **rome** — `units/rome/infantry_spearman_b` (barracks)
 - **sele** — `units/sele/infantry_spearman_b` (barracks, civil_centre)
 - **spart** — `units/spart/infantry_spearman_b` (barracks, civil_centre)
+
+## Ranks
+
+### Advanced — `units/{civ}/infantry_spearman_a`
+Requires 100 XP.
+- Health: ×1.25 → 125 HP
+- Melee attack damage: ×1.1 → hack 4.95 + pierce 4.4
+- Capture strength: +0.7 → 3.2
+- Build time: ×1.2 → 12 s
+- Gather base speed: ×0.7 → 0.7
+- Loot: ×1.2
+
+### Elite — `units/{civ}/infantry_spearman_e`
+Requires 100 XP.
+- Health: ×1.25 (total ×1.56) → 156.25 HP
+- Melee attack damage: ×1.1 (total ×1.21) → hack 5.45 + pierce 4.84
+- Capture strength: +0.8 (total +1.5) → 4
+- Build time: ×1.2 (total ×1.44) → 14.4 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+
+- Note: **athen** (Elite rank promotes further to `units/{civ}/champion_infantry` at 250 XP); **rome** (Elite rank promotes further to `units/{civ}/infantry_spearman_conscript` at 2000 XP).
+

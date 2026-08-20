@@ -6,6 +6,16 @@
   `docs/game_description/` references are now versioned in `tools/`
   (`analyze.py` for generic units, `buildings.py` for generic buildings, with
   a short usage README); their output goes to `tools/out/` (gitignored).
+- Documentation: every upgradable unit file (generic + gauls + romans) now has
+  a "Ranks" section per non-basic rank (Advanced, Elite) with the promotion
+  target, required XP and every stat that changes for that rank. The changes
+  are computed from the auto-researched `unit_advanced`/`unit_elite` techs
+  (verified: the `_a`/`_e` templates only change identity/rank/promotion),
+  with per-civ notes for XP deviations (rome's elite promotion: 2000 XP),
+  mercenaries (0 XP via `upgrade_rank_advanced_mercenary`), civs skipping or
+  extending the ladder (spart's champion is trained at Elite; athen's elite
+  spearman promotes to `champion_infantry`; rome's champion promotes to the
+  "First Cohort" variant). `docs/GAME.md` documents the rank mechanics.
 - Documentation: added `docs/game_description/romans/` — the rome-specific
   counterpart of `gauls/` (units exclusive to rome: champion centurion, 3
   heroes, antesignanus, the directly-trained `_a` ranks, onager/scorpio;

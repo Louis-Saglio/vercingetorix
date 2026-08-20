@@ -32,6 +32,29 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **mace** — `units/mace/infantry_slinger_b` (barracks)
 - **ptol** — `units/ptol/infantry_slinger_b` (barracks, civil_centre)
 
+## Ranks
+
+### Advanced — `units/{civ}/infantry_slinger_a`
+Requires 100 XP.
+- Health: ×1.25 → 62.5 HP
+- Capture strength: +0.7 → 3.2
+- Build time: ×1.2 → 12 s
+- Gather base speed: ×0.7 → 0.7
+- Loot: ×1.2
+- Ranged spread: ×0.8
+
+### Elite — `units/{civ}/infantry_slinger_e`
+Requires 100 XP.
+- Health: ×1.25 (total ×1.56) → 78.13 HP
+- Capture strength: +0.8 (total +1.5) → 4
+- Build time: ×1.2 (total ×1.44) → 14.4 s
+- Gather base speed: ×0.7 (total ×0.49) → 0.49
+- Loot: ×1.2 (total ×1.44)
+- Ranged spread: ×0.8 (total ×0.64)
+
+- Note: mercenary variants promote at 0 XP (the auto-researched `upgrade_rank_advanced_mercenary` tech replaces RequiredXp with 0).
+
+
 ## Civilisation-specific overrides
 
 These civilisations override the generic stats above (only differing values are listed):
