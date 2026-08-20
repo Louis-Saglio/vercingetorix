@@ -170,7 +170,19 @@ was verified against those files.
     using `data/civs/<civ>.json` → `SkirmishReplacements`.
 - `data/civs/<civ>.json` — `StartEntities` (the starting units/buildings),
   `SkirmishReplacements`, `WallSets`, `CivBonuses`, `AINames`.
-- `data/technologies/` — techs (JSON), incl. the phase techs.
+- `data/technologies/` — techs (JSON), incl. the phase techs. Techs available to a
+  civ come from the buildings' `Researcher/Technologies` lists: a `{civ}` token
+  resolves to the `<civ>`-specific tech if its file exists, else to the
+  `generic` fallback (e.g. `phase_town_{civ}` → `phase_town_athen` for athen,
+  `phase_town_generic` for the 13 other civs); a tech is then removed if its
+  own `requirements` operators (`civ`, `notciv`, `all`, `any` — see
+  `globalscripts/Technologies.js` `InterpretTechRequirements`) forbid the civ.
+  Techs with `autoResearch: true` (e.g. `phase_village`, the
+  `data/technologies/civbonuses/*` civ bonus techs) are auto-researched by
+  every civ whose requirements allow it (`TechnologyManager.js`). Pair techs
+  (`top`/`bottom` fields) present a two-way choice; the phase techs use
+  `supersedes`/`replaces` to chain Village→Town→City under the logical names
+  `phase_village`/`phase_town`/`phase_city`.
 - `data/settings/` — victory conditions and other settings.
 - `components/` — JS implementations of the simulation components; each file
   declares its own XML schema (`Trainer.js`, `Resistance.js`, `Attack.js`, …).
@@ -241,6 +253,17 @@ plus per-civ trainer lists), and **33 are buildable by a single civ**
 (`wallset_palisade`, `wallset_stone`) are documented as wall sets, not single
 buildings — they define the segments placed with the wall tool.
 
+### Generic technologies inventory (0.28.0)
+
+Of the 198 tech JSON files (`data/technologies/` + `civbonuses/`), **160 are
+available to at least one civ** (researchable from a building or
+auto-researched): **95 are available to 2+ civs** (the generic technologies,
+one file each in `docs/game_description/generic_technologies/`), and **65 to a
+single civ** (civ-specific phase techs, pair choices, unique bonuses). 17 are
+not reachable by anyone (logical phase names `phase_town`/`phase_city`,
+pair-choice techs of single-civ pairs, and leftovers such as
+`unlock_females_house` or `ship_capture_resistance`).
+
 ## Where to look
 
 - Units/buildings: `/home/ubuntu/0ad-reference/public/simulation/templates/`
@@ -248,6 +271,8 @@ buildings — they define the segments placed with the wall tool.
   `docs/game_description/generic_units/`
 - Generic buildings reference (stats + per-civ builder lists):
   `docs/game_description/generic_buildings/`
+- Generic technologies reference (stats + per-civ researcher lists):
+  `docs/game_description/generic_technologies/`
 - Civ definitions: `.../simulation/data/civs/*.json`
 - Technologies: `.../simulation/data/technologies/`
 - Victory conditions: `.../simulation/data/settings/victory_conditions/`
