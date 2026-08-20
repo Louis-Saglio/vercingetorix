@@ -13,6 +13,11 @@ Agent instructions for this repository. Read before acting.
 - `docs/GAME.md` — the game mechanics reference. Grounded in the installed
   0 A.D. 0.28.0 data. **Grow this file every time game files are explored;
   everything in it must stay correct.**
+- `docs/game_description/` — the full game reference: `mechaniques/` (one
+  file per game mechanic, verified against the source with citations) and
+  per-entity data (`generic/`, `gauls/`, `romans/`: units, buildings,
+  technologies, auras, each with a bot-oriented Guide section). Consult it
+  before writing bot logic; keep it correct when the game data is re-explored.
 - `docs/DEVELOPER_GUIDE.md` — environment, architecture, the AI API reference
   (verified), and maintenance.
 - `docs/USER_GUIDE.md` — for Louis.

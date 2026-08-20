@@ -90,6 +90,11 @@ implementation):
 - Determinism is a hard requirement: same seed → identical behavior, always. See
   [PROTOCOL.md](PROTOCOL.md) → Hard rules.
 
+Before writing bot logic against a game rule or an entity's stats, consult
+[game_description](game_description/README.md): `mechaniques/` explains how the
+simulation works (verified against the source), and `generic/` + `gauls/` +
+`romans/` give per-entity stats and bot-oriented guides.
+
 ## AI API reference (verified against 0.28.0)
 
 The bot runs in the AI realm, a separate JS realm from the simulation. It has

@@ -42,7 +42,9 @@ python3 civ.py rome       # rome-specific -> out/romans_out/{units,buildings,tec
 ```
 
 Outputs land in `tools/out/` (gitignored). To refresh the repo docs, review the
-output and copy it over:
+output and copy it over. **Warning:** copying overwrites the handwritten
+`## Guide` sections in the unit/building files — re-apply or restore them
+afterwards (`git diff` shows what was lost).
 
 ```bash
 cp out/docs_out/*.md ../docs/game_description/generic/units/

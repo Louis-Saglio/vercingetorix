@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Documentation: `docs/game_description/` is now indexed and referenced from
+  every entry point — new top-level `docs/game_description/README.md` (layout,
+  how to use it when writing bot code, regeneration warning), and pointers in
+  the root `README.md`, `AGENTS.md` (Read first), `docs/GAME.md` (Where to
+  look, restructured docs-first) and `docs/DEVELOPER_GUIDE.md` (Bot mod).
+  `tools/README.md` warns that regenerating entity docs overwrites the
+  handwritten Guide sections.
+
 - Documentation: Guide sections revised after review — ConquestCritical /
   defeat-condition references removed from all guides; costs are now framed by
   resource scarcity (food/wood abundant → easy to mass; stone/metal scarce →

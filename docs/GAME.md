@@ -5,9 +5,9 @@ Ground truth for bot development, distilled from the installed game data
 memory. Verify anything suspicious against those paths; they are pinned to the
 running engine version.
 
-Per-mechanic deep dives (combat formula, construction, territory, turns, etc.)
-live in `docs/game_description/mechaniques/` — all verified against the source
-with inline citations.
+The full game reference lives in `docs/game_description/` (see its README):
+per-mechanic deep dives in `mechaniques/` and per-entity data in `generic/`,
+`gauls/`, `romans/` — all verified against the source with inline citations.
 
 ## Objective of a match
 
@@ -312,10 +312,16 @@ decorative buildings, orphans).
 
 ## Where to look
 
-- Units/buildings: `/home/ubuntu/0ad-reference/public/simulation/templates/`
-- Generic units reference (stats + per-civ trainer lists):
+In-repo references (read these first; see `docs/game_description/README.md`
+for the full index):
+
+- Game mechanics, one verified file per mechanic (combat formula,
+  construction, training, population, capture, territory, technologies,
+  auras, vision, garrisoning, trade, victory, orders/sim time…):
+  `docs/game_description/mechaniques/`
+- Generic units reference (stats + Guide + per-civ trainer lists):
   `docs/game_description/generic/units/`
-- Generic buildings reference (stats + per-civ builder lists):
+- Generic buildings reference (stats + Guide + per-civ builder lists):
   `docs/game_description/generic/buildings/`
 - Generic technologies reference (stats + per-civ researcher lists):
   `docs/game_description/generic/technologies/`
@@ -323,8 +329,13 @@ decorative buildings, orphans).
   `docs/game_description/generic/auras/`
 - Civ-specific references (units/buildings/technologies/auras exclusive to one
   civ): `docs/game_description/gauls/`, `docs/game_description/romans/`
+
+Ground truth (verify anything suspicious here; pinned to the running engine):
+
+- Units/buildings: `/home/ubuntu/0ad-reference/public/simulation/templates/`
 - Civ definitions: `.../simulation/data/civs/*.json`
 - Technologies: `.../simulation/data/technologies/`
+- Mechanics: `.../simulation/components/*.js`, `.../simulation/helpers/*.js`
 - Victory conditions: `.../simulation/data/settings/victory_conditions/`
 - Simulation components: `.../simulation/components/*.js`
 - Engine internals: `/home/ubuntu/0ad-reference/source/source/`
