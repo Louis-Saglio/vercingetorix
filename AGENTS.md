@@ -3,16 +3,7 @@
 Agent instructions for this repository. Read before acting.
 
 ## Read first
-
-- `docs/PROTOCOL.md` — the development loop. All work happens in turns:
-  hypothesis → implement → experiment → verdict → action → commit + push.
-  No work outside the protocol.
-- `CURRENT_TURN.md` — the active turn and its phase; the recovery entry point
-  after any session break. If it says STOPPED, do not start new turns.
-- `docs/GOALS.md` — the current long-term goal and its grading scale.
-- `docs/GAME.md` — the game mechanics reference. Grounded in the installed
-  0 A.D. 0.28.0 data. **Grow this file every time game files are explored;
-  everything in it must stay correct.**
+- `docs/GOALS.md` — the goals the bot needs to achieve in increasing difficulty order.
 - `docs/game_description/` — the full game reference: `mechaniques/` (one
   file per game mechanic, verified against the source with citations) and
   per-entity data (`generic/`, `gauls/`, `romans/`: units, buildings,
@@ -20,9 +11,6 @@ Agent instructions for this repository. Read before acting.
   before writing bot logic; keep it correct when the game data is re-explored.
 - `docs/DEVELOPER_GUIDE.md` — environment, architecture, the AI API reference
   (verified), and maintenance.
-- `docs/USER_GUIDE.md` — for Louis.
-- `docs/CHANGELOG.md` — curated change history (append-only).
-- `turns/backlog.md` — candidate hypotheses.
 
 ## Hard facts
 
