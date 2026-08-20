@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Documentation: the two analysis scripts that generated the
+  `docs/game_description/` references are now versioned in `tools/`
+  (`analyze.py` for generic units, `buildings.py` for generic buildings, with
+  a short usage README); their output goes to `tools/out/` (gitignored).
 - Documentation: added `docs/game_description/generic_units/` — one markdown
   file per generic 0 A.D. unit (trainable in skirmish by 2+ civs; 36 units),
   with basic stats resolved from the shared template chain and the list of
