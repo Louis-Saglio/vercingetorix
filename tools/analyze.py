@@ -283,7 +283,8 @@ def chain_of(name, acc):
 # ---------------------------------------------------------------- stat extraction
 
 DIFF_KEYS = ("health", "health_regen", "armor", "attacks", "walk_speed",
-             "run_speed", "vision", "cost_resources", "build_time", "population")
+             "run_speed", "vision", "cost_resources", "build_time", "population",
+             "gather")
 
 def fmt_num(s):
     if s is None:
@@ -300,8 +301,8 @@ def extract_attacks(tree):
         for kind, node in sorted(atk_node.items()):
             if kind.startswith("@") or kind == "_v":
                 continue
-            if kind not in ("Melee", "Ranged", "Charge"):
-                continue  # skip utility attacks (Capture, Slaughter)
+            if kind not in ("Melee", "Ranged", "Charge", "Capture"):
+                continue  # skip Slaughter (not a requested stat)
             a = {}
             a["type"] = kind
             name = value(child(node, "AttackName"))
@@ -316,6 +317,10 @@ def extract_attacks(tree):
                         parts[dk] = dv
                 if parts:
                     a["damage"] = parts
+            if kind == "Capture":
+                cap = fmt_num(value(child(node, "Capture")))
+                if cap is not None:
+                    a["capture_strength"] = cap
             for k in ("MaxRange", "MinRange", "PrepareTime", "RepeatTime"):
                 v = fmt_num(value(child(node, k)))
                 if v is not None:
@@ -399,6 +404,36 @@ def extract_stats(tree):
     promo = value(child(child(e, "Promotion"), "Entity"))
     if promo:
         st["promotes_to"] = promo
+    rg = child(e, "ResourceGatherer")
+    if rg is not None:
+        gather = {}
+        base = fmt_num(value(child(rg, "BaseSpeed")))
+        if base is not None and Decimal(base) != 1:
+            gather["base_speed"] = base
+        rates_node = child(rg, "Rates")
+        if rates_node is not None:
+            rates = {}
+            for k, v in sorted(rates_node.items()):
+                if k.startswith("@") or k == "_v":
+                    continue
+                rv = fmt_num(value(v))
+                if rv is not None:
+                    rates[k] = rv
+            if rates:
+                gather["rates"] = rates
+        cap_node = child(rg, "Capacities")
+        if cap_node is not None:
+            caps = {}
+            for k, v in sorted(cap_node.items()):
+                if k.startswith("@") or k == "_v":
+                    continue
+                cv = fmt_num(value(v))
+                if cv is not None:
+                    caps[k] = cv
+            if caps:
+                gather["capacities"] = caps
+        if gather:
+            st["gather"] = gather
     return st
 
 def stats_signature(st):
@@ -513,10 +548,12 @@ def fmt_bonuses(bonuses):
 
 def fmt_attack(a):
     parts = [a["type"]]
-    if a.get("name"):
+    if a.get("name") and a["name"] != a["type"]:
         parts.append(f'"{a["name"]}"')
     line = " ".join(parts)
     bits = []
+    if "capture_strength" in a:
+        bits.append(f"strength {a['capture_strength']}")
     if "damage" in a:
         bits.append(f"damage {fmt_damage(a['damage'])}")
     if "MaxRange" in a:
@@ -538,6 +575,39 @@ def fmt_resources(res):
         if k in res and Decimal(res[k]) != 0:
             out.append(f"{res[k]} {k}")
     return ", ".join(out)
+
+def fmt_gather(g):
+    """Compact rendering of ResourceGatherer data (rates grouped by resource type)."""
+    out = []
+    if "base_speed" in g:
+        out.append(f"base speed ×{g['base_speed']}")
+    rates = g.get("rates", {})
+    if rates:
+        grouped = {}
+        for k, v in sorted(rates.items()):
+            generic, _, specific = k.partition(".")
+            grouped.setdefault(generic, []).append((specific, v))
+        for generic in grouped:
+            grouped[generic].sort(key=lambda e: (e[0] == "ruins", e[0]))
+        parts = []
+        for generic in ("food", "wood", "stone", "metal", "treasure"):
+            if generic not in grouped:
+                continue
+            entries = grouped.pop(generic)
+            if len(entries) == 1 and entries[0][0] == "":
+                parts.append(f"{generic} {entries[0][1]}")
+            else:
+                parts.append(generic + ": " + ", ".join(f"{s} {v}" for s, v in entries))
+        for generic in sorted(grouped):
+            entries = grouped[generic]
+            parts.append(generic + ": " + ", ".join(f"{s} {v}" for s, v in entries))
+        out.append("rates: " + "; ".join(parts) + " /s")
+    caps = g.get("capacities", {})
+    if caps:
+        ordered = [f"{caps[k]} {k}" for k in ("food", "wood", "stone", "metal") if k in caps]
+        ordered += [f"{v} {k}" for k, v in sorted(caps.items()) if k not in ("food", "wood", "stone", "metal")]
+        out.append("capacity: " + ", ".join(ordered))
+    return out
 
 def fmt_stats_lines(st):
     lines = []
@@ -571,6 +641,9 @@ def fmt_stats_lines(st):
         lines.append(f"- **Build time:** {st['build_time']} s")
     if "population" in st:
         lines.append(f"- **Population:** {st['population']}")
+    if "gather" in st:
+        for gline in fmt_gather(st["gather"]):
+            lines.append(f"- **Gather:** {gline}")
     if "classes" in st:
         lines.append(f"- **Classes:** {st['classes']}")
     if "visible_classes" in st:
@@ -616,6 +689,8 @@ def fmt_diff_lines(vstats, base):
             out.append(f"build time {v} s")
         elif key == "population":
             out.append(f"population {v}")
+        elif key == "gather":
+            out.extend(fmt_gather(v))
     return out
 
 def clean_source(s):
@@ -698,9 +773,17 @@ def generate_readme(data):
                  " values. Armor is the `Resistance/Entity/Damage` values (hack/pierce/"
                  "crush); speeds are `UnitMotion` walk/run; prepare/repeat times are in"
                  " seconds (templates store milliseconds).")
-    lines.append("- **Excluded from these files:** utility attacks (`Capture`, `Slaughter`"
-                 " exist on many infantry templates), gather rates (they come from per-civ"
-                 " `mixins/gather_*`), and promotion targets (units trained directly only).\n")
+    lines.append("- **Capture & gathering:** the `Capture` attack line shows the capture"
+                 " strength, range, repeat time and restricted classes (from the"
+                 " `Attack/Capture` section). \"Gather\" lines show the"
+                 " `ResourceGatherer` data: base speed multiplier, the rates per"
+                 " resource subtype (e.g. `food.fruit`; the engine looks up the"
+                 " specific subtype first, then the generic resource type —"
+                 " `ResourceGatherer.js` `GetTargetGatherRate`), and the carrying"
+                 " capacities.")
+    lines.append("- **Excluded from these files:** the `Slaughter` attack (used to kill"
+                 " corralled animals) and promotion targets (units trained directly"
+                 " only).\n")
     lines.append("## Index\n")
     lines.append("| Unit | Civilisations | Generic stats template |")
     lines.append("|---|---|---|")

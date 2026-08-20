@@ -28,6 +28,7 @@ These civilisations override the generic stats above (only differing values are 
 
 - **germ** — `units/germ/champion_infantry_maceman`
   - armor 1 hack / 2 pierce / 15 crush
+  - Capture — strength 2.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Mace" — damage 5 hack + 7 crush — range 3 m — prepare 0.5 s — repeat 1 s — preferred !Ship
   - walk 11.4 m/s
   - run 19.04 m/s
@@ -37,6 +38,7 @@ These civilisations override the generic stats above (only differing values are 
 - **maur** — `units/maur/champion_infantry_maceman`
   - health 200 HP
   - armor 5 hack / 6 pierce / 20 crush
+  - Capture — strength 5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Mace" — damage 10 hack + 14 crush — range 3 m — prepare 0.5 s — repeat 1 s — preferred !Ship
   - walk 9.5 m/s
   - run 15.86 m/s

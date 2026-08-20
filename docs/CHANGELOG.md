@@ -6,6 +6,13 @@
   `docs/game_description/` references are now versioned in `tools/`
   (`analyze.py` for generic units, `buildings.py` for generic buildings, with
   a short usage README); their output goes to `tools/out/` (gitignored).
+- Documentation: the generic units files (`docs/game_description/generic_units/`)
+  now include the **capture attack** (strength, range, repeat time, restricted
+  classes) and the **gather data** (ResourceGatherer rates per resource
+  subtype, carrying capacities, base speed) for every unit, with per-civ
+  overrides where they differ (e.g. cavalry only gathers meat — rate 5, cap 20;
+  spartan helots have boosted stats; spart's champion swordsman is the only
+  champion that gathers). `tools/analyze.py` updated accordingly.
 - Documentation: added `docs/game_description/generic_technologies/` — one
   markdown file per generic 0 A.D. technology (available to 2+ civs; 95 techs),
   with cost, research time, requirements, modifications and the per-civ

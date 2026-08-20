@@ -9,12 +9,15 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Cavalry Spearman
 - **Health:** 160 HP
 - **Armor:** 3 hack / 3 pierce / 15 crush
+- **Attack:** Capture — strength 1.75 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Attack:** Melee "Spear" — damage 6 hack + 5.5 pierce — range 4 m — prepare 0.625 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
 - **Speed:** walk 18 m/s, run 25.2 m/s
 - **Vision:** 80 m
 - **Cost:** 100 food, 50 wood
 - **Build time:** 15 s
 - **Population:** 1
+- **Gather:** rates: food: meat 5 /s
+- **Gather:** capacity: 20 food
 - **Classes:** Unit Organic ConquestCritical Human FastMoving CitizenSoldier
 - **Visible classes:** Citizen Soldier Cavalry Melee Spearman
 - **Rank:** Basic

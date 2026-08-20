@@ -9,12 +9,15 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Pikeman
 - **Health:** 100 HP
 - **Armor:** 5 hack / 5 pierce / 15 crush
+- **Attack:** Capture — strength 2.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Attack:** Melee "Pike" — damage 4 hack + 7.5 pierce — range 8 m — prepare 1 s — repeat 2 s — bonus 2.5× vs Cavalry — preferred Human
 - **Speed:** walk 8.55 m/s, run 14.28 m/s
 - **Vision:** 80 m
 - **Cost:** 50 food, 50 wood
 - **Build time:** 10 s
 - **Population:** 1
+- **Gather:** rates: food: fruit 0.5, grain 0.25, meat 1; wood: tree 0.75, ruins 5; stone: rock 0.5, ruins 2; metal: ore 0.5, ruins 2 /s
+- **Gather:** capacity: 10 food, 10 wood, 10 stone, 10 metal
 - **Classes:** Unit Organic ConquestCritical Human CitizenSoldier
 - **Visible classes:** Builder Citizen Worker Soldier Infantry Melee Pikeman
 - **Rank:** Basic
@@ -33,4 +36,5 @@ These civilisations override the generic stats above (only differing values are 
 
 - **han** — `units/han/infantry_pikeman_b`
   - armor 3 hack / 3 pierce / 15 crush
+  - Capture — strength 2.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Ji" — damage 10 hack + 3.5 pierce — range 8 m — prepare 1 s — repeat 2 s — bonus 2.5× vs Cavalry — preferred Human

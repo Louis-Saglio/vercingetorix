@@ -9,12 +9,15 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Civilian
 - **Health:** 25 HP
 - **Armor:** 1 hack / 1 pierce / 1 crush
+- **Attack:** Capture — strength 1 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Attack:** Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
 - **Speed:** walk 9 m/s, run 15.03 m/s
 - **Vision:** 32 m
 - **Cost:** 50 food
 - **Build time:** 8 s
 - **Population:** 1
+- **Gather:** rates: food: fruit 1, grain 0.5, meat 1; wood: tree 0.7, ruins 5; stone: rock 0.35, ruins 2; metal: ore 0.35, ruins 2 /s
+- **Gather:** capacity: 10 food, 10 wood, 10 stone, 10 metal
 - **Classes:** Unit Organic ConquestCritical Human
 - **Visible classes:** Support Builder Civilian Worker
 
@@ -70,5 +73,6 @@ These civilisations override the generic stats above (only differing values are 
   - build time 30 s
 - **spart** — `units/spart/support_civilian_house`
   - health 35 HP
+  - Capture — strength 1 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Dagger" — damage 3 hack — range 3 m — prepare 0.5 s — repeat 1 s
   - build time 30 s

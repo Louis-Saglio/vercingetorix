@@ -9,6 +9,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Champion Spearman
 - **Health:** 200 HP
 - **Armor:** 6 hack / 6 pierce / 20 crush
+- **Attack:** Capture — strength 5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Attack:** Melee "Spear" — damage 10 hack + 8.5 pierce — range 4 m — prepare 0.5 s — repeat 1 s — bonus 2.5× vs Cavalry — preferred Unit+!Ship
 - **Speed:** walk 9.5 m/s, run 15.86 m/s
 - **Vision:** 80 m
@@ -35,5 +36,6 @@ These civilisations override the generic stats above (only differing values are 
 - **pers** — `units/pers/champion_infantry`
   - health 120 HP
   - armor 4 hack / 5 pierce / 20 crush
+  - Capture — strength 5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Spear" — damage 8.5 hack + 7.225 pierce — range 4 m — prepare 0.5 s — repeat 1 s — bonus 2.5× vs Cavalry — preferred Unit+!Ship
   - cost 50 food, 30 wood, 50 metal

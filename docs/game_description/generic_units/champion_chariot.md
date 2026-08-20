@@ -9,6 +9,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Champion Cavalry
 - **Health:** 240 HP
 - **Armor:** 5 hack / 5 pierce / 20 crush
+- **Attack:** Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Speed:** walk 18 m/s, run 25.2 m/s
 - **Vision:** 80 m
 - **Cost:** 150 food, 80 wood, 100 metal
@@ -31,12 +32,14 @@ These civilisations override the generic stats above (only differing values are 
 - **brit** — `units/brit/champion_chariot`
   - health 300 HP
   - armor 1 hack / 5 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Ranged "Javelin" — damage 36 pierce — range 30 m — prepare 0.4 s — repeat 1.5 s — preferred Human
   - cost 180 food, 100 wood, 120 metal
   - build time 30 s
 - **maur** — `units/maur/champion_chariot`
   - health 300 HP
   - armor 1 hack / 5 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Ranged "Bow" — damage 15 pierce — range 60 m — prepare 0.8 s — repeat 1.25 s — preferred Human
   - walk 17 m/s
   - run 23.8 m/s
@@ -45,6 +48,7 @@ These civilisations override the generic stats above (only differing values are 
 - **pers** — `units/pers/champion_chariot`
   - health 300 HP
   - armor 1 hack / 5 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Ranged "Bow" — damage 15 pierce — range 60 m — prepare 0.8 s — repeat 1.25 s — preferred Human
   - walk 17 m/s
   - run 23.8 m/s
@@ -53,6 +57,7 @@ These civilisations override the generic stats above (only differing values are 
 - **sele** — `units/sele/champion_chariot`
   - health 300 HP
   - armor 1 hack / 5 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Ranged "Bow" — damage 15 pierce — range 60 m — prepare 0.8 s — repeat 1.25 s — preferred Human
   - walk 17 m/s
   - run 23.8 m/s

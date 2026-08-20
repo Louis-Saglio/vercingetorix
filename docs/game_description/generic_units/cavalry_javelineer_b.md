@@ -9,12 +9,15 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Cavalry Javelineer
 - **Health:** 100 HP
 - **Armor:** 2 hack / 1 pierce / 15 crush
+- **Attack:** Capture — strength 1.75 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Attack:** Ranged "Javelin" — damage 18 pierce — range 30 m — prepare 0.4 s — repeat 1.5 s — preferred Human
 - **Speed:** walk 16.2 m/s, run 22.68 m/s
 - **Vision:** 80 m
 - **Cost:** 100 food, 50 wood
 - **Build time:** 15 s
 - **Population:** 1
+- **Gather:** rates: food: meat 5 /s
+- **Gather:** capacity: 20 food
 - **Classes:** Unit Organic ConquestCritical Human FastMoving CitizenSoldier
 - **Visible classes:** Citizen Soldier Cavalry Ranged Javelineer
 - **Rank:** Basic
@@ -43,6 +46,7 @@ These civilisations override the generic stats above (only differing values are 
   - walk 17.82 m/s
   - run 24.95 m/s
 - **mace** — `units/mace/cavalry_javelineer_b`
+  - Capture — strength 1.75 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Ranged "Javelin" — damage 19.8 pierce — range 30 m — prepare 0.4 s — repeat 1.5 s — preferred Human
   - cost 20 food, 90 metal
   - build time 10.5 s

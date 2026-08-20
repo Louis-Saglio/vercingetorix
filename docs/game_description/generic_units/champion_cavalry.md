@@ -9,6 +9,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Champion Cavalry
 - **Health:** 240 HP
 - **Armor:** 5 hack / 5 pierce / 20 crush
+- **Attack:** Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Speed:** walk 18 m/s, run 25.2 m/s
 - **Vision:** 80 m
 - **Cost:** 150 food, 80 wood, 100 metal
@@ -37,33 +38,40 @@ These civilisations override the generic stats above (only differing values are 
 - **cart** — `units/cart/champion_cavalry`
   - health 260 HP
   - armor 5 hack / 6 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Spear" — damage 12 hack + 10 pierce — range 4 m — prepare 0.5 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
   - build time 18.75 s
 - **gaul** — `units/gaul/champion_cavalry`
   - health 260 HP
   - armor 5 hack / 6 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Spear" — damage 12 hack + 10 pierce — range 4 m — prepare 0.5 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
 - **germ** — `units/germ/champion_cavalry`
   - health 260 HP
   - armor 6 hack / 5 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Sword" — damage 18 hack — range 4 m — prepare 0.375 s — repeat 0.75 s — preferred Unit+!Ship
   - build time 18.75 s
 - **iber** — `units/iber/champion_cavalry`
   - armor 3 hack / 3 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Ranged "Javelin" — damage 25 pierce — range 30 m — prepare 0.4 s — repeat 1.5 s — preferred Human
   - walk 16.2 m/s
   - run 22.68 m/s
 - **kush** — `units/kush/champion_cavalry`
   - health 260 HP
   - armor 5 hack / 6 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Spear" — damage 12 hack + 10 pierce — range 4 m — prepare 0.5 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
 - **mace** — `units/mace/champion_cavalry`
   - health 260 HP
   - armor 5 hack / 6 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Spear" — damage 12 hack + 10 pierce — range 4 m — prepare 0.5 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
 - **pers** — `units/pers/champion_cavalry`
   - health 260 HP
   - armor 8 hack / 9 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Spear" — damage 12 hack + 10 pierce — range 7 m — prepare 0.5 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
   - walk 14.4 m/s
   - run 20.16 m/s
@@ -71,14 +79,17 @@ These civilisations override the generic stats above (only differing values are 
 - **ptol** — `units/ptol/champion_cavalry`
   - health 260 HP
   - armor 5 hack / 6 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Spear" — damage 12 hack + 10 pierce — range 4 m — prepare 0.5 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
 - **rome** — `units/rome/champion_cavalry`
   - health 260 HP
   - armor 6 hack / 5 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Sword" — damage 18 hack — range 4 m — prepare 0.375 s — repeat 0.75 s — preferred Unit+!Ship
 - **sele** — `units/sele/champion_cavalry`
   - health 260 HP
   - armor 8 hack / 9 pierce / 20 crush
+  - Capture — strength 3.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Melee "Spear" — damage 12 hack + 10 pierce — range 7 m — prepare 0.5 s — repeat 1.25 s — bonus 1.75× vs Cavalry — preferred Unit+!Ship
   - walk 14.4 m/s
   - run 20.16 m/s

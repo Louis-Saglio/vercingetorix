@@ -9,12 +9,15 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Cavalry Archer
 - **Health:** 100 HP
 - **Armor:** 2 hack / 1 pierce / 15 crush
+- **Attack:** Capture — strength 1.75 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Attack:** Ranged "Bow" — damage 7.5 pierce — range 60 m — prepare 0.8 s — repeat 1.25 s — preferred Human
 - **Speed:** walk 15.3 m/s, run 21.42 m/s
 - **Vision:** 80 m
 - **Cost:** 100 food, 50 wood
 - **Build time:** 15 s
 - **Population:** 1
+- **Gather:** rates: food: meat 5 /s
+- **Gather:** capacity: 20 food
 - **Classes:** Unit Organic ConquestCritical Human FastMoving CitizenSoldier
 - **Visible classes:** Citizen Soldier Cavalry Ranged Archer
 - **Rank:** Basic

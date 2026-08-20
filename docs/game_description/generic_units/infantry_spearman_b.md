@@ -9,12 +9,15 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Spearman
 - **Health:** 100 HP
 - **Armor:** 3 hack / 3 pierce / 15 crush
+- **Attack:** Capture — strength 2.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Attack:** Melee "Spear" — damage 4.5 hack + 4 pierce — range 4 m — prepare 0.5 s — repeat 1 s — bonus 2.5× vs Cavalry — preferred Unit+!Ship
 - **Speed:** walk 9.5 m/s, run 15.86 m/s
 - **Vision:** 80 m
 - **Cost:** 50 food, 50 wood
 - **Build time:** 10 s
 - **Population:** 1
+- **Gather:** rates: food: fruit 0.5, grain 0.25, meat 1; wood: tree 0.75, ruins 5; stone: rock 0.5, ruins 2; metal: ore 0.5, ruins 2 /s
+- **Gather:** capacity: 10 food, 10 wood, 10 stone, 10 metal
 - **Classes:** Unit Organic ConquestCritical Human CitizenSoldier
 - **Visible classes:** Builder Citizen Worker Soldier Infantry Melee Spearman
 - **Rank:** Basic

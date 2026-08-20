@@ -9,12 +9,15 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Generic name:** Slinger
 - **Health:** 50 HP
 - **Armor:** 1 hack / 1 pierce / 10 crush
+- **Attack:** Capture — strength 2.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
 - **Attack:** Ranged "Sling" — damage 11.5 pierce + 1.1 crush — range 45 m — prepare 0.4 s — repeat 1.5 s — preferred Human
 - **Speed:** walk 10.8 m/s, run 18.04 m/s
 - **Vision:** 80 m
 - **Cost:** 50 food, 20 wood, 30 stone
 - **Build time:** 10 s
 - **Population:** 1
+- **Gather:** rates: food: fruit 0.5, grain 0.25, meat 1; wood: tree 0.75, ruins 5; stone: rock 0.5, ruins 2; metal: ore 0.5, ruins 2 /s
+- **Gather:** capacity: 10 food, 10 wood, 10 stone, 10 metal
 - **Classes:** Unit Organic ConquestCritical Human CitizenSoldier
 - **Visible classes:** Builder Citizen Worker Soldier Infantry Ranged Slinger
 - **Rank:** Basic
@@ -34,6 +37,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 These civilisations override the generic stats above (only differing values are listed):
 
 - **mace** — `units/mace/infantry_slinger_b`
+  - Capture — strength 2.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
   - Ranged "Sling" — damage 12.65 pierce + 1.21 crush — range 45 m — prepare 0.4 s — repeat 1.5 s — preferred Human
   - cost 60 metal
   - build time 7 s

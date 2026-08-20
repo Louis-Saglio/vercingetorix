@@ -15,6 +15,8 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 - **Cost:** 50 wood
 - **Build time:** 15 s
 - **Population:** 1
+- **Gather:** rates: food: fish 1.8 /s
+- **Gather:** capacity: 40 food
 - **Classes:** Unit
 - **Visible classes:** Ship FishingBoat
 
