@@ -1,0 +1,27 @@
+# ship_siege
+
+Trained by **5** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0 — see `docs/game_description/generic_units/README.md` for the method.
+
+Generic stats resolved from the shared template `simulation/templates/template_unit_ship_warship_siege` (deepest template common to all civilisation variants; variants may override, see below).
+
+## Basic stats
+
+- **Generic name:** Siege Ship
+- **Health:** 1600 HP
+- **Armor:** 2 hack / 5 pierce / 4 crush
+- **Attack:** Ranged "Stone" — damage 220 crush — range 80 m — prepare 2 s — repeat 4 s — preferred Ship Human Structure
+- **Speed:** walk 12 m/s, run 20.04 m/s
+- **Vision:** 100 m
+- **Cost:** 200 wood, 200 metal
+- **Build time:** 28 s
+- **Population:** 3
+- **Classes:** Unit ConquestCritical Quinquereme
+- **Visible classes:** Ship Warship NavalSiege Heavy
+
+## Civilisations that can train it
+
+- **cart** — `units/cart/ship_siege` (dock, super_dock)
+- **han** — `units/han/ship_siege` (dock)
+- **ptol** — `units/ptol/ship_siege` (dock)
+- **rome** — `units/rome/ship_siege` (dock)
+- **sele** — `units/sele/ship_siege` (dock)

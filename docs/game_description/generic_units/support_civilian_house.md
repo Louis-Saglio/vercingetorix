@@ -1,0 +1,192 @@
+# support_civilian_house
+
+Trained by **15** civilisations. Generic (non-civ-specific) unit of 0 A.D. 0.28.0 — see `docs/game_description/generic_units/README.md` for the method.
+
+Generic stats resolved from the shared template `simulation/templates/template_unit_support_civilian` (deepest template common to all civilisation variants; variants may override, see below).
+
+## Basic stats
+
+- **Generic name:** Civilian
+- **Health:** 25 HP
+- **Armor:** 1 hack / 1 pierce / 1 crush
+- **Attack:** Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+- **Speed:** walk 9 m/s, run 15.03 m/s
+- **Vision:** 32 m
+- **Cost:** 50 food
+- **Build time:** 8 s
+- **Population:** 1
+- **Classes:** Unit Organic ConquestCritical Human
+- **Visible classes:** Support Builder Civilian Worker
+
+## Civilisations that can train it
+
+- **athen** — `units/athen/support_civilian_house` (house)
+- **brit** — `units/brit/support_civilian_house` (house)
+- **cart** — `units/cart/support_civilian_house` (apartment, house)
+- **gaul** — `units/gaul/support_civilian_house` (house)
+- **germ** — `units/germ/support_civilian_house` (house)
+- **han** — `units/han/support_civilian_house` (house)
+- **iber** — `units/iber/support_civilian_house` (house)
+- **kush** — `units/kush/support_civilian_house` (house)
+- **mace** — `units/mace/support_civilian_house` (house)
+- **maur** — `units/maur/support_civilian_house` (house)
+- **pers** — `units/pers/support_civilian_house` (house)
+- **ptol** — `units/ptol/support_civilian_house` (house)
+- **rome** — `units/rome/support_civilian_house` (house)
+- **sele** — `units/sele/support_civilian_house` (house)
+- **spart** — `units/spart/support_civilian_house` (house)
+
+## Civilisation-specific overrides
+
+These civilisations override the generic stats above (only differing values are listed):
+
+- **athen** — `units/athen/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **brit** — `units/brit/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **cart** — `units/cart/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **gaul** — `units/gaul/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **germ** — `units/germ/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **han** — `units/han/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **iber** — `units/iber/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **kush** — `units/kush/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **mace** — `units/mace/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **maur** — `units/maur/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **pers** — `units/pers/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **ptol** — `units/ptol/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **rome** — `units/rome/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **sele** — `units/sele/support_civilian_house`
+  - health 25 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 2 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1
+- **spart** — `units/spart/support_civilian_house`
+  - health 35 HP
+  - armor 1 hack / 1 pierce / 1 crush
+  - Melee "Dagger" — damage 3 hack — range 3 m — prepare 0.5 s — repeat 1 s
+  - walk 9 m/s
+  - run 15.03 m/s
+  - vision 32 m
+  - cost 50 food
+  - build time 30 s
+  - population 1

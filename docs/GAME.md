@@ -133,11 +133,108 @@ the sim had rejected all along; caught in turn 018).
   −44%, easy −25%, medium ±0%, hard +25%, very hard +56%; sandbox does not expand
   or attack.
 
+## Simulation templates and data organisation
+
+All paths relative to `/home/ubuntu/0ad-reference/public/` (data) and
+`/home/ubuntu/0ad-reference/source/source/` (engine C++/JS). Everything below
+was verified against those files.
+
+### Directory layout (`simulation/`)
+
+- `templates/` — every entity is an XML template (the engine compiles them to
+  the `.cached.xmb` files sitting next to each `.xml`):
+  - Root `template_unit_*.xml` / `template_structure_*.xml` / `template_*.xml` —
+    generic base definitions shared by all civs. The template loader never
+    registers `template_*` files as placeable entities
+    (`ps/TemplateLoader.cpp` `AddToTemplates`).
+  - `templates/units/<civ>/` — one file per civ unit. A civ unit file usually
+    only sets Identity (names) + VisualActor; stats come from its `parent`
+    chain into the root `template_unit_*` templates.
+  - `templates/units/` root — only 12 non-civ files (`merc_*`, `samnite_*`,
+    `theb_*`, `thesp_*`, `viking_longship`, `noldor_warship`, `plane`). None is
+    trainable in skirmish: they are spawned by scenario maps (the mercs,
+    samnites, thebans…), `plane` is the `createPlane` cheat, and
+    `theb_siege_fireraiser` / `viking_longship` are referenced nowhere outside
+    l10n/art. `templates/units/pirates/` is a scenario-only pseudo-civ.
+  - `templates/structures/<civ>/` — civ buildings; `structures/` root — generic
+    placed buildings (shrines, tents, fences, `merc_camp_egyptian`…).
+  - `templates/mixins/` — shared behaviour packages applied as parent overlays:
+    `builder.xml` (the full `structures/{civ}/...` build list), `gather_*`
+    (gather rates), `hoplite`, `longsword`, `shrine`…
+  - `templates/special/filter/` — runtime filters searched **first** by the
+    loader (before mixins, before root).
+  - `templates/gaia/` — fauna, trees, ruins, treasures.
+  - `templates/skirmish/` — gamesetup defaults: `skirmish/units/default_*`
+    (starting units) and `skirmish/structures/default_*` (buildings). Entities
+    spawned from them are replaced per civ by the `SkirmishReplacer` component
+    using `data/civs/<civ>.json` → `SkirmishReplacements`.
+- `data/civs/<civ>.json` — `StartEntities` (the starting units/buildings),
+  `SkirmishReplacements`, `WallSets`, `CivBonuses`, `AINames`.
+- `data/technologies/` — techs (JSON), incl. the phase techs.
+- `data/settings/` — victory conditions and other settings.
+- `components/` — JS implementations of the simulation components; each file
+  declares its own XML schema (`Trainer.js`, `Resistance.js`, `Attack.js`, …).
+
+### Template inheritance and merging
+
+- A template declares `parent="..."`. The loader
+  (`ps/TemplateLoader.cpp` `LoadTemplateFile`) resolves a name by searching
+  `special/filter/<name>.xml` → `mixins/<name>.xml` → `<name>.xml`; a
+  `A|B` parent means "load B as base, then apply A on top" (e.g.
+  `hoplite|template_unit_infantry_melee_spearman`). Inheritance depth is capped
+  at 100.
+- Child layers merge onto the parent layer with `CParamNode::ApplyLayer`
+  (`simulation2/system/ParamNode.cpp`) semantics: leaf values override;
+  `datatype="tokens"` lists **merge** (new tokens appended, a token prefixed
+  with `-` removes an inherited token); special attributes: `disable=""`
+  removes the component, `replace=""` wipes the node before applying,
+  `op="add|mul|mul_round"` applies arithmetic on the inherited value (e.g.
+  cavalry `WalkSpeed op="mul"` = 2× the base 9 m/s), `merge=""` only applies
+  when the parent has the node, `filtered=""` keeps only the listed children.
+
+### Civ substitution and who trains what
+
+- `Trainer/Entities` lists use `units/{civ}/X`: `{civ}` is replaced by the
+  **owner's** civ code and `{native}` by the **building's** `Identity/Civ`
+  (matters only for captured buildings, e.g. `merc_camp_egyptian` has
+  `Identity/Civ=ptol`). `Trainer.js` `CalculateEntitiesMap` then **drops any
+  entry whose template file does not exist** — so a civ trains a listed unit
+  type only if it has `units/<civ>/<type>.xml`. Example: every barracks lists
+  `champion_infantry_spearman`, but only mace has the file, so only mace trains
+  it.
+- Generic trainer lists (inherited by the civ buildings):
+  civil centre → `support_civilian` + core citizens; barracks → melee/ranged
+  infantry (b ranks + champions); stable → cavalry + cavalry champions + chariots;
+  range → javelineer/slinger/archer/crossbow + their champions; dock → all ships;
+  fortress → champion/hero/siege lists come from the civ-specific fortress file;
+  temple → `support_healer_b`; market → `support_trader`; house →
+  `support_civilian_house`; arsenal → siege; kennel → `war_dog`; elephant stable
+  → `champion_elephant`.
+- Promotions (`Promotion/Entity`, `units/{civ}/..._a`) and `RequiredXp` (100
+  base) produce the `_a`/`_e` ranks — promoted units are **not** in trainer
+  lists.
+- Buildability is symmetric: units carry `Builder/Entities` with
+  `structures/{civ}/...` (`mixins/builder.xml`) — a civ can only build
+  structures it has a file for.
+
+### Generic units inventory (0.28.0)
+
+Across the 15 civs there are **133 trainable unit types**: **36 are trained by
+2+ civs** (the generic units, one file each in
+`docs/game_description/generic_units/`, with stats resolved from the deepest
+shared template and the per-civ trainer lists), and **97 are trained by a
+single civ** (46 heroes, civ-specific champions/mercenaries/conscripts…).
+Stats in those files come from re-implementing the loader+merge semantics
+above on the actual templates, not from memory.
+
 ## Where to look
 
 - Units/buildings: `/home/ubuntu/0ad-reference/public/simulation/templates/`
+- Generic units reference (stats + per-civ trainer lists):
+  `docs/game_description/generic_units/`
 - Civ definitions: `.../simulation/data/civs/*.json`
 - Technologies: `.../simulation/data/technologies/`
 - Victory conditions: `.../simulation/data/settings/victory_conditions/`
-- Engine internals: `/home/ubuntu/0ad-reference/source/`
+- Simulation components: `.../simulation/components/*.js`
+- Engine internals: `/home/ubuntu/0ad-reference/source/source/`
 - Reference bot: `.../public/simulation/ai/petra/` and `.../common-api/`

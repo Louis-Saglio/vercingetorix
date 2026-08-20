@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Documentation: added `docs/game_description/generic_units/` — one markdown
+  file per generic 0 A.D. unit (trainable in skirmish by 2+ civs; 36 units),
+  with basic stats resolved from the shared template chain and the list of
+  civilisations that train each unit (plus per-civ stat overrides). All values
+  extracted from `/home/ubuntu/0ad-reference/` (0.28.0) by re-implementing the
+  engine's template loader/merge semantics (`TemplateLoader.cpp`,
+  `ParamNode.cpp`, `Trainer.js`) — nothing from memory. `docs/GAME.md` gained a
+  "Simulation templates and data organisation" section documenting the
+  template layout, inheritance/merge rules, `{civ}`/`{native}` substitution,
+  trainer lists, and the unit inventory (133 trainable types: 36 generic,
+  97 single-civ).
 - Turn 029 (G4a progress, good): the silent training killer found and fixed —
   the spearman costs 50 food + 50 wood (the base infantry template's 50 food
   is inherited), the sim silently rejects unaffordable train orders, and the
