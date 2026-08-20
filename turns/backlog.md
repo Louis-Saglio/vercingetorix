@@ -16,11 +16,17 @@ retroactively to match a verdict.
   750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
   minute 18–19** — training held until 3 forges, forges placed on a double
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
+- G4b (next, pre-registered for turn 032): **wins before the 30-minute limit
+  ≥ 8/10** vs sandbox Rome. Turn 031's evidence: the assault-ready state
+  (ram gate at 32, 2:1 soldier split + two post-town food workers) produced
+  the **project's first wins** — seeds 282/285 destroy the CC (attack t25/27)
+  — but 2 rams by t26 is structurally unreachable (City t22–27 → arsenal
+  +180 s → rams t26–29). Levers for the slow seeds: one post-town worker
+  food → metal (City earlier), or a third ram.
 - G4a (re-scoped, turn 030's evidence): ≥ 32 melee by minute 22 (8/10 in
   turn 029) AND ≥ 2 rams by minute 26 AND the attack fired by minute 28 —
-  3 rams by t24 is structurally unreachable (City t20–29, arsenal +180 s,
-  metal regather ~1.4/s). Turn 031: ram gate at 32, corrected metric, and
-  watch the first real assault with a 32–53-soldier army. Then G4b = wins.
+  the ram deadline part is structurally unreachable (turn 031); the army
+  part holds.
 - G4: the **assault** problem (the economy chain works — turn 026 got City
   8/10, arsenal, rams and a full-army attack at minute 23–25, but the force
   was annihilated: 0 buildings destroyed, unitsLost 2500–3150). Candidate
