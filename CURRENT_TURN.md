@@ -1,9 +1,9 @@
 # Current turn
 
-- Number: 031 — assault-ready army, corrected metric (G4a/G4b).
-- Phase: two in-turn iterations done → verdict bad (metric unreachable) but
-  **the first wins of the project** (seeds 282/285) → reverted → committing
-  (then turn 032: G4b win metric + ram-timeline iteration).
+- Number: 032 — G4b: the win metric.
+- Phase: three in-turn iterations done (3/10 → 5/10 → 0/10) → verdict
+  neutral, reverted → committing (then turn 033: third ram + multi-builder
+  arsenal).
 - Standing instruction (Louis, 2026-08-20): after each **validated** turn,
   publish the bot mod zip on the file server
   (https://files.louissaglio.fr/vercingetorix.zip).
@@ -14,5 +14,4 @@
 - Standing instruction (Louis, 2026-08-19): bad/neutral → fix small
   understood causes in-turn and rerun; baseline = last validated experiment.
 
-Last completed turn: 030 — assault-ready-army (bad; metric structurally
-unreachable).
+Last completed turn: 031 — assault-ready-corrected (bad; first wins).

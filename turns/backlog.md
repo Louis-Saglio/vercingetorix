@@ -16,17 +16,15 @@ retroactively to match a verdict.
   750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
   minute 18–19** — training held until 3 forges, forges placed on a double
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
-- G4b (next, pre-registered for turn 032): **wins before the 30-minute limit
-  ≥ 8/10** vs sandbox Rome. Turn 031's evidence: the assault-ready state
-  (ram gate at 32, 2:1 soldier split + two post-town food workers) produced
-  the **project's first wins** — seeds 282/285 destroy the CC (attack t25/27)
-  — but 2 rams by t26 is structurally unreachable (City t22–27 → arsenal
-  +180 s → rams t26–29). Levers for the slow seeds: one post-town worker
-  food → metal (City earlier), or a third ram.
+- G4b (turn 033, pre-registered): **wins before the 30-minute limit ≥ 8/10**
+  vs sandbox Rome. Turn 032's best configuration (5/10 wins, composite
+  +11.81): ram gate at 32, 2:1 soldier split, post-town workers 1 stone /
+  2 metal / 1 food, attack at 2 rams. The early-army-attack variant
+  regressed to 0/10 (economy dies with the marching army). Turn 033 levers:
+  a third ram (the draw seeds kill at ~t30.5 — +50% crush once in contact)
+  and multiple builders on the arsenal (180 s → ~60 s).
 - G4a (re-scoped, turn 030's evidence): ≥ 32 melee by minute 22 (8/10 in
-  turn 029) AND ≥ 2 rams by minute 26 AND the attack fired by minute 28 —
-  the ram deadline part is structurally unreachable (turn 031); the army
-  part holds.
+  turn 029); the ram-deadline part was structurally unreachable (turn 031).
 - G4: the **assault** problem (the economy chain works — turn 026 got City
   8/10, arsenal, rams and a full-army attack at minute 23–25, but the force
   was annihilated: 0 buildings destroyed, unitsLost 2500–3150). Candidate
