@@ -1,8 +1,10 @@
 # Current turn
 
-- Number: 035 — A/B diagnosis: seed 293 vs 306 (G4b).
-- Phase: diagnosis done (forge timing is the batch difference) → committing
-  (then turn 036: the forges gate + assault configuration).
+- Number: 036 — forges gate (G4b).
+- Phase: two in-turn iterations done → verdict bad (0/10; batch-dependence
+  structural) → reverted → committing with the G4b reconsideration (new
+  current goal G4a2: robust renewable economy; turn 037 = farmstead +
+  fields).
 - Standing instruction (Louis, 2026-08-20): after each **validated** turn,
   publish the bot mod zip on the file server
   (https://files.louissaglio.fr/vercingetorix.zip).
@@ -13,4 +15,4 @@
 - Standing instruction (Louis, 2026-08-19): bad/neutral → fix small
   understood causes in-turn and rerun; baseline = last validated experiment.
 
-Last completed turn: 034 — wood-radius (bad; the 301–310 batch mystery).
+Last completed turn: 035 — ab-diagnosis (good; forge timing found).

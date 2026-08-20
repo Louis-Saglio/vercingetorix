@@ -4,40 +4,26 @@ Long-term goals that span multiple turns. Each turn grades its experiment agains
 the current goal's scale. When a goal is achieved, the next goal and its grading
 system are defined in the closing commit.
 
-## Current goal: G4a — Sustain a 32+ melee army and 3 rams
+## Current goal: G4a2 — Robust renewable economy
 
-**Statement:** Vercingetorix fields ≥ 32 melee citizen soldiers by
-game-minute 22 and ≥ 3 siege rams by game-minute 24 (the assault-ready
-army). Re-scoped from "50 by minute 22" on turns 028–029's evidence: the
-binding constraint was not ambition but a silent food bug — the spearman
-costs 50 food + 50 wood (inherited base-infantry food cost), and the
-turn-026 "food buys nothing" change starved training. Fixed in turn 029
-(good): 2:1 wood:food pre-town, 1:1 post-town, two workers on food
-post-town, 5 houses pre-town — ≥ 32 melee at t22 on 8/10 seeds, composite
-+17.19.
+**Statement:** Vercingetorix sustains its siege economy on **any** seed
+batch: a farmstead plus fields worked continuously (the renewable food
+engine), so the finite early food stops being the batch-dependence. This is
+the prerequisite for G4b (turn 036's reconsideration).
 
-**Grading per match** (against the per-minute `[HARNESS]` samples):
-
-- **Good** — ≥ 32 melee at the minute-22 sample AND ≥ 2 rams by minute 26
-  AND the attack has fired by minute 28.
-- **Fail** — otherwise, or JS errors.
-
-(Target corrected on turn 030's evidence: 3 rams by minute 24 is
-structurally unreachable — City lands at minute 20–29, the arsenal builds
-180 s after that, and three rams need ~5 more minutes of metal regather.)
+**Grading per match** (against the per-minute `[HARNESS]` samples) — to be
+defined in turn 037's hypothesis once the farmstead/field mechanics are
+verified against the game data.
 
 **Goal achieved when:** a 10-seed batch against sandbox Rome reaches Good on
-≥ 8/10 seeds with 0 JS errors and canary PASS. Record the batch in the
-closing commit and move on to G4b.
+≥ 8/10 seeds with 0 JS errors and canary PASS.
 
-## Next goal: G4b — Defeat sandbox Rome
+## Backlog goal: G4b — Defeat sandbox Rome
 
 **Statement:** Vercingetorix destroys the enemy civic centre (the
 `conquest_civic_centers` victory condition) against sandbox Rome (Petra,
 difficulty 0), which does not expand or attack, before the **30-game-minute**
-match limit (raised from 25 on turn 025's evidence: the optimized siege
-timeline — City t18–20 → arsenal t19–21 → ram t21.5–22 → march → CC kill —
-lands wins at minute 25.5–27, outside 25 minutes).
+match limit (raised from 25 on turn 025's evidence).
 
 **Grading per match:**
 
@@ -47,7 +33,23 @@ lands wins at minute 25.5–27, outside 25 minutes).
 **Goal achieved when:** a 10-seed batch against sandbox Rome wins on ≥ 8/10
 seeds with 0 JS errors and canary PASS.
 
+**Reconsideration (turn 036):** G4b has resisted turns 024–036. The siege
+chain itself works — it wins when the economy lands it (5/10 on seeds
+291–300, wins at minute 25–27) — but the result is batch-dependent: on the
+301–310 batch the finite early food and the small-army hand count push the
+forges/city/rams past the 30-minute window no matter the gate or radius
+tuning. The prerequisite for a robust win rate is a **bigger, renewable
+economy**: a farmstead + fields (the finite early food is the
+batch-dependence) and more gatherer hands. G4b waits behind G4a2.
+
 ## Completed goals
+
+### G4a — Assault-ready army (army half achieved turn 029; siege half folded into G4b)
+
+≥ 32 melee by minute 22: reached 8/10 in turn 029 (the food fix — the
+spearman costs 50 food + 50 wood, and the turn-026 "food buys nothing"
+split had starved training). The rams/attack half lives in G4b's chain,
+which wins batch-dependently (turn 036's reconsideration).
 
 ### G1 — Economy boot (achieved turn 004)
 

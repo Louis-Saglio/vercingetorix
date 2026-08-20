@@ -16,18 +16,14 @@ retroactively to match a verdict.
   750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
   minute 18–19** — training held until 3 forges, forges placed on a double
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
-- G4b (turn 036, pre-registered): **wins before the 30-minute limit ≥ 8/10**
-  vs sandbox Rome. Turn 035's A/B diagnosis (seed 293 wins vs 306 fails):
-  the batch difference is the forges competing with training for wood — on
-  the failing seeds the forges complete at minute 24–25, the city lands at
-  25–26 and the rams miss the window. Turn 036: restore the assault
-  configuration (ram gate 32, 2:1 split, workers 1 stone / 2 metal / 1
-  food, attack at 2 rams) **plus the turn-023 forges gate** (hold training
-  until the 3 forges are built).
-- Turn 033's findings (kept): the repair re-post resets the builder's
-  approach (skip re-posts while REPAIRING); three builders work.
-- G4a (re-scoped, turn 030's evidence): ≥ 32 melee by minute 22 (8/10 in
-  turn 029); the ram-deadline part was structurally unreachable (turn 031).
+- G4a2 (current goal, turn 036's reconsideration): **robust renewable
+  economy** — farmstead + fields (the finite early food is the
+  batch-dependence behind G4b's 5/10-vs-0/10 split). Turn 037: verify the
+  farmstead/field mechanics in the game data, then build and work them;
+  grading defined in the turn-037 hypothesis.
+- G4b (backlog, waits behind G4a2): wins before the 30-minute limit ≥ 8/10
+  vs sandbox Rome. The siege chain wins batch-dependently (5/10 on
+  291-300); the robust economy should make it batch-independent.
 - G4: the **assault** problem (the economy chain works — turn 026 got City
   8/10, arsenal, rams and a full-army attack at minute 23–25, but the force
   was annihilated: 0 buildings destroyed, unitsLost 2500–3150). Candidate
