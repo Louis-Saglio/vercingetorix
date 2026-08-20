@@ -1,8 +1,3 @@
-// Vercingetorix — turns 001–006: gather supplies by need (001, 004), train
-// civilians at the civil centre (002), build houses when population headroom
-// runs low (003/005), parallel training from houses after the Fertility
-// Festival tech (006). See turns/NNN-*.md for hypotheses and verdicts.
-//
 // Observability harness consumers rely on:
 //  - a per-minute [HARNESS] {"event":"sample",...} JSON line with neutral
 //    state (time, resources, population, unit-state histogram) — the
@@ -21,13 +16,13 @@ export function VercingetorixBot(settings)
 	this.reportMinute = 0;
 	this.finalReported = false;
 
-	// Gathering (turn 001): cached resource-supply ids around the civil
+	// Gathering: cached resource-supply ids around the civil
 	// centre; refreshed with a larger radius when exhausted.
 	this.turn = 0;
 	this.supplyIds = null;
 	this.supplyRadius = 140;
 
-	// House building (turns 003/005): deterministic candidate-spot sequence
+	// House building: deterministic candidate-spot sequence
 	// and the one house in flight (pending placement, then foundation id).
 	this.houseSpotIndex = 0;
 	this.housePending = null;
@@ -86,9 +81,9 @@ VercingetorixBot.prototype.play = function(gameState)
 	if (!this.supplyIds)
 		return; // no civil centre yet — retry next play tick
 
-	// Turn 004: steer idle gatherers by need — food while food gatherers are
-	// below 75 % of all gatherers, wood otherwise (G1 needs ~4:1 food:wood).
-	// Turn 006: the wood slot goes to metal while saving 100 metal for the
+	// steer idle gatherers by need — food while food gatherers are
+	// below 75 % of all gatherers, wood otherwise.
+	// The wood slot goes to metal while saving 100 metal for the
 	// Fertility Festival tech.
 	const tech = "unlock_civilians_house_generic";
 	const needMetal = !gameState.isResearched(tech) && !gameState.isResearching(tech) &&
@@ -145,7 +140,7 @@ VercingetorixBot.prototype.play = function(gameState)
 	this.buildHouses(gameState);
 };
 
-// Turn 006: research Fertility Festival at the first completed house as
+// Research Fertility Festival at the first completed house as
 // soon as its cost is covered, unlocking parallel civilian training there.
 VercingetorixBot.prototype.researchFertility = function(gameState, tech)
 {
@@ -170,7 +165,7 @@ VercingetorixBot.prototype.canGather = function(rates, generic)
 	return false;
 };
 
-// Turns 003/005: keep one house in flight while population headroom is low
+// keep one house in flight while population headroom is low
 // and the limit is below the 100-pop goal (CC 20 + 17 houses × 5 = 105).
 VercingetorixBot.prototype.buildHouses = function(gameState)
 {
@@ -299,7 +294,7 @@ VercingetorixBot.prototype.nearestCivilians = function(gameState, spot, count)
 	return units.slice(0, count).map(u => u.ent);
 };
 
-// Turn 002: keep trainers producing workers while food and population room
+// Keep trainers producing workers while food and population room
 // allow; at most one item queued per trainer (reservations lock population
 // and food, and training blocked at the cap fails silently).
 VercingetorixBot.prototype.trainWorker = function(gameState, ent, template)
