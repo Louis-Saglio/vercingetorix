@@ -6,6 +6,15 @@
   `docs/game_description/` references are now versioned in `tools/`
   (`analyze.py` for generic units, `buildings.py` for generic buildings, with
   a short usage README); their output goes to `tools/out/` (gitignored).
+- Documentation: added `docs/game_description/romans/` — the rome-specific
+  counterpart of `gauls/` (units exclusive to rome: champion centurion, 3
+  heroes, antesignanus, the directly-trained `_a` ranks, onager/scorpio;
+  buildings: army_camp, temple_vesta, wallset_siege; technologies:
+  civbonuses/rome_siege, roman_reforms, roman_roads). `tools/gaul.py` is
+  generalised into `tools/civ.py <civ-code>` (gauls output verified unchanged);
+  civ building docs now show effective trainer lists only (the army_camp lists
+  `infantry_axeman_a`/`infantry_pikeman_a` but rome has no such files, so
+  `Trainer.js` drops them).
 - Documentation: `docs/game_description/` re-organised — the three generic
   references now live under `docs/game_description/generic/` (`units/`,
   `buildings/`, `technologies/`, prefix dropped), and a new

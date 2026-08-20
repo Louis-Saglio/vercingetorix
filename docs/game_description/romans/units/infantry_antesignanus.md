@@ -1,0 +1,27 @@
+# infantry_antesignanus
+
+Roman-specific unit of 0 A.D. 0.28.0 — only the romans can train it. See `docs/game_description/romans/units/README.md` for the method; shared units are documented in `docs/game_description/generic/units/`.
+
+Stats resolved from `simulation/templates/units/rome/infantry_antesignanus` (full roman template chain).
+
+## Basic stats
+
+- **Generic name:** Legionary Skirmisher
+- **Health:** 50 HP
+- **Armor:** 1 hack / 1 pierce / 10 crush
+- **Attack:** Capture — strength 2.5 — range 4 m — repeat 1 s — restricted Field Palisade Wall
+- **Attack:** Ranged "Javelin" — damage 16 pierce — range 30 m — prepare 0.4 s — repeat 1.5 s — preferred Human
+- **Speed:** walk 11.4 m/s, run 19.04 m/s
+- **Vision:** 80 m
+- **Cost:** 50 food, 50 wood, 15 metal
+- **Build time:** 10 s
+- **Population:** 1
+- **Gather:** rates: food: fruit 0.5, grain 0.25, meat 1; wood: tree 0.75, ruins 5; stone: rock 0.5, ruins 2; metal: ore 0.5, ruins 2 /s
+- **Gather:** capacity: 10 food, 10 wood, 10 stone, 10 metal
+- **Classes:** Unit Organic ConquestCritical Human CitizenSoldier
+- **Visible classes:** Builder Citizen Worker Soldier Infantry Ranged Javelineer Legionary
+- **Rank:** Elite
+
+## Trained by
+
+- **rome** — `units/rome/infantry_antesignanus` (army_camp)

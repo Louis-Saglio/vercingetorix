@@ -20,9 +20,10 @@ engine's template loading — nothing from memory:
   (`globalscripts/Technologies.js`) and the `autoResearch` civ bonuses;
   computes the generic technologies (available to 2+ civs) with cost,
   requirements and modifications.
-- `gaul.py` — reuses the three analyses and keeps only what is exclusive to
-  gaul (single-civ units/buildings/techs); generates the `gauls/` reference
-  with stats from the fully resolved gaul templates.
+- `civ.py` — reuses the three analyses and keeps only what is exclusive to one
+  civilisation (single-civ units/buildings/techs); generates the per-civ
+  reference (`gauls/`, `romans/`, …) with stats from the fully resolved civ
+  templates. Usage: `python3 civ.py <civ-code>` (known: `gaul`, `rome`).
 
 ## Usage
 
@@ -30,7 +31,8 @@ engine's template loading — nothing from memory:
 python3 analyze.py        # units        -> out/docs_out/*.md + out/units.json
 python3 buildings.py      # buildings    -> out/buildings_out/*.md + out/buildings.json
 python3 technologies.py   # technologies -> out/technologies_out/*.md + out/technologies.json
-python3 gaul.py           # gaul-specific -> out/gauls_out/{units,buildings,technologies}/*.md
+python3 civ.py gaul         # gaul-specific -> out/gauls_out/{units,buildings,technologies}/*.md
+python3 civ.py rome         # rome-specific -> out/romans_out/{units,buildings,technologies}/*.md
 ```
 
 Outputs land in `tools/out/` (gitignored). To refresh the repo docs, review the
@@ -41,6 +43,7 @@ cp out/docs_out/*.md ../docs/game_description/generic/units/
 cp out/buildings_out/*.md ../docs/game_description/generic/buildings/
 cp out/technologies_out/*.md ../docs/game_description/generic/technologies/
 cp -r out/gauls_out/* ../docs/game_description/gauls/
+cp -r out/romans_out/* ../docs/game_description/romans/
 ```
 
 ## Notes
@@ -50,5 +53,5 @@ cp -r out/gauls_out/* ../docs/game_description/gauls/
 - Grouping criterion: a unit/building/technology is "generic" when 2+ of the
   15 civs can train/build/research it; single-civ items (heroes, civ-unique
   buildings, civ-specific techs…) are deliberately excluded from the generic
-  docs and listed in the JSON dumps (`single_civ`). `gaul.py` documents the
-  gaul-only subset of those single-civ items.
+  docs and listed in the JSON dumps (`single_civ`). `civ.py` documents the
+  per-civ subset of those single-civ items.

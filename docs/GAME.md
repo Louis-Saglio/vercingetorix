@@ -275,8 +275,8 @@ pair-choice techs of single-civ pairs, and leftovers such as
   `docs/game_description/generic/buildings/`
 - Generic technologies reference (stats + per-civ researcher lists):
   `docs/game_description/generic/technologies/`
-- Gaul-specific reference (units/buildings/technologies exclusive to gaul):
-  `docs/game_description/gauls/`
+- Civ-specific references (units/buildings/technologies exclusive to one civ):
+  `docs/game_description/gauls/`, `docs/game_description/romans/`
 - Civ definitions: `.../simulation/data/civs/*.json`
 - Technologies: `.../simulation/data/technologies/`
 - Victory conditions: `.../simulation/data/settings/victory_conditions/`
