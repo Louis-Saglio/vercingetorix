@@ -13,9 +13,8 @@ in-engine JavaScript mod, developed and trained entirely in headless matches on 
 ## Documentation
 
 - [Changelog](docs/CHANGELOG.md)
-- [User Guide](docs/USER_GUIDE.md)
 - [Developer Guide](docs/DEVELOPER_GUIDE.md)
-- [Game knowledge](docs/GAME.md) — strategy-level facts about 0 A.D. 0.28.0
+- [Game knowledge](docs/GAME.md) — everything learnt by the developer about the game while developing this bot
 - [Game description](docs/game_description/) — the full game reference:
   mechanics (combat, construction, territory, turns…) and per-entity data
   (units, buildings, technologies, auras) with bot-oriented guides
