@@ -16,11 +16,13 @@ retroactively to match a verdict.
   750 AND 3 Town-class structures exist. **Done turn 023 (good): 9/10 City at
   minute 18–19** — training held until 3 forges, forges placed on a double
   ring (72 m + 88 m, 32 candidates, 28 m clearance).
-- G4a2 (current goal, turn 036's reconsideration): **robust renewable
-  economy** — farmstead + fields (the finite early food is the
-  batch-dependence behind G4b's 5/10-vs-0/10 split). Turn 037: verify the
-  farmstead/field mechanics in the game data, then build and work them;
-  grading defined in the turn-037 hypothesis.
+- G4a2 (current goal): **robust renewable economy** — farmstead + fields.
+  Turn 037 (bad): the farmstead/fields never build because the manager
+  order (houses → forges → arsenal → farmstead) lets the 600-wood forges
+  consume the pooled wood first, and a training gate on farmstead + fields
+  deadlocks the army (melee stuck at 2). Next: build the farmstead and
+  fields **before** the forges (or gate training on the farmstead alone),
+  then grade the renewable food engine.
 - G4b (backlog, waits behind G4a2): wins before the 30-minute limit ≥ 8/10
   vs sandbox Rome. The siege chain wins batch-dependently (5/10 on
   291-300); the robust economy should make it batch-independent.
