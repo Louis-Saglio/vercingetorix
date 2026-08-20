@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+- Reset: all pre-`game_description` turns and experiments deleted (they
+  predated the game reference and did not progress correctly). `turns/` keeps
+  only an emptied `backlog.md`; `CURRENT_TURN.md` marks a fresh start (next
+  turn is a new turn 001 designed from `docs/game_description/`).
+  `docs/ENGINE_BUG_0AD_0.28_NONDETERMINISM.md` still cites
+  `experiments/003/` probe files — those are gone with the reset; the bug
+  analysis itself stands.
+- Bot: `vercingetorix.js` is again a do-nothing baseline (no orders issued).
+  The observability used by the harness is kept: per-minute `[HARNESS]`
+  sample lines (time, resources, pop, unit-state histogram — the report
+  tool reads `pop`) and the final `end` event. The infrastructure mod files
+  (autostart override, NonVisualTrigger time limit + statistics dump) are
+  unchanged.
+- Docs: `docs/GAME.md` citations that pointed at deleted turn journals now
+  point at the `game_description` references.
+
 - Documentation: `docs/game_description/` is now indexed and referenced from
   every entry point — new top-level `docs/game_description/README.md` (layout,
   how to use it when writing bot code, regeneration warning), and pointers in

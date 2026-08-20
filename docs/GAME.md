@@ -53,7 +53,8 @@ builders.
 - **Trade:** market — barter resources, or set trade routes between markets/docks.
 - Buildings cost resources; **spearmen cost 50 food + 50 wood** (the base
   infantry template's 50 food is inherited and merged with the spearman's own
-  50 wood — turn 029's diagnosis); houses cost 75 wood.
+  50 wood — see `docs/game_description/generic/units/infantry_spearman_b.md`);
+  houses cost 75 wood.
 - **Treasures:** treasure chests (gaia entities) are scattered on the map; units
   can gather them for instant resources. Disabled in the experiments
   (`DisableTreasures` gamesetting, forced by the bot mod's autostart override).
@@ -102,15 +103,15 @@ the CC (`simulation/data/technologies/phase_town.json`, `phase_city.json`). Town
 and City unlock better units, buildings, and techs. The time a bot reaches each
 phase is a core quality metric (reported by the bot via research events).
 
-**Phase requirements (verified 0.28, turn 018/019):** Town requires **5
+**Phase requirements (verified 0.28):** Town requires **5
 Village-class structures** (`classCounts["Village"] ≥ 5` — houses carry the
 Village class); City requires **3 Town-class structures** (forge, market and
 temple carry the Town class) plus the 750 stone /
 750 metal cost. Town costs 500 food + 500 wood. **The sim silently rejects
 phase research whose requirements are unmet** — no resources are paid, nothing
 is logged, and the bot's own flags keep lying. Ground truth is
-`gameState.currentPhase()` / `isResearched()` (turn 011–017 ran on a bot flag
-the sim had rejected all along; caught in turn 018).
+`gameState.currentPhase()` / `isResearched()`. Details:
+`docs/game_description/mechaniques/technologies_and_modifiers.md`.
 
 ## Territory and map
 
