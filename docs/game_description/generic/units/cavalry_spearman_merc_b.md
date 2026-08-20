@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-A mercenary cavalry spearman available to Ptolemies and Seleucids, trained at the Military Colony rather than the Civic Centre. It is the anti-cavalry choice among cavalry: the Spear attack carries a documented 1.75× bonus vs Cavalry, and its speed (run 25.2 m/s) lets it intercept or raid. The civilisation variants cost 20 food + 90 metal — metal instead of food — so it suits a bot with spare metal and limited food, and mercenaries promote automatically (the rank upgrades require 0 XP). Like other CitizenSoldiers it can gather meat (5 food/s), but that is a side use, not its role.
+A mercenary cavalry spearman available to Ptolemies and Seleucids, trained at the Military Colony rather than the Civic Centre. It is the anti-cavalry choice among cavalry: the Spear attack carries a documented 1.75× bonus vs Cavalry, and its speed (run 25.2 m/s) lets it intercept or raid. The civilisation variants cost 20 food + 90 metal — metal instead of food — so it is metal-intensive, a premium unit that is hard to mass, and mercenaries promote automatically (the rank upgrades require 0 XP). Like other CitizenSoldiers it can gather meat (5 food/s), but that is a side use, not its role.
 
 ## Basic stats
 

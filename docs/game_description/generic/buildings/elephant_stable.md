@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_s
 
 ## Guide
 
-The Elephant Stable is the City-phase production building for elephant units: it trains support elephants, elephant archers and champion elephants, and researches elephant technologies. Build it only if your civilisation is on the list below (6 civilisations) and you intend to field elephants — at 200 wood + 200 stone and 180 s build time it is a moderate investment with no other purpose. It has the ConquestCritical class, so losing it counts toward defeat in conquest-type victories; its 5 garrison slots and high pierce armor (35) give it some resilience.
+The Elephant Stable is the City-phase production building for elephant units: it trains support elephants, elephant archers and champion elephants, and researches elephant technologies. Build it only if your civilisation is on the list below (6 civilisations) and you intend to field elephants — at 200 wood + 200 stone it is a premium investment, since stone is a scarce resource, and it serves no other purpose. Its 5 garrison slots and high pierce armor (35) give it some resilience.
 
 ## Basic stats
 

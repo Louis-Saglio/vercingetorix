@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-The Slinger is the cheap basic-rank ranged citizen-soldier: at 50 food / 20 wood / 30 stone, 10 s build time and 1 population it is one of the cheapest military units available, trainable at the barracks and, for several civilisations, the civil centre. Its role is early-game harass and fire support, dealing 11.5 pierce damage at 45 m range with a preference for Human targets, but with only 50 HP and 1/1 armor it must stay behind melee units. As a CitizenSoldier it doubles as an economy unit between fights, with useful gather rates (notably meat 1/s and wood 0.75/s) and Builder class for constructing structures.
+The Slinger is the mid-range, mid-damage option among the three ranged infantry types: 11.5 pierce damage at 45 m, between the archer (7.2 at 60 m) and the javelineer (16 at 30 m), with a preference for Human targets. Its distinguishing drawback is economic: it is the only basic infantry costing stone (30 stone, 20 wood, 50 food), and stone is scarcer than food and wood, so slingers are harder to mass than their food/wood-only counterparts. Its walk speed (10.8 m/s) sits between the archer's and the javelineer's. It is trainable at the barracks and, for several civilisations, the civil centre. With only 50 HP and 1/1 armor it must stay behind melee units; as a CitizenSoldier it doubles as an economy unit between fights, with useful gather rates (notably meat 1/s and wood 0.75/s) and Builder class for constructing structures.
 
 ## Basic stats
 

@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_s
 
 ## Guide
 
-The Stable is the cavalry production building: it trains all basic cavalry types (axeman, swordsman, spearman, javelineer, archer) and, per its tooltip, researches cavalry technologies. Build it when a strategy calls for cavalry — for most civilisations it is the only source of mounted units, and some variants (e.g. cart, germ) are restricted to a subset of cavalry types (see overrides below). It is available from the Village phase, costs 200 wood / 50 stone (250 wood for brit, gaul, maur) and takes 120 s to build, so it is an early-to-mid game investment. As a `ConquestCritical` structure with only 500 capture points, protect it or garrison up to 10 units inside.
+The Stable is the cavalry production building: it trains all basic cavalry types (axeman, swordsman, spearman, javelineer, archer) and, per its tooltip, researches cavalry technologies. Build it when a strategy calls for cavalry — for most civilisations it is the only source of mounted units, and some variants (e.g. cart, germ) are restricted to a subset of cavalry types (see overrides below). It is available from the Village phase, costs 200 wood plus 50 stone, a scarce premium resource (250 wood for brit, gaul, maur), and takes 120 s to build, so it is an early-to-mid game investment. With only 500 capture points it is easy to capture, so protect it or garrison up to 10 units inside.
 
 ## Basic stats
 

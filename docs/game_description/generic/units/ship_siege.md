@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-The Siege Ship is the navy's artillery piece: its 220 crush ranged attack at 80 m range (with 100 crush splash) prefers Ships and Structures, making it the right choice for destroying coastal buildings and enemy fleets from a distance. It can also garrison up to 50 Siege-class units, doubling as the transport that carries land siege engines across water. It requires the City phase and is trained at the dock for 200 wood, 200 metal and 3 population, so it is a late-game investment rather than an early raider.
+The Siege Ship is the navy's artillery piece: its 220 crush ranged attack at 80 m range (with 100 crush splash) prefers Ships and Structures, making it the right choice for destroying coastal buildings and enemy fleets from a distance. It can also garrison up to 50 Siege-class units, doubling as the transport that carries land siege engines across water. It requires the City phase and is trained at the dock for 200 wood, 200 metal and 3 population — metal-intensive, so a premium late-game investment that is hard to mass rather than an early raider.
 
 ## Basic stats
 

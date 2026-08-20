@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-The Arrow Ship is the standard light warship, trained at the dock, and exists to fight other ships: its attack carries a 3× bonus vs the Ship class and prefers Ship targets, making it the documented counter at sea. At 100 wood + 100 metal, 1 population and 24 s build time it is cheap to mass, and its 80 m vision suits scouting coastlines. Per its tooltip it can also garrison units for transport across water. It is ConquestCritical, so losing all ships can decide conquest games.
+The Arrow Ship is the standard light warship, trained at the dock, and exists to fight other ships: its attack carries a 3× bonus vs the Ship class and prefers Ship targets, making it the documented counter at sea. At 100 wood + 100 metal, 1 population and 24 s build time it is metal-intensive, so a premium unit that is harder to mass; its 80 m vision suits scouting coastlines. Per its tooltip it can also garrison units for transport across water.
 
 ## Basic stats
 

@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_s
 
 ## Guide
 
-The Dock is the entry point to everything naval: for 200 wood it must be placed on a shoreline and trains the full ship roster — `ship_fishing` (food economy), `ship_merchant` (trade), and warships (`ship_scout`, `ship_arrow`, `ship_ram`, `ship_fire`, `ship_siege`). Per its template, it also serves as a trade destination (Market component), a dropsite for all four resources, and the researcher for ship and fishing technologies. Build it only on maps with usable water: its economy and military value depend entirely on ships, and as a `ConquestCritical` structure it must be defended once built.
+The Dock is the entry point to everything naval: for 200 wood, an abundant resource, it is easy to afford and must be placed on a shoreline, from where it trains the full ship roster — `ship_fishing` (food economy), `ship_merchant` (trade), and warships (`ship_scout`, `ship_arrow`, `ship_ram`, `ship_fire`, `ship_siege`). Per its template, it also serves as a trade destination (Market component), a dropsite for all four resources, and the researcher for ship and fishing technologies. Build it only on maps with usable water: its economy and military value depend entirely on ships.
 
 ## Basic stats
 

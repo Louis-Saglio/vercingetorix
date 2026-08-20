@@ -8,7 +8,7 @@ Note: the civilisation variants of this unit share no concrete common template �
 
 ## Guide
 
-A barracks-trained champion melee infantry whose role is assaulting structures: its Mace attack is dominated by crush damage (5 hack + 7 crush for `germ`, 10 hack + 14 crush for `maur`) and it carries an active Capture ability with strength 2.5–5. The very high crush armor (15 for `germ`, 20 for `maur`) makes it especially resistant to siege and other crush attackers, while the 80 m vision lets it serve as a close-range spotter. Train it when pushing against enemy buildings; note the `maur` variant is expensive (80 food, 60 wood, 80 metal) and requires the `unlock_champion_infantry` technology.
+A barracks-trained champion melee infantry whose role is assaulting structures: its Mace attack is dominated by crush damage (5 hack + 7 crush for `germ`, 10 hack + 14 crush for `maur`) and it carries an active Capture ability with strength 2.5–5. The very high crush armor (15 for `germ`, 20 for `maur`) makes it especially resistant to siege and other crush attackers, while the 80 m vision lets it serve as a close-range spotter. Train it when pushing against enemy buildings; note the `maur` variant is metal-intensive (80 food, 60 wood, 80 metal), making it a premium investment that is hard to mass, and requires the `unlock_champion_infantry` technology.
 
 ## Basic stats
 

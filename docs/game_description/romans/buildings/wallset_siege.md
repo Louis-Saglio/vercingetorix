@@ -8,7 +8,7 @@ Note: this is a **wall set**, not a single building — it defines the wall segm
 
 ## Guide
 
-The Siege Wall is the Roman offensive wall set: unlike normal walls, its segments can be built in own, neutral **and enemy** territory (`BuildRestrictions`), making it the tool for walling off an area right at the enemy's doorstep. It requires `phase_city` and is cheap in wood (60 wood per long segment, 30 s build time), but segments are weaker than standard stone walls (Health ×0.75), so it is a field fortification rather than a permanent defense. Its gate/tower templates plus the `army_camp` fort let a bot establish a forward fortified position; build it to protect a siege or forward base, not as a substitute for the stone `wallset_stone` at home.
+The Siege Wall is the Roman offensive wall set: unlike normal walls, its segments can be built in own, neutral **and enemy** territory (`BuildRestrictions`), making it the tool for walling off an area right at the enemy's doorstep. It requires `phase_city` and costs only wood (60 wood per long segment, 30 s build time), an abundant resource, so it is easy to mass, but segments are weaker than standard stone walls (Health ×0.75), so it is a field fortification rather than a permanent defense. Its gate/tower templates plus the `army_camp` fort let a bot establish a forward fortified position; build it to protect a siege or forward base, not as a substitute for the stone `wallset_stone` at home.
 
 ## Basic stats
 

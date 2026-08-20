@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Documentation: Guide sections revised after review — ConquestCritical /
+  defeat-condition references removed from all guides; costs are now framed by
+  resource scarcity (food/wood abundant → easy to mass; stone/metal scarce →
+  premium, hard to mass); the spearman guide notes it is the basic melee
+  infantry of 13/15 civs (all but mace/ptol); the pikeman guide reframed as a
+  frontline holder (armor 5/5, 8 m reach for multi-rank fighting, slow, low
+  damage rate); the archer/slinger/javelineer guides now state the
+  range↔damage tradeoff (60 m/7.2, 45 m/11.5, 30 m/16), the walk-speed
+  ordering (javelineer fastest → best gatherer/harasser), and the slinger's
+  stone cost as a massing constraint.
+
 - Documentation: every unit and building file in `docs/game_description/`
   (generic + gauls + romans, 82 files) now opens with a "Guide" section: what
   the entity is for and its role in the game, from a bot's perspective,

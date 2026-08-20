@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_s
 
 ## Guide
 
-The Fortress is the city-phase (phase_city) heavy military structure: a costly long-term investment at 300 wood / 600 stone and 450 s build time that anchors both defense and territorial expansion (80 m territory radius with weight 40000). It is a defensive strongpoint in its own right — 5200 HP, high hack/pierce armor, a 60 m bow attack preferring Human targets, 20 garrison slots, and garrisoned Soldiers adding extra arrows — and its `ConquestCritical` class means losing it can decide a conquest game. Beyond defense, it is the production and research hub of the late game: it trains heroes (and for some civs champion units, e.g. Rome's centurion) and researches top-tier military technologies.
+The Fortress is the city-phase (phase_city) heavy military structure: a premium long-term investment at 300 wood / 600 stone — stone is a scarce resource, so it is hard to mass — and 450 s build time that anchors both defense and territorial expansion (80 m territory radius with weight 40000). It is a defensive strongpoint in its own right — 5200 HP, high hack/pierce armor, a 60 m bow attack preferring Human targets, 20 garrison slots, and garrisoned Soldiers adding extra arrows. Beyond defense, it is the production and research hub of the late game: it trains heroes (and for some civs champion units, e.g. Rome's centurion) and researches top-tier military technologies.
 
 ## Basic stats
 

@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-A long-range anti-structure siege weapon: its 230 crush damage at 85 m range, with Structure as the preferred target, makes it the tool for demolishing enemy buildings from outside their effective defensive fire. It is trained at the arsenal (cart and rome only) for 400 wood and 250 stone, so it is a deliberate late-game investment rather than a mass unit. This is the packed form — it moves at 7.2 m/s but must unpack into `siege_ballista_unpacked` to fire (packing takes 5 s), so it needs escort and protection; at 375 HP with only 6 hack armor it falls quickly to melee. Being ConquestCritical, losing all of them contributes to defeat under conquest rules.
+A long-range anti-structure siege weapon: its 230 crush damage at 85 m range, with Structure as the preferred target, makes it the tool for demolishing enemy buildings from outside their effective defensive fire. It is trained at the arsenal (cart and rome only) for 400 wood and 250 stone — stone being a scarce, premium resource — so it is a deliberate late-game investment rather than a mass unit. This is the packed form — it moves at 7.2 m/s but must unpack into `siege_ballista_unpacked` to fire (packing takes 5 s), so it needs escort and protection; at 375 HP with only 6 hack armor it falls quickly to melee.
 
 ## Basic stats
 

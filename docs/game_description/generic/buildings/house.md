@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_s
 
 ## Guide
 
-The house is the basic population-support building: its +5 population bonus (75 wood, 30 s build time, available from phase_village) is what raises the population cap, so build houses whenever growth is blocked. It also trains `support_civilian_house` units (female citizens) and offers 3 garrison slots to shelter nearby workers, while its radius-16 territory influence expands owned land. It is `ConquestCritical`, so under `conquest_civic_centers`-style victory conditions losing houses matters — do not leave them exposed.
+The house is the basic population-support building: its +5 population bonus (75 wood, 30 s build time, available from phase_village) is what raises the population cap, so build houses whenever growth is blocked. Costing only wood, an abundant resource, it is cheap to mass. It also trains `support_civilian_house` units (female citizens) and offers 3 garrison slots to shelter nearby workers, while its radius-16 territory influence expands owned land.
 
 ## Basic stats
 

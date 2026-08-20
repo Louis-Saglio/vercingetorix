@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-The Merchantman is the economic ship of the game: it trades between docks to generate resources, with a base gain multiplier of 0.75 increased by +20% for each Trader garrisoned aboard (it can hold up to 15 Support/Cavalry/Relic units). It also gathers profitable aquatic treasures and improves sea trading at the Market. Trained at the dock for 100 metal and available from the Town phase, it is a pure economy unit — it has no attack and its default stance is passive — so build it only when the map has usable water routes, and expect it to need protection rather than to fight. Its Bribable class means it can share vision if bribed by an enemy.
+The Merchantman is the economic ship of the game: it trades between docks to generate resources, with a base gain multiplier of 0.75 increased by +20% for each Trader garrisoned aboard (it can hold up to 15 Support/Cavalry/Relic units). It also gathers profitable aquatic treasures and improves sea trading at the Market. Trained at the dock for 100 metal — a scarce premium resource, so a real investment that is hard to mass — and available from the Town phase, it is a pure economy unit — it has no attack and its default stance is passive — so build it only when the map has usable water routes, and expect it to need protection rather than to fight. Its Bribable class means it can share vision if bribed by an enemy.
 
 ## Basic stats
 

@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_s
 
 ## Guide
 
-The defense tower is a static defensive structure: it automatically fires on enemies within its 60 m range, preferring Human targets, and projects your territory (radius 32 m). Its heavy pierce armor (35) makes it resistant to enemy ranged units, but its very low crush armor (3) leaves it vulnerable to siege weapons, and it cannot shoot enemies at its foot without the “Murder Holes” technology. Garrisoning up to 5 units adds extra arrows, so it works best as a hardened strongpoint anchored by nearby troops rather than a standalone wall. It requires phase_town and costs 100 wood and 100 stone, so build it to hold key positions (resource lines, borders) rather than as an early-game answer.
+The defense tower is a static defensive structure: it automatically fires on enemies within its 60 m range, preferring Human targets, and projects your territory (radius 32 m). Its heavy pierce armor (35) makes it resistant to enemy ranged units, but its very low crush armor (3) leaves it vulnerable to siege weapons, and it cannot shoot enemies at its foot without the “Murder Holes” technology. Garrisoning up to 5 units adds extra arrows, so it works best as a hardened strongpoint anchored by nearby troops rather than a standalone wall. It requires phase_town and costs 100 wood plus 100 stone — stone is a scarce resource, so it is a deliberate investment: build it to hold key positions (resource lines, borders) rather than as an early-game answer.
 
 ## Basic stats
 

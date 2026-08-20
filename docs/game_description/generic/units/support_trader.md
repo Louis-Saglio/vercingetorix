@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-The Trader is a purely economic unit: it trades resources between your own markets and those of your allies, generating extra resources on each trip (template gain multiplier 0.75). Train it at the market once a trade route exists and the 100 food / 80 metal cost is affordable; it has no attack and only 100 HP with 1 armor in all types, so it cannot fight and relies on its speed (walk 9 m/s, run 15.03 m/s) and protected routes to survive. It is Bribable, meaning enemies can pay to share its vision, so undefended trade routes are an intelligence risk as well as an economic one.
+The Trader is a purely economic unit: it trades resources between your own markets and those of your allies, generating extra resources on each trip (template gain multiplier 0.75). Train it at the market once a trade route exists and the 100 food / 80 metal cost is affordable — the metal is a scarce, premium resource, so each Trader is an investment; it has no attack and only 100 HP with 1 armor in all types, so it cannot fight and relies on its speed (walk 9 m/s, run 15.03 m/s) and protected routes to survive. It is Bribable, meaning enemies can pay to share its vision, so undefended trade routes are an intelligence risk as well as an economic one.
 
 ## Basic stats
 

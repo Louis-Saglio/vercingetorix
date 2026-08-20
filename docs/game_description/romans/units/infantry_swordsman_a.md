@@ -6,7 +6,7 @@ Stats resolved from `simulation/templates/units/rome/infantry_swordsman_a` (full
 
 ## Guide
 
-The Roman Swordsman is Rome's core melee infantry, trained at the Army Camp (`structures/rome/army_camp`) and starting directly at Advanced rank. At 50 food / 40 wood / 10 metal it is a cheap all-rounder: it fights with an 8-hack sword attack, can capture buildings (strength 2.5), and doubles as an economic worker that gathers all resources and builds roman structures — but its gather rate degrades as it ranks up (×0.7 per promotion), so veteran swordsmen are best kept fighting. With experience it promotes for free to Elite and eventually to the champion-grade Legionary (195 HP, hack 10.65), making long-lived swordsman squads the backbone of a roman army.
+The Roman Swordsman is Rome's core melee infantry, trained at the Army Camp (`structures/rome/army_camp`) and starting directly at Advanced rank. At 50 food / 40 wood / 10 metal it is mostly paid in abundant food and wood, so easy to mass, though the metal is a scarce resource: it fights with an 8-hack sword attack, can capture buildings (strength 2.5), and doubles as an economic worker that gathers all resources and builds roman structures — but its gather rate degrades as it ranks up (×0.7 per promotion), so veteran swordsmen are best kept fighting. With experience it promotes for free to Elite and eventually to the champion-grade Legionary (195 HP, hack 10.65), making long-lived swordsman squads the backbone of a roman army.
 
 ## Basic stats
 

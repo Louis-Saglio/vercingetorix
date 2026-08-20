@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-A mercenary melee swordsman trained at the **military_colony** (Ptolemies and Seleucids only). Both variants pay **60 metal** (plus 50 food, 40 wood) but build in only **7 s**, making it a fast-to-field frontline fighter when metal is available — the metal cost makes spamming it expensive, so it suits emergency or supplementary recruitment rather than a main-line army. Its melee attack (8.8 hack, preferred Unit+!Ship) is a general-purpose anti-unit weapon with no class bonus, and it keeps modest worker abilities (can gather and has the Builder class). Mercenaries auto-promote at 0 XP via `upgrade_rank_advanced_mercenary`, so survivors reach Advanced/Elite rank (up to ~156 HP) without needing to earn experience in combat.
+A mercenary melee swordsman trained at the **military_colony** (Ptolemies and Seleucids only). Both variants pay **60 metal** (plus 50 food, 40 wood) but build in only **7 s**, making it a fast-to-field frontline fighter when metal is available — metal is a scarce, premium resource, so spamming it is expensive so it suits emergency or supplementary recruitment rather than a main-line army. Its melee attack (8.8 hack, preferred Unit+!Ship) is a general-purpose anti-unit weapon with no class bonus, and it keeps modest worker abilities (can gather and has the Builder class). Mercenaries auto-promote at 0 XP via `upgrade_rank_advanced_mercenary`, so survivors reach Advanced/Elite rank (up to ~156 HP) without needing to earn experience in combat.
 
 ## Basic stats
 

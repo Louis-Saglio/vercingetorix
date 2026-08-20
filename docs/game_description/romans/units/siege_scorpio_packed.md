@@ -6,7 +6,7 @@ Stats resolved from `simulation/templates/units/rome/siege_scorpio_packed` (full
 
 ## Guide
 
-The Scorpio is the Romans' bolt shooter, a long-range anti-personnel siege weapon trained at the arsenal for 250 wood and 250 metal. Its 240 pierce damage at 80 m range (preferred target Human) makes it a backline support unit for killing infantry, not a building destroyer. This is the packed state: it can move but must unpack for 5 s into `siege_scorpio_unpacked` before it can fire, so position it ahead of an engagement. At 200 HP with only 5 crush armor it is fragile and needs escorts.
+The Scorpio is the Romans' bolt shooter, a long-range anti-personnel siege weapon trained at the arsenal for 250 wood and 250 metal — metal-intensive, so a premium unit that is hard to mass. Its 240 pierce damage at 80 m range (preferred target Human) makes it a backline support unit for killing infantry, not a building destroyer. This is the packed state: it can move but must unpack for 5 s into `siege_scorpio_unpacked` before it can fire, so position it ahead of an engagement. At 200 HP with only 5 crush armor it is fragile and needs escorts.
 
 ## Basic stats
 

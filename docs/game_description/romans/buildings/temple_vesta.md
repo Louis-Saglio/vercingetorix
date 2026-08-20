@@ -6,7 +6,7 @@ Stats resolved from `simulation/templates/structures/rome/temple_vesta` (full ro
 
 ## Guide
 
-The Temple of Vesta is the roman temple, available from Town phase for 300 stone. It is the only roman source of healers (`support_healer_b`) and its 20-slot garrison heals occupants at +3 HP/s, so build one near the front or the economy to keep troops and workers alive. Its Eternal Fire aura also gives friendly structures within 75 m +50% capture points, making it a defensive anchor against enemy captures. Because it is ConquestCritical, it must be protected in `conquest_civic_centers`-style victory conditions.
+The Temple of Vesta is the roman temple, available from Town phase for 300 stone, a scarce resource, so it is a real investment. It is the only roman source of healers (`support_healer_b`) and its 20-slot garrison heals occupants at +3 HP/s, so build one near the front or the economy to keep troops and workers alive. Its Eternal Fire aura also gives friendly structures within 75 m +50% capture points, making it a defensive anchor against enemy captures.
 
 ## Basic stats
 

@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_s
 
 ## Guide
 
-The Storehouse is the resource dropsite for wood, metal and stone: build it near forests, mines or quarries so gatherers waste less time walking back to the Civic Centre. Its `DropsiteWood DropsiteMetal DropsiteStone` classes mean one cheap building (100 wood, 40 s build time) covers all three non-food resources, so placing one at each remote resource cluster is a core economic move. It is available from the village phase with no further requirements and must be placed in your own territory; its 20 m territory influence also nudges your border outward at the new site.
+The Storehouse is the resource dropsite for wood, metal and stone: build it near forests, mines or quarries so gatherers waste less time walking back to the Civic Centre. Its `DropsiteWood DropsiteMetal DropsiteStone` classes mean one cheap, easy-to-mass building (only 100 wood, an abundant resource, and 40 s build time) covers all three non-food resources, so placing one at each remote resource cluster is a core economic move. It is available from the village phase with no further requirements and must be placed in your own territory; its 20 m territory influence also nudges your border outward at the new site.
 
 ## Basic stats
 

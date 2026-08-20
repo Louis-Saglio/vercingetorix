@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-Heavy anti-building artillery: its 230 crush damage per shot at 85 m range, with Structure as the preferred target class, makes it the dedicated tool for demolishing enemy structures, and it is ConquestCritical, so it counts toward conquest-style victories. This is the packed (mobile) form — it must be unpacked before it can fire and re-packed (5 s) to move. Expensive (400 wood, 250 stone, 3 population) and trained only at the arsenal by athen, mace, ptol and sele, so it is a late investment best escorted rather than sent alone. A bot should queue it once it has a secure economy and a target civic centre or fortress to destroy.
+Heavy anti-building artillery: its 230 crush damage per shot at 85 m range, with Structure as the preferred target class, makes it the dedicated tool for demolishing enemy structures. This is the packed (mobile) form — it must be unpacked before it can fire and re-packed (5 s) to move. Expensive (400 wood, 250 stone, 3 population) and trained only at the arsenal by athen, mace, ptol and sele; stone is a scarce premium resource, so it is a late investment that is hard to mass and best escorted rather than sent alone. A bot should queue it once it has a secure economy and a target civic centre or fortress to destroy.
 
 ## Basic stats
 

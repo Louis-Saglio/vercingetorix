@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-The Pikeman is the specialised anti-cavalry infantry of the five civilisations that field it: its 2.5× attack bonus vs Cavalry makes it the cost-effective answer to mounted units at only 50 food + 50 wood and 1 population. Beyond that niche its raw melee damage (4 hack + 7.5 pierce) and capture strength (2.5) are modest, so it works best as a defensive escort rather than a main assault force. As a Citizen Soldier it can also gather resources and build when not fighting. It is trained at the barracks (also at the civil centre for mace and ptol).
+The Pikeman is the frontline holder of the five civilisations that field it (han, kush, mace, ptol, sele — for mace and ptol it replaces the spearman as the basic melee infantry). Its edge over the spearman is durability and reach, not damage: 5 hack / 5 pierce armor (vs 3/3), an 8 m pike reach that lets massed pikemen fight from the second rank instead of needing the front row, at the price of being slow (walk ×0.9) and dealing damage at a low rate (11.5 damage per 2 s vs the spearman's 8.5 per 1 s). Use it to fix and hold a front line while ranged units deal the damage. It still carries the 2.5× attack bonus vs Cavalry and costs only food and wood, so it doubles as a cavalry deterrent. As a Citizen Soldier it can also gather and build when not fighting. It is trained at the barracks (also at the civil centre for mace and ptol).
 
 ## Basic stats
 

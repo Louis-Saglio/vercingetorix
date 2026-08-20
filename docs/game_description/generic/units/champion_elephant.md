@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-The War Elephant is a heavy champion melee unit trained at the elephant stable by six civilisations (cart, kush, maur, pers, ptol, sele). Its role is to soak and deal damage: 1000 HP with high armor (especially 20 crush) plus a 30 hack + 45 crush attack every 1.5 s that prefers Unit targets, making it effective against both soldiers and structures. It is expensive to field — 300 food, 200 metal, 3 population, 36 s build time — so train it as a late-game assault core rather than in numbers. Because it is ConquestCritical, keeping elephants alive also matters for defeat conditions.
+The War Elephant is a heavy champion melee unit trained at the elephant stable by six civilisations (cart, kush, maur, pers, ptol, sele). Its role is to soak and deal damage: 1000 HP with high armor (especially 20 crush) plus a 30 hack + 45 crush attack every 1.5 s that prefers Unit targets, making it effective against both soldiers and structures. It is expensive to field — 300 food, 200 metal, 3 population, 36 s build time — and metal-intensive, so a premium unit: train it as a late-game assault core rather than in numbers.
 
 ## Basic stats
 

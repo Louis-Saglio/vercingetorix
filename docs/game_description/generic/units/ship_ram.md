@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-A dedicated anti-ship melee warship: its "Naval Ram" attack (320 hack + 50 crush, preferred vs Warship) is restricted against Organic classes, so it is only useful against ships and siege, never against land units. Trained at docks (town phase required per the template) for a modest 50 food / 100 wood / 25 metal and 18 s, it is the cheap counter to enemy warships once you contest the water. It can also garrison up to 30 siege-class units for transport across water, per its tooltip. Requires the town phase, so plan it as a mid-game naval option rather than an opener.
+A dedicated anti-ship melee warship: its "Naval Ram" attack (320 hack + 50 crush, preferred vs Warship) is restricted against Organic classes, so it is only useful against ships and siege, never against land units. Trained at docks (town phase required per the template) for 50 food / 100 wood plus 25 metal and 18 s, it is the counter to enemy warships once you contest the water — the metal makes it a premium investment rather than something to mass. It can also garrison up to 30 siege-class units for transport across water, per its tooltip. Requires the town phase, so plan it as a mid-game naval option rather than an opener.
 
 ## Basic stats
 

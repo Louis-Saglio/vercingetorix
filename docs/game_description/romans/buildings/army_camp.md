@@ -6,7 +6,7 @@ Stats resolved from `simulation/templates/structures/rome/army_camp` (full roman
 
 ## Guide
 
-The Army Camp is the Roman forward military base: it is the only Roman structure buildable in neutral or enemy territory, letting the bot project force and reinforce close to the front. From Town phase it trains advanced infantry (swordsman, spearman, antesignanus) and both Roman siege engines (onager, ram), so it is the production hub to build when pushing an attack. It also defends itself with a 60 m ranged attack and can garrison 20 soldiers for additional arrows. Its ConquestCritical class means losing all Army Camps contributes to defeat under conquest-type victory conditions, so a forward camp must be defensible.
+The Army Camp is the Roman forward military base: it is the only Roman structure buildable in neutral or enemy territory, letting the bot project force and reinforce close to the front. From Town phase it trains advanced infantry (swordsman, spearman, antesignanus) and both Roman siege engines (onager, ram), so it is the production hub to build when pushing an attack. It also defends itself with a 60 m ranged attack and can garrison 20 soldiers for additional arrows. It costs 150 stone, a scarce resource, so massing camps is an investment.
 
 ## Basic stats
 

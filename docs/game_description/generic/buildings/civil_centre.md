@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_s
 
 ## Guide
 
-The Civil Centre is the faction's core structure: it is a territory root (140 m radius) that claims land, provides +20 population, and trains the basic `support_civilian` workers plus basic infantry and cavalry in most civilisations. It is also a defensive asset — 3000 HP, high hack/pierce armor, a 60 m ranged attack, and 20 garrison slots that heal occupants — making it the natural rally point and refuge. Losing it is decisive: it carries the ConquestCritical class, so under `conquest_civic_centers` victory conditions capturing or destroying it eliminates the owner. Building additional Civil Centres (300 wood, 300 stone, 250 metal; buildable in own or neutral territory, min 200 m from another one) is the documented way to expand territory and population beyond the starting base.
+The Civil Centre is the faction's core structure: it is a territory root (140 m radius) that claims land, provides +20 population, and trains the basic `support_civilian` workers plus basic infantry and cavalry in most civilisations. It is also a defensive asset — 3000 HP, high hack/pierce armor, a 60 m ranged attack, and 20 garrison slots that heal occupants — making it the natural rally point and refuge. Building additional Civil Centres (300 wood, 300 stone, 250 metal — the stone and metal make each one a premium investment, hard to mass) is the documented way to expand territory and population beyond the starting base; it is buildable in own or neutral territory, min 200 m from another one.
 
 ## Basic stats
 

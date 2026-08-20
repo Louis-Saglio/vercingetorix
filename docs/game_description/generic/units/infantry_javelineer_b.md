@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_u
 
 ## Guide
 
-The Infantry Javelineer is the cheap basic-rank ranged citizen-soldier: 50 food + 50 wood, 10 s build time, trained at the barracks (and at the civil centre for several civilisations, including gaul and rome). Its Javelin attack deals 16 pierce damage at 30 m range with Human as preferred target, so its battlefield role is dealing damage from behind a melee line. With only 50 HP and 1 hack / 1 pierce armor it is fragile and must be kept out of melee; as a CitizenSoldier it also gathers resources between fights, making it a safe early-game train. Note that some civilisations (athen, ptol) shift its cost to metal, which changes when it is worth training.
+The Infantry Javelineer is the short-range, high-damage option among the three ranged infantry types: 16 pierce damage at only 30 m, where the slinger deals 11.5 at 45 m and the archer 7.2 at 60 m — so it must get close, but hits hardest. It is also the fastest on foot of the three (walk 11.4 m/s vs 10.8 slinger, 10.3 archer), which makes it the most efficient at gathering resources (less time walking) and the best at harassing the enemy with hit-and-run attacks. Its cost is only food and wood — the abundant resources — so it is easy to mass (50 food + 50 wood, 10 s, trained at the barracks and at the civil centre for several civilisations, including gaul and rome). With only 50 HP and 1 hack / 1 pierce armor it is fragile and must be kept out of melee; as a CitizenSoldier it also gathers resources between fights. Note that some civilisations (athen, ptol) shift its cost to metal, a scarce resource, which makes it much harder to mass there.
 
 ## Basic stats
 

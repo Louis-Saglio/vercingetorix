@@ -6,7 +6,7 @@ Generic stats resolved from the shared template `simulation/templates/template_s
 
 ## Guide
 
-The Barracks is the main infantry production building: it trains the full roster of citizen-soldier and champion infantry (spearmen, pikemen, swordsmen, archers, etc.) and researches infantry technologies, so building one is the standard way to start producing a fighting army. It is available from the Village phase for 200 wood and 100 stone (300 wood for brit/gaul/maur), takes 150 s to build, and can garrison 10 units. Its `ConquestCritical` class means losing all barracks contributes to defeat under conquest-type victory conditions, and its 50 m territory influence with weight 40000 also expands your borders. Note that some civilisations (germ, han, pers, spart) train reduced or specialised unit lists from it.
+The Barracks is the main infantry production building: it trains the full roster of citizen-soldier and champion infantry (spearmen, pikemen, swordsmen, archers, etc.) and researches infantry technologies, so building one is the standard way to start producing a fighting army. It is available from the Village phase for 200 wood and 100 stone (300 wood for brit/gaul/maur) — the stone is a scarce, premium resource, making it more of an investment than a wood-only building — takes 150 s to build, and can garrison 10 units. Its 50 m territory influence with weight 40000 also expands your borders. Note that some civilisations (germ, han, pers, spart) train reduced or specialised unit lists from it.
 
 ## Basic stats
 

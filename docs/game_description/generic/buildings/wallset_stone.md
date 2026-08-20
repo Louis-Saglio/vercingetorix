@@ -8,7 +8,7 @@ Note: this is a **wall set**, not a single building — it defines the wall segm
 
 ## Guide
 
-The Wall set is a defensive structure: it lets you enclose your base or critical buildings with stone wall segments to block or delay enemy attacks, with towers providing defensive strength and a gate letting your own units pass. It requires the town phase, so it is not available in the village phase — the bot can only start walling once it has advanced. Segments cost stone (a short segment is 12 stone and 12 s build time, a long one 36 stone and 36 s, a tower 48 stone and 48 s), so building a full enclosure is a significant stone investment. Build walls only if you have a steady stone income and a genuine need to protect a static position; they are buildable by 15 civilisations including gaul.
+The Wall set is a defensive structure: it lets you enclose your base or critical buildings with stone wall segments to block or delay enemy attacks, with towers providing defensive strength and a gate letting your own units pass. It requires the town phase, so it is not available in the village phase — the bot can only start walling once it has advanced. Segments cost stone (a short segment is 12 stone and 12 s build time, a long one 36 stone and 36 s, a tower 48 stone and 48 s), so building a full enclosure is a premium investment, since stone is a scarce resource. Build walls only if you have a steady stone income and a genuine need to protect a static position; they are buildable by 15 civilisations including gaul.
 
 ## Basic stats
 
