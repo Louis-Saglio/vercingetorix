@@ -1,0 +1,340 @@
+{
+  "seed": 78,
+  "exit": "finished",
+  "wall_seconds": 33,
+  "turns": 6000,
+  "players": [
+    {
+      "playerID": 1,
+      "playerState": "won",
+      "statistics": {
+        "buildingsCaptured": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsCapturedValue": 0,
+        "buildingsConstructed": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 17,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 17,
+          "Wonder": 0,
+          "total": 17
+        },
+        "buildingsLost": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsLostValue": 0,
+        "enemyBuildingsDestroyed": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "enemyBuildingsDestroyedValue": 0,
+        "enemyUnitsKilled": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "enemyUnitsKilledValue": 0,
+        "failedBribes": 0,
+        "lootCollected": 0,
+        "peakPercentMapControlled": 12,
+        "percentMapControlled": 12,
+        "percentMapExplored": 57,
+        "populationCount": 105,
+        "resourcesBought": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesCount": {
+          "food": 1270,
+          "metal": 200,
+          "stone": 300,
+          "wood": 1817
+        },
+        "resourcesGathered": {
+          "food": 7065,
+          "metal": 0,
+          "stone": 0,
+          "vegetarianFood": 5245,
+          "wood": 2919
+        },
+        "resourcesSold": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesUsed": {
+          "food": 5950,
+          "metal": 100,
+          "stone": 0,
+          "wood": 1375
+        },
+        "successfulBribes": 0,
+        "teamPeakPercentMapControlled": 12,
+        "teamPercentMapControlled": 12,
+        "teamPercentMapExplored": 57,
+        "tradeIncome": 0,
+        "treasuresCollected": 0,
+        "tributesReceived": 0,
+        "tributesSent": 0,
+        "unitsCaptured": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "unitsCapturedValue": 0,
+        "unitsLost": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 3,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 3,
+          "Worker": 3,
+          "total": 0
+        },
+        "unitsLostValue": 150,
+        "unitsTrained": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 99,
+          "Domestic": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 99,
+          "Worker": 99,
+          "total": 99
+        }
+      }
+    },
+    {
+      "playerID": 2,
+      "playerState": "won",
+      "statistics": {
+        "buildingsCaptured": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsCapturedValue": 0,
+        "buildingsConstructed": {
+          "CivCentre": 0,
+          "Economic": 2,
+          "Fortress": 0,
+          "House": 8,
+          "Military": 4,
+          "Outpost": 0,
+          "Structure": 19,
+          "Wonder": 0,
+          "total": 19
+        },
+        "buildingsLost": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "buildingsLostValue": 0,
+        "enemyBuildingsDestroyed": {
+          "CivCentre": 0,
+          "Economic": 0,
+          "Fortress": 0,
+          "House": 0,
+          "Military": 0,
+          "Outpost": 0,
+          "Structure": 0,
+          "Wonder": 0,
+          "total": 0
+        },
+        "enemyBuildingsDestroyedValue": 0,
+        "enemyUnitsKilled": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 3,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 3,
+          "Worker": 3,
+          "total": 0
+        },
+        "enemyUnitsKilledValue": 150,
+        "failedBribes": 0,
+        "lootCollected": 21,
+        "peakPercentMapControlled": 12,
+        "percentMapControlled": 12,
+        "percentMapExplored": 31,
+        "populationCount": 77,
+        "resourcesBought": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesCount": {
+          "food": 17,
+          "metal": 425,
+          "stone": 607,
+          "wood": 1767
+        },
+        "resourcesGathered": {
+          "food": 3987,
+          "metal": 658,
+          "stone": 677,
+          "vegetarianFood": 3107,
+          "wood": 7542
+        },
+        "resourcesSold": {
+          "food": 0,
+          "metal": 0,
+          "stone": 0,
+          "wood": 0
+        },
+        "resourcesUsed": {
+          "food": 4100,
+          "metal": 450,
+          "stone": 300,
+          "wood": 5850
+        },
+        "successfulBribes": 0,
+        "teamPeakPercentMapControlled": 12,
+        "teamPercentMapControlled": 12,
+        "teamPercentMapExplored": 31,
+        "tradeIncome": 0,
+        "treasuresCollected": 0,
+        "tributesReceived": 0,
+        "tributesSent": 0,
+        "unitsCaptured": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "unitsCapturedValue": 0,
+        "unitsLost": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 0,
+          "Hero": 0,
+          "Infantry": 0,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 0,
+          "Worker": 0,
+          "total": 0
+        },
+        "unitsLostValue": 0,
+        "unitsTrained": {
+          "Cavalry": 0,
+          "Champion": 0,
+          "Civilian": 26,
+          "Domestic": 0,
+          "Hero": 0,
+          "Infantry": 42,
+          "Ship": 0,
+          "Siege": 0,
+          "Trader": 0,
+          "Unit": 68,
+          "Worker": 68,
+          "total": 68
+        }
+      }
+    }
+  ],
+  "harness_lines": [
+    "[HARNESS] {\"event\":\"sample\",\"t\":1,\"food\":270,\"wood\":360,\"stone\":300,\"metal\":300,\"pop\":\"17/20\",\"states\":{\"undefined\":1,\"INDIVIDUAL.GATHER.GATHERING\":10,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":3,\"INDIVIDUAL.GATHER.APPROACHING\":3}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":2,\"food\":120,\"wood\":230,\"stone\":300,\"metal\":200,\"pop\":\"24/25\",\"states\":{\"undefined\":3,\"INDIVIDUAL.GATHER.GATHERING\":13,\"INDIVIDUAL.REPAIR.REPAIRING\":2,\"INDIVIDUAL.GATHER.APPROACHING\":4,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":3,\"INDIVIDUAL.WALKING\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":3,\"food\":120,\"wood\":220,\"stone\":300,\"metal\":200,\"pop\":\"35/35\",\"states\":{\"undefined\":5,\"INDIVIDUAL.GATHER.GATHERING\":16,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":5,\"INDIVIDUAL.GATHER.APPROACHING\":7,\"INDIVIDUAL.REPAIR.REPAIRING\":2,\"INDIVIDUAL.WALKING\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":4,\"food\":29,\"wood\":115,\"stone\":300,\"metal\":200,\"pop\":\"49/50\",\"states\":{\"undefined\":8,\"INDIVIDUAL.GATHER.APPROACHING\":4,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":6,\"INDIVIDUAL.GATHER.GATHERING\":17,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":6,\"INDIVIDUAL.GATHER.WALKING\":8,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":5,\"food\":34,\"wood\":75,\"stone\":300,\"metal\":200,\"pop\":\"60/60\",\"states\":{\"undefined\":10,\"INDIVIDUAL.COMBAT.APPROACHING\":38,\"INDIVIDUAL.GATHER.GATHERING\":5,\"INDIVIDUAL.GATHER.APPROACHING\":7,\"INDIVIDUAL.REPAIR.REPAIRING\":2,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":1,\"INDIVIDUAL.COMBAT.CHASING\":2,\"INDIVIDUAL.COMBAT.ATTACKING\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":6,\"food\":44,\"wood\":290,\"stone\":300,\"metal\":200,\"pop\":\"67/70\",\"states\":{\"undefined\":11,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":21,\"INDIVIDUAL.GATHER.WALKING\":5,\"INDIVIDUAL.COMBAT.APPROACHING\":15,\"INDIVIDUAL.GATHER.GATHERING\":12,\"INDIVIDUAL.GATHER.APPROACHING\":4,\"INDIVIDUAL.IDLE\":2,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":4}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":7,\"food\":14,\"wood\":430,\"stone\":300,\"metal\":200,\"pop\":\"73/75\",\"states\":{\"undefined\":13,\"INDIVIDUAL.GATHER.APPROACHING\":5,\"INDIVIDUAL.GATHER.WALKING\":27,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":17,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":10,\"INDIVIDUAL.GATHER.GATHERING\":10,\"INDIVIDUAL.REPAIR.APPROACHING\":1,\"INDIVIDUAL.REPAIR.REPAIRING\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":8,\"food\":44,\"wood\":710,\"stone\":300,\"metal\":200,\"pop\":\"77/80\",\"states\":{\"undefined\":13,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":36,\"INDIVIDUAL.GATHER.APPROACHING\":22,\"INDIVIDUAL.GATHER.GATHERING\":5,\"INDIVIDUAL.COMBAT.APPROACHING\":1,\"INDIVIDUAL.GATHER.WALKING\":10,\"INDIVIDUAL.IDLE\":1,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":2}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":9,\"food\":4,\"wood\":849,\"stone\":300,\"metal\":200,\"pop\":\"79/80\",\"states\":{\"undefined\":14,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":29,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":18,\"INDIVIDUAL.GATHER.APPROACHING\":17,\"INDIVIDUAL.GATHER.GATHERING\":5,\"INDIVIDUAL.REPAIR.REPAIRING\":2,\"INDIVIDUAL.GATHER.WALKING\":8}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":10,\"food\":34,\"wood\":934,\"stone\":300,\"metal\":200,\"pop\":\"86/90\",\"states\":{\"undefined\":15,\"INDIVIDUAL.GATHER.GATHERING\":10,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":22,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":34,\"INDIVIDUAL.GATHER.WALKING\":9,\"INDIVIDUAL.GATHER.APPROACHING\":11}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":11,\"food\":24,\"wood\":924,\"stone\":300,\"metal\":200,\"pop\":\"95/100\",\"states\":{\"undefined\":17,\"INDIVIDUAL.GATHER.WALKING\":22,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":50,\"INDIVIDUAL.GATHER.GATHERING\":2,\"INDIVIDUAL.GATHER.APPROACHING\":10,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":9}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":12,\"food\":42,\"wood\":943,\"stone\":300,\"metal\":200,\"pop\":\"99/105\",\"states\":{\"undefined\":18,\"INDIVIDUAL.GATHER.WALKING\":28,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":50,\"INDIVIDUAL.GATHER.APPROACHING\":5,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":8,\"INDIVIDUAL.GATHER.GATHERING\":7,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":13,\"food\":42,\"wood\":1007,\"stone\":300,\"metal\":200,\"pop\":\"103/105\",\"states\":{\"undefined\":18,\"INDIVIDUAL.GATHER.WALKING\":39,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":11,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":47,\"INDIVIDUAL.GATHER.GATHERING\":4,\"INDIVIDUAL.COMBAT.APPROACHING\":1,\"INDIVIDUAL.GATHER.APPROACHING\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":14,\"food\":78,\"wood\":1087,\"stone\":300,\"metal\":200,\"pop\":\"105/105\",\"states\":{\"undefined\":18,\"INDIVIDUAL.GATHER.WALKING\":25,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":19,\"INDIVIDUAL.GATHER.APPROACHING\":29,\"INDIVIDUAL.GATHER.GATHERING\":13,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":19}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":15,\"food\":508,\"wood\":1157,\"stone\":300,\"metal\":200,\"pop\":\"105/105\",\"states\":{\"undefined\":18,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":13,\"INDIVIDUAL.GATHER.APPROACHING\":50,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":22,\"INDIVIDUAL.GATHER.WALKING\":19,\"INDIVIDUAL.GATHER.GATHERING\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":16,\"food\":888,\"wood\":1217,\"stone\":300,\"metal\":200,\"pop\":\"105/105\",\"states\":{\"undefined\":18,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":47,\"INDIVIDUAL.GATHER.APPROACHING\":21,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":8,\"INDIVIDUAL.GATHER.GATHERING\":20,\"INDIVIDUAL.GATHER.WALKING\":9}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":17,\"food\":1532,\"wood\":1377,\"stone\":300,\"metal\":200,\"pop\":\"105/105\",\"states\":{\"undefined\":18,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":37,\"INDIVIDUAL.GATHER.WALKING\":26,\"INDIVIDUAL.GATHER.GATHERING\":17,\"INDIVIDUAL.GATHER.APPROACHING\":12,\"INDIVIDUAL.IDLE\":1,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":12}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":18,\"food\":1893,\"wood\":1537,\"stone\":300,\"metal\":200,\"pop\":\"105/105\",\"states\":{\"undefined\":18,\"INDIVIDUAL.GATHER.WALKING\":52,\"INDIVIDUAL.COMBAT.APPROACHING\":4,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":33,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":7,\"INDIVIDUAL.GATHER.GATHERING\":6,\"INDIVIDUAL.GATHER.APPROACHING\":2,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"sample\",\"t\":19,\"food\":1120,\"wood\":1657,\"stone\":300,\"metal\":200,\"pop\":\"105/105\",\"states\":{\"undefined\":18,\"INDIVIDUAL.GATHER.WALKING\":54,\"INDIVIDUAL.RETURNRESOURCE.APPROACHING\":26,\"INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING\":8,\"INDIVIDUAL.GATHER.APPROACHING\":7,\"INDIVIDUAL.GATHER.GATHERING\":9,\"INDIVIDUAL.IDLE\":1}}",
+    "[HARNESS] {\"event\":\"end\",\"state\":\"won\",\"t\":1200000}"
+  ],
+  "js_errors": 0,
+  "stderr": ""
+}

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **Turn 008 — food-share-90 (neutral, reverted):** raising the
+  food-gatherer allocation target from 75 % to 90 % (with a wood ≥ 150
+  floor after the smoke test caught a 100 %-food deadlock) made time-to-100
+  slightly *worse* (median 13.0 vs 12.0 paired). Evidence: effective food
+  income is walk-distance-bound (≈ 0.17/s per food gatherer in the sprint),
+  so the food:wood share is the wrong lever — the next one is farms next to
+  the civil centre.
+
 - **Turn 007 — parallel-house-construction (neutral, reverted):** up to two
   houses in flight (wood-gated) was tested against the turn-006 code on
   seeds 61–70. The cap lift did parallelize (minutes at the population cap
